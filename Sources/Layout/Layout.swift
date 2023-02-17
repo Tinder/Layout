@@ -131,15 +131,15 @@ extension UIView {
 ///         ````
 public final class Layout {
 
+    /// The standard spacing when using vfl. The horizontal bars in `|[view1]-[view2]-|`
+    public static let standardSpacing: CGFloat = 8
+
     /// View of the Layout
     public weak var containerView: UIView?
 
     public private(set) var items: [String: LayoutItem] = [:]
 
     public let metrics: [String: Any]
-
-    /// The standard spacing when using vfl. The horizontal bars in `|[view1]-[view2]-|`
-    public static let standardSpacing: CGFloat = 8
 
     internal var constraints: [NSLayoutConstraint] = []
 
