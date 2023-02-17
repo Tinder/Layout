@@ -13,10 +13,12 @@ jobs:
   ci_job:
     name: CI
     runs-on: macos-12
+    env:
+      SIMULATOR: iPhone 14
     steps:
     - name: Checkout source
       uses: actions/checkout@v3
     - name: Build
-      run: swift build -v
+      run: xcodebuild build-for-testing -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
     - name: Run tests
-      run: swift test -v
+      run: xcodebuild test-without-building -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
