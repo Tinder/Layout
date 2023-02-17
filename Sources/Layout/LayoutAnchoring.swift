@@ -70,9 +70,11 @@ extension UILayoutSupport {
 
 extension NSLayoutXAxisAnchor {
 
-    public func constraint(is relation: ConstraintRelation = .equal,
-                           to anchor: NSLayoutXAxisAnchor,
-                           constant: CGFloat = 0) -> NSLayoutConstraint {
+    public func constraint(
+        is relation: ConstraintRelation = .equal,
+        to anchor: NSLayoutXAxisAnchor,
+        constant: CGFloat = 0
+    ) -> NSLayoutConstraint {
         switch relation {
         case .equal:
             return constraint(equalTo: anchor, constant: constant)
@@ -86,9 +88,11 @@ extension NSLayoutXAxisAnchor {
 
 extension NSLayoutYAxisAnchor {
 
-    public func constraint(is relation: ConstraintRelation = .equal,
-                           to anchor: NSLayoutYAxisAnchor,
-                           constant: CGFloat = 0) -> NSLayoutConstraint {
+    public func constraint(
+        is relation: ConstraintRelation = .equal,
+        to anchor: NSLayoutYAxisAnchor,
+        constant: CGFloat = 0
+    ) -> NSLayoutConstraint {
         switch relation {
         case .equal:
             return constraint(equalTo: anchor, constant: constant)
@@ -102,9 +106,11 @@ extension NSLayoutYAxisAnchor {
 
 extension NSLayoutDimension {
 
-    public func constraint(is relation: ConstraintRelation = .equal,
-                           to anchor: NSLayoutDimension,
-                           constant: CGFloat = 0) -> NSLayoutConstraint {
+    public func constraint(
+        is relation: ConstraintRelation = .equal,
+        to anchor: NSLayoutDimension,
+        constant: CGFloat = 0
+    ) -> NSLayoutConstraint {
         switch relation {
         case .equal:
             return constraint(equalTo: anchor, constant: constant)
@@ -115,8 +121,10 @@ extension NSLayoutDimension {
         }
     }
 
-    public func constraint(is relation: ConstraintRelation = .equal,
-                           _ constant: CGFloat) -> NSLayoutConstraint {
+    public func constraint(
+        is relation: ConstraintRelation = .equal,
+        _ constant: CGFloat
+    ) -> NSLayoutConstraint {
         switch relation {
         case .equal:
             return constraint(equalToConstant: constant)

@@ -10,6 +10,7 @@ import UIKit
 extension UILayoutPriority {
 
     public static let disabled: UILayoutPriority = .init(0)
+
     public static let low: UILayoutPriority = .defaultLow
     public static let high: UILayoutPriority = .defaultHigh
 
@@ -35,21 +36,24 @@ extension NSLayoutConstraint {
 
     // MARK: - VFL Convenience APIs
 
-    public static func constraints(format: String,
-                                   views: [String: Any],
-                                   metrics: [String: Any]? = nil,
-                                   options: NSLayoutConstraint.FormatOptions = []) -> [NSLayoutConstraint] {
-
+    public static func constraints(
+        format: String,
+        views: [String: Any],
+        metrics: [String: Any]? = nil,
+        options: NSLayoutConstraint.FormatOptions = []
+    ) -> [NSLayoutConstraint] {
         NSLayoutConstraint.constraints(withVisualFormat: format,
                                        options: options,
                                        metrics: metrics,
                                        views: views)
     }
 
-    public static func constraints(formats: [String],
-                                   views: [String: Any],
-                                   metrics: [String: Any]? = nil,
-                                   options: NSLayoutConstraint.FormatOptions = []) -> [NSLayoutConstraint] {
+    public static func constraints(
+        formats: [String],
+        views: [String: Any],
+        metrics: [String: Any]? = nil,
+        options: NSLayoutConstraint.FormatOptions = []
+    ) -> [NSLayoutConstraint] {
         formats.flatMap {
             constraints(format: $0, views: views, metrics: metrics, options: options)
         }
@@ -114,7 +118,9 @@ extension Array where Element == NSLayoutConstraint {
     }
 
     @discardableResult
-    public func withPriority(_ priority: UILayoutPriority) -> [NSLayoutConstraint] {
+    public func withPriority(
+        _ priority: UILayoutPriority
+    ) -> [NSLayoutConstraint] {
         map { $0.withPriority(priority) }
     }
 
@@ -123,14 +129,12 @@ extension Array where Element == NSLayoutConstraint {
     }
 }
 
-// KLW [2/1/19]: Once UIView+Deprecated.swift no longer needs this - can be made internal again
-public extension NSLayoutConstraint.Axis {
+extension NSLayoutConstraint.Axis {
 
-    var orientation: String {
+    internal var orientation: String {
         switch self {
         case .vertical:
             return "V"
-
         case .horizontal:
             return "H"
         @unknown default:
@@ -138,7 +142,7 @@ public extension NSLayoutConstraint.Axis {
         }
     }
 
-    var centerAttribute: NSLayoutConstraint.Attribute {
+    internal var centerAttribute: NSLayoutConstraint.Attribute {
         switch self {
         case .horizontal:
             return .centerX

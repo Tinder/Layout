@@ -34,7 +34,9 @@ extension UIViewController {
     ///         .activate()
     ///         ````
     /// - Parameters: items: LayoutItems to add
-    public func layout(_ items: LayoutItem...) -> Layout {
+    public func layout(
+        _ items: LayoutItem...
+    ) -> Layout {
         view.layout(items: items)
     }
 
@@ -65,8 +67,16 @@ extension UIViewController {
     /// - Parameters:
     ///   - items: items to be included in Layout
     ///   - metrics: (optional) metrics for VFL
-    public func layout(items: [LayoutItem],
-                       metrics: [String: Any]? = nil) -> Layout {
+    public func layout(
+        items: [LayoutItem],
+        metrics: [String: Any] = [:]
+    ) -> Layout {
         view.layout(items: items, metrics: metrics)
+    }
+
+    public func buildLayout(
+        @LayoutBuilder _ items: () -> [LayoutItem]
+    ) -> Layout {
+        view.layout(items: items())
     }
 }
