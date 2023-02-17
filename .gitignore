@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# SPM
+.swiftpm/
+.build/
+
+# Xcode
+*.xcworkspace/
+*.xcodeproj/
