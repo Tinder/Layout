@@ -131,14 +131,10 @@ extension UIView {
 ///         ````
 public final class Layout {
 
-    var privateItems: [String: LayoutItem] = [:]
-
     /// View of the Layout
     public weak var containerView: UIView?
 
-    public var items: [String: LayoutItem] {
-        privateItems
-    }
+    public private(set) var items: [String: LayoutItem] = [:]
 
     public let metrics: [String: Any]
 
@@ -626,7 +622,7 @@ public final class Layout {
             }
             constraints += item.superviewConstraints()
             if let key = subview.identifier, !key.isEmpty {
-                self.privateItems[key] = subview
+                self.items[key] = subview
             }
         }
         return self
