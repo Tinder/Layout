@@ -8,10 +8,11 @@
 import UIKit
 
 public enum HorizontalDirection {
+
     case leadingToTrailing
     case leftToRight
 
-    var attributes: (XAxisAttribute, XAxisAttribute) {
+    internal var attributes: (XAxisAttribute, XAxisAttribute) {
         switch self {
         case .leadingToTrailing:
             return (.leading, .trailing)
@@ -22,13 +23,15 @@ public enum HorizontalDirection {
 }
 
 public enum ConstraintRelation {
+
     case equal
     case greaterThanOrEqual
     case lessThanOrEqual
 }
 
-public extension NSLayoutConstraint.Relation {
-    init(relation: ConstraintRelation) {
+extension NSLayoutConstraint.Relation {
+
+    public init(relation: ConstraintRelation) {
         switch relation {
         case .equal:
             self = .equal
@@ -67,7 +70,9 @@ extension UIView {
     ///         .activate()
     ///         ````
     /// - Parameters: items: LayoutItems to add
-    public func layout(_ items: LayoutItem...) -> Layout {
+    public func layout(
+        _ items: LayoutItem...
+    ) -> Layout {
         layout(items: items)
     }
 
@@ -98,9 +103,17 @@ extension UIView {
     /// - Parameters:
     ///   - items: items to be included in Layout
     ///   - metrics: (optional) metrics for VFL
-    public func layout(items: [LayoutItem],
-                       metrics: [String: Any]? = nil) -> Layout {
+    public func layout(
+        items: [LayoutItem],
+        metrics: [String: Any] = [:]
+    ) -> Layout {
         Layout(self, items: items, metrics: metrics)
+    }
+
+    public func buildLayout(
+        @LayoutBuilder _ items: () -> [LayoutItem]
+    ) -> Layout {
+        layout(items: items())
     }
 }
 
@@ -141,13 +154,15 @@ public final class Layout {
 
     public let metrics: [String: Any]
 
-    internal var constraints: [NSLayoutConstraint] = []
+    private var constraints: [NSLayoutConstraint] = []
 
-    public init(_ containerView: UIView,
-                items: [LayoutItem],
-                metrics: [String: Any]? = nil) {
+    public init(
+        _ containerView: UIView,
+        items: [LayoutItem],
+        metrics: [String: Any] = [:]
+    ) {
         self.containerView = containerView
-        self.metrics = metrics ?? [:]
+        self.metrics = metrics
         addItems(items)
     }
 
@@ -183,9 +198,11 @@ public final class Layout {
     ///   - metrics: (optional) metrics for vfl
     ///   - options: (optional) options
     @discardableResult
-    public func vertical(_ format: String,
-                         metrics: [String: Any]? = nil,
-                         options: NSLayoutConstraint.FormatOptions = []) -> Layout {
+    public func vertical(
+        _ format: String,
+        metrics: [String: Any]? = nil,
+        options: NSLayoutConstraint.FormatOptions = []
+    ) -> Layout {
         vfl(axis: .vertical, format: format, metrics: metrics, options: options)
     }
 
@@ -196,29 +213,33 @@ public final class Layout {
     ///   - metrics: (optional) metrics for vfl
     ///   - options: (optional) options
     @discardableResult
-    public func horizontal(_ format: String,
-                           metrics: [String: Any]? = nil,
-                           options: NSLayoutConstraint.FormatOptions = []) -> Layout {
+    public func horizontal(
+        _ format: String,
+        metrics: [String: Any]? = nil,
+        options: NSLayoutConstraint.FormatOptions = []
+    ) -> Layout {
         vfl(axis: .horizontal, format: format, metrics: metrics, options: options)
     }
 
     @discardableResult
-    func vfl(axis: NSLayoutConstraint.Axis,
-             format: String,
-             metrics: [String: Any]? = nil,
-             options: NSLayoutConstraint.FormatOptions = []) -> Layout {
+    private func vfl(
+        axis: NSLayoutConstraint.Axis,
+        format: String,
+        metrics: [String: Any]? = nil,
+        options: NSLayoutConstraint.FormatOptions = []
+    ) -> Layout {
         vfl(axis.orientation + ":" + format, metrics: metrics, options: options)
     }
 
-    func vfl(_ format: String,
-             metrics: [String: Any]? = nil,
-             options: NSLayoutConstraint.FormatOptions = []) -> Layout {
-        adding(
-            NSLayoutConstraint.constraints(format: format,
-                                           views: items,
-                                           metrics: metrics ?? self.metrics,
-                                           options: options)
-        )
+    private func vfl(
+        _ format: String,
+        metrics: [String: Any]? = nil,
+        options: NSLayoutConstraint.FormatOptions = []
+    ) -> Layout {
+        adding(NSLayoutConstraint.constraints(format: format,
+                                              views: items,
+                                              metrics: metrics ?? self.metrics,
+                                              options: options))
     }
 
     /// Constrains two anchors to each other. Constrains the corresponding `targetAttribute` if `attribute` is nil
@@ -232,22 +253,21 @@ public final class Layout {
     ///   - multiplier: (optional) multiplier
     ///   - constant: (optional) constant
     @discardableResult
-    public func constrain(_ view: UIView,
-                          _ attribute: NSLayoutConstraint.Attribute? = nil,
-                          is relation: ConstraintRelation = .equal,
-                          to targetAttribute: NSLayoutConstraint.Attribute,
-                          of targetView: UIView,
-                          multiplier: CGFloat = 1.0,
-                          constant: CGFloat = 0.0) -> Layout {
-        adding(
-            view.constraint(for: attribute,
-                            is: relation,
-                            to: targetAttribute,
-                            of: targetView,
-                            multiplier: multiplier,
-                            constant: constant
-            )
-        )
+    public func constrain(
+        _ view: UIView,
+        _ attribute: NSLayoutConstraint.Attribute? = nil,
+        is relation: ConstraintRelation = .equal,
+        to targetAttribute: NSLayoutConstraint.Attribute,
+        of targetView: UIView,
+        multiplier: CGFloat = 1.0,
+        constant: CGFloat = 0.0
+    ) -> Layout {
+        adding(view.constraint(for: attribute,
+                               is: relation,
+                               to: targetAttribute,
+                               of: targetView,
+                               multiplier: multiplier,
+                               constant: constant))
     }
 
     /// Constrains two anchors to each other
@@ -261,11 +281,13 @@ public final class Layout {
     ///   - constant: (optional) constant
     ///   - priority: (optional) priority of constraint
     @discardableResult
-    public func constrain<T>(_ anchor: NSLayoutAnchor<T>,
-                             is relation: ConstraintRelation = .equal,
-                             to targetAnchor: NSLayoutAnchor<T>,
-                             constant: CGFloat = 0.0,
-                             priority: UILayoutPriority = .required) -> Layout {
+    public func constrain<T>(
+        _ anchor: NSLayoutAnchor<T>,
+        is relation: ConstraintRelation = .equal,
+        to targetAnchor: NSLayoutAnchor<T>,
+        constant: CGFloat = 0.0,
+        priority: UILayoutPriority = .required
+    ) -> Layout {
         let constraint: NSLayoutConstraint
         switch relation {
         case .equal:
@@ -291,12 +313,14 @@ public final class Layout {
     ///   - constant: (optional) constant
     ///   - priority: (optional) priority of constraint
     @discardableResult
-    public func constrain(_ anchor: NSLayoutDimension,
-                          is relation: ConstraintRelation = .equal,
-                          to targetAnchor: NSLayoutDimension,
-                          multiplier: CGFloat = 1.0,
-                          constant: CGFloat = 0.0,
-                          priority: UILayoutPriority = .required) -> Layout {
+    public func constrain(
+        _ anchor: NSLayoutDimension,
+        is relation: ConstraintRelation = .equal,
+        to targetAnchor: NSLayoutDimension,
+        multiplier: CGFloat = 1.0,
+        constant: CGFloat = 0.0,
+        priority: UILayoutPriority = .required
+    ) -> Layout {
         let constraint: NSLayoutConstraint
         switch relation {
         case .equal:
@@ -323,10 +347,12 @@ public final class Layout {
     ///   - constant: size of dimension
     ///   - priority: (optional) priority of constraint
     @discardableResult
-    public func constrain(_ anchor: NSLayoutDimension,
-                          is relation: ConstraintRelation = .equal,
-                          to constant: CGFloat,
-                          priority: UILayoutPriority = .required) -> Layout {
+    public func constrain(
+        _ anchor: NSLayoutDimension,
+        is relation: ConstraintRelation = .equal,
+        to constant: CGFloat,
+        priority: UILayoutPriority = .required
+    ) -> Layout {
         let constraint: NSLayoutConstraint
         switch relation {
         case .equal:
@@ -347,13 +373,16 @@ public final class Layout {
     ///   - insets: (optional) insets of `view1`
     ///   - direction: (optional) determines if the views change direction with respect to the language
     @discardableResult
-    public func pin(_ view1: UIView,
-                    to view2: UIView,
-                    insets: UIEdgeInsets = .zero,
-                    direction: HorizontalDirection = .leadingToTrailing) -> Layout {
-        constrain(view1.anchor(for: direction.attributes.0),
-                  to: view2.anchor(for: direction.attributes.0),
-                  constant: insets.left)
+    public func pin(
+        _ view1: UIView,
+        to view2: UIView,
+        insets: UIEdgeInsets = .zero,
+        direction: HorizontalDirection = .leadingToTrailing
+    ) -> Layout {
+        self
+            .constrain(view1.anchor(for: direction.attributes.0),
+                       to: view2.anchor(for: direction.attributes.0),
+                       constant: insets.left)
             .constrain(view1.anchor(for: direction.attributes.1),
                        to: view2.anchor(for: direction.attributes.1),
                        constant: -insets.right)
@@ -369,13 +398,15 @@ public final class Layout {
     ///   - inset: inset of `view1`
     ///   - direction: (optional) determines if the views change direction with respect to the language
     @discardableResult
-    public func pin(_ view1: UIView,
-                    to view2: UIView,
-                    inset: CGFloat,
-                    direction: HorizontalDirection = .leadingToTrailing) -> Layout {
+    public func pin(
+        _ view1: UIView,
+        to view2: UIView,
+        inset: CGFloat,
+        direction: HorizontalDirection = .leadingToTrailing
+    ) -> Layout {
         pin(view1,
             to: view2,
-            insets: .init(top: inset, left: inset, bottom: inset, right: inset),
+            insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset),
             direction: direction)
     }
 
@@ -385,7 +416,10 @@ public final class Layout {
     ///   - attribute: attribute to constrain
     ///   - views: subviews to constrain
     @discardableResult
-    public func equal(_ attribute: NSLayoutConstraint.Attribute, _ views: [UIView]) -> Layout {
+    public func equal(
+        _ attribute: NSLayoutConstraint.Attribute,
+        _ views: [UIView]
+    ) -> Layout {
         equal([attribute], views)
     }
 
@@ -393,7 +427,9 @@ public final class Layout {
     ///
     /// - Parameter views: subviews to constrain
     @discardableResult
-    public func equalSize(_ views: [UIView]) -> Layout {
+    public func equalSize(
+        _ views: [UIView]
+    ) -> Layout {
         equal([.height, .width], views)
     }
 
@@ -403,9 +439,13 @@ public final class Layout {
     ///   - attributes: attributes to constrain
     ///   - views: subviews to constrain
     @discardableResult
-    public func equal(_ attributes: [NSLayoutConstraint.Attribute], _ views: [UIView]) -> Layout {
+    public func equal(
+        _ attributes: [NSLayoutConstraint.Attribute],
+        _ views: [UIView]
+    ) -> Layout {
         guard views.count >= 2,
-              let first = views.first else { return self }
+              let first = views.first
+        else { return self }
         for view in views.dropFirst() {
             constraints += view.constraints(to: attributes, of: first)
         }
@@ -423,21 +463,24 @@ public final class Layout {
     ///   - priority: (optional) priority of the constraint, defaults to .required
     ///   - alignment: X﹘Axis attributes to align
     @discardableResult
-    public func horizontal(_ views: [UIView],
-                           spacing: CGFloat = 0,
-                           direction: HorizontalDirection = .leadingToTrailing,
-                           priority: UILayoutPriority = .required,
-                           alignment: YAxisAttribute...) -> Layout {
+    public func horizontal(
+        _ views: [UIView],
+        spacing: CGFloat = 0,
+        direction: HorizontalDirection = .leadingToTrailing,
+        priority: UILayoutPriority = .required,
+        alignment: YAxisAttribute...
+    ) -> Layout {
         guard views.count >= 2,
-              let first = views.first else { return self }
-
+              let first = views.first
+        else { return self }
         var anchor = first.anchor(for: direction.attributes.1)
         for view in views.dropFirst() {
-            let nextAnchor = view.anchor(for: direction.attributes.0)
-            constraints.append(nextAnchor.constraint(equalTo: anchor, constant: spacing).withPriority(priority))
+            constraints.append(view
+                .anchor(for: direction.attributes.0)
+                .constraint(equalTo: anchor, constant: spacing)
+                .withPriority(priority))
             anchor = view.anchor(for: direction.attributes.1)
         }
-
         for attribute in alignment {
             equalAttribute(attribute, views)
         }
@@ -451,15 +494,19 @@ public final class Layout {
     ///   - spacing: spacing between views
     ///   - alignment: X﹘Axis attributes to align
     @discardableResult
-    public func vertical(_ views: [UIView],
-                         spacing: CGFloat = 0,
-                         alignment: XAxisAttribute...) -> Layout {
+    public func vertical(
+        _ views: [UIView],
+        spacing: CGFloat = 0,
+        alignment: XAxisAttribute...
+    ) -> Layout {
         guard views.count >= 2,
-              let first = views.first else { return self }
+              let first = views.first
+        else { return self }
         var anchor = first.anchor(for: YAxisAttribute.bottom)
         for view in views.dropFirst() {
-            let nextAnchor = view.anchor(for: YAxisAttribute.top)
-            constraints.append(nextAnchor.constraint(equalTo: anchor, constant: spacing))
+            constraints.append(view
+                .anchor(for: YAxisAttribute.top)
+                .constraint(equalTo: anchor, constant: spacing))
             anchor = view.anchor(for: YAxisAttribute.bottom)
         }
         for attribute in alignment {
@@ -508,17 +555,20 @@ public final class Layout {
     /// |                                         |
     /// +-----------------------------------------+
     /// ```
-    public func center(_ view: UIView,
-                       between leading: NSLayoutAnchor<NSLayoutXAxisAnchor>,
-                       and trailing: NSLayoutAnchor<NSLayoutXAxisAnchor>) -> Layout {
-        guard let containerView = containerView else { return self }
+    public func center(
+        _ view: UIView,
+        between leading: NSLayoutAnchor<NSLayoutXAxisAnchor>,
+        and trailing: NSLayoutAnchor<NSLayoutXAxisAnchor>
+    ) -> Layout {
+        guard let containerView = containerView
+        else { return self }
         let guide = UILayoutGuide()
         containerView.addLayoutGuide(guide)
-        constraints.append(contentsOf: [
+        constraints += [
             guide.leading.constraint(equalTo: leading),
             guide.trailing.constraint(equalTo: trailing),
             view.centerX.constraint(equalTo: guide.centerX)
-        ])
+        ]
         return self
     }
 
@@ -562,29 +612,37 @@ public final class Layout {
     /// |                                         |
     /// +-----------------------------------------+
     /// ```
-    public func center(_ view: UIView,
-                       between top: NSLayoutAnchor<NSLayoutYAxisAnchor>,
-                       and bottom: NSLayoutAnchor<NSLayoutYAxisAnchor>,
-                       priority: UILayoutPriority = .required) -> Layout {
-        guard let containerView = containerView else { return self }
+    public func center(
+        _ view: UIView,
+        between top: NSLayoutAnchor<NSLayoutYAxisAnchor>,
+        and bottom: NSLayoutAnchor<NSLayoutYAxisAnchor>,
+        priority: UILayoutPriority = .required
+    ) -> Layout {
+        guard let containerView = containerView
+        else { return self }
         let guide = UILayoutGuide()
         containerView.addLayoutGuide(guide)
-        constraints.append(contentsOf: [
+        constraints += [
             guide.top.constraint(equalTo: top),
             guide.bottom.constraint(equalTo: bottom),
             view.centerY.constraint(equalTo: guide.centerY).withPriority(priority)
-        ])
+        ]
         return self
     }
 
     @discardableResult
-    func equalAttribute<T: AnchorAttribute>(_ attribute: T, _ views: [UIView]) -> Layout {
+    private func equalAttribute<T: AnchorAttribute>(
+        _ attribute: T,
+        _ views: [UIView]
+    ) -> Layout {
         guard views.count >= 2,
-              let first = views.first else { return self }
+              let first = views.first
+        else { return self }
         let firstAnchor = first.anchor(for: attribute)
         for view in views.dropFirst() {
-            let nextAnchor = view.anchor(for: attribute)
-            constraints.append(nextAnchor.constraint(equalTo: firstAnchor))
+            constraints.append(view
+                .anchor(for: attribute)
+                .constraint(equalTo: firstAnchor))
         }
         return self
     }
@@ -599,7 +657,9 @@ public final class Layout {
     ///     ````
     /// - Parameter items: LayoutItems to add
     @discardableResult
-    public func addItems(_ items: LayoutItem...) -> Layout {
+    public func addItems(
+        _ items: LayoutItem...
+    ) -> Layout {
         addItems(items)
     }
 
@@ -613,7 +673,9 @@ public final class Layout {
     ///     ````
     /// - Parameter items: LayoutItems to add
     @discardableResult
-    public func addItems(_ items: [LayoutItem]) -> Layout {
+    public func addItems(
+        _ items: [LayoutItem]
+    ) -> Layout {
         items.forEach { item in
             let subview = item.layoutItemView
             subview.translatesAutoresizingMaskIntoConstraints = false

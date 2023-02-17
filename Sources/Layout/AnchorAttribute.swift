@@ -8,6 +8,7 @@
 import UIKit
 
 public enum AnchorAttributeType {
+
     case xAxisAnchor, yAxisAnchor, dimension
 }
 
@@ -107,7 +108,7 @@ extension LayoutAnchoring {
         }
     }
 
-    func xAnchor(for attribute: XAxisAttribute) -> NSLayoutXAxisAnchor {
+    private func xAnchor(for attribute: XAxisAttribute) -> NSLayoutXAxisAnchor {
         switch attribute {
         case .left:
             return left
@@ -122,7 +123,7 @@ extension LayoutAnchoring {
         }
     }
 
-    func yAnchor(for attribute: YAxisAttribute) -> NSLayoutYAxisAnchor {
+    private func yAnchor(for attribute: YAxisAttribute) -> NSLayoutYAxisAnchor {
         switch attribute {
         case .top:
             return top
@@ -137,7 +138,7 @@ extension LayoutAnchoring {
         }
     }
 
-    func sizeAnchor(for attribute: DimensionAttribute) -> NSLayoutDimension {
+    private func sizeAnchor(for attribute: DimensionAttribute) -> NSLayoutDimension {
         switch attribute {
         case .width:
             return width
