@@ -7,9 +7,9 @@
 
 import UIKit
 
-// MARK: - Constraint Builders
-
 extension UIView {
+
+    // MARK: - Constraint Builders
 
     public func usingConstraints() -> Self {
         translatesAutoresizingMaskIntoConstraints = false
@@ -33,11 +33,8 @@ extension UIView {
         heightConstraint(height).activate()
         return usingConstraints()
     }
-}
 
-// MARK: - Constraint Factory
-
-extension UIView {
+    // MARK: - Constraint Factories
 
     public func constraint(
         for attribute: NSLayoutConstraint.Attribute? = nil,
@@ -183,32 +180,5 @@ extension UIView {
         to views: [UIView]
     ) -> [NSLayoutConstraint] {
         views.map { constraint(to: attribute, of: $0) }
-    }
-}
-
-/**
- Allows you to create a view with a certain content size + let's up update it.
- **/
-open class IntrinsicSizingView: UIView {
-
-    public var intrinsicSize: CGSize {
-        didSet {
-            invalidateIntrinsicContentSize()
-        }
-    }
-
-    public init(intrinsicSize: CGSize) {
-        self.intrinsicSize = intrinsicSize
-        super.init(frame: CGRect(origin: .zero, size: intrinsicSize))
-        setContentHuggingPriority(.required, for: .horizontal)
-        setContentHuggingPriority(.required, for: .vertical)
-    }
-
-    public required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override open var intrinsicContentSize: CGSize {
-        intrinsicSize
     }
 }

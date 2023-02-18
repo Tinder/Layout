@@ -7,17 +7,17 @@
 
 import UIKit
 
-public enum AnchorAttributeType {
-
-    case xAxisAnchor, yAxisAnchor, dimension
-}
-
 public protocol AnchorAttribute {
 
     associatedtype AnchorType: AnyObject
 
     var attributeType: AnchorAttributeType { get }
     var attribute: NSLayoutConstraint.Attribute { get }
+}
+
+public enum AnchorAttributeType {
+
+    case xAxisAnchor, yAxisAnchor, dimension
 }
 
 public enum XAxisAttribute: AnchorAttribute {
