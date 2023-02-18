@@ -1,13 +1,13 @@
 //
-//  UIViewController+Layout.swift
+//  Layout+UIView.swift
 //  Layout
 //
-//  Created by Christopher Fuller on 2/17/23.
+//  Created by Christopher Fuller on 2/18/23.
 //
 
 import UIKit
 
-extension UIViewController {
+extension UIView {
 
     /// Adds subviews and constraints to a view.
     ///
@@ -37,7 +37,7 @@ extension UIViewController {
     public func layout(
         _ items: LayoutItem...
     ) -> Layout {
-        view.layout(items: items)
+        layout(items: items)
     }
 
     /// Adds subviews and constraints to a view.
@@ -71,12 +71,12 @@ extension UIViewController {
         items: [LayoutItem],
         metrics: [String: Any] = [:]
     ) -> Layout {
-        view.layout(items: items, metrics: metrics)
+        Layout(self, items: items, metrics: metrics)
     }
 
     public func buildLayout(
         @LayoutBuilder _ items: () -> [LayoutItem]
     ) -> Layout {
-        view.layout(items: items())
+        layout(items: items())
     }
 }

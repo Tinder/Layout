@@ -1,36 +1,11 @@
 //
-//  NSLayoutConstraint+Layout.swift
+//  NSLayoutConstraint.swift
 //  Layout
 //
 //  Created by Christopher Fuller on 2/17/23.
 //
 
 import UIKit
-
-extension UILayoutPriority {
-
-    public static let disabled: UILayoutPriority = .init(0)
-
-    public static let low: UILayoutPriority = .defaultLow
-    public static let high: UILayoutPriority = .defaultHigh
-
-    public static func + (priority: UILayoutPriority, offset: Float) -> UILayoutPriority {
-        let priority: Float = priority.rawValue + offset
-        return UILayoutPriority(min(max(priority, 0), 1_000))
-    }
-
-    public static func - (priority: UILayoutPriority, offset: Float) -> UILayoutPriority {
-        priority + -offset
-    }
-
-    public static func += (priority: inout UILayoutPriority, offset: Float) {
-        priority = priority + offset
-    }
-
-    public static func -= (priority: inout UILayoutPriority, offset: Float) {
-        priority = priority - offset
-    }
-}
 
 extension NSLayoutConstraint {
 
@@ -101,6 +76,33 @@ extension NSLayoutConstraint {
     }
 }
 
+// MARK: - NSLayoutConstraint.Axis Helpers
+
+extension NSLayoutConstraint.Axis {
+
+    internal var orientation: String {
+        switch self {
+        case .vertical:
+            return "V"
+        case .horizontal:
+            return "H"
+        @unknown default:
+            return "H"
+        }
+    }
+
+    internal var centerAttribute: NSLayoutConstraint.Attribute {
+        switch self {
+        case .horizontal:
+            return .centerX
+        case .vertical:
+            return .centerY
+        @unknown default:
+            return .centerX
+        }
+    }
+}
+
 // MARK: - NSLayoutConstraint Array Helpers
 
 extension Array where Element == NSLayoutConstraint {
@@ -126,30 +128,5 @@ extension Array where Element == NSLayoutConstraint {
 
     public func prioritize(_ priority: UILayoutPriority) {
         forEach { $0.priority = priority }
-    }
-}
-
-extension NSLayoutConstraint.Axis {
-
-    internal var orientation: String {
-        switch self {
-        case .vertical:
-            return "V"
-        case .horizontal:
-            return "H"
-        @unknown default:
-            return "H"
-        }
-    }
-
-    internal var centerAttribute: NSLayoutConstraint.Attribute {
-        switch self {
-        case .horizontal:
-            return .centerX
-        case .vertical:
-            return .centerY
-        @unknown default:
-            return .centerX
-        }
     }
 }

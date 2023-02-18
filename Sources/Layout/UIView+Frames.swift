@@ -7,6 +7,23 @@
 
 import UIKit
 
+extension UIView {
+
+    public func usingFrames(_ autoresizingMask: AutoresizingMask = .topLeft) -> Self {
+        self.autoresizingMask = autoresizingMask
+        translatesAutoresizingMaskIntoConstraints = true
+        return self
+    }
+
+    public func disablingIntrinsicSize() -> Self {
+        setContentHuggingPriority(.disabled, for: .horizontal)
+        setContentHuggingPriority(.disabled, for: .vertical)
+        setContentCompressionResistancePriority(.disabled, for: .horizontal)
+        setContentCompressionResistancePriority(.disabled, for: .vertical)
+        return self
+    }
+}
+
 extension UIView.AutoresizingMask {
 
     public static var topLeft: Self {
@@ -27,22 +44,5 @@ extension UIView.AutoresizingMask {
 
     public static var scaleWithSuperview: Self {
         [.flexibleWidth, .flexibleHeight]
-    }
-}
-
-extension UIView {
-
-    public func usingFrames(_ autoresizingMask: AutoresizingMask = .topLeft) -> Self {
-        self.autoresizingMask = autoresizingMask
-        translatesAutoresizingMaskIntoConstraints = true
-        return self
-    }
-
-    public func disablingIntrinsicSize() -> Self {
-        setContentHuggingPriority(.disabled, for: .horizontal)
-        setContentHuggingPriority(.disabled, for: .vertical)
-        setContentCompressionResistancePriority(.disabled, for: .horizontal)
-        setContentCompressionResistancePriority(.disabled, for: .vertical)
-        return self
     }
 }
