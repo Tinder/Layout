@@ -40,16 +40,24 @@ public final class Layout {
     /// View of the Layout
     public weak var containerView: UIView?
 
-    public private(set) var items: [String: LayoutItem] = [:]
-
     public let metrics: [String: Any]
+
+    public private(set) var items: [String: LayoutItem] = [:]
 
     private var constraints: [NSLayoutConstraint] = []
 
-    public init(
+    public convenience init(
         _ containerView: UIView,
-        items: [LayoutItem],
-        metrics: [String: Any] = [:]
+        metrics: [String: Any] = [:],
+        @LayoutBuilder items: () -> [LayoutItem]
+    ) {
+        self.init(containerView, metrics: metrics, items: items())
+    }
+
+    internal init(
+        _ containerView: UIView,
+        metrics: [String: Any] = [:],
+        items: [LayoutItem]
     ) {
         self.containerView = containerView
         self.metrics = metrics
