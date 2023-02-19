@@ -5,9 +5,9 @@
 //  Created by Christopher Fuller on 2/18/23.
 //
 
-import UIKit
+import Foundation
 
-open class IntrinsicSizingView: UIView {
+open class IntrinsicSizingView: View {
 
     public var intrinsicSize: CGSize {
         didSet {

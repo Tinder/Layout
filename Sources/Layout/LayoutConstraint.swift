@@ -1,13 +1,13 @@
 //
-//  NSLayoutConstraint.swift
+//  LayoutConstraint.swift
 //  Layout
 //
 //  Created by Christopher Fuller on 2/17/23.
 //
 
-import UIKit
+import Foundation
 
-extension NSLayoutConstraint {
+extension LayoutConstraint {
 
     // MARK: - VFL Convenience APIs
 
@@ -15,20 +15,20 @@ extension NSLayoutConstraint {
         format: String,
         views: [String: Any],
         metrics: [String: Any]? = nil,
-        options: NSLayoutConstraint.FormatOptions = []
-    ) -> [NSLayoutConstraint] {
-        NSLayoutConstraint.constraints(withVisualFormat: format,
-                                       options: options,
-                                       metrics: metrics,
-                                       views: views)
+        options: LayoutConstraint.FormatOptions = []
+    ) -> [LayoutConstraint] {
+        LayoutConstraint.constraints(withVisualFormat: format,
+                                     options: options,
+                                     metrics: metrics,
+                                     views: views)
     }
 
     public static func constraints(
         formats: [String],
         views: [String: Any],
         metrics: [String: Any]? = nil,
-        options: NSLayoutConstraint.FormatOptions = []
-    ) -> [NSLayoutConstraint] {
+        options: LayoutConstraint.FormatOptions = []
+    ) -> [LayoutConstraint] {
         formats.flatMap {
             constraints(format: $0, views: views, metrics: metrics, options: options)
         }
@@ -37,48 +37,48 @@ extension NSLayoutConstraint {
     // MARK: - Mutators
 
     @discardableResult
-    public func activate() -> NSLayoutConstraint {
+    public func activate() -> LayoutConstraint {
         isActive = true
         return self
     }
 
     @discardableResult
-    public func deactivate() -> NSLayoutConstraint {
+    public func deactivate() -> LayoutConstraint {
         isActive = false
         return self
     }
 
     @discardableResult
-    public func offsetBy(_ constant: CGFloat) -> NSLayoutConstraint {
+    public func offsetBy(_ constant: CGFloat) -> LayoutConstraint {
         self.constant = constant
         return self
     }
 
     @discardableResult
-    public func withPriority(_ priority: UILayoutPriority) -> NSLayoutConstraint {
+    public func withPriority(_ priority: LayoutPriority) -> LayoutConstraint {
         self.priority = priority
         return self
     }
 
     @discardableResult
-    public func require() -> NSLayoutConstraint {
+    public func require() -> LayoutConstraint {
         withPriority(.required)
     }
 
     @discardableResult
-    public func lowPriority() -> NSLayoutConstraint {
+    public func lowPriority() -> LayoutConstraint {
         withPriority(.low)
     }
 
     @discardableResult
-    public func highPriority() -> NSLayoutConstraint {
+    public func highPriority() -> LayoutConstraint {
         withPriority(.high)
     }
 }
 
-// MARK: - NSLayoutConstraint.Axis Helpers
+// MARK: - LayoutConstraint.Axis Helpers
 
-extension NSLayoutConstraint.Axis {
+extension LayoutConstraint.Axis {
 
     internal var orientation: String {
         switch self {
@@ -86,47 +86,51 @@ extension NSLayoutConstraint.Axis {
             return "V"
         case .horizontal:
             return "H"
+        #if canImport(UIKit)
         @unknown default:
             return "H"
+        #endif
         }
     }
 
-    internal var centerAttribute: NSLayoutConstraint.Attribute {
+    internal var centerAttribute: LayoutConstraint.Attribute {
         switch self {
         case .horizontal:
             return .centerX
         case .vertical:
             return .centerY
+        #if canImport(UIKit)
         @unknown default:
             return .centerX
+        #endif
         }
     }
 }
 
-// MARK: - NSLayoutConstraint Array Helpers
+// MARK: - LayoutConstraint Array Helpers
 
-extension Array where Element == NSLayoutConstraint {
+extension Array where Element == LayoutConstraint {
 
     @discardableResult
-    public func activate() -> [NSLayoutConstraint] {
-        NSLayoutConstraint.activate(self)
+    public func activate() -> [LayoutConstraint] {
+        LayoutConstraint.activate(self)
         return self
     }
 
     @discardableResult
-    public func deactivate() -> [NSLayoutConstraint] {
-        NSLayoutConstraint.deactivate(self)
+    public func deactivate() -> [LayoutConstraint] {
+        LayoutConstraint.deactivate(self)
         return self
     }
 
     @discardableResult
     public func withPriority(
-        _ priority: UILayoutPriority
-    ) -> [NSLayoutConstraint] {
+        _ priority: LayoutPriority
+    ) -> [LayoutConstraint] {
         map { $0.withPriority(priority) }
     }
 
-    public func prioritize(_ priority: UILayoutPriority) {
+    public func prioritize(_ priority: LayoutPriority) {
         forEach { $0.priority = priority }
     }
 }

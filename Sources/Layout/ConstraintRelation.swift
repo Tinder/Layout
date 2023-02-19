@@ -5,8 +5,6 @@
 //  Created by Christopher Fuller on 2/18/23.
 //
 
-import UIKit
-
 public enum ConstraintRelation {
 
     case equal
@@ -14,7 +12,7 @@ public enum ConstraintRelation {
     case lessThanOrEqual
 }
 
-extension NSLayoutConstraint.Relation {
+extension LayoutConstraint.Relation {
 
     public init(relation: ConstraintRelation) {
         switch relation {

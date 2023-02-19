@@ -1,13 +1,11 @@
 //
-//  Layout+UIView.swift
+//  View+Layout.swift
 //  Layout
 //
 //  Created by Christopher Fuller on 2/18/23.
 //
 
-import UIKit
-
-extension UIView {
+extension View {
 
     /// Adds subviews and constraints to a view.
     ///

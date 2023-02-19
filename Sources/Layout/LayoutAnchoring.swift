@@ -5,76 +5,82 @@
 //  Created by Christopher Fuller on 2/17/23.
 //
 
-import UIKit
+import Foundation
 
 public protocol LayoutAnchoring {
 
-    var left: NSLayoutXAxisAnchor { get }
-    var centerX: NSLayoutXAxisAnchor { get }
-    var right: NSLayoutXAxisAnchor { get }
-    var leading: NSLayoutXAxisAnchor { get }
-    var trailing: NSLayoutXAxisAnchor { get }
+    var left: LayoutXAxisAnchor { get }
+    var centerX: LayoutXAxisAnchor { get }
+    var right: LayoutXAxisAnchor { get }
+    var leading: LayoutXAxisAnchor { get }
+    var trailing: LayoutXAxisAnchor { get }
 
-    var top: NSLayoutYAxisAnchor { get }
-    var centerY: NSLayoutYAxisAnchor { get }
-    var firstBaseline: NSLayoutYAxisAnchor { get }
-    var bottom: NSLayoutYAxisAnchor { get }
-    var lastBaseline: NSLayoutYAxisAnchor { get }
+    var top: LayoutYAxisAnchor { get }
+    var centerY: LayoutYAxisAnchor { get }
+    var firstBaseline: LayoutYAxisAnchor { get }
+    var bottom: LayoutYAxisAnchor { get }
+    var lastBaseline: LayoutYAxisAnchor { get }
 
-    var width: NSLayoutDimension { get }
-    var height: NSLayoutDimension { get }
+    var width: LayoutDimension { get }
+    var height: LayoutDimension { get }
 }
 
-extension UIView: LayoutAnchoring {
+extension View: LayoutAnchoring {
 
-    public var left: NSLayoutXAxisAnchor { leftAnchor }
-    public var centerX: NSLayoutXAxisAnchor { centerXAnchor }
-    public var right: NSLayoutXAxisAnchor { rightAnchor }
-    public var leading: NSLayoutXAxisAnchor { leadingAnchor }
-    public var trailing: NSLayoutXAxisAnchor { trailingAnchor }
+    public var left: LayoutXAxisAnchor { leftAnchor }
+    public var centerX: LayoutXAxisAnchor { centerXAnchor }
+    public var right: LayoutXAxisAnchor { rightAnchor }
+    public var leading: LayoutXAxisAnchor { leadingAnchor }
+    public var trailing: LayoutXAxisAnchor { trailingAnchor }
 
-    public var top: NSLayoutYAxisAnchor { topAnchor }
-    public var centerY: NSLayoutYAxisAnchor { centerYAnchor }
-    public var firstBaseline: NSLayoutYAxisAnchor { firstBaselineAnchor }
-    public var lastBaseline: NSLayoutYAxisAnchor { lastBaselineAnchor }
-    public var bottom: NSLayoutYAxisAnchor { bottomAnchor }
+    public var top: LayoutYAxisAnchor { topAnchor }
+    public var centerY: LayoutYAxisAnchor { centerYAnchor }
+    public var firstBaseline: LayoutYAxisAnchor { firstBaselineAnchor }
+    public var lastBaseline: LayoutYAxisAnchor { lastBaselineAnchor }
+    public var bottom: LayoutYAxisAnchor { bottomAnchor }
 
-    public var width: NSLayoutDimension { widthAnchor }
-    public var height: NSLayoutDimension { heightAnchor }
+    public var width: LayoutDimension { widthAnchor }
+    public var height: LayoutDimension { heightAnchor }
 }
 
-extension UILayoutGuide: LayoutAnchoring {
+extension LayoutGuide: LayoutAnchoring {
 
-    public var left: NSLayoutXAxisAnchor { leftAnchor }
-    public var centerX: NSLayoutXAxisAnchor { centerXAnchor }
-    public var right: NSLayoutXAxisAnchor { rightAnchor }
-    public var leading: NSLayoutXAxisAnchor { leadingAnchor }
-    public var trailing: NSLayoutXAxisAnchor { trailingAnchor }
+    public var left: LayoutXAxisAnchor { leftAnchor }
+    public var centerX: LayoutXAxisAnchor { centerXAnchor }
+    public var right: LayoutXAxisAnchor { rightAnchor }
+    public var leading: LayoutXAxisAnchor { leadingAnchor }
+    public var trailing: LayoutXAxisAnchor { trailingAnchor }
 
-    public var top: NSLayoutYAxisAnchor { topAnchor }
-    public var centerY: NSLayoutYAxisAnchor { centerYAnchor }
-    public var firstBaseline: NSLayoutYAxisAnchor { fatalError("firstBaseline does not exist on UILayoutGuide") }
-    public var lastBaseline: NSLayoutYAxisAnchor { fatalError("lastBaseline does not exist on UILayoutGuide") }
-    public var bottom: NSLayoutYAxisAnchor { bottomAnchor }
+    public var top: LayoutYAxisAnchor { topAnchor }
+    public var centerY: LayoutYAxisAnchor { centerYAnchor }
+    public var firstBaseline: LayoutYAxisAnchor { fatalError("firstBaseline does not exist") }
+    public var lastBaseline: LayoutYAxisAnchor { fatalError("lastBaseline does not exist") }
+    public var bottom: LayoutYAxisAnchor { bottomAnchor }
 
-    public var width: NSLayoutDimension { widthAnchor }
-    public var height: NSLayoutDimension { heightAnchor }
+    public var width: LayoutDimension { widthAnchor }
+    public var height: LayoutDimension { heightAnchor }
 }
+
+#if canImport(UIKit)
+
+import UIKit
 
 extension UILayoutSupport {
 
-    public var top: NSLayoutYAxisAnchor { topAnchor }
-    public var bottom: NSLayoutYAxisAnchor { bottomAnchor }
-    public var height: NSLayoutDimension { heightAnchor }
+    public var top: LayoutYAxisAnchor { topAnchor }
+    public var bottom: LayoutYAxisAnchor { bottomAnchor }
+    public var height: LayoutDimension { heightAnchor }
 }
 
-extension NSLayoutXAxisAnchor {
+#endif
+
+extension LayoutXAxisAnchor {
 
     public func constraint(
         is relation: ConstraintRelation = .equal,
-        to anchor: NSLayoutXAxisAnchor,
+        to anchor: LayoutXAxisAnchor,
         constant: CGFloat = 0
-    ) -> NSLayoutConstraint {
+    ) -> LayoutConstraint {
         switch relation {
         case .equal:
             return constraint(equalTo: anchor, constant: constant)
@@ -86,13 +92,13 @@ extension NSLayoutXAxisAnchor {
     }
 }
 
-extension NSLayoutYAxisAnchor {
+extension LayoutYAxisAnchor {
 
     public func constraint(
         is relation: ConstraintRelation = .equal,
-        to anchor: NSLayoutYAxisAnchor,
+        to anchor: LayoutYAxisAnchor,
         constant: CGFloat = 0
-    ) -> NSLayoutConstraint {
+    ) -> LayoutConstraint {
         switch relation {
         case .equal:
             return constraint(equalTo: anchor, constant: constant)
@@ -104,13 +110,13 @@ extension NSLayoutYAxisAnchor {
     }
 }
 
-extension NSLayoutDimension {
+extension LayoutDimension {
 
     public func constraint(
         is relation: ConstraintRelation = .equal,
-        to anchor: NSLayoutDimension,
+        to anchor: LayoutDimension,
         constant: CGFloat = 0
-    ) -> NSLayoutConstraint {
+    ) -> LayoutConstraint {
         switch relation {
         case .equal:
             return constraint(equalTo: anchor, constant: constant)
@@ -124,7 +130,7 @@ extension NSLayoutDimension {
     public func constraint(
         is relation: ConstraintRelation = .equal,
         _ constant: CGFloat
-    ) -> NSLayoutConstraint {
+    ) -> LayoutConstraint {
         switch relation {
         case .equal:
             return constraint(equalToConstant: constant)
@@ -136,13 +142,19 @@ extension NSLayoutDimension {
     }
 }
 
+#if canImport(UIKit)
+
+import UIKit
+
 extension UIViewController {
 
-    public var safeTop: NSLayoutYAxisAnchor {
+    public var safeTop: LayoutYAxisAnchor {
         view.safeAreaLayoutGuide.top
     }
 
-    public var safeBottom: NSLayoutYAxisAnchor {
+    public var safeBottom: LayoutYAxisAnchor {
         view.safeAreaLayoutGuide.bottom
     }
 }
+
+#endif

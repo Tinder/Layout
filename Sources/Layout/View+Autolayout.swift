@@ -1,13 +1,13 @@
 //
-//  UIView+Autolayout.swift
+//  View+Autolayout.swift
 //  Layout
 //
 //  Created by Christopher Fuller on 2/17/23.
 //
 
-import UIKit
+import Foundation
 
-extension UIView {
+extension View {
 
     // MARK: - Constraint Builders
 
@@ -37,45 +37,45 @@ extension UIView {
     // MARK: - Constraint Factories
 
     public func constraint(
-        for attribute: NSLayoutConstraint.Attribute? = nil,
+        for attribute: LayoutConstraint.Attribute? = nil,
         is relation: ConstraintRelation = .equal,
-        toSuperview superviewAttribute: NSLayoutConstraint.Attribute,
+        toSuperview superviewAttribute: LayoutConstraint.Attribute,
         multiplier: CGFloat = 1.0,
         constant: CGFloat = 0.0
-    ) -> NSLayoutConstraint {
+    ) -> LayoutConstraint {
         assert(superview != nil, "constraint(for:is:toSuperview:multiplier:constant:) requires superview")
-        return NSLayoutConstraint(item: self,
-                                  attribute: attribute ?? superviewAttribute,
-                                  relatedBy: NSLayoutConstraint.Relation(relation: relation),
-                                  toItem: superview,
-                                  attribute: superviewAttribute,
-                                  multiplier: multiplier,
-                                  constant: constant)
+        return LayoutConstraint(item: self,
+                                attribute: attribute ?? superviewAttribute,
+                                relatedBy: LayoutConstraint.Relation(relation: relation),
+                                toItem: superview,
+                                attribute: superviewAttribute,
+                                multiplier: multiplier,
+                                constant: constant)
     }
 
     public func constraint(
-        for attribute: NSLayoutConstraint.Attribute? = nil,
+        for attribute: LayoutConstraint.Attribute? = nil,
         is relation: ConstraintRelation = .equal,
-        to targetAttribute: NSLayoutConstraint.Attribute,
-        of targetView: UIView,
+        to targetAttribute: LayoutConstraint.Attribute,
+        of targetView: View,
         multiplier: CGFloat = 1.0,
         constant: CGFloat = 0.0
-    ) -> NSLayoutConstraint {
-        NSLayoutConstraint(item: self,
-                           attribute: attribute ?? targetAttribute,
-                           relatedBy: NSLayoutConstraint.Relation(relation: relation),
-                           toItem: targetView,
-                           attribute: targetAttribute,
-                           multiplier: multiplier,
-                           constant: constant)
+    ) -> LayoutConstraint {
+        LayoutConstraint(item: self,
+                         attribute: attribute ?? targetAttribute,
+                         relatedBy: LayoutConstraint.Relation(relation: relation),
+                         toItem: targetView,
+                         attribute: targetAttribute,
+                         multiplier: multiplier,
+                         constant: constant)
     }
 
     public func constrain(
-        to superview: UIView,
-        directionalEdgeInsets: NSDirectionalEdgeInsets = .zero
+        to superview: View,
+        directionalEdgeInsets: DirectionalEdgeInsets = .zero
     ) {
         translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
+        LayoutConstraint.activate([
             leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: directionalEdgeInsets.leading),
             trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -directionalEdgeInsets.trailing),
             topAnchor.constraint(equalTo: superview.topAnchor, constant: directionalEdgeInsets.top),
@@ -85,10 +85,10 @@ extension UIView {
 
     public func constraints(
         is relation: ConstraintRelation = .equal,
-        toSuperview attributes: [NSLayoutConstraint.Attribute],
+        toSuperview attributes: [LayoutConstraint.Attribute],
         multiplier: CGFloat = 1.0,
         constant: CGFloat = 0.0
-    ) -> [NSLayoutConstraint] {
+    ) -> [LayoutConstraint] {
         attributes.map { attribute in
             constraint(is: relation,
                        toSuperview: attribute,
@@ -99,11 +99,11 @@ extension UIView {
 
     public func constraints(
         is relation: ConstraintRelation = .equal,
-        to attributes: [NSLayoutConstraint.Attribute],
-        of targetView: UIView,
+        to attributes: [LayoutConstraint.Attribute],
+        of targetView: View,
         multiplier: CGFloat = 1.0,
         constant: CGFloat = 0.0
-    ) -> [NSLayoutConstraint] {
+    ) -> [LayoutConstraint] {
         attributes.map { attribute in
             constraint(is: relation,
                        to: attribute,
@@ -116,7 +116,7 @@ extension UIView {
     public func widthConstraint(
         is relation: ConstraintRelation = .equal,
         _ constant: CGFloat? = nil
-    ) -> NSLayoutConstraint {
+    ) -> LayoutConstraint {
         let constant = constant ?? bounds.width
         return width.constraint(is: relation, constant)
     }
@@ -124,40 +124,40 @@ extension UIView {
     public func heightConstraint(
         is relation: ConstraintRelation = .equal,
         _ constant: CGFloat? = nil
-    ) -> NSLayoutConstraint {
+    ) -> LayoutConstraint {
         let constant = constant ?? bounds.height
         return height.constraint(is: relation, constant)
     }
 
     public func sizeConstraints(
         _ size: CGSize? = nil
-    ) -> [NSLayoutConstraint] {
+    ) -> [LayoutConstraint] {
         [
             width.constraint(size?.width ?? bounds.width),
             height.constraint(size?.height ?? bounds.height)
         ]
     }
 
-    public func squareConstraint() -> NSLayoutConstraint {
+    public func squareConstraint() -> LayoutConstraint {
         constraint(for: .width, to: .height, of: self)
     }
 
     public func aspectConstraint(
         _ ratio: CGFloat
-    ) -> NSLayoutConstraint {
+    ) -> LayoutConstraint {
         constraint(for: .width, to: .height, of: self, multiplier: ratio)
     }
 
     public func edgeConstraints(
         insetBy value: CGFloat
-    ) -> [NSLayoutConstraint] {
-        let insets: UIEdgeInsets = .init(top: value, left: value, bottom: value, right: value)
+    ) -> [LayoutConstraint] {
+        let insets: EdgeInsets = .init(top: value, left: value, bottom: value, right: value)
         return edgeConstraints(insetBy: insets)
     }
 
     public func edgeConstraints(
-        insetBy insets: UIEdgeInsets = .zero
-    ) -> [NSLayoutConstraint] {
+        insetBy insets: EdgeInsets = .zero
+    ) -> [LayoutConstraint] {
         [
             constraint(toSuperview: .top, constant: insets.top),
             constraint(toSuperview: .bottom, constant: -insets.bottom),
@@ -167,8 +167,8 @@ extension UIView {
     }
 
     public func centerConstraints(
-        offsetBy offset: UIOffset = .zero
-    ) -> [NSLayoutConstraint] {
+        offsetBy offset: Offset = .zero
+    ) -> [LayoutConstraint] {
         [
             constraint(toSuperview: .centerX, constant: offset.horizontal),
             constraint(toSuperview: .centerY, constant: offset.vertical)
@@ -176,9 +176,9 @@ extension UIView {
     }
 
     public func equalConstraints(
-        for attribute: NSLayoutConstraint.Attribute,
-        to views: [UIView]
-    ) -> [NSLayoutConstraint] {
+        for attribute: LayoutConstraint.Attribute,
+        to views: [View]
+    ) -> [LayoutConstraint] {
         views.map { constraint(to: attribute, of: $0) }
     }
 }

@@ -5,14 +5,12 @@
 //  Created by Christopher Fuller on 2/17/23.
 //
 
-import UIKit
-
 public protocol AnchorAttribute {
 
     associatedtype AnchorType: AnyObject
 
     var attributeType: AnchorAttributeType { get }
-    var attribute: NSLayoutConstraint.Attribute { get }
+    var attribute: LayoutConstraint.Attribute { get }
 }
 
 public enum AnchorAttributeType {
@@ -22,7 +20,7 @@ public enum AnchorAttributeType {
 
 public enum XAxisAttribute: AnchorAttribute {
 
-    public typealias AnchorType = NSLayoutXAxisAnchor
+    public typealias AnchorType = LayoutXAxisAnchor
 
     case left, centerX, right, leading, trailing
 
@@ -30,7 +28,7 @@ public enum XAxisAttribute: AnchorAttribute {
         .xAxisAnchor
     }
 
-    public var attribute: NSLayoutConstraint.Attribute {
+    public var attribute: LayoutConstraint.Attribute {
         switch self {
         case .left:
             return .left
@@ -48,7 +46,7 @@ public enum XAxisAttribute: AnchorAttribute {
 
 public enum YAxisAttribute: AnchorAttribute {
 
-    public typealias AnchorType = NSLayoutYAxisAnchor
+    public typealias AnchorType = LayoutYAxisAnchor
 
     case top, centerY, firstBaseline, lastBaseline, bottom
 
@@ -56,7 +54,7 @@ public enum YAxisAttribute: AnchorAttribute {
         .yAxisAnchor
     }
 
-    public var attribute: NSLayoutConstraint.Attribute {
+    public var attribute: LayoutConstraint.Attribute {
         switch self {
         case .top:
             return .top
@@ -74,7 +72,7 @@ public enum YAxisAttribute: AnchorAttribute {
 
 public enum DimensionAttribute: AnchorAttribute {
 
-    public typealias AnchorType = NSLayoutDimension
+    public typealias AnchorType = LayoutDimension
 
     case width, height
 
@@ -82,7 +80,7 @@ public enum DimensionAttribute: AnchorAttribute {
         .dimension
     }
 
-    public var attribute: NSLayoutConstraint.Attribute {
+    public var attribute: LayoutConstraint.Attribute {
         switch self {
         case .width:
             return .width
@@ -94,21 +92,21 @@ public enum DimensionAttribute: AnchorAttribute {
 
 extension LayoutAnchoring {
 
-    public func anchor<T: AnchorAttribute>(for attribute: T) -> NSLayoutAnchor<T.AnchorType> {
+    public func anchor<T: AnchorAttribute>(for attribute: T) -> LayoutAnchor<T.AnchorType> {
         switch attribute.attributeType {
         case .xAxisAnchor:
             let attribute = attribute as! XAxisAttribute
-            return xAnchor(for: attribute) as! NSLayoutAnchor<T.AnchorType>
+            return xAnchor(for: attribute) as! LayoutAnchor<T.AnchorType>
         case .yAxisAnchor:
             let attribute = attribute as! YAxisAttribute
-            return yAnchor(for: attribute) as! NSLayoutAnchor<T.AnchorType>
+            return yAnchor(for: attribute) as! LayoutAnchor<T.AnchorType>
         case .dimension:
             let attribute = attribute as! DimensionAttribute
-            return sizeAnchor(for: attribute) as! NSLayoutAnchor<T.AnchorType>
+            return sizeAnchor(for: attribute) as! LayoutAnchor<T.AnchorType>
         }
     }
 
-    private func xAnchor(for attribute: XAxisAttribute) -> NSLayoutXAxisAnchor {
+    private func xAnchor(for attribute: XAxisAttribute) -> LayoutXAxisAnchor {
         switch attribute {
         case .left:
             return left
@@ -123,7 +121,7 @@ extension LayoutAnchoring {
         }
     }
 
-    private func yAnchor(for attribute: YAxisAttribute) -> NSLayoutYAxisAnchor {
+    private func yAnchor(for attribute: YAxisAttribute) -> LayoutYAxisAnchor {
         switch attribute {
         case .top:
             return top
@@ -138,7 +136,7 @@ extension LayoutAnchoring {
         }
     }
 
-    private func sizeAnchor(for attribute: DimensionAttribute) -> NSLayoutDimension {
+    private func sizeAnchor(for attribute: DimensionAttribute) -> LayoutDimension {
         switch attribute {
         case .width:
             return width
