@@ -194,7 +194,6 @@ extension LayoutItem {
     ///                  .constrainHeight adds a height constraint relative to a set width.
     ///                  In both cases, the aspect ratio provided should be width : height.
     ///   - priority: (optional) priority of constraint
-
     public func aspectRatio(
         _ aspectRatio: AspectRatioConstraint,
         priority: UILayoutPriority = .required
@@ -664,7 +663,7 @@ extension LayoutItem {
         toGuideAttribute(attribute, constant, priority: priority)
     }
 
-    func toGuideAttribute<T: AnchorAttribute>(
+    private func toGuideAttribute<T: AnchorAttribute>(
         _ attribute: T,
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
