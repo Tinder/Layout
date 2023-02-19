@@ -17,7 +17,7 @@ extension UIView {
     ///     * Activating/Deactivating an instance will only affect the constraints attached to that instance.
     ///     * Deactivating the instance does not remove or hide views.
     ///     * A view can have multiple Layout instances, useful for when a view has different states.
-    ///     * Preffered format for adding one view with one constraint
+    ///     * Preferred format for adding one view with one constraint
     ///         ````
     ///         view1.layout(view2.pin()).activate()
     ///         ````
