@@ -68,8 +68,10 @@ public final class Layout {
     ///
     /// - Parameter constraints: constraints to add
     @discardableResult
-    public func adding(_ constraints: [NSLayoutConstraint]) -> Layout {
-        self.constraints += constraints
+    public func adding(
+        @ConstraintsBuilder constraints: () -> [NSLayoutConstraint]
+    ) -> Layout {
+        self.constraints += constraints()
         return self
     }
 
@@ -77,8 +79,9 @@ public final class Layout {
     ///
     /// - Parameter constraints: constraints to add
     @discardableResult
-    public func adding(_ constraint: NSLayoutConstraint) -> Layout {
-        adding([constraint])
+    public func adding(_ constraints: [NSLayoutConstraint]) -> Layout {
+        self.constraints += constraints
+        return self
     }
 
     /// Adds constraints to Layout
