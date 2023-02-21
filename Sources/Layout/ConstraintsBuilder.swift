@@ -12,10 +12,18 @@ public enum ConstraintsBuilder {
 
     public typealias Expression = NSLayoutConstraint
     public typealias Component = [NSLayoutConstraint]
-    public typealias Result = [NSLayoutConstraint]
+    public typealias FinalResult = [NSLayoutConstraint]
 
-    public static func buildExpression(_ expression: Expression) -> Component {
-        [expression]
+    public static func buildExpression(_ expression: Expression?) -> Component {
+        guard let expression: Expression
+        else { return [] }
+        return [expression]
+    }
+
+    public static func buildExpression(_ component: Component?) -> Component {
+        guard let component: Component
+        else { return [] }
+        return component
     }
 
     public static func buildBlock(_ components: Component...) -> Component {
@@ -42,15 +50,7 @@ public enum ConstraintsBuilder {
         component
     }
 
-    public static func buildFinalResult(_ component: Component) -> Result {
+    public static func buildFinalResult(_ component: Component) -> FinalResult {
         component
-    }
-
-    public static func buildPartialBlock(first: Component) -> Component {
-        first
-    }
-
-    public static func buildPartialBlock(accumulated: Component, next: Component) -> Component {
-        accumulated + next
     }
 }

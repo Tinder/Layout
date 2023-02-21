@@ -10,10 +10,18 @@ public enum LayoutBuilder {
 
     public typealias Expression = LayoutItem
     public typealias Component = [LayoutItem]
-    public typealias Result = [LayoutItem]
+    public typealias FinalResult = [LayoutItem]
 
-    public static func buildExpression(_ expression: Expression) -> Component {
-        [expression]
+    public static func buildExpression(_ expression: Expression?) -> Component {
+        guard let expression: Expression
+        else { return [] }
+        return [expression]
+    }
+
+    public static func buildExpression(_ component: Component?) -> Component {
+        guard let component: Component
+        else { return [] }
+        return component
     }
 
     public static func buildBlock(_ components: Component...) -> Component {
@@ -40,15 +48,7 @@ public enum LayoutBuilder {
         component
     }
 
-    public static func buildFinalResult(_ component: Component) -> Result {
+    public static func buildFinalResult(_ component: Component) -> FinalResult {
         component
-    }
-
-    public static func buildPartialBlock(first: Component) -> Component {
-        first
-    }
-
-    public static func buildPartialBlock(accumulated: Component, next: Component) -> Component {
-        accumulated + next
     }
 }
