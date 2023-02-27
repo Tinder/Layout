@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name                  = 'Layout'
   s.version               = '0.0.0'
   s.summary               = 'Tinder\'s UIKit Auto Layout API'
-  s.description           = 'API for adding subviews and constraints to a view.'
+  s.description           = 'An API for adding subviews and constraints to a view.'
   s.homepage              = 'https://github.com/Tinder/Layout'
   s.license               = ''
   s.author                = { 'Tinder' => 'info@gotinder.com' }
