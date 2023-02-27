@@ -13,7 +13,9 @@ Pod::Spec.new do |s|
   s.swift_version         = '5.5', '5.6', '5.7'
   s.source_files          = 'Sources/Layout/**/*'
 
-  s.test_spec 'Tests' do |test_spec|
-    test_spec.source_files = 'Tests/LayoutTests/**/*'
+  s.test_spec 'Tests' do |t|
+    t.source_files = 'Tests/LayoutTests/**/*'
+
+    t.dependency 'Nimble', '10.0'
   end
 end
