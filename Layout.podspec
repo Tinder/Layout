@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage              = 'https://github.com/Tinder/Layout'
   s.license               = ''
   s.author                = { 'Tinder' => 'info@gotinder.com' }
-  s.source                = { :git => 'https://github.com/Tinder/Layout.git', :tag => s.version}
+  s.source                = { :git => 'https://github.com/Tinder/Layout.git', :tag => s.version }
   s.social_media_url      = 'https://twitter.com/TinderEng'
 
   s.ios.deployment_target = '13.0'
