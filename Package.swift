@@ -4,6 +4,9 @@ import PackageDescription
 
 let package = Package(
     name: "Layout",
+    platforms: [
+        .iOS(.v13),
+    ],
     products: [
         .library(
             name: "Layout",
@@ -12,7 +15,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/Quick/Nimble.git",
-            from: "10.0.0"),
+            from: "11.2.0"),
     ],
     targets: [
         .target(

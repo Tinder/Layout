@@ -16,6 +16,6 @@ Pod::Spec.new do |s|
   s.test_spec 'Tests' do |t|
     t.source_files = 'Tests/LayoutTests/**/*'
 
-    t.dependency 'Nimble', '10.0'
+    t.dependency 'Nimble', '11.2'
   end
 end
