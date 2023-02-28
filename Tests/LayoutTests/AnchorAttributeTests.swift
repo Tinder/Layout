@@ -7,6 +7,7 @@
 
 import Foundation
 @testable import Layout
+import Nimble
 import XCTest
 
 final class AnchorAttributeTests: XCTestCase {
@@ -18,8 +19,8 @@ final class AnchorAttributeTests: XCTestCase {
         let anchorAttribute: XAxisAttribute = .left
         let attribute: NSLayoutConstraint.Attribute = .left
         // THEN
-        XCTAssertEqual(anchorAttribute.attribute, attribute)
-        XCTAssertEqual(anchorAttribute.attributeType, .xAxisAnchor)
+        expect(anchorAttribute.attribute) == attribute
+        expect(anchorAttribute.attributeType) == .xAxisAnchor
     }
 
     func testXAxisAttributeCenterX() {
@@ -27,8 +28,8 @@ final class AnchorAttributeTests: XCTestCase {
         let anchorAttribute: XAxisAttribute = .centerX
         let attribute: NSLayoutConstraint.Attribute = .centerX
         // THEN
-        XCTAssertEqual(anchorAttribute.attribute, attribute)
-        XCTAssertEqual(anchorAttribute.attributeType, .xAxisAnchor)
+        expect(anchorAttribute.attribute) == attribute
+        expect(anchorAttribute.attributeType) == .xAxisAnchor
     }
 
     func testXAxisAttributeRight() {
@@ -36,8 +37,8 @@ final class AnchorAttributeTests: XCTestCase {
         let anchorAttribute: XAxisAttribute = .right
         let attribute: NSLayoutConstraint.Attribute = .right
         // THEN
-        XCTAssertEqual(anchorAttribute.attribute, attribute)
-        XCTAssertEqual(anchorAttribute.attributeType, .xAxisAnchor)
+        expect(anchorAttribute.attribute) == attribute
+        expect(anchorAttribute.attributeType) == .xAxisAnchor
     }
 
     func testXAxisAttributeLeading() {
@@ -45,8 +46,8 @@ final class AnchorAttributeTests: XCTestCase {
         let anchorAttribute: XAxisAttribute = .leading
         let attribute: NSLayoutConstraint.Attribute = .leading
         // THEN
-        XCTAssertEqual(anchorAttribute.attribute, attribute)
-        XCTAssertEqual(anchorAttribute.attributeType, .xAxisAnchor)
+        expect(anchorAttribute.attribute) == attribute
+        expect(anchorAttribute.attributeType) == .xAxisAnchor
     }
 
     func testXAxisAttributeTrailing() {
@@ -54,8 +55,8 @@ final class AnchorAttributeTests: XCTestCase {
         let anchorAttribute: XAxisAttribute = .trailing
         let attribute: NSLayoutConstraint.Attribute = .trailing
         // THEN
-        XCTAssertEqual(anchorAttribute.attribute, attribute)
-        XCTAssertEqual(anchorAttribute.attributeType, .xAxisAnchor)
+        expect(anchorAttribute.attribute) == attribute
+        expect(anchorAttribute.attributeType) == .xAxisAnchor
     }
 
     // MARK: YAxisAttribute
@@ -65,8 +66,8 @@ final class AnchorAttributeTests: XCTestCase {
         let anchorAttribute: YAxisAttribute = .top
         let attribute: NSLayoutConstraint.Attribute = .top
         // THEN
-        XCTAssertEqual(anchorAttribute.attribute, attribute)
-        XCTAssertEqual(anchorAttribute.attributeType, .yAxisAnchor)
+        expect(anchorAttribute.attribute) == attribute
+        expect(anchorAttribute.attributeType) == .yAxisAnchor
     }
 
     func testYAxisAttributeCenterY() {
@@ -74,8 +75,8 @@ final class AnchorAttributeTests: XCTestCase {
         let anchorAttribute: YAxisAttribute = .centerY
         let attribute: NSLayoutConstraint.Attribute = .centerY
         // THEN
-        XCTAssertEqual(anchorAttribute.attribute, attribute)
-        XCTAssertEqual(anchorAttribute.attributeType, .yAxisAnchor)
+        expect(anchorAttribute.attribute) == attribute
+        expect(anchorAttribute.attributeType) == .yAxisAnchor
     }
 
     func testYAxisAttributeFirstBaseline() {
@@ -83,8 +84,8 @@ final class AnchorAttributeTests: XCTestCase {
         let anchorAttribute: YAxisAttribute = .firstBaseline
         let attribute: NSLayoutConstraint.Attribute = .firstBaseline
         // THEN
-        XCTAssertEqual(anchorAttribute.attribute, attribute)
-        XCTAssertEqual(anchorAttribute.attributeType, .yAxisAnchor)
+        expect(anchorAttribute.attribute) == attribute
+        expect(anchorAttribute.attributeType) == .yAxisAnchor
     }
 
     func testYAxisAttributeLastBaseline() {
@@ -92,8 +93,8 @@ final class AnchorAttributeTests: XCTestCase {
         let anchorAttribute: YAxisAttribute = .lastBaseline
         let attribute: NSLayoutConstraint.Attribute = .lastBaseline
         // THEN
-        XCTAssertEqual(anchorAttribute.attribute, attribute)
-        XCTAssertEqual(anchorAttribute.attributeType, .yAxisAnchor)
+        expect(anchorAttribute.attribute) == attribute
+        expect(anchorAttribute.attributeType) == .yAxisAnchor
     }
 
     func testYAxisAttributeBottom() {
@@ -101,8 +102,8 @@ final class AnchorAttributeTests: XCTestCase {
         let anchorAttribute: YAxisAttribute = .bottom
         let attribute: NSLayoutConstraint.Attribute = .bottom
         // THEN
-        XCTAssertEqual(anchorAttribute.attribute, attribute)
-        XCTAssertEqual(anchorAttribute.attributeType, .yAxisAnchor)
+        expect(anchorAttribute.attribute) == attribute
+        expect(anchorAttribute.attributeType) == .yAxisAnchor
     }
 
     // MARK: DimensionAttribute
@@ -112,8 +113,8 @@ final class AnchorAttributeTests: XCTestCase {
         let anchorAttribute: DimensionAttribute = .width
         let attribute: NSLayoutConstraint.Attribute = .width
         // THEN
-        XCTAssertEqual(anchorAttribute.attribute, attribute)
-        XCTAssertEqual(anchorAttribute.attributeType, .dimension)
+        expect(anchorAttribute.attribute) == attribute
+        expect(anchorAttribute.attributeType) == .dimension
     }
 
     func testDimensionAttributeHeight() {
@@ -121,7 +122,7 @@ final class AnchorAttributeTests: XCTestCase {
         let anchorAttribute: DimensionAttribute = .height
         let attribute: NSLayoutConstraint.Attribute = .height
         // THEN
-        XCTAssertEqual(anchorAttribute.attribute, attribute)
-        XCTAssertEqual(anchorAttribute.attributeType, .dimension)
+        expect(anchorAttribute.attribute) == attribute
+        expect(anchorAttribute.attributeType) == .dimension
     }
 }
