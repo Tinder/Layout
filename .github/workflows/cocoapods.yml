@@ -17,4 +17,4 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v3
     - name: Lint
-      run: pod lib lint Layout.podspec
+      run: pod lib lint --verbose Layout.podspec
