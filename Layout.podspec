@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary               = 'Tinder\'s UIKit Auto Layout API'
   s.description           = 'An API for adding subviews and constraints to a view.'
   s.homepage              = 'https://github.com/Tinder/Layout'
-  s.license               = ''
+  s.license               = { :type => 'N/A', :text => '' }
   s.author                = { 'Tinder' => 'info@gotinder.com' }
   s.source                = { :git => 'https://github.com/Tinder/Layout.git', :tag => s.version }
   s.social_media_url      = 'https://twitter.com/TinderEng'
@@ -13,7 +13,9 @@ Pod::Spec.new do |s|
   s.swift_version         = '5.5', '5.6', '5.7'
   s.source_files          = 'Sources/Layout/**/*'
 
-  s.test_spec 'Tests' do |test_spec|
-    test_spec.source_files = 'Tests/LayoutTests/**/*'
+  s.test_spec 'Tests' do |t|
+    t.source_files = 'Tests/LayoutTests/**/*'
+
+    t.dependency 'Nimble', '11.2'
   end
 end
