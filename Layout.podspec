@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary               = 'Tinder\'s UIKit Auto Layout API'
   s.description           = 'An API for adding subviews and constraints to a view.'
   s.homepage              = 'https://github.com/Tinder/Layout'
-  s.license               = ''
+  s.license               = { :type => 'N/A', :text => '' }
   s.author                = { 'Tinder' => 'info@gotinder.com' }
   s.source                = { :git => 'https://github.com/Tinder/Layout.git', :tag => s.version }
   s.social_media_url      = 'https://twitter.com/TinderEng'
