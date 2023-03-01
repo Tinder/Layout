@@ -1,11 +1,10 @@
 //
 //  AnchorAttributeTests.swift
-//  Layout-Unit-Tests
+//  LayoutTests
 //
 //  Created by Micah Benn on 2/27/23.
 //
 
-import Foundation
 @testable import Layout
 import Nimble
 import XCTest
