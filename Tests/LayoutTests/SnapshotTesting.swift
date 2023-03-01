@@ -20,8 +20,8 @@ internal func assertLayout(
         .iPhone8,
         .iPhoneSe,
         .iPhoneX,
-        .iPhone13Mini,
-        .iPhone13
+        .iPhone13,
+        .iPhone13Mini
     ]
 
     devices.forEach { device in
@@ -36,12 +36,18 @@ internal func assertLayout(
 }
 
 /*
+ Provides configuration for iPhone 13 and iPhone 13 mini when performing tests via `pod lib lint` since
+ the snapshot testing library only supports CocoaPods in an older v1.9 version.
+
+ This extension may be removed when CocoaPods support is removed from Layout.
+
  Reference:
  https://github.com/pointfreeco/swift-snapshot-testing/blob/main/Sources/SnapshotTesting/Common/View.swift
  */
 extension ViewImageConfig {
 
     internal static let iPhone13: ViewImageConfig = .iPhone13(.portrait)
+    internal static let iPhone13Mini: ViewImageConfig = .iPhone13Mini(.portrait)
 
     internal static func iPhone13(_ orientation: Orientation) -> ViewImageConfig {
         let safeArea: UIEdgeInsets
@@ -56,8 +62,6 @@ extension ViewImageConfig {
         }
         return ViewImageConfig(safeArea: safeArea, size: size, traits: .iPhone13(orientation))
     }
-
-    internal static let iPhone13Mini: ViewImageConfig = .iPhone13Mini(.portrait)
 
     internal static func iPhone13Mini(_ orientation: Orientation) -> ViewImageConfig {
         let safeArea: UIEdgeInsets
@@ -75,6 +79,11 @@ extension ViewImageConfig {
 }
 
 /*
+ Provides configuration for iPhone 13 and iPhone 13 mini when performing tests via `pod lib lint` since
+ the snapshot testing library only supports CocoaPods in an older v1.9 version.
+
+ This extension may be removed when CocoaPods support is removed from Layout.
+
  Reference:
  https://github.com/pointfreeco/swift-snapshot-testing/blob/main/Sources/SnapshotTesting/Common/View.swift
  */
