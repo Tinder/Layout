@@ -35,7 +35,6 @@ internal func assertLayout(
     }
 }
 
-
 /*
  Reference:
  https://github.com/pointfreeco/swift-snapshot-testing/blob/main/Sources/SnapshotTesting/Common/View.swift
@@ -72,5 +71,37 @@ extension ViewImageConfig {
             size = .init(width: 375, height: 812)
         }
         return ViewImageConfig(safeArea: safeArea, size: size, traits: .iPhone13(orientation))
+    }
+}
+
+/*
+ Reference:
+ https://github.com/pointfreeco/swift-snapshot-testing/blob/main/Sources/SnapshotTesting/Common/View.swift
+ */
+extension UITraitCollection {
+
+    internal static func iPhone13(_ orientation: ViewImageConfig.Orientation) -> UITraitCollection {
+        let base: [UITraitCollection] = [
+            .init(forceTouchCapability: .available),
+            .init(layoutDirection: .leftToRight),
+            .init(preferredContentSizeCategory: .medium),
+            .init(userInterfaceIdiom: .phone)
+        ]
+        switch orientation {
+        case .landscape:
+            return UITraitCollection(
+                traitsFrom: base + [
+                    .init(horizontalSizeClass: .compact),
+                    .init(verticalSizeClass: .compact)
+                ]
+            )
+        case .portrait:
+            return UITraitCollection(
+                traitsFrom: base + [
+                    .init(horizontalSizeClass: .compact),
+                    .init(verticalSizeClass: .regular)
+                ]
+            )
+        }
     }
 }
