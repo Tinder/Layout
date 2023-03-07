@@ -71,8 +71,15 @@ public final class Layout {
     public func adding(
         @ConstraintsBuilder constraints: () -> [NSLayoutConstraint]
     ) -> Layout {
-        self.constraints += constraints()
-        return self
+        adding(constraints())
+    }
+
+    /// Adds constraints to Layout
+    ///
+    /// - Parameter constraints: constraints to add
+    @discardableResult
+    public func adding(_ constraints: NSLayoutConstraint...) -> Layout {
+        adding(constraints)
     }
 
     /// Adds constraints to Layout
@@ -82,14 +89,6 @@ public final class Layout {
     public func adding(_ constraints: [NSLayoutConstraint]) -> Layout {
         self.constraints += constraints
         return self
-    }
-
-    /// Adds constraints to Layout
-    ///
-    /// - Parameter constraints: constraints to add
-    @discardableResult
-    public func adding(_ constraints: NSLayoutConstraint...) -> Layout {
-        adding(constraints)
     }
 
     /// Adds constraints using vertical vfl
