@@ -56,7 +56,7 @@ public final class Layout {
 
     internal init(
         _ containerView: UIView,
-        metrics: [String: Any] = [:],
+        metrics: [String: Any],
         items: [LayoutItem]
     ) {
         self.containerView = containerView
