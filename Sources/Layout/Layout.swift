@@ -48,6 +48,21 @@ public final class Layout {
 
     public convenience init(
         _ containerView: UIView,
+        metrics: [String: Any] = [:]
+    ) {
+        self.init(containerView, metrics: metrics, items: [])
+    }
+
+    public convenience init(
+        _ containerView: UIView,
+        metrics: [String: Any] = [:],
+        _ item: LayoutItem
+    ) {
+        self.init(containerView, metrics: metrics, items: [item])
+    }
+
+    public convenience init(
+        _ containerView: UIView,
         metrics: [String: Any] = [:],
         @LayoutBuilder items: () -> [LayoutItem]
     ) {
