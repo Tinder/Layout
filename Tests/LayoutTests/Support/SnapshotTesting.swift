@@ -13,25 +13,37 @@ internal func assertLayout(
     file: StaticString = #file,
     testName: String = #function,
     line: UInt = #line,
-    layout: (UIViewController) -> Layout
+    layout: (UIView) -> Layout
 ) {
-
-    let devices: [ViewImageConfig] = [
-        .iPhone8,
-        .iPhoneSe,
-        .iPhoneX,
-        .iPhone13,
-        .iPhone13Mini
-    ]
-
-    devices.forEach { device in
-        let vc: UIViewController = .init()
-        layout(vc).activate()
-        assertSnapshot(matching: vc,
-                       as: .image(on: device),
+    Device.allCases.forEach { device in
+        let viewController: UIViewController = .init()
+        let view: UIView = viewController.view
+        view.backgroundColor = .white
+        layout(view).activate()
+        assertSnapshot(matching: viewController,
+                       as: .image(on: device.config),
+                       named: device.name,
                        file: file,
                        testName: testName,
                        line: line)
+    }
+}
+
+extension Device {
+
+    internal var config: ViewImageConfig {
+        switch self {
+        case .iPhone8:
+            return .iPhone8
+        case .iPhoneSE:
+            return .iPhoneSe
+        case .iPhoneX:
+            return .iPhoneX
+        case .iPhone13:
+            return .iPhone13
+        case .iPhone13mini:
+            return .iPhone13Mini
+        }
     }
 }
 
