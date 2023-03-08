@@ -39,3 +39,7 @@ endif
 		-name "$(target).doccarchive" \
 		-exec cp -R {} "$(ARCHIVE_PATH)/" \;
 	$(if $(filter $(open),OPEN),@open "$(ARCHIVE_PATH)/$(target).doccarchive",)
+
+.PHONY: delete-snapshots
+delete-snapshots:
+	rm -rf Tests/LayoutTests/__Snapshots__/*
