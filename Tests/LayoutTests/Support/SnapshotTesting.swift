@@ -26,6 +26,12 @@ internal func assertLayout(
                        file: file,
                        testName: testName,
                        line: line)
+        assertSnapshot(matching: viewController,
+                       as: .recursiveDescription(on: device.config),
+                       named: device.name,
+                       file: file,
+                       testName: testName,
+                       line: line)
     }
 }
 
