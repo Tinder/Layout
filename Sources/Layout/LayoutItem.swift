@@ -112,13 +112,13 @@ extension LayoutItem {
     /// Constrains the size
     ///
     /// - Parameters:
-    ///   - sizeValue: size constraint
+    ///   - size: size constraint
     ///   - priority: (optional) priority of constraint
     public func size(
-        _ sizeValue: CGSize,
+        _ size: CGSize,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        size(width: sizeValue.width, height: sizeValue.height, priority: priority)
+        self.size(width: size.width, height: size.height, priority: priority)
     }
 
     /// Constrains the width
