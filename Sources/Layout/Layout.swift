@@ -596,7 +596,7 @@ public final class Layout {
             if subview.superview != containerView {
                 containerView?.addSubview(subview)
             }
-            constraints += item.superviewConstraints()
+            constraints += item.superviewConstraints(item)
             if let key = subview.identifier, !key.isEmpty {
                 self.items[key] = subview
             }
