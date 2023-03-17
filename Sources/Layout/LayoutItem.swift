@@ -541,40 +541,6 @@ extension LayoutItem {
             ]
         }
     }
-}
-
-extension NSLayoutConstraint.Attribute {
-
-    internal var marginAttribute: NSLayoutConstraint.Attribute {
-        switch self {
-        case .left:
-            return .leftMargin
-        case .right:
-            return .rightMargin
-        case .top:
-            return .topMargin
-        case .bottom:
-            return .bottomMargin
-        case .leading:
-            return .leadingMargin
-        case .trailing:
-            return .trailingMargin
-        case .centerX:
-            return .centerXWithinMargins
-        case .centerY:
-            return .centerYWithinMargins
-        case .leftMargin, .rightMargin, .topMargin, .bottomMargin,
-             .leadingMargin, .trailingMargin, .centerXWithinMargins, .centerYWithinMargins:
-            return self
-        case .width, .height, .lastBaseline, .firstBaseline, .notAnAttribute:
-            return self
-        @unknown default:
-            return self
-        }
-    }
-}
-
-extension LayoutItem {
 
     /// Constrains the edges to the superviews safeAreaGuides with `insets`
     ///
