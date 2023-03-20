@@ -19,7 +19,7 @@ public enum AspectRatioConstraint {
     case constrainHeight(_ widthToHeight: CGFloat)
 }
 
-public typealias SuperviewConstraints = () -> [NSLayoutConstraint]
+public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
 
 /// Items to be used with the `Layout` API
 ///
@@ -43,7 +43,7 @@ extension UIView: LayoutItem {
     public var layoutItemView: UIView { self }
 
     public var superviewConstraints: SuperviewConstraints {
-        { [] }
+        { _ in [] }
     }
 }
 
@@ -76,18 +76,12 @@ extension LayoutItem {
         return self
     }
 
-    private func addingSuperviewConstraints(_ constraints: @escaping SuperviewConstraints) -> LayoutItem {
-        ViewLayoutItem(layoutItemView: layoutItemView) {
-            self.superviewConstraints() + constraints()
+    public func addingSuperviewConstraints(
+        @ConstraintsBuilder constraints: @escaping SuperviewConstraints
+    ) -> LayoutItem {
+        ViewLayoutItem(layoutItemView: layoutItemView) { [superviewConstraints] in
+            superviewConstraints($0) + constraints($0)
         }
-    }
-
-    private func adding(_ constraints: @escaping @autoclosure () -> [NSLayoutConstraint]) -> LayoutItem {
-        addingSuperviewConstraints(constraints)
-    }
-
-    private func adding(_ constraint: @escaping @autoclosure () -> NSLayoutConstraint) -> LayoutItem {
-        addingSuperviewConstraints { [constraint()] }
     }
 
     /// Constrains the width and height
@@ -102,10 +96,8 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            [
-                self.layoutItemView.widthConstraint(width).withPriority(priority),
-                self.layoutItemView.heightConstraint(height).withPriority(priority)
-            ]
+            $0.layoutItemView.widthConstraint(width).withPriority(priority)
+            $0.layoutItemView.heightConstraint(height).withPriority(priority)
         }
     }
 
@@ -133,7 +125,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            [self.layoutItemView.widthConstraint(is: relation, width).withPriority(priority)]
+            $0.layoutItemView.widthConstraint(is: relation, width).withPriority(priority)
         }
     }
 
@@ -149,7 +141,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            [self.layoutItemView.heightConstraint(is: relation, height).withPriority(priority)]
+            $0.layoutItemView.heightConstraint(is: relation, height).withPriority(priority)
         }
     }
 
@@ -168,10 +160,8 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            [
-                self.layoutItemView.widthConstraint(length).withPriority(priority),
-                self.layoutItemView.heightConstraint(length).withPriority(priority)
-            ]
+            $0.layoutItemView.widthConstraint(length).withPriority(priority)
+            $0.layoutItemView.heightConstraint(length).withPriority(priority)
         }
     }
 
@@ -200,16 +190,20 @@ extension LayoutItem {
     ) -> LayoutItem {
         switch aspectRatio {
         case let .constrainWidth(widthToHeight):
-            return adding(self.layoutItemView.width.constraint(equalTo: self.layoutItemView.height,
-                                                               multiplier: widthToHeight))
+            return addingSuperviewConstraints {
+                $0.layoutItemView.width.constraint(equalTo: self.layoutItemView.height,
+                                                   multiplier: widthToHeight)
+            }
         case let .constrainHeight(widthToHeight):
             guard widthToHeight > 0
             else {
                 assertionFailure("Attempting to constrain height by 0 aspect ratio.")
                 return self
             }
-            return adding(self.layoutItemView.height.constraint(equalTo: self.layoutItemView.width,
-                                                                multiplier: 1 / widthToHeight))
+            return addingSuperviewConstraints {
+                $0.layoutItemView.height.constraint(equalTo: $0.layoutItemView.width,
+                                                    multiplier: 1 / widthToHeight)
+            }
         }
     }
 
@@ -222,7 +216,9 @@ extension LayoutItem {
         insets: UIEdgeInsets = .zero,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        adding(self.layoutItemView.edgeConstraints(insetBy: insets).withPriority(priority))
+        addingSuperviewConstraints {
+            $0.layoutItemView.edgeConstraints(insetBy: insets).withPriority(priority)
+        }
     }
 
     /// Constrains the edges to the superviews edges with an `inset`
@@ -276,9 +272,9 @@ extension LayoutItem {
         offset: UIOffset = .zero,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        adding(self.layoutItemView
-            .centerConstraints(offsetBy: offset)
-            .withPriority(priority))
+        addingSuperviewConstraints {
+            $0.layoutItemView.centerConstraints(offsetBy: offset).withPriority(priority)
+        }
     }
 
     /// Centers the view on `axis` of the superview with an `offset`
@@ -314,16 +310,14 @@ extension LayoutItem {
         _ margin: CGFloat? = nil,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        if let margin = margin {
-            return adding([
-                self.layoutItemView.constraint(toSuperview: .leading, constant: margin).withPriority(priority),
-                self.layoutItemView.constraint(toSuperview: .trailing, constant: -margin).withPriority(priority)
-            ])
-        } else {
-            return adding([
-                self.layoutItemView.constraint(for: .leading, toSuperview: .leadingMargin).withPriority(priority),
-                self.layoutItemView.constraint(for: .trailing, toSuperview: .trailingMargin).withPriority(priority)
-            ])
+        addingSuperviewConstraints {
+            if let margin = margin {
+                $0.layoutItemView.constraint(toSuperview: .leading, constant: margin).withPriority(priority)
+                $0.layoutItemView.constraint(toSuperview: .trailing, constant: -margin).withPriority(priority)
+            } else {
+                $0.layoutItemView.constraint(for: .leading, toSuperview: .leadingMargin).withPriority(priority)
+                $0.layoutItemView.constraint(for: .trailing, toSuperview: .trailingMargin).withPriority(priority)
+            }
         }
     }
 
@@ -344,12 +338,14 @@ extension LayoutItem {
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        adding(self.layoutItemView
-            .constraint(is: relation,
-                        toSuperview: attribute,
-                        multiplier: multiplier,
-                        constant: constant)
-            .withPriority(priority))
+        addingSuperviewConstraints {
+            $0.layoutItemView
+                .constraint(is: relation,
+                            toSuperview: attribute,
+                            multiplier: multiplier,
+                            constant: constant)
+                .withPriority(priority)
+        }
     }
 
     /// Constrains the `attributes` to the superviews corresponding `attributes`
@@ -365,10 +361,12 @@ extension LayoutItem {
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        adding(self.layoutItemView
-            .constraints(toSuperview: attributes,
-                         constant: constant)
-            .withPriority(priority))
+        addingSuperviewConstraints {
+            $0.layoutItemView
+                .constraints(toSuperview: attributes,
+                             constant: constant)
+                .withPriority(priority)
+        }
     }
 
     /// Constrains the `attribute` to the superviews corresponding `attribute` margin
@@ -388,13 +386,15 @@ extension LayoutItem {
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        adding(self.layoutItemView
-            .constraint(for: attribute,
-                        is: relation,
-                        toSuperview: attribute.marginAttribute,
-                        multiplier: multiplier,
-                        constant: constant)
-            .withPriority(priority))
+        addingSuperviewConstraints {
+            $0.layoutItemView
+                .constraint(for: attribute,
+                            is: relation,
+                            toSuperview: attribute.marginAttribute,
+                            multiplier: multiplier,
+                            constant: constant)
+                .withPriority(priority)
+        }
     }
 
     /// Constrains the `attributes` to the superviews corresponding `attributes` margin
@@ -410,13 +410,15 @@ extension LayoutItem {
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        adding(attributes.map {
-            self.layoutItemView
-                .constraint(for: $0,
-                            toSuperview: $0.marginAttribute,
-                            constant: constant)
-                .withPriority(priority)
-        })
+        addingSuperviewConstraints {
+            for attribute in attributes {
+                $0.layoutItemView
+                    .constraint(for: attribute,
+                                toSuperview: attribute.marginAttribute,
+                                constant: constant)
+                    .withPriority(priority)
+            }
+        }
     }
 
     /// Constrains the `bottom` to the bottom margin with a minimum bottom inset
@@ -433,21 +435,19 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            guard let superview = self.layoutItemView.superview
-            else { return [] }
-            return [
-                self.layoutItemView
+            if let superview = $0.layoutItemView.superview {
+                $0.layoutItemView
                     .constraint(for: .bottom,
                                 to: .bottomMargin,
                                 of: superview)
-                    .withPriority(priority - min(1, priority.rawValue / 2)),
-                self.layoutItemView
+                    .withPriority(priority - min(1, priority.rawValue / 2))
+                $0.layoutItemView
                     .bottom
                     .constraint(is: .lessThanOrEqual,
                                 to: superview.bottom,
                                 constant: -minInset)
                     .withPriority(priority)
-            ]
+            }
         }
     }
 
@@ -485,14 +485,14 @@ extension LayoutItem {
         bottomOffest: CGFloat = 0
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            guard let superview = self.layoutItemView.superview
+            guard let superview = $0.layoutItemView.superview
             else { return [] }
             let guide = UILayoutGuide()
             superview.addLayoutGuide(guide)
             return [
                 guide.top.constraint(to: top, constant: topOffset),
                 guide.bottom.constraint(to: bottom, constant: bottomOffest),
-                self.layoutItemView.centerY.constraint(to: guide.centerY)
+                $0.layoutItemView.centerY.constraint(to: guide.centerY)
             ]
         }
     }
@@ -530,14 +530,14 @@ extension LayoutItem {
         trailingOffest: CGFloat = 0
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            guard let superview = self.layoutItemView.superview
+            guard let superview = $0.layoutItemView.superview
             else { return [] }
             let guide = UILayoutGuide()
             superview.addLayoutGuide(guide)
             return [
                 guide.leading.constraint(to: leading, constant: leadingOffset),
                 guide.trailing.constraint(to: trailing, constant: trailingOffest),
-                self.layoutItemView.centerX.constraint(to: guide.centerX)
+                $0.layoutItemView.centerX.constraint(to: guide.centerX)
             ]
         }
     }
@@ -635,9 +635,9 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            guard let safeAnchor = self.safeAreaGuide?.anchor(for: attribute)
+            guard let safeAnchor = $0.safeAreaGuide?.anchor(for: attribute)
             else { return [] }
-            let viewAnchor = self.layoutItemView.anchor(for: attribute)
+            let viewAnchor = $0.layoutItemView.anchor(for: attribute)
             return [safeAnchor.constraint(equalTo: viewAnchor, constant: constant).withPriority(priority)]
         }
     }
