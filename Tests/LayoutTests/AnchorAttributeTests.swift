@@ -7,6 +7,7 @@
 
 @testable import Layout
 import Nimble
+import SnapshotTesting
 import XCTest
 
 final class AnchorAttributeTests: XCTestCase {
@@ -111,5 +112,28 @@ final class AnchorAttributeTests: XCTestCase {
         // THEN
         expect(anchorAttribute.attributeType) == .dimension
         expect(anchorAttribute.attribute) == .height
+    }
+
+    // MARK: LayoutAnchoring
+
+    func testAnchorXAxisAttribute() {
+        let view: UIView = .init()
+        let attributes: [XAxisAttribute] = [.left, .centerX, .right, .leading, .trailing]
+        let anchors: [NSLayoutAnchor<XAxisAttribute.AnchorType>] = attributes.map { view.anchor(for: $0) }
+        assertSnapshot(matching: anchors, as: .dump)
+    }
+
+    func testAnchorYAxisAttribute() {
+        let view: UIView = .init()
+        let attributes: [YAxisAttribute] = [.top, .centerY, .firstBaseline, .lastBaseline, .bottom]
+        let anchors: [NSLayoutAnchor<YAxisAttribute.AnchorType>] = attributes.map { view.anchor(for: $0) }
+        assertSnapshot(matching: anchors, as: .dump)
+    }
+
+    func testAnchorDimensionAttribute() {
+        let view: UIView = .init()
+        let attributes: [DimensionAttribute] = [.width, .height]
+        let anchors: [NSLayoutAnchor<DimensionAttribute.AnchorType>] = attributes.map { view.anchor(for: $0) }
+        assertSnapshot(matching: anchors, as: .dump)
     }
 }
