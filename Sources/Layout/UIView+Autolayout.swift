@@ -36,7 +36,7 @@ extension UIView {
 
     // MARK: - Constraint Factories
 
-    public func constraint(
+    public func constraint(// swiftlint:disable:this function_default_parameter_at_end
         for attribute: NSLayoutConstraint.Attribute? = nil,
         is relation: ConstraintRelation = .equal,
         toSuperview superviewAttribute: NSLayoutConstraint.Attribute,
@@ -53,7 +53,7 @@ extension UIView {
                                   constant: constant)
     }
 
-    public func constraint(
+    public func constraint(// swiftlint:disable:this function_default_parameter_at_end
         for attribute: NSLayoutConstraint.Attribute? = nil,
         is relation: ConstraintRelation = .equal,
         to targetAttribute: NSLayoutConstraint.Attribute,
@@ -83,7 +83,7 @@ extension UIView {
         ])
     }
 
-    public func constraints(
+    public func constraints(// swiftlint:disable:this function_default_parameter_at_end
         is relation: ConstraintRelation = .equal,
         toSuperview attributes: [NSLayoutConstraint.Attribute],
         multiplier: CGFloat = 1.0,
@@ -97,7 +97,7 @@ extension UIView {
         }
     }
 
-    public func constraints(
+    public func constraints(// swiftlint:disable:this function_default_parameter_at_end
         is relation: ConstraintRelation = .equal,
         to attributes: [NSLayoutConstraint.Attribute],
         of targetView: UIView,
@@ -117,7 +117,7 @@ extension UIView {
         is relation: ConstraintRelation = .equal,
         _ constant: CGFloat? = nil
     ) -> NSLayoutConstraint {
-        let constant = constant ?? bounds.width
+        let constant: CGFloat = constant ?? bounds.width
         return width.constraint(is: relation, constant)
     }
 
@@ -125,7 +125,7 @@ extension UIView {
         is relation: ConstraintRelation = .equal,
         _ constant: CGFloat? = nil
     ) -> NSLayoutConstraint {
-        let constant = constant ?? bounds.height
+        let constant: CGFloat = constant ?? bounds.height
         return height.constraint(is: relation, constant)
     }
 

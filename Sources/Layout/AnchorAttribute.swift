@@ -97,13 +97,13 @@ extension LayoutAnchoring {
     public func anchor<T: AnchorAttribute>(for attribute: T) -> NSLayoutAnchor<T.AnchorType> {
         switch attribute.attributeType {
         case .xAxisAnchor:
-            let attribute = attribute as! XAxisAttribute
+            let attribute: XAxisAttribute = attribute as! XAxisAttribute
             return xAnchor(for: attribute) as! NSLayoutAnchor<T.AnchorType>
         case .yAxisAnchor:
-            let attribute = attribute as! YAxisAttribute
+            let attribute: YAxisAttribute = attribute as! YAxisAttribute
             return yAnchor(for: attribute) as! NSLayoutAnchor<T.AnchorType>
         case .dimension:
-            let attribute = attribute as! DimensionAttribute
+            let attribute: DimensionAttribute = attribute as! DimensionAttribute
             return sizeAnchor(for: attribute) as! NSLayoutAnchor<T.AnchorType>
         }
     }

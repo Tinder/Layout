@@ -53,7 +53,7 @@ public final class Layout {
         self.init(containerView, metrics: metrics, items: [])
     }
 
-    public convenience init(
+    public convenience init(// swiftlint:disable:this function_default_parameter_at_end
         _ containerView: UIView,
         metrics: [String: Any] = [:],
         _ item: LayoutItem
@@ -167,7 +167,7 @@ public final class Layout {
     ///   - multiplier: (optional) multiplier
     ///   - constant: (optional) constant
     @discardableResult
-    public func constrain(
+    public func constrain(// swiftlint:disable:this function_default_parameter_at_end
         _ view: UIView,
         _ attribute: NSLayoutConstraint.Attribute? = nil,
         is relation: ConstraintRelation = .equal,
@@ -195,7 +195,7 @@ public final class Layout {
     ///   - constant: (optional) constant
     ///   - priority: (optional) priority of constraint
     @discardableResult
-    public func constrain<T>(
+    public func constrain<T>(// swiftlint:disable:this function_default_parameter_at_end
         _ anchor: NSLayoutAnchor<T>,
         is relation: ConstraintRelation = .equal,
         to targetAnchor: NSLayoutAnchor<T>,
@@ -227,7 +227,7 @@ public final class Layout {
     ///   - constant: (optional) constant
     ///   - priority: (optional) priority of constraint
     @discardableResult
-    public func constrain(
+    public func constrain(// swiftlint:disable:this function_default_parameter_at_end
         _ anchor: NSLayoutDimension,
         is relation: ConstraintRelation = .equal,
         to targetAnchor: NSLayoutDimension,
@@ -261,7 +261,7 @@ public final class Layout {
     ///   - constant: size of dimension
     ///   - priority: (optional) priority of constraint
     @discardableResult
-    public func constrain(
+    public func constrain(// swiftlint:disable:this function_default_parameter_at_end
         _ anchor: NSLayoutDimension,
         is relation: ConstraintRelation = .equal,
         to constant: CGFloat,
@@ -377,7 +377,7 @@ public final class Layout {
     ///   - priority: (optional) priority of the constraint, defaults to .required
     ///   - alignment: X﹘Axis attributes to align
     @discardableResult
-    public func horizontal(
+    public func horizontal(// swiftlint:disable:this function_default_parameter_at_end
         _ views: [UIView],
         spacing: CGFloat = 0,
         direction: HorizontalDirection = .leadingToTrailing,
@@ -387,7 +387,7 @@ public final class Layout {
         guard views.count >= 2,
               let first = views.first
         else { return self }
-        var anchor = first.anchor(for: direction.attributes.1)
+        var anchor: NSLayoutAnchor<XAxisAttribute.AnchorType> = first.anchor(for: direction.attributes.1)
         for view in views.dropFirst() {
             constraints.append(view
                 .anchor(for: direction.attributes.0)
@@ -408,7 +408,7 @@ public final class Layout {
     ///   - spacing: spacing between views
     ///   - alignment: X﹘Axis attributes to align
     @discardableResult
-    public func vertical(
+    public func vertical(// swiftlint:disable:this function_default_parameter_at_end
         _ views: [UIView],
         spacing: CGFloat = 0,
         alignment: XAxisAttribute...
@@ -416,7 +416,7 @@ public final class Layout {
         guard views.count >= 2,
               let first = views.first
         else { return self }
-        var anchor = first.anchor(for: YAxisAttribute.bottom)
+        var anchor: NSLayoutAnchor<YAxisAttribute.AnchorType> = first.anchor(for: YAxisAttribute.bottom)
         for view in views.dropFirst() {
             constraints.append(view
                 .anchor(for: YAxisAttribute.top)
@@ -474,9 +474,9 @@ public final class Layout {
         between leading: NSLayoutAnchor<NSLayoutXAxisAnchor>,
         and trailing: NSLayoutAnchor<NSLayoutXAxisAnchor>
     ) -> Layout {
-        guard let containerView = containerView
+        guard let containerView
         else { return self }
-        let guide = UILayoutGuide()
+        let guide: UILayoutGuide = .init()
         containerView.addLayoutGuide(guide)
         constraints += [
             guide.leading.constraint(equalTo: leading),
@@ -532,9 +532,9 @@ public final class Layout {
         and bottom: NSLayoutAnchor<NSLayoutYAxisAnchor>,
         priority: UILayoutPriority = .required
     ) -> Layout {
-        guard let containerView = containerView
+        guard let containerView
         else { return self }
-        let guide = UILayoutGuide()
+        let guide: UILayoutGuide = .init()
         containerView.addLayoutGuide(guide)
         constraints += [
             guide.top.constraint(equalTo: top),
@@ -552,7 +552,7 @@ public final class Layout {
         guard views.count >= 2,
               let first = views.first
         else { return self }
-        let firstAnchor = first.anchor(for: attribute)
+        let firstAnchor: NSLayoutAnchor<T.AnchorType> = first.anchor(for: attribute)
         for view in views.dropFirst() {
             constraints.append(view
                 .anchor(for: attribute)
@@ -591,13 +591,13 @@ public final class Layout {
         _ items: [LayoutItem]
     ) -> Layout {
         items.forEach { item in
-            let subview = item.layoutItemView
+            let subview: UIView = item.layoutItemView
             subview.translatesAutoresizingMaskIntoConstraints = false
             if subview.superview != containerView {
                 containerView?.addSubview(subview)
             }
             constraints += item.superviewConstraints(item)
-            if let key = subview.identifier, !key.isEmpty {
+            if let key: String = subview.identifier, !key.isEmpty {
                 self.items[key] = subview
             }
         }

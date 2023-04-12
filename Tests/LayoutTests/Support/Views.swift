@@ -8,6 +8,7 @@
 import UIKit
 
 internal var pinkView: UIView {
+    // swiftlint:disable:next object_literal
     view(with: UIColor(red: 1, green: 0.176471, blue: 0.333333, alpha: 1))
 }
 

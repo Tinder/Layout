@@ -67,7 +67,7 @@ extension UIView {
     /// - Parameters:
     ///   - metrics: (optional) metrics for VFL
     ///   - item: item to be included in Layout
-    public func layout(
+    public func layout(// swiftlint:disable:this function_default_parameter_at_end
         metrics: [String: Any] = [:],
         _ item: LayoutItem
     ) -> Layout {

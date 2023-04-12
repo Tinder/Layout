@@ -119,7 +119,7 @@ extension LayoutItem {
     ///   - relation: (optional, default `.equal`) relationship (=, ≤, ≥)
     ///   - width: width constraint
     ///   - priority: (optional) priority of constraint
-    public func size(
+    public func size(// swiftlint:disable:this function_default_parameter_at_end
         is relation: ConstraintRelation = .equal,
         width: CGFloat,
         priority: UILayoutPriority = .required
@@ -135,7 +135,7 @@ extension LayoutItem {
     ///   - relation: (optional, default `.equal`) relationship (=, ≤, ≥)
     ///   - height: height constraint
     ///   - priority: (optional) priority of constraint
-    public func size(
+    public func size(// swiftlint:disable:this function_default_parameter_at_end
         is relation: ConstraintRelation = .equal,
         height: CGFloat,
         priority: UILayoutPriority = .required
@@ -311,7 +311,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            if let margin = margin {
+            if let margin: CGFloat = margin {
                 $0.layoutItemView.constraint(toSuperview: .leading, constant: margin).withPriority(priority)
                 $0.layoutItemView.constraint(toSuperview: .trailing, constant: -margin).withPriority(priority)
             } else {
@@ -435,7 +435,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            if let superview = $0.layoutItemView.superview {
+            if let superview: UIView = $0.layoutItemView.superview {
                 $0.layoutItemView
                     .constraint(for: .bottom,
                                 to: .bottomMargin,
@@ -487,7 +487,7 @@ extension LayoutItem {
         addingSuperviewConstraints {
             guard let superview = $0.layoutItemView.superview
             else { return [] }
-            let guide = UILayoutGuide()
+            let guide: UILayoutGuide = .init()
             superview.addLayoutGuide(guide)
             return [
                 guide.top.constraint(to: top, constant: topOffset),
@@ -532,7 +532,7 @@ extension LayoutItem {
         addingSuperviewConstraints {
             guard let superview = $0.layoutItemView.superview
             else { return [] }
-            let guide = UILayoutGuide()
+            let guide: UILayoutGuide = .init()
             superview.addLayoutGuide(guide)
             return [
                 guide.leading.constraint(to: leading, constant: leadingOffset),
@@ -637,7 +637,7 @@ extension LayoutItem {
         addingSuperviewConstraints {
             guard let safeAnchor = $0.safeAreaGuide?.anchor(for: attribute)
             else { return [] }
-            let viewAnchor = $0.layoutItemView.anchor(for: attribute)
+            let viewAnchor: NSLayoutAnchor<T.AnchorType> = $0.layoutItemView.anchor(for: attribute)
             return [safeAnchor.constraint(equalTo: viewAnchor, constant: constant).withPriority(priority)]
         }
     }

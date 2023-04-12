@@ -70,7 +70,7 @@ extension UILayoutSupport {
 
 extension NSLayoutXAxisAnchor {
 
-    public func constraint(
+    public func constraint(// swiftlint:disable:this function_default_parameter_at_end
         is relation: ConstraintRelation = .equal,
         to anchor: NSLayoutXAxisAnchor,
         constant: CGFloat = 0
@@ -88,7 +88,7 @@ extension NSLayoutXAxisAnchor {
 
 extension NSLayoutYAxisAnchor {
 
-    public func constraint(
+    public func constraint(// swiftlint:disable:this function_default_parameter_at_end
         is relation: ConstraintRelation = .equal,
         to anchor: NSLayoutYAxisAnchor,
         constant: CGFloat = 0
@@ -106,7 +106,7 @@ extension NSLayoutYAxisAnchor {
 
 extension NSLayoutDimension {
 
-    public func constraint(
+    public func constraint(// swiftlint:disable:this function_default_parameter_at_end
         is relation: ConstraintRelation = .equal,
         to anchor: NSLayoutDimension,
         constant: CGFloat = 0
@@ -121,7 +121,7 @@ extension NSLayoutDimension {
         }
     }
 
-    public func constraint(
+    public func constraint(// swiftlint:disable:this function_default_parameter_at_end
         is relation: ConstraintRelation = .equal,
         _ constant: CGFloat
     ) -> NSLayoutConstraint {
