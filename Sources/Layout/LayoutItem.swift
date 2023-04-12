@@ -5,6 +5,8 @@
 //  Created by Christopher Fuller on 2/17/23.
 //
 
+// swiftlint:disable file_length
+
 import UIKit
 
 public enum Axis {
@@ -29,7 +31,7 @@ public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
 ///     let item = view1.pin()
 ///     mainView.layout(item).activate()
 ///     ````
-public protocol LayoutItem: AnyObject {
+public protocol LayoutItem: AnyObject { // swiftlint:disable:this file_types_order
 
     /// View of the LayoutItem
     var layoutItemView: UIView { get }
@@ -38,7 +40,7 @@ public protocol LayoutItem: AnyObject {
     var superviewConstraints: SuperviewConstraints { get }
 }
 
-extension UIView: LayoutItem {
+extension UIView: LayoutItem { // swiftlint:disable:this file_types_order
 
     public var layoutItemView: UIView { self }
 
@@ -79,6 +81,7 @@ extension LayoutItem {
     public func addingSuperviewConstraints(
         @ConstraintsBuilder constraints: @escaping SuperviewConstraints
     ) -> LayoutItem {
+        // swiftlint:disable:next explicit_type_interface
         ViewLayoutItem(layoutItemView: layoutItemView) { [superviewConstraints] in
             superviewConstraints($0) + constraints($0)
         }
@@ -311,7 +314,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            if let margin: CGFloat = margin {
+            if let margin: CGFloat {
                 $0.layoutItemView.constraint(toSuperview: .leading, constant: margin).withPriority(priority)
                 $0.layoutItemView.constraint(toSuperview: .trailing, constant: -margin).withPriority(priority)
             } else {
@@ -652,6 +655,7 @@ extension LayoutItem {
     }
 }
 
+// swiftlint:disable:next no_grouping_extension
 extension ViewLayoutItem: LayoutAnchoring {
 
     public var left: NSLayoutXAxisAnchor { layoutItemView.left }

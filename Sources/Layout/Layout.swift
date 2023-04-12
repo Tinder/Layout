@@ -5,6 +5,8 @@
 //  Created by Christopher Fuller on 2/17/23.
 //
 
+// swiftlint:disable file_length
+
 import UIKit
 
 /// API for adding subviews and constraints to a view.
@@ -32,7 +34,7 @@ import UIKit
 ///         .vertical([view2, view3])
 ///         .activate()
 ///         ````
-public final class Layout {
+public final class Layout { // swiftlint:disable:this type_body_length
 
     /// The standard spacing when using vfl. The horizontal bars in `|[view1]-[view2]-|`
     public static let standardSpacing: CGFloat = 8
@@ -115,7 +117,7 @@ public final class Layout {
     @discardableResult
     public func vertical(
         _ format: String,
-        metrics: [String: Any]? = nil,
+        metrics: [String: Any]? = nil, // swiftlint:disable:this discouraged_optional_collection
         options: NSLayoutConstraint.FormatOptions = []
     ) -> Layout {
         vfl(axis: .vertical, format: format, metrics: metrics, options: options)
@@ -130,7 +132,7 @@ public final class Layout {
     @discardableResult
     public func horizontal(
         _ format: String,
-        metrics: [String: Any]? = nil,
+        metrics: [String: Any]? = nil, // swiftlint:disable:this discouraged_optional_collection
         options: NSLayoutConstraint.FormatOptions = []
     ) -> Layout {
         vfl(axis: .horizontal, format: format, metrics: metrics, options: options)
@@ -139,7 +141,7 @@ public final class Layout {
     private func vfl(
         axis: NSLayoutConstraint.Axis,
         format: String,
-        metrics: [String: Any]? = nil,
+        metrics: [String: Any]? = nil, // swiftlint:disable:this discouraged_optional_collection
         options: NSLayoutConstraint.FormatOptions = []
     ) -> Layout {
         vfl(axis.orientation + ":" + format, metrics: metrics, options: options)
@@ -147,7 +149,7 @@ public final class Layout {
 
     private func vfl(
         _ format: String,
-        metrics: [String: Any]? = nil,
+        metrics: [String: Any]? = nil, // swiftlint:disable:this discouraged_optional_collection
         options: NSLayoutConstraint.FormatOptions = []
     ) -> Layout {
         adding(NSLayoutConstraint.constraints(format: format,

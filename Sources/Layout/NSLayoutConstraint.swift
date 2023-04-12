@@ -14,7 +14,7 @@ extension NSLayoutConstraint {
     public static func constraints(
         format: String,
         views: [String: Any],
-        metrics: [String: Any]? = nil,
+        metrics: [String: Any]? = nil, // swiftlint:disable:this discouraged_optional_collection
         options: NSLayoutConstraint.FormatOptions = []
     ) -> [NSLayoutConstraint] {
         NSLayoutConstraint.constraints(withVisualFormat: format,
@@ -26,7 +26,7 @@ extension NSLayoutConstraint {
     public static func constraints(
         formats: [String],
         views: [String: Any],
-        metrics: [String: Any]? = nil,
+        metrics: [String: Any]? = nil, // swiftlint:disable:this discouraged_optional_collection
         options: NSLayoutConstraint.FormatOptions = []
     ) -> [NSLayoutConstraint] {
         formats.flatMap {
