@@ -1,0 +1,11 @@
+included:
+- Sources
+- Tests
+
+child_config: .swiftlint-rules.yml
+
+private_over_fileprivate:
+  validate_extensions: true
+
+trailing_whitespace:
+  ignores_comments: false
