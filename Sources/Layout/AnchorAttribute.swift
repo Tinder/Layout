@@ -95,25 +95,23 @@ public enum DimensionAttribute: AnchorAttribute {
 
 extension LayoutAnchoring {
 
+    // swiftlint:disable force_cast
+
     public func anchor<T: AnchorAttribute>(for attribute: T) -> NSLayoutAnchor<T.AnchorType> {
         switch attribute.attributeType {
         case .xAxisAnchor:
-            // swiftlint:disable:next force_cast
             let attribute: XAxisAttribute = attribute as! XAxisAttribute
-            // swiftlint:disable:next force_cast
             return xAnchor(for: attribute) as! NSLayoutAnchor<T.AnchorType>
         case .yAxisAnchor:
-            // swiftlint:disable:next force_cast
             let attribute: YAxisAttribute = attribute as! YAxisAttribute
-            // swiftlint:disable:next force_cast
             return yAnchor(for: attribute) as! NSLayoutAnchor<T.AnchorType>
         case .dimension:
-            // swiftlint:disable:next force_cast
             let attribute: DimensionAttribute = attribute as! DimensionAttribute
-            // swiftlint:disable:next force_cast
             return sizeAnchor(for: attribute) as! NSLayoutAnchor<T.AnchorType>
         }
     }
+
+    // swiftlint:enable force_cast
 
     private func xAnchor(for attribute: XAxisAttribute) -> NSLayoutXAxisAnchor {
         switch attribute {
