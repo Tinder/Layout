@@ -130,7 +130,7 @@ only_rules:
 - nslocalizedstring_require_bundle
 - nsobject_prefer_isequal
 - number_separator
-- object_literal
+# - object_literal
 - opening_brace
 - operator_usage_whitespace
 - operator_whitespace
