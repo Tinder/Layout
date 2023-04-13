@@ -5,7 +5,7 @@
 //  Created by Christopher Fuller on 2/17/23.
 //
 
-// swiftlint:disable file_length
+// swiftlint:disable file_length type_body_length
 
 import UIKit
 
@@ -34,7 +34,7 @@ import UIKit
 ///         .vertical([view2, view3])
 ///         .activate()
 ///         ````
-public final class Layout { // swiftlint:disable:this type_body_length
+public final class Layout {
 
     /// The standard spacing when using vfl. The horizontal bars in `|[view1]-[view2]-|`
     public static let standardSpacing: CGFloat = 8
