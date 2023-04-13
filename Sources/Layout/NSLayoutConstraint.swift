@@ -29,9 +29,7 @@ extension NSLayoutConstraint {
         metrics: [String: Any]? = nil, // swiftlint:disable:this discouraged_optional_collection
         options: NSLayoutConstraint.FormatOptions = []
     ) -> [NSLayoutConstraint] {
-        formats.flatMap {
-            constraints(format: $0, views: views, metrics: metrics, options: options)
-        }
+        formats.flatMap { constraints(format: $0, views: views, metrics: metrics, options: options) }
     }
 
     // MARK: - Mutators

@@ -87,6 +87,8 @@ extension LayoutItem {
         return self
     }
 
+    // swiftlint:disable anonymous_argument_in_multiline_closure
+
     public func addingSuperviewConstraints(
         @ConstraintsBuilder constraints: @escaping SuperviewConstraints
     ) -> LayoutItem {
@@ -653,6 +655,8 @@ extension LayoutItem {
             return [safeAnchor.constraint(equalTo: viewAnchor, constant: constant).withPriority(priority)]
         }
     }
+
+    // swiftlint:enable anonymous_argument_in_multiline_closure
 }
 
 // swiftlint:disable:next no_grouping_extension
