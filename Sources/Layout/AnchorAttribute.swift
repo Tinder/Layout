@@ -23,9 +23,9 @@ public enum AnchorAttributeType {
 
 public enum XAxisAttribute: AnchorAttribute {
 
-    public typealias AnchorType = NSLayoutXAxisAnchor
-
     case left, centerX, right, leading, trailing
+
+    public typealias AnchorType = NSLayoutXAxisAnchor
 
     public var attributeType: AnchorAttributeType {
         .xAxisAnchor
@@ -49,9 +49,9 @@ public enum XAxisAttribute: AnchorAttribute {
 
 public enum YAxisAttribute: AnchorAttribute {
 
-    public typealias AnchorType = NSLayoutYAxisAnchor
-
     case top, centerY, firstBaseline, lastBaseline, bottom
+
+    public typealias AnchorType = NSLayoutYAxisAnchor
 
     public var attributeType: AnchorAttributeType {
         .yAxisAnchor
@@ -75,9 +75,9 @@ public enum YAxisAttribute: AnchorAttribute {
 
 public enum DimensionAttribute: AnchorAttribute {
 
-    public typealias AnchorType = NSLayoutDimension
-
     case width, height
+
+    public typealias AnchorType = NSLayoutDimension
 
     public var attributeType: AnchorAttributeType {
         .dimension

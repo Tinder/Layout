@@ -70,6 +70,15 @@ extension LayoutItem {
         set { layoutItemView.accessibilityIdentifier = newValue }
     }
 
+    private var safeAreaGuide: UILayoutGuide? {
+        guard let superview = layoutItemView.superview
+        else {
+            assertionFailure("Missing required superview reference")
+            return nil
+        }
+        return superview.safeAreaLayoutGuide
+    }
+
     /// Adds an identifier
     ///
     /// - Parameter identifier: identifier
@@ -643,15 +652,6 @@ extension LayoutItem {
             let viewAnchor: NSLayoutAnchor<T.AnchorType> = $0.layoutItemView.anchor(for: attribute)
             return [safeAnchor.constraint(equalTo: viewAnchor, constant: constant).withPriority(priority)]
         }
-    }
-
-    private var safeAreaGuide: UILayoutGuide? {
-        guard let superview = layoutItemView.superview
-        else {
-            assertionFailure("Missing required superview reference")
-            return nil
-        }
-        return superview.safeAreaLayoutGuide
     }
 }
 
