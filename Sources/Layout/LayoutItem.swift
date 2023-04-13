@@ -23,6 +23,8 @@ public enum AspectRatioConstraint {
 
 public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
 
+// swiftlint:disable file_types_order
+
 /// Items to be used with the `Layout` API
 ///
 /// - Note:
@@ -31,7 +33,7 @@ public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
 ///     let item = view1.pin()
 ///     mainView.layout(item).activate()
 ///     ````
-public protocol LayoutItem: AnyObject { // swiftlint:disable:this file_types_order
+public protocol LayoutItem: AnyObject {
 
     /// View of the LayoutItem
     var layoutItemView: UIView { get }
@@ -40,7 +42,7 @@ public protocol LayoutItem: AnyObject { // swiftlint:disable:this file_types_ord
     var superviewConstraints: SuperviewConstraints { get }
 }
 
-extension UIView: LayoutItem { // swiftlint:disable:this file_types_order
+extension UIView: LayoutItem {
 
     public var layoutItemView: UIView { self }
 
@@ -48,6 +50,8 @@ extension UIView: LayoutItem { // swiftlint:disable:this file_types_order
         { _ in [] }
     }
 }
+
+// swiftlint:enable file_types_order
 
 public final class ViewLayoutItem: LayoutItem {
 

@@ -7,7 +7,8 @@
 
 import UIKit
 
-// swiftlint:disable:next file_types_order
+// swiftlint:disable file_types_order
+
 public protocol AnchorAttribute {
 
     associatedtype AnchorType: AnyObject
@@ -15,6 +16,8 @@ public protocol AnchorAttribute {
     var attributeType: AnchorAttributeType { get }
     var attribute: NSLayoutConstraint.Attribute { get }
 }
+
+// swiftlint:enable file_types_order
 
 public enum AnchorAttributeType {
 
