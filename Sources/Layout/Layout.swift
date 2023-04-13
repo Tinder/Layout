@@ -55,13 +55,17 @@ public final class Layout { // swiftlint:disable:this type_body_length
         self.init(containerView, metrics: metrics, items: [])
     }
 
-    public convenience init(// swiftlint:disable:this function_default_parameter_at_end
+    // swiftlint:disable function_default_parameter_at_end
+
+    public convenience init(
         _ containerView: UIView,
         metrics: [String: Any] = [:],
         _ item: LayoutItem
     ) {
         self.init(containerView, metrics: metrics, items: [item])
     }
+
+    // swiftlint:enable function_default_parameter_at_end
 
     public convenience init(
         _ containerView: UIView,
@@ -158,6 +162,8 @@ public final class Layout { // swiftlint:disable:this type_body_length
                                               options: options))
     }
 
+    // swiftlint:disable function_default_parameter_at_end
+
     /// Constrains two anchors to each other. Constrains the corresponding `targetAttribute` if `attribute` is nil
     ///
     /// - Parameters:
@@ -169,7 +175,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ///   - multiplier: (optional) multiplier
     ///   - constant: (optional) constant
     @discardableResult
-    public func constrain(// swiftlint:disable:this function_default_parameter_at_end
+    public func constrain(
         _ view: UIView,
         _ attribute: NSLayoutConstraint.Attribute? = nil,
         is relation: ConstraintRelation = .equal,
@@ -197,7 +203,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ///   - constant: (optional) constant
     ///   - priority: (optional) priority of constraint
     @discardableResult
-    public func constrain<T>(// swiftlint:disable:this function_default_parameter_at_end
+    public func constrain<T>(
         _ anchor: NSLayoutAnchor<T>,
         is relation: ConstraintRelation = .equal,
         to targetAnchor: NSLayoutAnchor<T>,
@@ -229,7 +235,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ///   - constant: (optional) constant
     ///   - priority: (optional) priority of constraint
     @discardableResult
-    public func constrain(// swiftlint:disable:this function_default_parameter_at_end
+    public func constrain(
         _ anchor: NSLayoutDimension,
         is relation: ConstraintRelation = .equal,
         to targetAnchor: NSLayoutDimension,
@@ -263,7 +269,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ///   - constant: size of dimension
     ///   - priority: (optional) priority of constraint
     @discardableResult
-    public func constrain(// swiftlint:disable:this function_default_parameter_at_end
+    public func constrain(
         _ anchor: NSLayoutDimension,
         is relation: ConstraintRelation = .equal,
         to constant: CGFloat,
@@ -379,7 +385,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ///   - priority: (optional) priority of the constraint, defaults to .required
     ///   - alignment: X﹘Axis attributes to align
     @discardableResult
-    public func horizontal(// swiftlint:disable:this function_default_parameter_at_end
+    public func horizontal(
         _ views: [UIView],
         spacing: CGFloat = 0,
         direction: HorizontalDirection = .leadingToTrailing,
@@ -410,7 +416,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ///   - spacing: spacing between views
     ///   - alignment: X﹘Axis attributes to align
     @discardableResult
-    public func vertical(// swiftlint:disable:this function_default_parameter_at_end
+    public func vertical(
         _ views: [UIView],
         spacing: CGFloat = 0,
         alignment: XAxisAttribute...
@@ -430,6 +436,8 @@ public final class Layout { // swiftlint:disable:this type_body_length
         }
         return self
     }
+
+    // swiftlint:enable function_default_parameter_at_end
 
     /// Horizontally centers the view between two anchors.
     ///

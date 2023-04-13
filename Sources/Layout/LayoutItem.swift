@@ -127,13 +127,15 @@ extension LayoutItem {
         self.size(width: size.width, height: size.height, priority: priority)
     }
 
+    // swiftlint:disable function_default_parameter_at_end
+
     /// Constrains the width
     ///
     /// - Parameters:
     ///   - relation: (optional, default `.equal`) relationship (=, ≤, ≥)
     ///   - width: width constraint
     ///   - priority: (optional) priority of constraint
-    public func size(// swiftlint:disable:this function_default_parameter_at_end
+    public func size(
         is relation: ConstraintRelation = .equal,
         width: CGFloat,
         priority: UILayoutPriority = .required
@@ -149,7 +151,7 @@ extension LayoutItem {
     ///   - relation: (optional, default `.equal`) relationship (=, ≤, ≥)
     ///   - height: height constraint
     ///   - priority: (optional) priority of constraint
-    public func size(// swiftlint:disable:this function_default_parameter_at_end
+    public func size(
         is relation: ConstraintRelation = .equal,
         height: CGFloat,
         priority: UILayoutPriority = .required
@@ -158,6 +160,8 @@ extension LayoutItem {
             $0.layoutItemView.heightConstraint(is: relation, height).withPriority(priority)
         }
     }
+
+    // swiftlint:enable function_default_parameter_at_end
 
     /// Constrains the width to the height
     public func square() -> LayoutItem {

@@ -36,7 +36,9 @@ extension UIView {
 
     // MARK: - Constraint Factories
 
-    public func constraint(// swiftlint:disable:this function_default_parameter_at_end
+    // swiftlint:disable function_default_parameter_at_end
+
+    public func constraint(
         for attribute: NSLayoutConstraint.Attribute? = nil,
         is relation: ConstraintRelation = .equal,
         toSuperview superviewAttribute: NSLayoutConstraint.Attribute,
@@ -53,7 +55,7 @@ extension UIView {
                                   constant: constant)
     }
 
-    public func constraint(// swiftlint:disable:this function_default_parameter_at_end
+    public func constraint(
         for attribute: NSLayoutConstraint.Attribute? = nil,
         is relation: ConstraintRelation = .equal,
         to targetAttribute: NSLayoutConstraint.Attribute,
@@ -83,7 +85,7 @@ extension UIView {
         ])
     }
 
-    public func constraints(// swiftlint:disable:this function_default_parameter_at_end
+    public func constraints(
         is relation: ConstraintRelation = .equal,
         toSuperview attributes: [NSLayoutConstraint.Attribute],
         multiplier: CGFloat = 1.0,
@@ -97,7 +99,7 @@ extension UIView {
         }
     }
 
-    public func constraints(// swiftlint:disable:this function_default_parameter_at_end
+    public func constraints(
         is relation: ConstraintRelation = .equal,
         to attributes: [NSLayoutConstraint.Attribute],
         of targetView: UIView,
@@ -112,6 +114,8 @@ extension UIView {
                        constant: constant)
         }
     }
+
+    // swiftlint:enable function_default_parameter_at_end
 
     public func widthConstraint(
         is relation: ConstraintRelation = .equal,
