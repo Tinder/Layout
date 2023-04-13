@@ -112,6 +112,8 @@ public final class Layout {
         return self
     }
 
+    // swiftlint:disable discouraged_optional_collection
+
     /// Adds constraints using vertical vfl
     ///
     /// - Parameters:
@@ -121,7 +123,7 @@ public final class Layout {
     @discardableResult
     public func vertical(
         _ format: String,
-        metrics: [String: Any]? = nil, // swiftlint:disable:this discouraged_optional_collection
+        metrics: [String: Any]? = nil,
         options: NSLayoutConstraint.FormatOptions = []
     ) -> Layout {
         vfl(axis: .vertical, format: format, metrics: metrics, options: options)
@@ -136,7 +138,7 @@ public final class Layout {
     @discardableResult
     public func horizontal(
         _ format: String,
-        metrics: [String: Any]? = nil, // swiftlint:disable:this discouraged_optional_collection
+        metrics: [String: Any]? = nil,
         options: NSLayoutConstraint.FormatOptions = []
     ) -> Layout {
         vfl(axis: .horizontal, format: format, metrics: metrics, options: options)
@@ -145,7 +147,7 @@ public final class Layout {
     private func vfl(
         axis: NSLayoutConstraint.Axis,
         format: String,
-        metrics: [String: Any]? = nil, // swiftlint:disable:this discouraged_optional_collection
+        metrics: [String: Any]? = nil,
         options: NSLayoutConstraint.FormatOptions = []
     ) -> Layout {
         vfl(axis.orientation + ":" + format, metrics: metrics, options: options)
@@ -153,7 +155,7 @@ public final class Layout {
 
     private func vfl(
         _ format: String,
-        metrics: [String: Any]? = nil, // swiftlint:disable:this discouraged_optional_collection
+        metrics: [String: Any]? = nil,
         options: NSLayoutConstraint.FormatOptions = []
     ) -> Layout {
         adding(NSLayoutConstraint.constraints(format: format,
@@ -161,6 +163,8 @@ public final class Layout {
                                               metrics: metrics ?? self.metrics,
                                               options: options))
     }
+
+    // swiftlint:enable discouraged_optional_collection
 
     // swiftlint:disable function_default_parameter_at_end
 
