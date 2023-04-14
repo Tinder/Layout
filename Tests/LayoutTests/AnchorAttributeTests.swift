@@ -7,7 +7,6 @@
 
 @testable import Layout
 import Nimble
-import SnapshotTesting
 import XCTest
 
 final class AnchorAttributeTests: XCTestCase {
@@ -118,22 +117,25 @@ final class AnchorAttributeTests: XCTestCase {
 
     func testAnchorXAxisAttribute() {
         let view: UIView = .init()
-        let attributes: [XAxisAttribute] = [.left, .centerX, .right, .leading, .trailing]
-        let anchors: [NSLayoutAnchor<XAxisAttribute.AnchorType>] = attributes.map { view.anchor(for: $0) }
-        assertSnapshot(matching: anchors, as: .dump)
+        expect(view.anchor(for: XAxisAttribute.left)) == view.leftAnchor
+        expect(view.anchor(for: XAxisAttribute.centerX)) == view.centerXAnchor
+        expect(view.anchor(for: XAxisAttribute.right)) == view.rightAnchor
+        expect(view.anchor(for: XAxisAttribute.leading)) == view.leadingAnchor
+        expect(view.anchor(for: XAxisAttribute.trailing)) == view.trailingAnchor
     }
 
     func testAnchorYAxisAttribute() {
         let view: UIView = .init()
-        let attributes: [YAxisAttribute] = [.top, .centerY, .firstBaseline, .lastBaseline, .bottom]
-        let anchors: [NSLayoutAnchor<YAxisAttribute.AnchorType>] = attributes.map { view.anchor(for: $0) }
-        assertSnapshot(matching: anchors, as: .dump)
+        expect(view.anchor(for: YAxisAttribute.top)) == view.topAnchor
+        expect(view.anchor(for: YAxisAttribute.centerY)) == view.centerYAnchor
+        expect(view.anchor(for: YAxisAttribute.firstBaseline)) == view.firstBaselineAnchor
+        expect(view.anchor(for: YAxisAttribute.lastBaseline)) == view.lastBaselineAnchor
+        expect(view.anchor(for: YAxisAttribute.bottom)) == view.bottomAnchor
     }
 
     func testAnchorDimensionAttribute() {
         let view: UIView = .init()
-        let attributes: [DimensionAttribute] = [.width, .height]
-        let anchors: [NSLayoutAnchor<DimensionAttribute.AnchorType>] = attributes.map { view.anchor(for: $0) }
-        assertSnapshot(matching: anchors, as: .dump)
+        expect(view.anchor(for: DimensionAttribute.width)) == view.widthAnchor
+        expect(view.anchor(for: DimensionAttribute.height)) == view.heightAnchor
     }
 }

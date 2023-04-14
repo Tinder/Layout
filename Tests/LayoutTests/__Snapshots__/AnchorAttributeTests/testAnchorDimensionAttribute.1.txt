@@ -1,3 +1,0 @@
-▿ 2 elements
-  - <NSLayoutDimension "UIView.width">
-  - <NSLayoutDimension "UIView.height">

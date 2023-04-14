@@ -1,6 +1,0 @@
-▿ 5 elements
-  - <NSLayoutYAxisAnchor "UIView.top">
-  - <NSLayoutYAxisAnchor "UIView.centerY">
-  - <NSLayoutYAxisAnchor "UIView.firstBaseline">
-  - <NSLayoutYAxisAnchor "UIView.lastBaseline">
-  - <NSLayoutYAxisAnchor "UIView.bottom">

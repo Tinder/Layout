@@ -1,6 +1,0 @@
-▿ 5 elements
-  - <NSLayoutXAxisAnchor "UIView.left">
-  - <NSLayoutXAxisAnchor "UIView.centerX">
-  - <NSLayoutXAxisAnchor "UIView.right">
-  - <NSLayoutXAxisAnchor "UIView.leading">
-  - <NSLayoutXAxisAnchor "UIView.trailing">
