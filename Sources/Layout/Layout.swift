@@ -5,9 +5,11 @@
 //  Created by Christopher Fuller on 2/17/23.
 //
 
-// swiftlint:disable file_length type_body_length
+// swiftlint:disable file_length
 
 import UIKit
+
+// swiftlint:disable type_body_length
 
 /// API for adding subviews and constraints to a view.
 ///
@@ -648,6 +650,8 @@ public final class Layout {
     }
 }
 
+// swiftlint:enable type_body_length
+
 extension Collection where Element == Layout {
 
     /// Activates all constraints of each instance
@@ -660,3 +664,5 @@ extension Collection where Element == Layout {
         forEach { $0.deactivate() }
     }
 }
+
+// swiftlint:enable file_length
