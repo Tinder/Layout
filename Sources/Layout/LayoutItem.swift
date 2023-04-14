@@ -96,7 +96,6 @@ extension LayoutItem {
     public func addingSuperviewConstraints(
         @ConstraintsBuilder constraints: @escaping SuperviewConstraints
     ) -> LayoutItem {
-        // swiftlint:disable:next explicit_type_interface
         ViewLayoutItem(layoutItemView: layoutItemView) { [superviewConstraints] in
             superviewConstraints($0) + constraints($0)
         }
