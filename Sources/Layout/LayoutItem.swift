@@ -5,6 +5,8 @@
 //  Created by Christopher Fuller on 2/17/23.
 //
 
+// swiftlint:disable file_length
+
 import UIKit
 
 public enum Axis {
@@ -20,6 +22,8 @@ public enum AspectRatioConstraint {
 }
 
 public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
+
+// swiftlint:disable file_types_order
 
 /// Items to be used with the `Layout` API
 ///
@@ -47,6 +51,8 @@ extension UIView: LayoutItem {
     }
 }
 
+// swiftlint:enable file_types_order
+
 public final class ViewLayoutItem: LayoutItem {
 
     public let layoutItemView: UIView
@@ -68,6 +74,15 @@ extension LayoutItem {
         set { layoutItemView.accessibilityIdentifier = newValue }
     }
 
+    private var safeAreaGuide: UILayoutGuide? {
+        guard let superview = layoutItemView.superview
+        else {
+            assertionFailure("Missing required superview reference")
+            return nil
+        }
+        return superview.safeAreaLayoutGuide
+    }
+
     /// Adds an identifier
     ///
     /// - Parameter identifier: identifier
@@ -75,6 +90,8 @@ extension LayoutItem {
         self.identifier = identifier
         return self
     }
+
+    // swiftlint:disable anonymous_argument_in_multiline_closure
 
     public func addingSuperviewConstraints(
         @ConstraintsBuilder constraints: @escaping SuperviewConstraints
@@ -113,6 +130,8 @@ extension LayoutItem {
         self.size(width: size.width, height: size.height, priority: priority)
     }
 
+    // swiftlint:disable function_default_parameter_at_end
+
     /// Constrains the width
     ///
     /// - Parameters:
@@ -144,6 +163,8 @@ extension LayoutItem {
             $0.layoutItemView.heightConstraint(is: relation, height).withPriority(priority)
         }
     }
+
+    // swiftlint:enable function_default_parameter_at_end
 
     /// Constrains the width to the height
     public func square() -> LayoutItem {
@@ -311,7 +332,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            if let margin = margin {
+            if let margin: CGFloat {
                 $0.layoutItemView.constraint(toSuperview: .leading, constant: margin).withPriority(priority)
                 $0.layoutItemView.constraint(toSuperview: .trailing, constant: -margin).withPriority(priority)
             } else {
@@ -435,7 +456,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            if let superview = $0.layoutItemView.superview {
+            if let superview: UIView = $0.layoutItemView.superview {
                 $0.layoutItemView
                     .constraint(for: .bottom,
                                 to: .bottomMargin,
@@ -487,7 +508,7 @@ extension LayoutItem {
         addingSuperviewConstraints {
             guard let superview = $0.layoutItemView.superview
             else { return [] }
-            let guide = UILayoutGuide()
+            let guide: UILayoutGuide = .init()
             superview.addLayoutGuide(guide)
             return [
                 guide.top.constraint(to: top, constant: topOffset),
@@ -532,7 +553,7 @@ extension LayoutItem {
         addingSuperviewConstraints {
             guard let superview = $0.layoutItemView.superview
             else { return [] }
-            let guide = UILayoutGuide()
+            let guide: UILayoutGuide = .init()
             superview.addLayoutGuide(guide)
             return [
                 guide.leading.constraint(to: leading, constant: leadingOffset),
@@ -637,21 +658,15 @@ extension LayoutItem {
         addingSuperviewConstraints {
             guard let safeAnchor = $0.safeAreaGuide?.anchor(for: attribute)
             else { return [] }
-            let viewAnchor = $0.layoutItemView.anchor(for: attribute)
+            let viewAnchor: NSLayoutAnchor<T.AnchorType> = $0.layoutItemView.anchor(for: attribute)
             return [safeAnchor.constraint(equalTo: viewAnchor, constant: constant).withPriority(priority)]
         }
     }
 
-    private var safeAreaGuide: UILayoutGuide? {
-        guard let superview = layoutItemView.superview
-        else {
-            assertionFailure("Missing required superview reference")
-            return nil
-        }
-        return superview.safeAreaLayoutGuide
-    }
+    // swiftlint:enable anonymous_argument_in_multiline_closure
 }
 
+// swiftlint:disable:next no_grouping_extension
 extension ViewLayoutItem: LayoutAnchoring {
 
     public var left: NSLayoutXAxisAnchor { layoutItemView.left }

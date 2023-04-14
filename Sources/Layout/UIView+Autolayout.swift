@@ -36,6 +36,8 @@ extension UIView {
 
     // MARK: - Constraint Factories
 
+    // swiftlint:disable function_default_parameter_at_end
+
     public func constraint(
         for attribute: NSLayoutConstraint.Attribute? = nil,
         is relation: ConstraintRelation = .equal,
@@ -113,11 +115,13 @@ extension UIView {
         }
     }
 
+    // swiftlint:enable function_default_parameter_at_end
+
     public func widthConstraint(
         is relation: ConstraintRelation = .equal,
         _ constant: CGFloat? = nil
     ) -> NSLayoutConstraint {
-        let constant = constant ?? bounds.width
+        let constant: CGFloat = constant ?? bounds.width
         return width.constraint(is: relation, constant)
     }
 
@@ -125,7 +129,7 @@ extension UIView {
         is relation: ConstraintRelation = .equal,
         _ constant: CGFloat? = nil
     ) -> NSLayoutConstraint {
-        let constant = constant ?? bounds.height
+        let constant: CGFloat = constant ?? bounds.height
         return height.constraint(is: relation, constant)
     }
 

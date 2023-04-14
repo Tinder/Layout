@@ -5,7 +5,11 @@
 //  Created by Christopher Fuller on 2/17/23.
 //
 
+// swiftlint:disable file_length
+
 import UIKit
+
+// swiftlint:disable type_body_length
 
 /// API for adding subviews and constraints to a view.
 ///
@@ -53,6 +57,8 @@ public final class Layout {
         self.init(containerView, metrics: metrics, items: [])
     }
 
+    // swiftlint:disable function_default_parameter_at_end
+
     public convenience init(
         _ containerView: UIView,
         metrics: [String: Any] = [:],
@@ -60,6 +66,8 @@ public final class Layout {
     ) {
         self.init(containerView, metrics: metrics, items: [item])
     }
+
+    // swiftlint:enable function_default_parameter_at_end
 
     public convenience init(
         _ containerView: UIView,
@@ -105,6 +113,8 @@ public final class Layout {
         self.constraints += constraints
         return self
     }
+
+    // swiftlint:disable discouraged_optional_collection
 
     /// Adds constraints using vertical vfl
     ///
@@ -155,6 +165,10 @@ public final class Layout {
                                               metrics: metrics ?? self.metrics,
                                               options: options))
     }
+
+    // swiftlint:enable discouraged_optional_collection
+
+    // swiftlint:disable function_default_parameter_at_end
 
     /// Constrains two anchors to each other. Constrains the corresponding `targetAttribute` if `attribute` is nil
     ///
@@ -387,7 +401,7 @@ public final class Layout {
         guard views.count >= 2,
               let first = views.first
         else { return self }
-        var anchor = first.anchor(for: direction.attributes.1)
+        var anchor: NSLayoutAnchor<XAxisAttribute.AnchorType> = first.anchor(for: direction.attributes.1)
         for view in views.dropFirst() {
             constraints.append(view
                 .anchor(for: direction.attributes.0)
@@ -416,7 +430,7 @@ public final class Layout {
         guard views.count >= 2,
               let first = views.first
         else { return self }
-        var anchor = first.anchor(for: YAxisAttribute.bottom)
+        var anchor: NSLayoutAnchor<YAxisAttribute.AnchorType> = first.anchor(for: YAxisAttribute.bottom)
         for view in views.dropFirst() {
             constraints.append(view
                 .anchor(for: YAxisAttribute.top)
@@ -428,6 +442,8 @@ public final class Layout {
         }
         return self
     }
+
+    // swiftlint:enable function_default_parameter_at_end
 
     /// Horizontally centers the view between two anchors.
     ///
@@ -474,9 +490,9 @@ public final class Layout {
         between leading: NSLayoutAnchor<NSLayoutXAxisAnchor>,
         and trailing: NSLayoutAnchor<NSLayoutXAxisAnchor>
     ) -> Layout {
-        guard let containerView = containerView
+        guard let containerView
         else { return self }
-        let guide = UILayoutGuide()
+        let guide: UILayoutGuide = .init()
         containerView.addLayoutGuide(guide)
         constraints += [
             guide.leading.constraint(equalTo: leading),
@@ -532,9 +548,9 @@ public final class Layout {
         and bottom: NSLayoutAnchor<NSLayoutYAxisAnchor>,
         priority: UILayoutPriority = .required
     ) -> Layout {
-        guard let containerView = containerView
+        guard let containerView
         else { return self }
-        let guide = UILayoutGuide()
+        let guide: UILayoutGuide = .init()
         containerView.addLayoutGuide(guide)
         constraints += [
             guide.top.constraint(equalTo: top),
@@ -552,7 +568,7 @@ public final class Layout {
         guard views.count >= 2,
               let first = views.first
         else { return self }
-        let firstAnchor = first.anchor(for: attribute)
+        let firstAnchor: NSLayoutAnchor<T.AnchorType> = first.anchor(for: attribute)
         for view in views.dropFirst() {
             constraints.append(view
                 .anchor(for: attribute)
@@ -591,13 +607,13 @@ public final class Layout {
         _ items: [LayoutItem]
     ) -> Layout {
         items.forEach { item in
-            let subview = item.layoutItemView
+            let subview: UIView = item.layoutItemView
             subview.translatesAutoresizingMaskIntoConstraints = false
             if subview.superview != containerView {
                 containerView?.addSubview(subview)
             }
             constraints += item.superviewConstraints(item)
-            if let key = subview.identifier, !key.isEmpty {
+            if let key: String = subview.identifier, !key.isEmpty {
                 self.items[key] = subview
             }
         }
@@ -634,6 +650,8 @@ public final class Layout {
     }
 }
 
+// swiftlint:enable type_body_length
+
 extension Collection where Element == Layout {
 
     /// Activates all constraints of each instance
@@ -646,3 +664,5 @@ extension Collection where Element == Layout {
         forEach { $0.deactivate() }
     }
 }
+
+// swiftlint:enable file_length

@@ -40,6 +40,8 @@ extension UIView {
         Layout(self, metrics: metrics, items: [])
     }
 
+    // swiftlint:disable function_default_parameter_at_end
+
     /// Adds a subview and constraints to a view.
     ///
     /// - Note:
@@ -73,6 +75,8 @@ extension UIView {
     ) -> Layout {
         Layout(self, metrics: metrics, items: [item])
     }
+
+    // swiftlint:enable function_default_parameter_at_end
 
     /// Adds subviews and constraints to a view.
     ///
