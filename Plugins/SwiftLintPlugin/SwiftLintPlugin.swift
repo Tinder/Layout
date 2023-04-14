@@ -2,7 +2,7 @@
 //  SwiftLintPlugin.swift
 //  SwiftLintPlugin
 //
-//  Created by Garric Nahapetian on 4/11/23.
+//  Created by Christopher Fuller on 1/25/23.
 //
 
 import Foundation
