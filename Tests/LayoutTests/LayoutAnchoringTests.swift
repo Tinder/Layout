@@ -58,4 +58,24 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(guide.width) == guide.widthAnchor
         expect(guide.height) == guide.heightAnchor
     }
+
+    func testLayoutSupportAnchors() {
+        final class LayoutSupportMock: NSObject, UILayoutSupport {
+            var length: CGFloat { fatalError("Not implemented in UILayoutSupport extension") }
+            var topAnchor: NSLayoutYAxisAnchor { view.topAnchor }
+            var bottomAnchor: NSLayoutYAxisAnchor { view.bottomAnchor }
+            var heightAnchor: NSLayoutDimension { view.heightAnchor }
+
+            private let view: UIView
+
+            init(view: UIView) {
+                self.view = view
+            }
+        }
+        let view: UIView = .init()
+        let layoutSupport: UILayoutSupport = LayoutSupportMock(view: view)
+        expect(layoutSupport.top) == view.topAnchor
+        expect(layoutSupport.bottom) == view.bottomAnchor
+        expect(layoutSupport.height) == view.heightAnchor
+    }
 }
