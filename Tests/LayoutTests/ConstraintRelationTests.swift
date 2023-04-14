@@ -13,14 +13,9 @@ final class ConstraintRelationTests: XCTestCase {
 
     // MARK: NSLayoutConstraint.Relation
 
-    func testInitWithRelation() {
-        let inputs: [(givenRelation: ConstraintRelation, expectedRelation: NSLayoutConstraint.Relation)] = [
-            (.equal, .equal),
-            (.greaterThanOrEqual, .greaterThanOrEqual),
-            (.lessThanOrEqual, .lessThanOrEqual)
-        ]
-        inputs.forEach {
-            expect(NSLayoutConstraint.Relation(relation: $0.givenRelation)) == $0.expectedRelation
-        }
+    func testInitWithConstraintRelation() {
+        expect(NSLayoutConstraint.Relation(relation: .equal)) == .equal
+        expect(NSLayoutConstraint.Relation(relation: .greaterThanOrEqual)) == .greaterThanOrEqual
+        expect(NSLayoutConstraint.Relation(relation: .lessThanOrEqual)) == .lessThanOrEqual
     }
 }
