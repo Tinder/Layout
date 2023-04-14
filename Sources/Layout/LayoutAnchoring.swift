@@ -68,6 +68,8 @@ extension UILayoutSupport {
     public var height: NSLayoutDimension { heightAnchor }
 }
 
+// swiftlint:disable function_default_parameter_at_end
+
 extension NSLayoutXAxisAnchor {
 
     public func constraint(
@@ -135,6 +137,8 @@ extension NSLayoutDimension {
         }
     }
 }
+
+// swiftlint:enable function_default_parameter_at_end
 
 extension UIViewController {
 
