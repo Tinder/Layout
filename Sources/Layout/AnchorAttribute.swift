@@ -7,6 +7,8 @@
 
 import UIKit
 
+// swiftlint:disable file_types_order
+
 public protocol AnchorAttribute {
 
     associatedtype AnchorType: AnyObject
@@ -15,6 +17,8 @@ public protocol AnchorAttribute {
     var attribute: NSLayoutConstraint.Attribute { get }
 }
 
+// swiftlint:enable file_types_order
+
 public enum AnchorAttributeType {
 
     case xAxisAnchor, yAxisAnchor, dimension
@@ -22,9 +26,9 @@ public enum AnchorAttributeType {
 
 public enum XAxisAttribute: AnchorAttribute {
 
-    public typealias AnchorType = NSLayoutXAxisAnchor
-
     case left, centerX, right, leading, trailing
+
+    public typealias AnchorType = NSLayoutXAxisAnchor
 
     public var attributeType: AnchorAttributeType {
         .xAxisAnchor
@@ -48,9 +52,9 @@ public enum XAxisAttribute: AnchorAttribute {
 
 public enum YAxisAttribute: AnchorAttribute {
 
-    public typealias AnchorType = NSLayoutYAxisAnchor
-
     case top, centerY, firstBaseline, lastBaseline, bottom
+
+    public typealias AnchorType = NSLayoutYAxisAnchor
 
     public var attributeType: AnchorAttributeType {
         .yAxisAnchor
@@ -74,9 +78,9 @@ public enum YAxisAttribute: AnchorAttribute {
 
 public enum DimensionAttribute: AnchorAttribute {
 
-    public typealias AnchorType = NSLayoutDimension
-
     case width, height
+
+    public typealias AnchorType = NSLayoutDimension
 
     public var attributeType: AnchorAttributeType {
         .dimension
@@ -94,19 +98,23 @@ public enum DimensionAttribute: AnchorAttribute {
 
 extension LayoutAnchoring {
 
+    // swiftlint:disable force_cast
+
     public func anchor<T: AnchorAttribute>(for attribute: T) -> NSLayoutAnchor<T.AnchorType> {
         switch attribute.attributeType {
         case .xAxisAnchor:
-            let attribute = attribute as! XAxisAttribute
+            let attribute: XAxisAttribute = attribute as! XAxisAttribute
             return xAnchor(for: attribute) as! NSLayoutAnchor<T.AnchorType>
         case .yAxisAnchor:
-            let attribute = attribute as! YAxisAttribute
+            let attribute: YAxisAttribute = attribute as! YAxisAttribute
             return yAnchor(for: attribute) as! NSLayoutAnchor<T.AnchorType>
         case .dimension:
-            let attribute = attribute as! DimensionAttribute
+            let attribute: DimensionAttribute = attribute as! DimensionAttribute
             return sizeAnchor(for: attribute) as! NSLayoutAnchor<T.AnchorType>
         }
     }
+
+    // swiftlint:enable force_cast
 
     private func xAnchor(for attribute: XAxisAttribute) -> NSLayoutXAxisAnchor {
         switch attribute {

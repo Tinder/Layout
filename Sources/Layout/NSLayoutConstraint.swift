@@ -14,7 +14,7 @@ extension NSLayoutConstraint {
     public static func constraints(
         format: String,
         views: [String: Any],
-        metrics: [String: Any]? = nil,
+        metrics: [String: Any] = [:],
         options: NSLayoutConstraint.FormatOptions = []
     ) -> [NSLayoutConstraint] {
         NSLayoutConstraint.constraints(withVisualFormat: format,
@@ -26,12 +26,10 @@ extension NSLayoutConstraint {
     public static func constraints(
         formats: [String],
         views: [String: Any],
-        metrics: [String: Any]? = nil,
+        metrics: [String: Any] = [:],
         options: NSLayoutConstraint.FormatOptions = []
     ) -> [NSLayoutConstraint] {
-        formats.flatMap {
-            constraints(format: $0, views: views, metrics: metrics, options: options)
-        }
+        formats.flatMap { constraints(format: $0, views: views, metrics: metrics, options: options) }
     }
 
     // MARK: - Mutators
