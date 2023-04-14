@@ -1,4 +1,5 @@
 included:
+- Plugins
 - Sources
 - Tests
 
