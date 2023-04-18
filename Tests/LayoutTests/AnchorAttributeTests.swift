@@ -137,7 +137,7 @@ final class AnchorAttributeTests: XCTestCase {
         expect(view.anchor(for: YAxisAttribute.bottom)) == view.bottomAnchor
     }
 
-    func testAnchorDimensionAttribute() {
+    func testAnchorForDimensionAttributes() {
         // GIVEN
         let view: UIView = .init()
         // THEN
