@@ -3,6 +3,10 @@ lint: format ?= emoji
 lint:
 	@swiftlint lint --strict --progress --reporter "$(format)"
 
+.PHONY: delete-snapshots
+delete-snapshots:
+	rm -rf Tests/LayoutTests/__Snapshots__/*
+
 .PHONY: site
 site: target ?= Layout
 site: prefix ?= $(shell pwd)
@@ -44,7 +48,3 @@ endif
 		-name "$(target).doccarchive" \
 		-exec cp -R {} "$(ARCHIVE_PATH)/" \;
 	$(if $(filter $(open),OPEN),@open "$(ARCHIVE_PATH)/$(target).doccarchive",)
-
-.PHONY: delete-snapshots
-delete-snapshots:
-	rm -rf Tests/LayoutTests/__Snapshots__/*
