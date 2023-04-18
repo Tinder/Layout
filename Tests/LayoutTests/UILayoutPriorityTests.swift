@@ -12,122 +12,74 @@ import XCTest
 final class UILayoutPriorityTests: XCTestCase {
 
     func testDisabledPriority() {
-        // GIVEN
-        let priority: UILayoutPriority = .disabled
-
-        // THEN
-        expect(priority) == UILayoutPriority(0)
+        expect(UILayoutPriority.disabled) == UILayoutPriority(0)
     }
 
     func testLowPriority() {
-        // GIVEN
-        let priority: UILayoutPriority = .low
-
-        // THEN
-        expect(priority) == UILayoutPriority.defaultLow
+        expect(UILayoutPriority.low) == UILayoutPriority.defaultLow
     }
 
     func testHighPriority() {
-        // GIVEN
-        let priority: UILayoutPriority = .high
-
-        // THEN
-        expect(priority) == UILayoutPriority.defaultHigh
+        expect(UILayoutPriority.high) == UILayoutPriority.defaultHigh
     }
 
     func testAddingOffsetToPriority() {
-        // GIVEN
-        let priority: UILayoutPriority = .init(500)
-        let offset: Float = 200
-
-        // WHEN
-        let resultPriority: UILayoutPriority = priority + offset
-
-        // THEN
-        expect(resultPriority) == UILayoutPriority(700)
+        expect(UILayoutPriority(500) + 200) == UILayoutPriority(700)
     }
 
     func testAddingOffsetToPriority_beyondMaxPriority() {
-        // GIVEN
-        let priority: UILayoutPriority = .init(500)
-        let offset: Float = 501
-
-        // WHEN
-        let resultPriority: UILayoutPriority = priority + offset
-
-        // THEN
-        expect(resultPriority) == UILayoutPriority(1_000)
+        expect(UILayoutPriority(500) + 501) == UILayoutPriority(1_000)
     }
 
     func testSubtractingOffsetToPriority() {
-        // GIVEN
-        let priority: UILayoutPriority = .init(500)
-        let offset: Float = 200
-
-        // WHEN
-        let resultPriority: UILayoutPriority = priority - offset
-
-        // THEN
-        expect(resultPriority) == UILayoutPriority(300)
+        expect(UILayoutPriority(500) - 200) == UILayoutPriority(300)
     }
 
     func testSubtractingOffsetToPriority_belowMinPriority() {
-        // GIVEN
-        let priority: UILayoutPriority = .init(500)
-        let offset: Float = 501
-
-        // WHEN
-        let resultPriority: UILayoutPriority = priority - offset
-
-        // THEN
-        expect(resultPriority) == UILayoutPriority(0)
+        expect(UILayoutPriority(500) - 501) == UILayoutPriority(0)
     }
 
     func testAddOffset() {
         // GIVEN
         var priority: UILayoutPriority = .init(500)
-        let offset: Float = 200
 
         // WHEN
-        priority += offset
+        priority += 200
 
         // THEN
-        expect(priority.rawValue) == 700
+        expect(priority) == UILayoutPriority(700)
     }
 
     func testAddOffset_beyondMax() {
         // GIVEN
         var priority: UILayoutPriority = .init(500)
-        let offset: Float = 501
 
         // WHEN
-        priority += offset
+        priority += 501
 
         // THEN
-        expect(priority.rawValue) == 1_000
+        expect(priority) == UILayoutPriority(1_000)
     }
 
     func testSubtractOffset() {
         // GIVEN
         var priority: UILayoutPriority = .init(500)
-        let offset: Float = 200
 
         // WHEN
-        priority -= offset
+        priority -= 200
 
         // THEN
-        expect(priority.rawValue) == 300
+        expect(priority) == UILayoutPriority(300)
     }
 
     func testSubtractOffset_belowMin() {
         // GIVEN
         var priority: UILayoutPriority = .init(500)
-        let offset: Float = 501
 
         // WHEN
-        priority -= offset
+        priority -= 501
 
         // THEN
-        expect(priority.rawValue) == 0
+        expect(priority) == UILayoutPriority(0)
     }
 }
