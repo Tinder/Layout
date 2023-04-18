@@ -11,9 +11,7 @@ import XCTest
 
 final class ConstraintRelationTests: XCTestCase {
 
-    // MARK: NSLayoutConstraint.Relation
-
-    func testInitWithConstraintRelation() {
+    func testLayoutConstraintRelationInitializer() {
         expect(NSLayoutConstraint.Relation(relation: .equal)) == .equal
         expect(NSLayoutConstraint.Relation(relation: .greaterThanOrEqual)) == .greaterThanOrEqual
         expect(NSLayoutConstraint.Relation(relation: .lessThanOrEqual)) == .lessThanOrEqual
