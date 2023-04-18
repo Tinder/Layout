@@ -86,4 +86,16 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(layoutSupport.bottom) == view.bottomAnchor
         expect(layoutSupport.height) == view.heightAnchor
     }
+
+    func testViewControllerSafeAreaLayoutGuides() {
+
+        // GIVEN
+
+        let viewController: UIViewController = .init()
+
+        // THEN
+
+        expect(viewController.safeTop) == viewController.view.safeAreaLayoutGuide.top
+        expect(viewController.safeBottom) == viewController.view.safeAreaLayoutGuide.bottom
+    }
 }
