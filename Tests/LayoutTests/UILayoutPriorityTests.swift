@@ -1,6 +1,6 @@
 //
 //  UILayoutPriorityTests.swift
-//
+//  LayoutTests
 //
 //  Created by Eman Haroutunian on 4/18/23.
 //
@@ -10,134 +10,124 @@ import Nimble
 import XCTest
 
 final class UILayoutPriorityTests: XCTestCase {
+
     func testDisabledPriority() {
         // GIVEN
         let priority: UILayoutPriority = .disabled
-        let expectedPriority: UILayoutPriority = .init(0)
 
         // THEN
-        expect(priority) == expectedPriority
+        expect(priority) == UILayoutPriority(0)
     }
 
     func testLowPriority() {
         // GIVEN
         let priority: UILayoutPriority = .low
-        let expectedPriority: UILayoutPriority = .defaultLow
 
         // THEN
-        expect(priority) == expectedPriority
+        expect(priority) == UILayoutPriority.defaultLow
     }
 
     func testHighPriority() {
         // GIVEN
         let priority: UILayoutPriority = .high
-        let expectedPriority: UILayoutPriority = .defaultHigh
 
         // THEN
-        expect(priority) == expectedPriority
+        expect(priority) == UILayoutPriority.defaultHigh
     }
 
     func testAddingOffsetToPriority() {
         // GIVEN
         let priority: UILayoutPriority = .init(500)
         let offset: Float = 200
-        let expectedPriority: UILayoutPriority = .init(700)
 
         // WHEN
         let resultPriority: UILayoutPriority = priority + offset
 
         // THEN
-        expect(resultPriority) == expectedPriority
+        expect(resultPriority) == UILayoutPriority(700)
     }
 
     func testAddingOffsetToPriority_beyondMaxPriority() {
         // GIVEN
         let priority: UILayoutPriority = .init(500)
         let offset: Float = 501
-        let expectedPriority: UILayoutPriority = .init(1_000)
 
         // WHEN
         let resultPriority: UILayoutPriority = priority + offset
 
         // THEN
-        expect(resultPriority) == expectedPriority
+        expect(resultPriority) == UILayoutPriority(1_000)
     }
 
     func testSubtractingOffsetToPriority() {
         // GIVEN
         let priority: UILayoutPriority = .init(500)
         let offset: Float = 200
-        let expectedPriority: UILayoutPriority = .init(300)
 
         // WHEN
         let resultPriority: UILayoutPriority = priority - offset
 
         // THEN
-        expect(resultPriority) == expectedPriority
+        expect(resultPriority) == UILayoutPriority(300)
     }
 
     func testSubtractingOffsetToPriority_belowMinPriority() {
         // GIVEN
         let priority: UILayoutPriority = .init(500)
         let offset: Float = 501
-        let expectedPriority: UILayoutPriority = .init(0)
 
         // WHEN
         let resultPriority: UILayoutPriority = priority - offset
 
         // THEN
-        expect(resultPriority) == expectedPriority
+        expect(resultPriority) == UILayoutPriority(0)
     }
 
     func testAddOffset() {
         // GIVEN
         var priority: UILayoutPriority = .init(500)
         let offset: Float = 200
-        let expectedPriority: Float = 700
 
         // WHEN
         priority += offset
 
         // THEN
-        expect(priority.rawValue) == expectedPriority
+        expect(priority.rawValue) == 700
     }
 
     func testAddOffset_beyondMax() {
         // GIVEN
         var priority: UILayoutPriority = .init(500)
         let offset: Float = 501
-        let expectedPriority: Float = 1_000
 
         // WHEN
         priority += offset
 
         // THEN
-        expect(priority.rawValue) == expectedPriority
+        expect(priority.rawValue) == 1_000
     }
 
     func testSubtractOffset() {
         // GIVEN
         var priority: UILayoutPriority = .init(500)
         let offset: Float = 200
-        let expectedPriority: Float = 300
 
         // WHEN
         priority -= offset
 
         // THEN
-        expect(priority.rawValue) == expectedPriority
+        expect(priority.rawValue) == 300
     }
 
     func testSubtractOffset_belowMin() {
         // GIVEN
         var priority: UILayoutPriority = .init(500)
         let offset: Float = 501
-        let expectedPriority: Float = 0
 
         // WHEN
         priority -= offset
 
         // THEN
-        expect(priority.rawValue) == expectedPriority
+        expect(priority.rawValue) == 0
     }
 }
