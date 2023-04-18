@@ -43,3 +43,9 @@ endif
 .PHONY: delete-snapshots
 delete-snapshots:
 	rm -rf Tests/LayoutTests/__Snapshots__/*
+
+.PHONY: lint
+lint: format ?= emoji
+lint:
+	@swiftlint lint --strict --progress --reporter "$(format)"
+
