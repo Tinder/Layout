@@ -16,20 +16,10 @@ site:
 docs: target ?= Layout
 docs: destination ?= generic/platform=iOS
 docs: open ?= OPEN
-docs: workaround ?= DISABLED
 docs: DERIVED_DATA_PATH = .build/documentation/data
 docs: ARCHIVE_PATH = .build/documentation/archive
 docs:
 	@mkdir -p "$(DERIVED_DATA_PATH)" "$(ARCHIVE_PATH)"
-ifeq ($(strip $(workaround)),ENABLED)
-# BEGIN: Temporary Xcode 14 workaround to fix DocC CI issue
-	swift package dump-pif >/dev/null
-	xcodebuild clean \
-		-scheme "$(target)" \
-		-destination "$(destination)" \
-		-derivedDataPath "$(DERIVED_DATA_PATH)" || true
-# END: Temporary Xcode 14 workaround to fix DocC CI issue
-endif
 	xcodebuild docbuild \
 		-scheme "$(target)" \
 		-destination "$(destination)" \
