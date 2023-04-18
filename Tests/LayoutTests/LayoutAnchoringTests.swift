@@ -86,4 +86,108 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(layoutSupport.bottom) == view.bottomAnchor
         expect(layoutSupport.height) == view.heightAnchor
     }
+
+    func testXAxisAnchorConstraintIsEqual() {
+
+        // GIVEN
+
+        let viewA: UIView = .init()
+        let viewB: UIView = .init()
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .centerXAnchor
+            .constraint(is: .equal, to: viewB.centerXAnchor, constant: 23)
+
+        // THEN
+
+        expect(constraint.firstItem) === viewA
+        expect(constraint.firstAnchor) == viewA.centerXAnchor
+        expect(constraint.firstAttribute) == .centerX
+        expect(constraint.relation) == .equal
+        expect(constraint.secondItem) === viewB
+        expect(constraint.secondAnchor) == viewB.centerXAnchor
+        expect(constraint.secondAttribute) == .centerX
+        expect(constraint.multiplier) == 1.0
+        expect(constraint.constant) == 23
+    }
+
+    func testXAxisAnchorConstraintIsGreaterThanOrEqual() {
+
+        // GIVEN
+
+        let viewA: UIView = .init()
+        let viewB: UIView = .init()
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .centerXAnchor
+            .constraint(is: .greaterThanOrEqual, to: viewB.centerXAnchor, constant: 23)
+
+        // THEN
+
+        expect(constraint.firstItem) === viewA
+        expect(constraint.firstAnchor) == viewA.centerXAnchor
+        expect(constraint.firstAttribute) == .centerX
+        expect(constraint.relation) == .greaterThanOrEqual
+        expect(constraint.secondItem) === viewB
+        expect(constraint.secondAnchor) == viewB.centerXAnchor
+        expect(constraint.secondAttribute) == .centerX
+        expect(constraint.multiplier) == 1.0
+        expect(constraint.constant) == 23
+    }
+
+    func testXAxisAnchorConstraintIsLessThanOrEqual() {
+
+        // GIVEN
+
+        let viewA: UIView = .init()
+        let viewB: UIView = .init()
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .centerXAnchor
+            .constraint(is: .lessThanOrEqual, to: viewB.centerXAnchor, constant: 23)
+
+        // THEN
+
+        expect(constraint.firstItem) === viewA
+        expect(constraint.firstAnchor) == viewA.centerXAnchor
+        expect(constraint.firstAttribute) == .centerX
+        expect(constraint.relation) == .lessThanOrEqual
+        expect(constraint.secondItem) === viewB
+        expect(constraint.secondAnchor) == viewB.centerXAnchor
+        expect(constraint.secondAttribute) == .centerX
+        expect(constraint.multiplier) == 1.0
+        expect(constraint.constant) == 23
+    }
+
+    func testXAxisAnchorConstraintDefaults() {
+
+        // GIVEN
+
+        let viewA: UIView = .init()
+        let viewB: UIView = .init()
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .centerXAnchor
+            .constraint(to: viewB.centerXAnchor)
+
+        // THEN
+
+        expect(constraint.firstItem) === viewA
+        expect(constraint.firstAnchor) == viewA.centerXAnchor
+        expect(constraint.firstAttribute) == .centerX
+        expect(constraint.relation) == .equal
+        expect(constraint.secondItem) === viewB
+        expect(constraint.secondAnchor) == viewB.centerXAnchor
+        expect(constraint.secondAttribute) == .centerX
+        expect(constraint.multiplier) == 1.0
+        expect(constraint.constant) == 0
+    }
 }
