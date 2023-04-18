@@ -64,10 +64,11 @@ final class LayoutAnchoringTests: XCTestCase {
         // GIVEN
 
         final class LayoutSupportMock: NSObject, UILayoutSupport {
-            let length: CGFloat!
             var topAnchor: NSLayoutYAxisAnchor { view.topAnchor }
             var bottomAnchor: NSLayoutYAxisAnchor { view.bottomAnchor }
             var heightAnchor: NSLayoutDimension { view.heightAnchor }
+
+            let length: CGFloat!
 
             private let view: UIView
 
