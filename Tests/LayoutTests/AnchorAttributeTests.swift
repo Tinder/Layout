@@ -112,4 +112,36 @@ final class AnchorAttributeTests: XCTestCase {
         expect(anchorAttribute.attributeType) == .dimension
         expect(anchorAttribute.attribute) == .height
     }
+
+    // MARK: LayoutAnchoring
+
+    func testAnchorForXAxisAttributes() {
+        // GIVEN
+        let view: UIView = .init()
+        // THEN
+        expect(view.anchor(for: XAxisAttribute.left)) == view.leftAnchor
+        expect(view.anchor(for: XAxisAttribute.centerX)) == view.centerXAnchor
+        expect(view.anchor(for: XAxisAttribute.right)) == view.rightAnchor
+        expect(view.anchor(for: XAxisAttribute.leading)) == view.leadingAnchor
+        expect(view.anchor(for: XAxisAttribute.trailing)) == view.trailingAnchor
+    }
+
+    func testAnchorForYAxisAttributes() {
+        // GIVEN
+        let view: UIView = .init()
+        // THEN
+        expect(view.anchor(for: YAxisAttribute.top)) == view.topAnchor
+        expect(view.anchor(for: YAxisAttribute.centerY)) == view.centerYAnchor
+        expect(view.anchor(for: YAxisAttribute.firstBaseline)) == view.firstBaselineAnchor
+        expect(view.anchor(for: YAxisAttribute.lastBaseline)) == view.lastBaselineAnchor
+        expect(view.anchor(for: YAxisAttribute.bottom)) == view.bottomAnchor
+    }
+
+    func testAnchorForDimensionAttributes() {
+        // GIVEN
+        let view: UIView = .init()
+        // THEN
+        expect(view.anchor(for: DimensionAttribute.width)) == view.widthAnchor
+        expect(view.anchor(for: DimensionAttribute.height)) == view.heightAnchor
+    }
 }
