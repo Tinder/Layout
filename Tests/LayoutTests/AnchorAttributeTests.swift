@@ -115,7 +115,7 @@ final class AnchorAttributeTests: XCTestCase {
 
     // MARK: LayoutAnchoring
 
-    func testAnchorXAxisAttribute() {
+    func testAnchorForXAxisAttributes() {
         let view: UIView = .init()
         expect(view.anchor(for: XAxisAttribute.left)) == view.leftAnchor
         expect(view.anchor(for: XAxisAttribute.centerX)) == view.centerXAnchor
@@ -124,7 +124,7 @@ final class AnchorAttributeTests: XCTestCase {
         expect(view.anchor(for: XAxisAttribute.trailing)) == view.trailingAnchor
     }
 
-    func testAnchorYAxisAttribute() {
+    func testAnchorForYAxisAttributes() {
         let view: UIView = .init()
         expect(view.anchor(for: YAxisAttribute.top)) == view.topAnchor
         expect(view.anchor(for: YAxisAttribute.centerY)) == view.centerYAnchor
