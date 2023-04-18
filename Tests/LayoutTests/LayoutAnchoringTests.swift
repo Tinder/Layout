@@ -190,4 +190,16 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(constraint.multiplier) == 1.0
         expect(constraint.constant) == 0
     }
+
+    func testViewControllerSafeAreaLayoutGuides() {
+
+        // GIVEN
+
+        let viewController: UIViewController = .init()
+
+        // THEN
+
+        expect(viewController.safeTop) == viewController.view.safeAreaLayoutGuide.top
+        expect(viewController.safeBottom) == viewController.view.safeAreaLayoutGuide.bottom
+    }
 }
