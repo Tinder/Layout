@@ -68,7 +68,7 @@ final class LayoutAnchoringTests: XCTestCase {
             var bottomAnchor: NSLayoutYAxisAnchor { view.bottomAnchor }
             var heightAnchor: NSLayoutDimension { view.heightAnchor }
 
-            let length: CGFloat!
+            var length: CGFloat { fatalError() }
 
             private let view: UIView
 
