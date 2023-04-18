@@ -12,7 +12,13 @@ import XCTest
 final class LayoutAnchoringTests: XCTestCase {
 
     func testViewAnchors() {
+
+        // GIVEN
+
         let view: UIView = .init()
+
+        // THEN
+
         expect(view.left) == view.leftAnchor
         expect(view.centerX) == view.centerXAnchor
         expect(view.right) == view.rightAnchor
@@ -30,7 +36,13 @@ final class LayoutAnchoringTests: XCTestCase {
     }
 
     func testLayoutGuideAnchors() {
+
+        // GIVEN
+
         let guide: UILayoutGuide = .init()
+
+        // THEN
+
         expect(guide.left) == guide.leftAnchor
         expect(guide.centerX) == guide.centerXAnchor
         expect(guide.right) == guide.rightAnchor
