@@ -64,7 +64,7 @@ final class LayoutAnchoringTests: XCTestCase {
         // GIVEN
 
         final class LayoutSupportMock: NSObject, UILayoutSupport {
-            var length: CGFloat { fatalError("Not implemented in UILayoutSupport extension") }
+            let length: CGFloat!
             var topAnchor: NSLayoutYAxisAnchor { view.topAnchor }
             var bottomAnchor: NSLayoutYAxisAnchor { view.bottomAnchor }
             var heightAnchor: NSLayoutDimension { view.heightAnchor }
