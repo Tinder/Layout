@@ -1,8 +1,5 @@
 //
-//  LayoutItemSnapshotTests.swift
-//  LayoutTests
-//
-//  Created by Christopher Fuller on 3/7/23.
+//  Copyright © 2023 Tinder (Match Group, LLC)
 //
 
 @testable import Layout

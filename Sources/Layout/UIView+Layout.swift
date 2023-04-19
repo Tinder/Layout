@@ -1,8 +1,5 @@
 //
-//  UIView+Layout.swift
-//  Layout
-//
-//  Created by Christopher Fuller on 2/18/23.
+//  Copyright © 2023 Tinder (Match Group, LLC)
 //
 
 import UIKit
