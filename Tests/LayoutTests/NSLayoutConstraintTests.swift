@@ -39,4 +39,55 @@ final class NSLayoutConstraintTests: XCTestCase {
         // THEN
         expect(constraint.isActive) == false
     }
+
+    func testConstraintsWithVisualFormatLanguage() {
+
+        // GIVEN
+
+        let subview: UIView = pinkView
+        let formats: [String] = ["H:|-leftMargin-[subview(width)]", "V:|-topMargin-[subview(height)]"]
+        let views: [String: Any] = ["subview": subview]
+        let metrics: [String: Any] = [
+            "leftMargin": 10,
+            "width": 50,
+            "topMargin": 20,
+            "height": 100
+        ]
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout(subview)
+                .adding(NSLayoutConstraint.constraints(formats: formats, views: views, metrics: metrics))
+        }
+    }
+
+    func testConstraintsWithVisualFormatLanguage_rightToLeft() {
+
+        // GIVEN
+
+        let subview: UIView = pinkView
+        let formats: [String] = ["H:|-leftMargin-[subview(width)]", "V:|-topMargin-[subview(height)]"]
+        let views: [String: Any] = ["subview": subview]
+
+        let metrics: [String: Any] = [
+            "leftMargin": 10,
+            "width": 50,
+            "topMargin": 20,
+            "height": 100
+        ]
+
+        let options: NSLayoutConstraint.FormatOptions = .directionRightToLeft
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout(subview)
+                .adding(
+                    NSLayoutConstraint.constraints(formats: formats, views: views, metrics: metrics, options: options)
+                )
+        }
+    }
 }
