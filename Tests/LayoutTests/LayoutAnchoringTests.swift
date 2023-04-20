@@ -1,8 +1,5 @@
 //
-//  LayoutAnchoringTests.swift
-//  LayoutTests
-//
-//  Created by Garric Nahapetian on 4/11/23.
+//  Copyright © 2023 Tinder (Match Group, LLC)
 //
 
 @testable import Layout
@@ -85,5 +82,17 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(layoutSupport.top) == view.topAnchor
         expect(layoutSupport.bottom) == view.bottomAnchor
         expect(layoutSupport.height) == view.heightAnchor
+    }
+
+    func testViewControllerSafeAreaLayoutGuides() {
+
+        // GIVEN
+
+        let viewController: UIViewController = .init()
+
+        // THEN
+
+        expect(viewController.safeTop) == viewController.view.safeAreaLayoutGuide.top
+        expect(viewController.safeBottom) == viewController.view.safeAreaLayoutGuide.bottom
     }
 }
