@@ -1,8 +1,5 @@
 //
-//  NSLayoutConstraintTests.swift
-//  Layout
-//
-//  Created by Eman Haroutunian on 4/18/23.
+//  Copyright © 2023 Tinder (Match Group, LLC)
 //
 
 @testable import Layout
