@@ -470,7 +470,8 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // THEN
 
-        constraints.forEach { expect($0.isActive) == false }
+        expect(constraint1.isActive) == false
+        expect(constraint2.isActive) == false
 
         // WHEN
 
@@ -478,7 +479,8 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // THEN
 
-        constraints.forEach { expect($0.isActive) == true }
+        expect(constraint1.isActive) == true
+        expect(constraint2.isActive) == true
 
         // WHEN
 
@@ -486,7 +488,8 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // THEN
 
-        constraints.forEach { expect($0.isActive) == false }
+        expect(constraint1.isActive) == false
+        expect(constraint2.isActive) == false
     }
 
     func testBatchPriority() {
@@ -520,7 +523,8 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // THEN
 
-        constraints.forEach { expect($0.priority) == .high }
+        expect(constraint1.priority) == .high
+        expect(constraint2.priority) == .high
 
         // WHEN
 
@@ -528,6 +532,7 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // THEN
 
-        constraints.forEach { expect($0.priority) == .low }
+        expect(constraint1.priority) == .low
+        expect(constraint2.priority) == .low
     }
 }
