@@ -1,9 +1,6 @@
 // swiftlint:disable:this file_name
 //
-//  SnapshotTesting.swift
-//  LayoutTests
-//
-//  Created by Christopher Fuller on 3/1/23.
+//  Copyright © 2023 Tinder (Match Group, LLC)
 //
 
 import Layout

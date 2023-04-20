@@ -5,6 +5,12 @@ included:
 
 child_config: .swiftlint-rules.yml
 
+file_header:
+  required_pattern: |
+    \/\/
+    \/\/ {2}Copyright © \d{4} Tinder \(Match Group, LLC\)
+    \/\/
+
 private_over_fileprivate:
   validate_extensions: true
 

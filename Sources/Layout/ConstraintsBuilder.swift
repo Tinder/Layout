@@ -1,8 +1,5 @@
 //
-//  ConstraintsBuilder.swift
-//  Layout
-//
-//  Created by Christopher Fuller on 2/19/23.
+//  Copyright © 2023 Tinder (Match Group, LLC)
 //
 
 import UIKit
