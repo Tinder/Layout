@@ -130,6 +130,7 @@ final class NSLayoutConstraintTests: XCTestCase {
         // GIVEN
 
         let constraint: NSLayoutConstraint = .init()
+        constraint.priority = .low
 
         // WHEN
 
