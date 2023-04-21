@@ -18,4 +18,14 @@ final class LayoutItemSnapshotTests: XCTestCase {
             view.layout(pinkView.size(CGSize(width: 100, height: 200)))
         }
     }
+
+    func testSizeWithWidth() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .size(width: 0, height: 100, priority: .defaultHigh)
+                    .size(width: 50)
+            }
+        }
+    }
 }
