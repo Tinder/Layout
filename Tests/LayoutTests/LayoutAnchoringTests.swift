@@ -84,6 +84,70 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(layoutSupport.height) == view.heightAnchor
     }
 
+    func testLayoutDimensionConstraintIsRelationToAnchorConstant_Defaults() {
+
+        // GIVEN
+
+        let subview: UIView = pinkView
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout(subview)
+                .adding(subview.widthAnchor.constraint(to: view.widthAnchor))
+                .adding(subview.heightAnchor.constraint(to: view.heightAnchor))
+        }
+    }
+
+    func testLayoutDimensionConstraintIsEqualToAnchorConstant() {
+
+        // GIVEN
+
+        let subview: UIView = pinkView
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout(subview)
+                .adding(subview.widthAnchor.constraint(is: .equal, to: view.widthAnchor, constant: -100))
+                .adding(subview.heightAnchor.constraint(is: .equal, to: view.heightAnchor, constant: -200))
+        }
+    }
+
+    func testLayoutDimensionConstraintIsRelationToConstant_Defaults() {
+
+        // GIVEN
+
+        let subview: UIView = pinkView
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout(subview)
+                .adding(subview.widthAnchor.constraint(100))
+                .adding(subview.heightAnchor.constraint(100))
+        }
+    }
+
+    func testLayoutDimensionConstraintIsEqualToConstant() {
+
+        // GIVEN
+
+        let subview: UIView = pinkView
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout(subview)
+                .adding(subview.widthAnchor.constraint(is: .equal, 100))
+                .adding(subview.heightAnchor.constraint(is: .equal, 100))
+        }
+    }
+
     func testViewControllerSafeAreaLayoutGuides() {
 
         // GIVEN
