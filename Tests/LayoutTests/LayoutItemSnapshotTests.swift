@@ -28,4 +28,14 @@ final class LayoutItemSnapshotTests: XCTestCase {
             }
         }
     }
+
+    func testSizeWithHeight() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .size(width: 100, height: 0, priority: .defaultHigh)
+                    .size(height: 50)
+            }
+        }
+    }
 }
