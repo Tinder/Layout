@@ -20,6 +20,10 @@ lint: format ?= emoji
 lint:
 	@swiftlint lint --strict --progress --reporter "$(format)"
 
+.PHONY: rules
+rules:
+	@swiftlint rules | lint-rules
+
 .PHONY: delete-snapshots
 delete-snapshots:
 	@for snapshots in $$(find Tests -type d -name "__Snapshots__"); \

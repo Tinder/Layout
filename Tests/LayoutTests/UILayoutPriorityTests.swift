@@ -37,46 +37,62 @@ final class UILayoutPriorityTests: XCTestCase {
     }
 
     func testAddOffset() {
+
         // GIVEN
+
         var priority: UILayoutPriority = .init(500)
 
         // WHEN
+
         priority += 200
 
         // THEN
+
         expect(priority) == UILayoutPriority(700)
     }
 
     func testAddOffset_beyondMax() {
+
         // GIVEN
+
         var priority: UILayoutPriority = .init(500)
 
         // WHEN
+
         priority += 501
 
         // THEN
+
         expect(priority) == UILayoutPriority(1_000)
     }
 
     func testSubtractOffset() {
+
         // GIVEN
+
         var priority: UILayoutPriority = .init(500)
 
         // WHEN
+
         priority -= 200
 
         // THEN
+
         expect(priority) == UILayoutPriority(300)
     }
 
     func testSubtractOffset_belowMin() {
+
         // GIVEN
+
         var priority: UILayoutPriority = .init(500)
 
         // WHEN
+
         priority -= 501
 
         // THEN
+
         expect(priority) == UILayoutPriority(0)
     }
 }
