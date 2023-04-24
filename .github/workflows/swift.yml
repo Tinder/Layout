@@ -28,3 +28,11 @@ jobs:
       run: xcodebuild build-for-testing -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
     - name: Run tests
       run: xcodebuild test-without-building -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
+    - name: Validate Snapshots Excluded
+      run: |
+        ./validate-snapshots-excluded
+    - name: Check Exit Code
+      run: |
+        if [ $? -ne 0 ]; then
+          exit 1
+        fi

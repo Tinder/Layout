@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -e
+
+# Check if any snapshots are being introduced
+if git diff main...HEAD --name-only | grep -q '__Snapshots__'; then
+  # Get excluded paths from Swift package manifest
+  excluded_paths=$(swift package dump-package | jq -r '.targets[] | select(.type == "test") | .exclude[]? | select(contains("__Snapshots__"))')
+
+  # Loop over snapshot files and check if they're excluded
+  unexcluded_paths=()
+  for file in $(git diff main...HEAD --name-only | grep '__Snapshots__'); do
+    excluded=false
+    for excluded_path in $excluded_paths; do
+      if echo "$file" | grep -q "$excluded_path"; then
+        excluded=true
+        break
+      fi
+    done
+    if [ "$excluded" = false ]; then
+      unexcluded_paths+=("$file")
+    fi
+  done
+
+  # Fail if any snapshot files are not excluded
+  if [ ${#unexcluded_paths[@]} -gt 0 ]; then
+    echo "The following snapshot files are not excluded by any test target:"
+    printf "%s\n" "${unexcluded_paths[@]}"
+    exit 1
+  fi
+fi
