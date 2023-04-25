@@ -95,7 +95,7 @@ extension LayoutItem {
 
     // swiftlint:disable anonymous_argument_in_multiline_closure
 
-    public func addingSuperviewConstraints(
+    private func addingSuperviewConstraints(
         @ConstraintsBuilder constraints: @escaping SuperviewConstraints
     ) -> LayoutItem {
         ViewLayoutItem(layoutItemView: layoutItemView) { [superviewConstraints] in
