@@ -6,7 +6,7 @@
 import Nimble
 import XCTest
 
-final class LayoutItemSnapshotTests: XCTestCase {
+final class LayoutItemTests: XCTestCase {
 
     func testSize() {
         assertLayout { view in
