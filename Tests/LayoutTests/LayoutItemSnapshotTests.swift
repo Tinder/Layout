@@ -29,20 +29,15 @@ final class LayoutItemSnapshotTests: XCTestCase {
         }
     }
 
-    func testSquareGivenWidth() {
+    func testSquareGivenWidth_andSquareGivenHeight() {
         assertLayout { view in
             view.layout {
                 pinkView
+                    .to([.top, .leading])
                     .size(width: 100)
                     .square()
-            }
-        }
-    }
-
-    func testSquareGivenHeight() {
-        assertLayout { view in
-            view.layout {
-                pinkView
+                yellowView
+                    .to([.top, .trailing])
                     .size(height: 100)
                     .square()
             }
