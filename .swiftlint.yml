@@ -8,7 +8,12 @@ child_config: .swiftlint-rules.yml
 file_header:
   required_pattern: |
     \/\/
-    \/\/ {2}Copyright © \d{4} Tinder \(Match Group, LLC\)
+    \/\/ {2}All Contributions by Match Group
+    \/\/
+    \/\/ {2}Copyright © \d{4}(-\d{4})? Tinder \(Match Group, LLC\)
+    \/\/
+    \/\/ {2}Licensed under the Match Group Modified 3-Clause BSD License.
+    \/\/ {2}See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
     \/\/
 
 private_over_fileprivate:
