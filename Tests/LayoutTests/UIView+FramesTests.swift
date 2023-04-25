@@ -87,54 +87,79 @@ final class UIViewFramesTests: XCTestCase {
 
         // GIVEN
 
-        let autoresizingMask: UIView.AutoresizingMask = .topLeft
+        let view: UIView = .init()
+
+        // WHEN
+
+        _ = view.usingFrames(.topLeft)
 
         // THEN
 
-        expect(autoresizingMask) == [.flexibleRightMargin, .flexibleBottomMargin]
+        expect(view.autoresizingMask) == [.flexibleRightMargin, .flexibleBottomMargin]
+        expect(view.translatesAutoresizingMaskIntoConstraints) == true
     }
 
     func testAutoresizingMaskTopRight() {
 
         // GIVEN
 
-        let autoresizingMask: UIView.AutoresizingMask = .topRight
+        let view: UIView = .init()
+
+        // WHEN
+
+        _ = view.usingFrames(.topRight)
 
         // THEN
 
-        expect(autoresizingMask) == [.flexibleLeftMargin, .flexibleBottomMargin]
+        expect(view.autoresizingMask) == [.flexibleLeftMargin, .flexibleBottomMargin]
+        expect(view.translatesAutoresizingMaskIntoConstraints) == true
     }
 
     func testAutoresizingMaskBottomLeft() {
 
         // GIVEN
 
-        let autoresizingMask: UIView.AutoresizingMask = .bottomLeft
+        let view: UIView = .init()
+
+        // WHEN
+
+        _ = view.usingFrames(.bottomLeft)
 
         // THEN
 
-        expect(autoresizingMask) == [.flexibleTopMargin, .flexibleRightMargin]
+        expect(view.autoresizingMask) == [.flexibleTopMargin, .flexibleRightMargin]
+        expect(view.translatesAutoresizingMaskIntoConstraints) == true
     }
 
     func testAutoresizingMaskBottomRight() {
 
         // GIVEN
 
-        let autoresizingMask: UIView.AutoresizingMask = .bottomRight
+        let view: UIView = .init()
+
+        // WHEN
+
+        _ = view.usingFrames(.bottomRight)
 
         // THEN
 
-        expect(autoresizingMask) == [.flexibleTopMargin, .flexibleLeftMargin]
+        expect(view.autoresizingMask) == [.flexibleTopMargin, .flexibleLeftMargin]
+        expect(view.translatesAutoresizingMaskIntoConstraints) == true
     }
 
     func testAutoresizingMaskScaleWithSuperview() {
 
         // GIVEN
 
-        let autoresizingMask: UIView.AutoresizingMask = .scaleWithSuperview
+        let view: UIView = .init()
+
+        // WHEN
+
+        _ = view.usingFrames(.scaleWithSuperview)
 
         // THEN
 
-        expect(autoresizingMask) == [.flexibleWidth, .flexibleHeight]
+        expect(view.autoresizingMask) == [.flexibleWidth, .flexibleHeight]
+        expect(view.translatesAutoresizingMaskIntoConstraints) == true
     }
 }
