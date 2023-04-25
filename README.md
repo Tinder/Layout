@@ -49,6 +49,7 @@ The above layout translates to the following Auto Layout code.
 
 ```swift
 override func viewDidLoad() {
+    super.viewDidLoad()
     label.translatesAutoresizingMaskIntoConstraints = false
     button.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(label)
