@@ -77,4 +77,13 @@ final class LayoutItemSnapshotTests: XCTestCase {
             }
         }
     }
+
+    func testPinWithUIEdgeInset() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .pin(insets: UIEdgeInsets(top: 24, left: 12, bottom: 24, right: 12))
+            }
+        }
+    }
 }
