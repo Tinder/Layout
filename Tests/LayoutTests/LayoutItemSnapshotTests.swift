@@ -68,4 +68,13 @@ final class LayoutItemSnapshotTests: XCTestCase {
             }
         }
     }
+
+    func testPinWithInset() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .pin(12)
+            }
+        }
+    }
 }
