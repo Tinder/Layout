@@ -86,4 +86,33 @@ final class LayoutItemSnapshotTests: XCTestCase {
             }
         }
     }
+
+    func testPinToMargin() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .pinToMargin()
+            }
+        }
+    }
+
+    func testPinToMarginWithDirectionalInset() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .pinToMargin(
+                        insets: NSDirectionalEdgeInsets(top: 24, leading: 12, bottom: 24, trailing: 12)
+                    )
+            }
+        }
+    }
+
+    func testPinToMarginWithInset() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .pinToMargin(12)
+            }
+        }
+    }
 }
