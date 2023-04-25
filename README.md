@@ -19,7 +19,7 @@ Code written with Layout is declarative in nature such that it is easy to visual
 
 **Swift Package Manager Dependency**
 
-> Replace `<version>` with the desired version.
+> Replace `<version>` with the desired minimum version.
 
 ```swift
 .package(url: "https://github.com/Tinder/Layout.git", from: "<version>")
