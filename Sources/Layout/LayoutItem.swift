@@ -1,8 +1,5 @@
 //
-//  LayoutItem.swift
-//  Layout
-//
-//  Created by Christopher Fuller on 2/17/23.
+//  Copyright © 2023 Tinder (Match Group, LLC)
 //
 
 // swiftlint:disable file_length
