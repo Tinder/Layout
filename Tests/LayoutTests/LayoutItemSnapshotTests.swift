@@ -115,4 +115,17 @@ final class LayoutItemSnapshotTests: XCTestCase {
             }
         }
     }
+
+    func testCenter_andCenterWithUIOffset() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .size(width: 100, height: 100)
+                    .center()
+                yellowView
+                    .size(width: 100, height: 100)
+                    .center(offset: .init(horizontal: 50, vertical: 50))
+            }
+        }
+    }
 }
