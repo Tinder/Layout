@@ -7,6 +7,7 @@ import Nimble
 import XCTest
 
 final class UIViewFramesTests: XCTestCase {
+    
     func testDisablingIntrinsicSize() {
         // GIVEN
         let view: UIView = .init()
