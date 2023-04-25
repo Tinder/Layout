@@ -1,7 +1,5 @@
 //
-//  UIViewFramesTests.swift
-//
-//  Created by Igor Novik on 4/18/23.
+//  Copyright © 2023 Tinder (Match Group, LLC)
 //
 
 @testable import Layout
