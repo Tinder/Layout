@@ -3,6 +3,7 @@
 //
 
 @testable import Layout
+import Nimble
 import XCTest
 
 final class LayoutItemSnapshotTests: XCTestCase {
@@ -17,5 +18,11 @@ final class LayoutItemSnapshotTests: XCTestCase {
         assertLayout { view in
             view.layout(pinkView.size(CGSize(width: 100, height: 200)))
         }
+    }
+
+    func testLayoutConstraintAttributeExtension() {
+        expect([NSLayoutConstraint.Attribute].edges) == [.top, .left, .bottom, .right]
+        expect([NSLayoutConstraint.Attribute].vertical) == [.top, .bottom]
+        expect([NSLayoutConstraint.Attribute].horizontal) == [.left, .right]
     }
 }
