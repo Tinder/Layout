@@ -48,19 +48,19 @@ override func viewDidLoad() {
 The above layout translates to the following Auto Layout code.
 
 ```swift
-label.translatesAutoresizingMaskIntoConstraints = false
-button.translatesAutoresizingMaskIntoConstraints = false
-
-view.addSubview(label)
-view.addSubview(button)
-
-NSLayoutConstraint.activate([
-    label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
-    label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-    label.widthAnchor.constraint(equalToConstant: 300),
-    button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 50),
-    button.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-])
+override func viewDidLoad() {
+    label.translatesAutoresizingMaskIntoConstraints = false
+    button.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(label)
+    view.addSubview(button)
+    NSLayoutConstraint.activate([
+        label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+        label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        label.widthAnchor.constraint(equalToConstant: 300),
+        button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 50),
+        button.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+    ])
+}
 ```
 
 ## Documentation
