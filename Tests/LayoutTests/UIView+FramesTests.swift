@@ -13,7 +13,7 @@ final class UIViewFramesTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = .init()
+        let view: UIView = givenView()
 
         // THEN
 
@@ -38,7 +38,7 @@ final class UIViewFramesTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = .init()
+        let view: UIView = givenView()
         _ = view.usingFrames(.topLeft)
 
         // THEN
@@ -87,7 +87,7 @@ final class UIViewFramesTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = .init()
+        let view: UIView = givenView()
 
         // WHEN
 
@@ -103,7 +103,7 @@ final class UIViewFramesTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = .init()
+        let view: UIView = givenView()
 
         // WHEN
 
@@ -119,7 +119,7 @@ final class UIViewFramesTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = .init()
+        let view: UIView = givenView()
 
         // WHEN
 
@@ -135,7 +135,7 @@ final class UIViewFramesTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = .init()
+        let view: UIView = givenView()
 
         // WHEN
 
@@ -151,7 +151,7 @@ final class UIViewFramesTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = .init()
+        let view: UIView = givenView()
 
         // WHEN
 
@@ -161,5 +161,15 @@ final class UIViewFramesTests: XCTestCase {
 
         expect(view.autoresizingMask) == [.flexibleWidth, .flexibleHeight]
         expect(view.translatesAutoresizingMaskIntoConstraints) == true
+    }
+
+    // MARK: - Private helpers
+
+    private func givenView() -> UIView {
+        let view: UIView = .init()
+
+        view.autoresizingMask = []
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }
 }
