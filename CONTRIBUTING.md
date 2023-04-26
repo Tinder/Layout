@@ -1,9 +1,48 @@
 # Contributing to Layout
 
-- [Snapshot Testing](#snapshot-testing)
+- [Dependencies](#dependencies)
+- [Open Package in Xcode](#open-package-in-xcode)
+- [Static Analysis](#static-analysis)
+- [Testing](#testing)
 
-## Snapshot Testing
+## Dependencies
 
-Record snapshot tests using iPhone 14 and iOS 16.2.
+Follow the [Swift Package Resources installation instructions](https://github.com/TinderApp/Swift-Package-Resources) to install tooling dependencies.
 
-The command `make delete-snapshots` may be used to conveniently delete all snapshot test references so they may be re-recorded.
+## Open Package in Xcode
+
+```
+make open
+```
+
+> The file header comment template will also be installed.
+
+## Static Analysis
+
+Package dependencies must be resolved to download the SwiftLint binary.
+
+```
+swift package resolve
+```
+
+SwiftLint violations will be shown in Xcode. And SwiftLint may also be run from the command line.
+
+```
+make lint
+```
+
+Enable new rules whenever SwiftLint is upgraded to a new version.
+
+```
+make rules
+```
+
+## Testing
+
+Record snapshot tests using iPhone `14` and iOS `16.2`.
+
+To re-record all existing snapshot references, delete all using the following command and then run the tests.
+
+```
+make delete-snapshots
+```
