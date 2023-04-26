@@ -128,4 +128,23 @@ final class LayoutItemSnapshotTests: XCTestCase {
             }
         }
     }
+
+    func testCenterWithAxis_andCenterWithAxisAndOffset_andCenterWithAxisAndMultiplier() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .size(width: 100, height: 100)
+                    .center(Axis.vertical)
+                yellowView
+                    .size(width: 100, height: 100)
+                    .center(Axis.horizontal)
+                blueView
+                    .size(width: 100, height: 100)
+                    .center(Axis.vertical, offset: 100)
+                greenView
+                    .size(width: 100, height: 100)
+                    .center(Axis.horizontal, multiplier: 1.5)
+            }
+        }
+    }
 }
