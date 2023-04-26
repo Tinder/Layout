@@ -147,4 +147,18 @@ final class LayoutItemSnapshotTests: XCTestCase {
             }
         }
     }
+
+    func testPadToMargins_andPadWithMargin() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .size(height: 100)
+                    .pad()
+                yellowView
+                    .size(height: 100)
+                    .to([.bottom])
+                    .pad(50)
+            }
+        }
+    }
 }
