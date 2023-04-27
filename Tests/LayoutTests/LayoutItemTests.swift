@@ -33,8 +33,15 @@ final class LayoutItemTests: XCTestCase {
         assertLayout { view in
             view.layout {
                 pinkView
-                    .toGuide(.width, 20, priority: .required)
-                    .toGuide(.height, 10, priority: .required)
+                    .to(.top)
+                    .toGuide(.width, 0, priority: .low)
+                    .toGuide(.width, 100, priority: .high)
+                    .size(height: 100)
+                blueView
+                    .to(.bottom)
+                    .toGuide(.width, 0, priority: .high)
+                    .toGuide(.width, 100, priority: .low)
+                    .size(height: 100)
             }
         }
     }
