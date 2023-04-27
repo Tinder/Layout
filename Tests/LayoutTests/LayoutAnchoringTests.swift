@@ -84,7 +84,7 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(layoutSupport.height) == view.heightAnchor
     }
 
-    func testLayoutDimensionConstraintIsRelationToAnchorConstant_Defaults() {
+    func testConstraintToLayoutDimension() {
 
         // GIVEN
 
@@ -100,7 +100,7 @@ final class LayoutAnchoringTests: XCTestCase {
         }
     }
 
-    func testLayoutDimensionConstraintIsEqualToAnchorConstant() {
+    func testConstraintIsEqualToLayoutDimensionConstant() {
 
         // GIVEN
 
@@ -116,7 +116,7 @@ final class LayoutAnchoringTests: XCTestCase {
         }
     }
 
-    func testLayoutDimensionConstraintIsRelationToConstant_Defaults() {
+    func testConstraint() {
 
         // GIVEN
 
@@ -132,7 +132,7 @@ final class LayoutAnchoringTests: XCTestCase {
         }
     }
 
-    func testLayoutDimensionConstraintIsEqualToConstant() {
+    func testConstraintIsEqualConstant() {
 
         // GIVEN
 
