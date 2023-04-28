@@ -12,9 +12,17 @@ import XCTest
 
 final class LayoutItemTests: XCTestCase {
 
-    func testSize() {
+    func testSizeWidthAndHeight_andWithPriority() {
         assertLayout { view in
-            view.layout(pinkView.size(width: 100, height: 200))
+            view.layout {
+                pinkView
+                    .to([.top, .leading])
+                    .size(width: 100, height: 200)
+                yellowView
+                    .to([.top, .trailing])
+                    .size(width: 50, height: 50, priority: .low)
+                    .size(width: 100, height: 200, priority: .high)
+            }
         }
     }
 
