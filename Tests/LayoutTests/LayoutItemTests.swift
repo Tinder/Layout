@@ -72,7 +72,19 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testAspectRatio() {
+    func testSquareWithLength_andWithPriority() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .to([.top, .leading])
+                    .square(100)
+                yellowView
+                    .to([.top, .trailing])
+                    .square(25, priority: .low)
+                    .square(100, priority: .high)
+            }
+        }
+    }
         assertLayout { view in
             view.layout {
                 pinkView
