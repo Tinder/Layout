@@ -120,12 +120,18 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testPinToMarginWithDirectionalInset() {
+    func testPinToMarginWithDirectionalInset_andWithPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
                     .pinToMargin(
-                        insets: NSDirectionalEdgeInsets(top: 24, leading: 12, bottom: 24, trailing: 12)
+                        insets: NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12)
+                    )
+                yellowView
+                    .pinToMargin(priority: .low)
+                    .pinToMargin(
+                        insets: NSDirectionalEdgeInsets(top: 36, leading: 36, bottom: 36, trailing: 36),
+                        priority: .high
                     )
             }
         }
