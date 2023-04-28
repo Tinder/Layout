@@ -40,12 +40,19 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testSizeWidthAndHeight() {
+    func testSizeWidth_andSizeHeight_andWithPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
+                    .to([.top, .leading])
                     .size(width: 50)
                     .size(height: 100)
+                yellowView
+                    .to([.top, .trailing])
+                    .size(width: 1, priority: .low)
+                    .size(width: 50, priority: .high)
+                    .size(height: 1, priority: .low)
+                    .size(height: 100, priority: .high)
             }
         }
     }
