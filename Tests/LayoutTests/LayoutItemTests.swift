@@ -95,16 +95,14 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testAspectRatio_givenConstrain() {
+    func testPinWithUIEdgeInset_andWithPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
-                    .to([.top, .leading])
-                    .size(width: 100)
-                    .aspectRatio(.constrainHeight(0.75))
+                    .pin(insets: UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12))
                 yellowView
-                    .to([.top, .trailing])
-                    .size(height: 100)
-                    .aspectRatio(.constrainWidth(0.75))
+                    .pin(insets: .zero, priority: .low)
+                    .pin(insets: UIEdgeInsets(top: 36, left: 36, bottom: 36, right: 36), priority: .high)
             }
         }
     }
