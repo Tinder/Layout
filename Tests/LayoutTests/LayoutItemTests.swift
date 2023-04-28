@@ -85,14 +85,6 @@ final class LayoutItemTests: XCTestCase {
             }
         }
     }
-        assertLayout { view in
-            view.layout {
-                pinkView
-                    .size(height: 100)
-                    .aspectRatio(0.75)
-            }
-        }
-    }
 
     func testAspectRatio_givenConstrain() {
     func testPinWithUIEdgeInset_andWithPriority() {
