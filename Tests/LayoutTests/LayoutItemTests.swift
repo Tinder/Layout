@@ -137,11 +137,14 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testPinToMarginWithInset() {
+    func testPinToMarginWithInset_andWithPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
                     .pinToMargin(12)
+                yellowView
+                    .pinToMargin(0, priority: .low)
+                    .pinToMargin(36, priority: .high)
             }
         }
     }
