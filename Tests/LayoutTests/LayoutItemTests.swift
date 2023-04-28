@@ -107,20 +107,14 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testPinWithInset() {
+    func testPinWithInset_andWithPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
                     .pin(12)
-            }
-        }
-    }
-
-    func testPinWithUIEdgeInset() {
-        assertLayout { view in
-            view.layout {
-                pinkView
-                    .pin(insets: UIEdgeInsets(top: 24, left: 12, bottom: 24, right: 12))
+                yellowView
+                    .pin(0, priority: .low)
+                    .pin(36, priority: .high)
             }
         }
     }
