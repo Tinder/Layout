@@ -57,7 +57,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testSquareGivenWidth_andSquareGivenHeight() {
+    func testSquareWithWidth_andSquareWithHeight() {
         assertLayout { view in
             view.layout {
                 pinkView
