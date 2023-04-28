@@ -26,9 +26,17 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testSizeWithCGSize() {
+    func testSizeWithCGSize_andWithPriority() {
         assertLayout { view in
-            view.layout(pinkView.size(CGSize(width: 100, height: 200)))
+            view.layout {
+                pinkView
+                    .to([.top, .leading])
+                    .size(CGSize(width: 100, height: 200))
+                yellowView
+                    .to([.top, .trailing])
+                    .size(CGSize(width: 50, height: 50), priority: .low)
+                    .size(CGSize(width: 100, height: 200), priority: .high)
+            }
         }
     }
 
