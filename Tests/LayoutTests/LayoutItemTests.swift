@@ -149,15 +149,19 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testCenter_andCenterWithUIOffset() {
+    func testCenterWithDefaultUIOffset_andWithCustomUIOffset_andWithPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
-                    .size(width: 100, height: 100)
+                    .size(width: 50, height: 50)
                     .center()
                 yellowView
-                    .size(width: 100, height: 100)
-                    .center(offset: .init(horizontal: 50, vertical: 50))
+                    .size(width: 50, height: 50)
+                    .center(offset: UIOffset(horizontal: 50, vertical: 50))
+                blueView
+                    .size(width: 50, height: 50)
+                    .center(offset: UIOffset(horizontal: -25, vertical: -25), priority: .low)
+                    .center(offset: UIOffset(horizontal: -50, vertical: -50), priority: .high)
             }
         }
     }
