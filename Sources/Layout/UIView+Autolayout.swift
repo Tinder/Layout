@@ -19,19 +19,19 @@ extension UIView {
     }
 
     @discardableResult
-    public func constraining(size: CGSize? = nil) -> Self {
+    public func constrainingSize(_ size: CGSize? = nil) -> Self {
         sizeConstraints(size).activate()
         return usingConstraints()
     }
 
     @discardableResult
-    public func constraining(width: CGFloat? = nil) -> Self {
+    public func constrainingWidth(_ width: CGFloat? = nil) -> Self {
         widthConstraint(width).activate()
         return usingConstraints()
     }
 
     @discardableResult
-    public func constraining(height: CGFloat? = nil) -> Self {
+    public func constrainingHeight(_ height: CGFloat? = nil) -> Self {
         heightConstraint(height).activate()
         return usingConstraints()
     }
