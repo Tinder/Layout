@@ -116,7 +116,7 @@ final class LayoutAnchoringTests: XCTestCase {
         }
     }
 
-    func testConstraint() {
+    func testConstraintConstant() {
 
         // GIVEN
 
@@ -128,7 +128,7 @@ final class LayoutAnchoringTests: XCTestCase {
             view
                 .layout(subview)
                 .adding(subview.widthAnchor.constraint(100))
-                .adding(subview.heightAnchor.constraint(100))
+                .adding(subview.heightAnchor.constraint(200))
         }
     }
 
@@ -144,7 +144,7 @@ final class LayoutAnchoringTests: XCTestCase {
             view
                 .layout(subview)
                 .adding(subview.widthAnchor.constraint(is: .equal, 100))
-                .adding(subview.heightAnchor.constraint(is: .equal, 100))
+                .adding(subview.heightAnchor.constraint(is: .equal, 200))
         }
     }
 
