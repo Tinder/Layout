@@ -189,7 +189,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testPadToMargins_andPadWithMargin() {
+    func testPadToMargins_andPadWithMargin_andWithPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
@@ -199,6 +199,16 @@ final class LayoutItemTests: XCTestCase {
                     .size(height: 100)
                     .to([.bottom])
                     .pad(50)
+                blueView
+                    .size(height: 100)
+                    .pad(priority: .high)
+                    .pad(1, priority: .low)
+                    .to([.top], 100)
+                greenView
+                    .size(height: 100)
+                    .pad(100, priority: .low)
+                    .pad(50, priority: .high)
+                    .to([.bottom], -100)
             }
         }
     }
