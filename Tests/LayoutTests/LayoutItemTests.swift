@@ -41,8 +41,50 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testSizeWidth_andSizeHeight_andWithPriority() {
+    func testSizeWidth_andWithConstraintRelation_andWithPriority() {
+        // swiftlint:disable:next closure_body_length
         assertLayout { view in
+            // swiftlint:disable:next closure_body_length
+            view.layout {
+                pinkView
+                    .to([.top, .leading])
+                    .size(height: 100)
+                    .size(width: 50)
+                yellowView
+                    .to([.top, .trailing])
+                    .size(height: 100)
+                    .size(width: 1, priority: .low)
+                    .size(width: 50, priority: .high)
+                blueView
+                    .to([.bottom, .leading])
+                    .size(height: 100)
+                    .size(width: 40, priority: .high)
+                    .size(is: .greaterThanOrEqual, width: 50)
+                greenView
+                    .to([.bottom, .trailing])
+                    .size(height: 100)
+                    .size(width: 60, priority: .high)
+                    .size(is: .lessThanOrEqual, width: 50)
+                redView
+                    .to([.centerY], -50)
+                    .to([.centerX])
+                    .size(height: 100)
+                    .size(width: 60)
+                    .size(is: .greaterThanOrEqual, width: 50)
+                orangeView
+                    .to([.centerY], 50)
+                    .to([.centerX])
+                    .size(height: 100)
+                    .size(width: 40)
+                    .size(is: .lessThanOrEqual, width: 50)
+            }
+        }
+    }
+
+    func testSizeHeight_andWithConstraintRelation_andWithPriority() {
+        // swiftlint:disable:next closure_body_length
+        assertLayout { view in
+            // swiftlint:disable:next closure_body_length
             view.layout {
                 pinkView
                     .to([.top, .leading])
@@ -50,10 +92,31 @@ final class LayoutItemTests: XCTestCase {
                     .size(height: 100)
                 yellowView
                     .to([.top, .trailing])
-                    .size(width: 1, priority: .low)
-                    .size(width: 50, priority: .high)
+                    .size(width: 50)
                     .size(height: 1, priority: .low)
                     .size(height: 100, priority: .high)
+                blueView
+                    .to([.bottom, .leading])
+                    .size(width: 50)
+                    .size(height: 75, priority: .high)
+                    .size(is: .greaterThanOrEqual, height: 100)
+                greenView
+                    .to([.bottom, .trailing])
+                    .size(width: 50)
+                    .size(height: 125, priority: .high)
+                    .size(is: .lessThanOrEqual, width: 50)
+                redView
+                    .to([.centerY], -50)
+                    .to([.centerX])
+                    .size(width: 50)
+                    .size(height: 110, priority: .high)
+                    .size(is: .greaterThanOrEqual, height: 100)
+                orangeView
+                    .to([.centerY], 50)
+                    .to([.centerX])
+                    .size(width: 50)
+                    .size(height: 90, priority: .high)
+                    .size(is: .lessThanOrEqual, height: 100)
             }
         }
     }
