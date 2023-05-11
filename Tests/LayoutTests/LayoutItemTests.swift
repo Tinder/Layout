@@ -8,6 +8,7 @@
 //
 
 @testable import Layout
+import Nimble
 import XCTest
 
 final class LayoutItemTests: XCTestCase {
@@ -87,6 +88,14 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testAspectRatio_givenConstrain() {
+
+    func testAspectRatio_givenInvalidConstrain() {
+        expect {
+            pinkView.aspectRatio(.constrainHeight(0))
+        }
+        .to(throwAssertion())
+    }
+
     func testPinWithUIEdgeInset_andWithPriority() {
         assertLayout { view in
             view.layout {
