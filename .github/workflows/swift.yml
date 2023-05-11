@@ -28,11 +28,20 @@ jobs:
       run: xcodebuild build-for-testing -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
     - name: Run tests
       run: xcodebuild test-without-building -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
-    - name: Validate Snapshots Excluded
+    - name: Validate Excluded Snapshots
       run: |
-        ./validate-snapshots-excluded
-    - name: Check Exit Code
-      run: |
-        if [ $? -ne 0 ]; then
+        SNAPSHOTS=$(find Tests -type d -name "__Snapshots__" | sort)
+        echo "SNAPSHOTS:"
+        echo "$SNAPSHOTS"
+        EXCLUDED=$(swift package dump-package | jq -r '.targets[] | select(.type == "test") | "Tests/" + .name + "/" + .exclude[]' | sort)
+        echo "EXCLUDED:"
+        echo "$EXCLUDED"
+        UNEXCLUDED=$(comm -23 <(echo "$SNAPSHOTS") <(echo "$EXCLUDED") | grep -v '^$')
+        echo "UNEXCLUDED:"
+        echo "$UNEXCLUDED"
+        if [ -n "$UNEXCLUDED" ]
+        then
+          echo "Error: Snapshot directories not excluded:"
+          echo "$UNEXCLUDED"
           exit 1
         fi
