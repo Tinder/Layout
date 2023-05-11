@@ -150,7 +150,31 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testAspectRatio_givenConstrain() {
+    func testAspectRatio_andWithPriority() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .to([.top, .leading])
+                    .size(height: 100)
+                    .aspectRatio(0.75)
+            }
+        }
+    }
+
+    func testAspectRatioWithConstrain_andWithPriority() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .to([.top, .leading])
+                    .size(width: 100)
+                    .aspectRatio(.constrainHeight(0.75))
+                yellowView
+                    .to([.top, .trailing])
+                    .size(height: 100)
+                    .aspectRatio(.constrainWidth(0.75))
+            }
+        }
+    }
 
     func testAspectRatio_givenInvalidConstrain() {
         expect {
