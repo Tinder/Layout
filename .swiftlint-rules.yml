@@ -83,6 +83,7 @@ only_rules:
 - function_default_parameter_at_end
 - function_parameter_count
 - generic_type_name
+- given_when_then # custom_rule
 - ibinspectable_in_extension
 - identical_operands
 - identifier_name
