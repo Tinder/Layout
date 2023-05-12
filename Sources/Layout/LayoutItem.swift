@@ -508,15 +508,16 @@ extension LayoutItem {
         bottomOffest: CGFloat = 0
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            guard let superview = $0.layoutItemView.superview
-            else { return [] }
-            let guide: UILayoutGuide = .init()
-            superview.addLayoutGuide(guide)
-            return [
-                guide.top.constraint(to: top, constant: topOffset),
-                guide.bottom.constraint(to: bottom, constant: bottomOffest),
+            if let superview = $0.layoutItemView.superview {
+                let guide: UILayoutGuide = {
+                    let guide: UILayoutGuide = .init()
+                    superview.addLayoutGuide(guide)
+                    return guide
+                }()
+                guide.top.constraint(to: top, constant: topOffset)
+                guide.bottom.constraint(to: bottom, constant: bottomOffest)
                 $0.layoutItemView.centerY.constraint(to: guide.centerY)
-            ]
+            }
         }
     }
 
@@ -553,15 +554,16 @@ extension LayoutItem {
         trailingOffest: CGFloat = 0
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            guard let superview = $0.layoutItemView.superview
-            else { return [] }
-            let guide: UILayoutGuide = .init()
-            superview.addLayoutGuide(guide)
-            return [
-                guide.leading.constraint(to: leading, constant: leadingOffset),
-                guide.trailing.constraint(to: trailing, constant: trailingOffest),
+            if let superview = $0.layoutItemView.superview {
+                let guide: UILayoutGuide = {
+                    let guide: UILayoutGuide = .init()
+                    superview.addLayoutGuide(guide)
+                    return guide
+                }()
+                guide.leading.constraint(to: leading, constant: leadingOffset)
+                guide.trailing.constraint(to: trailing, constant: trailingOffest)
                 $0.layoutItemView.centerX.constraint(to: guide.centerX)
-            ]
+            }
         }
     }
 
@@ -658,10 +660,10 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            guard let safeAnchor = $0.safeAreaGuide?.anchor(for: attribute)
-            else { return [] }
-            let viewAnchor: NSLayoutAnchor<T.AnchorType> = $0.layoutItemView.anchor(for: attribute)
-            return [safeAnchor.constraint(equalTo: viewAnchor, constant: constant).withPriority(priority)]
+            if let safeAnchor = $0.safeAreaGuide?.anchor(for: attribute) {
+                let viewAnchor: NSLayoutAnchor<T.AnchorType> = $0.layoutItemView.anchor(for: attribute)
+                safeAnchor.constraint(equalTo: viewAnchor, constant: constant).withPriority(priority)
+            }
         }
     }
 
