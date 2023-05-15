@@ -34,7 +34,7 @@ jobs:
           echo "ERROR: Snapshot directories must be excluded in Swift package:" >&2
           echo "$UNEXCLUDED" >&2
           exit 1
-        fi      
+        fi
     - name: Download swiftlint binary
       run: swift package resolve
     - name: Lint
