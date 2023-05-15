@@ -674,8 +674,8 @@ extension ViewLayoutItem: LayoutAnchoring {
     public var top: NSLayoutYAxisAnchor { layoutItemView.top }
     public var centerY: NSLayoutYAxisAnchor { layoutItemView.centerY }
     public var firstBaseline: NSLayoutYAxisAnchor { layoutItemView.firstBaseline }
-    public var bottom: NSLayoutYAxisAnchor { layoutItemView.bottom }
     public var lastBaseline: NSLayoutYAxisAnchor { layoutItemView.lastBaseline }
+    public var bottom: NSLayoutYAxisAnchor { layoutItemView.bottom }
     public var width: NSLayoutDimension { layoutItemView.width }
     public var height: NSLayoutDimension { layoutItemView.height }
 }

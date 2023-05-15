@@ -40,8 +40,8 @@ final class LayoutItemTests: XCTestCase {
         expect(item.top) == view.top
         expect(item.centerY) == view.centerY
         expect(item.firstBaseline) == view.firstBaseline
-        expect(item.bottom) == view.bottom
         expect(item.lastBaseline) == view.lastBaseline
+        expect(item.bottom) == view.bottom
         expect(item.width) == view.width
         expect(item.height) == view.height
     }
