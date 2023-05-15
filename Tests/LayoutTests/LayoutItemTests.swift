@@ -20,7 +20,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testLayoutConstraintAttributeExtension() {
+    func testLayoutConstraintAttributeArrayExtension() {
         expect([NSLayoutConstraint.Attribute].edges) == [.top, .left, .bottom, .right]
         expect([NSLayoutConstraint.Attribute].vertical) == [.top, .bottom]
         expect([NSLayoutConstraint.Attribute].horizontal) == [.left, .right]
