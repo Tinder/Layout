@@ -25,12 +25,12 @@ jobs:
         UNEXCLUDED=$(comm -23 <(echo "$SNAPSHOTS") <(echo "$EXCLUDED"))
         if test -n "$UNEXCLUDED"
         then
-          echo "ERROR: Snapshot directories must be excluded in Swift package:" >&2
-          echo "$UNEXCLUDED" >&2
-          exit 1
+            echo "ERROR: Snapshot directories must be excluded from Swift package:" >&2
+            echo "$UNEXCLUDED" >&2
+            exit 1
         else
-          echo "SUCCESS: Snapshot directories are excluded in Swift package:" >&2
-          echo "$SNAPSHOTS" >&2
+            echo "SUCCESS: Snapshot directories are properly excluded from Swift package:" >&2
+            echo "$SNAPSHOTS" >&2
         fi
     - name: Download swiftlint binary
       run: swift package resolve
