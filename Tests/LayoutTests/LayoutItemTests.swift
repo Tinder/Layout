@@ -24,10 +24,7 @@ final class LayoutItemTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = pinkView
-
-        // WHEN
-
+        let view: UIView = .init()
         let item: ViewLayoutItem = .init(layoutItemView: view) { _ in [] }
 
         // THEN
