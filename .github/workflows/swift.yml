@@ -39,9 +39,9 @@ jobs:
         UNEXCLUDED=$(comm -23 <(echo "$SNAPSHOTS") <(echo "$EXCLUDED") | grep -v '^$')
         echo "UNEXCLUDED:"
         echo "$UNEXCLUDED"
-        if [ -n "$UNEXCLUDED" ]
+        if test -n "$UNEXCLUDED"
         then
-          echo "Error: Snapshot directories not excluded:"
-          echo "$UNEXCLUDED"
+          echo "ERROR: Snapshot directories must be excluded in Swift package:" >&2
+          echo "$UNEXCLUDED" >&2
           exit 1
         fi
