@@ -18,16 +18,6 @@ jobs:
     steps:
     - name: Checkout source
       uses: actions/checkout@v3
-    - name: Download swiftlint binary
-      run: swift package resolve
-    - name: Lint
-      run: >
-        $(find .build -type f -name swiftlint -perm +111 -print -quit)
-        lint --strict --reporter github-actions-logging
-    - name: Build
-      run: xcodebuild build-for-testing -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
-    - name: Run tests
-      run: xcodebuild test-without-building -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
     - name: Validate Excluded Snapshots
       run: |
         SNAPSHOTS=$(find Tests -type d -name "__Snapshots__" | sort)
@@ -44,4 +34,14 @@ jobs:
           echo "ERROR: Snapshot directories must be excluded in Swift package:" >&2
           echo "$UNEXCLUDED" >&2
           exit 1
-        fi
+        fi      
+    - name: Download swiftlint binary
+      run: swift package resolve
+    - name: Lint
+      run: >
+        $(find .build -type f -name swiftlint -perm +111 -print -quit)
+        lint --strict --reporter github-actions-logging
+    - name: Build
+      run: xcodebuild build-for-testing -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
+    - name: Run tests
+      run: xcodebuild test-without-building -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
