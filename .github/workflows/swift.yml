@@ -26,7 +26,7 @@ jobs:
         EXCLUDED=$(swift package dump-package | jq -r '.targets[] | select(.type == "test") | "Tests/" + .name + "/" + .exclude[]' | sort)
         echo "EXCLUDED:"
         echo "$EXCLUDED"
-        UNEXCLUDED=$(comm -23 <(echo "$SNAPSHOTS") <(echo "$EXCLUDED") | grep -v '^$')
+        UNEXCLUDED=$(comm -23 <(echo "$SNAPSHOTS") <(echo "$EXCLUDED") | grep -v "^$")
         echo "UNEXCLUDED:"
         echo "$UNEXCLUDED"
         if test -n "$UNEXCLUDED"
