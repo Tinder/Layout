@@ -23,8 +23,10 @@ final class LayoutItemTests: XCTestCase {
         assertLayout { view in
             view.layout {
                 pinkView
-                    .toGuide(.width)
-                    .toGuide(.height)
+                    .toGuide(.top)
+                    .toGuide(.bottom)
+                    .toGuide(.leading)
+                    .toGuide(.trailing)
             }
         }
     }
