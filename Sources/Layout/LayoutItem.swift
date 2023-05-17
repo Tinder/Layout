@@ -579,10 +579,10 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         self
-            .toGuide(.top, insets.top, priority: priority)
-            .toGuide(.right, -insets.right, priority: priority)
-            .toGuide(.bottom, -insets.bottom, priority: priority)
-            .toGuide(.left, insets.left, priority: priority)
+            .toGuide(.top, -insets.top, priority: priority)
+            .toGuide(.right, insets.right, priority: priority)
+            .toGuide(.bottom, insets.bottom, priority: priority)
+            .toGuide(.left, -insets.left, priority: priority)
     }
 
     /// Constrains the edges to the superviews safeAreaGuides with an `inset`
