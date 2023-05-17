@@ -23,4 +23,35 @@ final class LayoutItemTests: XCTestCase {
             view.layout(pinkView.size(CGSize(width: 100, height: 200)))
         }
     }
+
+    func testToGuidesInsetZero() {
+        assertLayout { view in
+            view.layout(pinkView.toGuides(0))
+        }
+    }
+
+    func testToGuidesInsetTen() {
+        assertLayout { view in
+            view.layout(pinkView.toGuides(10))
+        }
+    }
+
+    func testToGuidesInsetPriority() {
+
+        // GIVEN
+
+        let pinkView: UIView = pinkView
+        let blueView: UIView = blueView
+
+        // THEN
+
+        assertLayout { view in
+            view.layout {
+                pinkView.toGuides(10, priority: .low)
+                pinkView.toGuides(0, priority: .high)
+                blueView.toGuides(0, priority: .low)
+                blueView.toGuides(10, priority: .high)
+            }
+        }
+    }
 }
