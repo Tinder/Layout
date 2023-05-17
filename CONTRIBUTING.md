@@ -19,27 +19,33 @@ make open
 
 ## Static Analysis
 
+> SwiftLint violations will be shown in Xcode.
+
 Package dependencies must be resolved to download the SwiftLint binary.
 
 ```
 swift package resolve
 ```
 
-SwiftLint violations will be shown in Xcode. And SwiftLint may also be run from the command line.
+To run SwiftLint from the command line:
 
 ```
 make lint
 ```
 
-Enable new rules whenever SwiftLint is upgraded to a new version.
+To run analysis rules:
+
+```
+make analyze
+```
+
+To enable new rules whenever SwiftLint is upgraded to a new version:
 
 ```
 make rules
 ```
 
 ## Testing
-
-Record snapshot tests using iPhone `14` and iOS `16.2`.
 
 To re-record all existing snapshot references, delete all using the following command and then run the tests.
 

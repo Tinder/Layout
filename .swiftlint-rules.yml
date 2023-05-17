@@ -1,8 +1,8 @@
 analyzer_rules:
 - capture_variable
-- explicit_self
+# - explicit_self
 - typesafe_array_init
-- unused_declaration
+# - unused_declaration
 - unused_import
 
 only_rules:
