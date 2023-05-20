@@ -5,6 +5,9 @@ included:
 
 child_config: .swiftlint-rules.yml
 
+empty_count:
+  only_after_dot: true
+
 file_header:
   required_pattern: |
     \/\/
