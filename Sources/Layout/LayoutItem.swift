@@ -503,9 +503,7 @@ extension LayoutItem {
     /// ```
     public func center(
         between top: NSLayoutYAxisAnchor,
-        and bottom: NSLayoutYAxisAnchor,
-        topOffset: CGFloat = 0,
-        bottomOffest: CGFloat = 0
+        and bottom: NSLayoutYAxisAnchor
     ) -> LayoutItem {
         addingSuperviewConstraints {
             if let superview = $0.layoutItemView.superview {
@@ -514,8 +512,8 @@ extension LayoutItem {
                     superview.addLayoutGuide(guide)
                     return guide
                 }()
-                guide.top.constraint(to: top, constant: topOffset)
-                guide.bottom.constraint(to: bottom, constant: bottomOffest)
+                guide.top.constraint(to: top)
+                guide.bottom.constraint(to: bottom)
                 $0.layoutItemView.centerY.constraint(to: guide.centerY)
             }
         }
@@ -549,9 +547,7 @@ extension LayoutItem {
     /// ```
     public func center(
         between leading: NSLayoutXAxisAnchor,
-        and trailing: NSLayoutXAxisAnchor,
-        leadingOffset: CGFloat = 0,
-        trailingOffest: CGFloat = 0
+        and trailing: NSLayoutXAxisAnchor
     ) -> LayoutItem {
         addingSuperviewConstraints {
             if let superview = $0.layoutItemView.superview {
@@ -560,8 +556,8 @@ extension LayoutItem {
                     superview.addLayoutGuide(guide)
                     return guide
                 }()
-                guide.leading.constraint(to: leading, constant: leadingOffset)
-                guide.trailing.constraint(to: trailing, constant: trailingOffest)
+                guide.leading.constraint(to: leading)
+                guide.trailing.constraint(to: trailing)
                 $0.layoutItemView.centerX.constraint(to: guide.centerX)
             }
         }
