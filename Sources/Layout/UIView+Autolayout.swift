@@ -44,8 +44,8 @@ extension UIView {
         for attribute: NSLayoutConstraint.Attribute? = nil,
         is relation: ConstraintRelation = .equal,
         toSuperview superviewAttribute: NSLayoutConstraint.Attribute,
-        multiplier: CGFloat = 1.0,
-        constant: CGFloat = 0.0
+        multiplier: CGFloat = 1,
+        constant: CGFloat = 0
     ) -> NSLayoutConstraint {
         assert(superview != nil, "constraint(for:is:toSuperview:multiplier:constant:) requires superview")
         return NSLayoutConstraint(item: self,
@@ -62,8 +62,8 @@ extension UIView {
         is relation: ConstraintRelation = .equal,
         to targetAttribute: NSLayoutConstraint.Attribute,
         of targetView: UIView,
-        multiplier: CGFloat = 1.0,
-        constant: CGFloat = 0.0
+        multiplier: CGFloat = 1,
+        constant: CGFloat = 0
     ) -> NSLayoutConstraint {
         NSLayoutConstraint(item: self,
                            attribute: attribute ?? targetAttribute,
@@ -90,8 +90,8 @@ extension UIView {
     public func constraints(
         is relation: ConstraintRelation = .equal,
         toSuperview attributes: [NSLayoutConstraint.Attribute],
-        multiplier: CGFloat = 1.0,
-        constant: CGFloat = 0.0
+        multiplier: CGFloat = 1,
+        constant: CGFloat = 0
     ) -> [NSLayoutConstraint] {
         attributes.map { attribute in
             constraint(is: relation,
@@ -105,8 +105,8 @@ extension UIView {
         is relation: ConstraintRelation = .equal,
         to attributes: [NSLayoutConstraint.Attribute],
         of targetView: UIView,
-        multiplier: CGFloat = 1.0,
-        constant: CGFloat = 0.0
+        multiplier: CGFloat = 1,
+        constant: CGFloat = 0
     ) -> [NSLayoutConstraint] {
         attributes.map { attribute in
             constraint(is: relation,

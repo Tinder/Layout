@@ -309,7 +309,7 @@ extension LayoutItem {
     public func center(
         _ axis: Axis,
         offset: CGFloat = 0,
-        multiplier: CGFloat = 1.0,
+        multiplier: CGFloat = 1,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         switch axis {
@@ -357,7 +357,7 @@ extension LayoutItem {
     public func to(
         _ attribute: NSLayoutConstraint.Attribute,
         is relation: ConstraintRelation = .equal,
-        multiplier: CGFloat = 1.0,
+        multiplier: CGFloat = 1,
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
@@ -405,7 +405,7 @@ extension LayoutItem {
     public func toMargin(
         _ attribute: NSLayoutConstraint.Attribute,
         is relation: ConstraintRelation = .equal,
-        multiplier: CGFloat = 1.0,
+        multiplier: CGFloat = 1,
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {

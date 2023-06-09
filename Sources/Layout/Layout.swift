@@ -189,8 +189,8 @@ public final class Layout {
         is relation: ConstraintRelation = .equal,
         to targetAttribute: NSLayoutConstraint.Attribute,
         of targetView: UIView,
-        multiplier: CGFloat = 1.0,
-        constant: CGFloat = 0.0
+        multiplier: CGFloat = 1,
+        constant: CGFloat = 0
     ) -> Layout {
         adding(view.constraint(for: attribute,
                                is: relation,
@@ -215,7 +215,7 @@ public final class Layout {
         _ anchor: NSLayoutAnchor<T>,
         is relation: ConstraintRelation = .equal,
         to targetAnchor: NSLayoutAnchor<T>,
-        constant: CGFloat = 0.0,
+        constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> Layout {
         let constraint: NSLayoutConstraint
@@ -247,8 +247,8 @@ public final class Layout {
         _ anchor: NSLayoutDimension,
         is relation: ConstraintRelation = .equal,
         to targetAnchor: NSLayoutDimension,
-        multiplier: CGFloat = 1.0,
-        constant: CGFloat = 0.0,
+        multiplier: CGFloat = 1,
+        constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> Layout {
         let constraint: NSLayoutConstraint
