@@ -529,40 +529,40 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the edges to the superviews safeAreaGuides with `insets`
+    /// Constrains the edges to the superviews safeAreaGuide with `insets`
     ///
     /// - Postcondition:
     ///     Device must be running iOS 11 or higher
     /// - Parameters:
     ///   - insets: (optional) insets of view
     ///   - priority: (optional) priority of constraint
-    public func toGuides(
-        insets: UIEdgeInsets = .zero,
+    public func toSafeArea(
+        insets: NSDirectionalEdgeInsets = .zero,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         self
-            .toGuide(.top, insets.top, priority: priority)
-            .toGuide(.right, -insets.right, priority: priority)
-            .toGuide(.bottom, -insets.bottom, priority: priority)
-            .toGuide(.left, insets.left, priority: priority)
+            .toSafeArea(.top, insets.top, priority: priority)
+            .toSafeArea(.trailing, -insets.trailing, priority: priority)
+            .toSafeArea(.bottom, -insets.bottom, priority: priority)
+            .toSafeArea(.leading, insets.leading, priority: priority)
     }
 
-    /// Constrains the edges to the superviews safeAreaGuides with an `inset`
+    /// Constrains the edges to the superviews safeAreaGuide with an `inset`
     ///
     /// - Postcondition:
     ///     Device must be running iOS 11 or higher
     /// - Parameters:
     ///   - inset: inset of view
     ///   - priority: (optional) priority of constraint
-    public func toGuides(
+    public func toSafeArea(
         _ inset: CGFloat,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        toGuides(insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset),
-                 priority: priority)
+        toSafeArea(insets: NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset),
+                   priority: priority)
     }
 
-    /// Constrains the `attribute` to the superviews corresponding `attribute` safeAreaGuide
+    /// Constrains the `attribute` to the superviews corresponding safeAreaGuide `attribute`
     ///
     /// - Postcondition:
     ///     Device must be running iOS 11 or higher
@@ -572,15 +572,15 @@ extension LayoutItem {
     ///   - attribute: attribute to constrain
     ///   - constant: (optional) constant
     ///   - priority: (optional) priority of constraint
-    public func toGuide(
+    public func toSafeArea(
         _ attribute: XAxisAttribute,
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        toGuideAttribute(attribute, constant, priority: priority)
+        toSafeAreaAttribute(attribute, constant, priority: priority)
     }
 
-    /// Constrains the `attribute` to the superviews corresponding `attribute` safeAreaGuide
+    /// Constrains the `attribute` to the superviews corresponding safeAreaGuide `attribute`
     ///
     /// - Postcondition:
     ///     Device must be running iOS 11 or higher
@@ -590,15 +590,15 @@ extension LayoutItem {
     ///   - attribute: attribute to constrain
     ///   - constant: (optional) constant
     ///   - priority: (optional) priority of constraint
-    public func toGuide(
+    public func toSafeArea(
         _ attribute: YAxisAttribute,
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        toGuideAttribute(attribute, constant, priority: priority)
+        toSafeAreaAttribute(attribute, constant, priority: priority)
     }
 
-    /// Constrains the `attribute` to the superviews corresponding `attribute` safeAreaGuide
+    /// Constrains the `attribute` to the superviews corresponding safeAreaGuide `attribute`
     ///
     /// - Postcondition:
     ///     Device must be running iOS 11 or higher
@@ -608,15 +608,15 @@ extension LayoutItem {
     ///   - attribute: attribute to constrain
     ///   - constant: (optional) constant
     ///   - priority: (optional) priority of constraint
-    public func toGuide(
+    public func toSafeArea(
         _ attribute: DimensionAttribute,
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        toGuideAttribute(attribute, constant, priority: priority)
+        toSafeAreaAttribute(attribute, constant, priority: priority)
     }
 
-    private func toGuideAttribute<T: AnchorAttribute>(
+    private func toSafeAreaAttribute<T: AnchorAttribute>(
         _ attribute: T,
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
@@ -624,7 +624,7 @@ extension LayoutItem {
         addingSuperviewConstraints {
             if let safeAnchor = $0.safeAreaGuide?.anchor(for: attribute) {
                 let viewAnchor: NSLayoutAnchor<T.AnchorType> = $0.layoutItemView.anchor(for: attribute)
-                safeAnchor.constraint(equalTo: viewAnchor, constant: constant).withPriority(priority)
+                viewAnchor.constraint(equalTo: safeAnchor, constant: constant).withPriority(priority)
             }
         }
     }
