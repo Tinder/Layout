@@ -17,12 +17,6 @@ public enum Axis {
     case vertical
 }
 
-public enum AspectRatioConstraint {
-
-    case constrainWidth(_ widthToHeight: CGFloat)
-    case constrainHeight(_ widthToHeight: CGFloat)
-}
-
 public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
 
 // swiftlint:disable file_types_order
@@ -197,36 +191,8 @@ extension LayoutItem {
         _ ratio: CGFloat,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        aspectRatio(.constrainWidth(ratio), priority: priority)
-    }
-
-    /// Constrains the dimensions to an aspect ratio
-    ///
-    /// - Parameters:
-    ///   - aspectRatio: .constrainWidth adds a width constraint relative to a set height.
-    ///                  .constrainHeight adds a height constraint relative to a set width.
-    ///                  In both cases, the aspect ratio provided should be width : height.
-    ///   - priority: (optional) priority of constraint
-    public func aspectRatio(
-        _ aspectRatio: AspectRatioConstraint,
-        priority: UILayoutPriority = .required
-    ) -> LayoutItem {
-        switch aspectRatio {
-        case let .constrainWidth(widthToHeight):
-            return addingSuperviewConstraints {
-                $0.layoutItemView.width.constraint(equalTo: self.layoutItemView.height,
-                                                   multiplier: widthToHeight)
-            }
-        case let .constrainHeight(widthToHeight):
-            guard widthToHeight > 0
-            else {
-                assertionFailure("Attempting to constrain height by 0 aspect ratio.")
-                return self
-            }
-            return addingSuperviewConstraints {
-                $0.layoutItemView.height.constraint(equalTo: $0.layoutItemView.width,
-                                                    multiplier: 1 / widthToHeight)
-            }
+        addingSuperviewConstraints {
+            $0.layoutItemView.width.constraint(equalTo: $0.layoutItemView.height, multiplier: ratio)
         }
     }
 
