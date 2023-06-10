@@ -370,8 +370,8 @@ extension LayoutItem {
     ///   - priority: (optional) priority of constraint
     public func toMargin(
         _ attribute: NSLayoutConstraint.Attribute,
-        multiplier: CGFloat = 1,
         is relation: NSLayoutConstraint.Relation = .equal,
+        multiplier: CGFloat = 1,
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
