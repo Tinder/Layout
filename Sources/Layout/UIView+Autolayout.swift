@@ -42,7 +42,7 @@ extension UIView {
 
     public func constraint(
         for attribute: NSLayoutConstraint.Attribute? = nil,
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         toSuperview superviewAttribute: NSLayoutConstraint.Attribute,
         multiplier: CGFloat = 1,
         constant: CGFloat = 0
@@ -50,7 +50,7 @@ extension UIView {
         assert(superview != nil, "constraint(for:is:toSuperview:multiplier:constant:) requires superview")
         return NSLayoutConstraint(item: self,
                                   attribute: attribute ?? superviewAttribute,
-                                  relatedBy: NSLayoutConstraint.Relation(relation: relation),
+                                  relatedBy: relation,
                                   toItem: superview,
                                   attribute: superviewAttribute,
                                   multiplier: multiplier,
@@ -59,7 +59,7 @@ extension UIView {
 
     public func constraint(
         for attribute: NSLayoutConstraint.Attribute? = nil,
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         to targetAttribute: NSLayoutConstraint.Attribute,
         of targetView: UIView,
         multiplier: CGFloat = 1,
@@ -67,7 +67,7 @@ extension UIView {
     ) -> NSLayoutConstraint {
         NSLayoutConstraint(item: self,
                            attribute: attribute ?? targetAttribute,
-                           relatedBy: NSLayoutConstraint.Relation(relation: relation),
+                           relatedBy: relation,
                            toItem: targetView,
                            attribute: targetAttribute,
                            multiplier: multiplier,
@@ -88,7 +88,7 @@ extension UIView {
     }
 
     public func constraints(
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         toSuperview attributes: [NSLayoutConstraint.Attribute],
         multiplier: CGFloat = 1,
         constant: CGFloat = 0
@@ -102,7 +102,7 @@ extension UIView {
     }
 
     public func constraints(
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         to attributes: [NSLayoutConstraint.Attribute],
         of targetView: UIView,
         multiplier: CGFloat = 1,
@@ -120,7 +120,7 @@ extension UIView {
     // swiftlint:enable function_default_parameter_at_end
 
     public func widthConstraint(
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         _ constant: CGFloat? = nil
     ) -> NSLayoutConstraint {
         let constant: CGFloat = constant ?? bounds.width
@@ -128,7 +128,7 @@ extension UIView {
     }
 
     public func heightConstraint(
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         _ constant: CGFloat? = nil
     ) -> NSLayoutConstraint {
         let constant: CGFloat = constant ?? bounds.height

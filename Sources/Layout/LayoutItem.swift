@@ -135,7 +135,7 @@ extension LayoutItem {
     ///   - width: width constraint
     ///   - priority: (optional) priority of constraint
     public func size(
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         width: CGFloat,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
@@ -151,7 +151,7 @@ extension LayoutItem {
     ///   - height: height constraint
     ///   - priority: (optional) priority of constraint
     public func size(
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         height: CGFloat,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
@@ -322,7 +322,7 @@ extension LayoutItem {
     ///   - priority: (optional) priority of constraint
     public func to(
         _ attribute: NSLayoutConstraint.Attribute,
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         multiplier: CGFloat = 1,
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
@@ -370,7 +370,7 @@ extension LayoutItem {
     ///   - priority: (optional) priority of constraint
     public func toMargin(
         _ attribute: NSLayoutConstraint.Attribute,
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         multiplier: CGFloat = 1,
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required

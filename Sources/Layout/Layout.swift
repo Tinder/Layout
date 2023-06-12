@@ -184,7 +184,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     public func constrain(
         _ view: UIView,
         _ attribute: NSLayoutConstraint.Attribute? = nil,
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         to targetAttribute: NSLayoutConstraint.Attribute,
         of targetView: UIView,
         multiplier: CGFloat = 1,
@@ -211,7 +211,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     @discardableResult
     public func constrain<T>(
         _ anchor: NSLayoutAnchor<T>,
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         to targetAnchor: NSLayoutAnchor<T>,
         constant: CGFloat = 0,
         priority: UILayoutPriority = .required
@@ -226,6 +226,9 @@ public final class Layout { // swiftlint:disable:this type_body_length
                                            constant: constant)
         case .lessThanOrEqual:
             constraint = anchor.constraint(lessThanOrEqualTo: targetAnchor,
+                                           constant: constant)
+        @unknown default:
+            constraint = anchor.constraint(equalTo: targetAnchor,
                                            constant: constant)
         }
         return adding(constraint.withPriority(priority))
@@ -243,7 +246,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     @discardableResult
     public func constrain(
         _ anchor: NSLayoutDimension,
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         to targetAnchor: NSLayoutDimension,
         multiplier: CGFloat = 1,
         constant: CGFloat = 0,
@@ -263,6 +266,10 @@ public final class Layout { // swiftlint:disable:this type_body_length
             constraint = anchor.constraint(lessThanOrEqualTo: targetAnchor,
                                            multiplier: multiplier,
                                            constant: constant)
+        @unknown default:
+            constraint = anchor.constraint(equalTo: targetAnchor,
+                                           multiplier: multiplier,
+                                           constant: constant)
         }
         return adding(constraint.withPriority(priority))
     }
@@ -277,7 +284,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     @discardableResult
     public func constrain(
         _ anchor: NSLayoutDimension,
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         to constant: CGFloat,
         priority: UILayoutPriority = .required
     ) -> Layout {
@@ -289,6 +296,8 @@ public final class Layout { // swiftlint:disable:this type_body_length
             constraint = anchor.constraint(greaterThanOrEqualToConstant: constant)
         case .lessThanOrEqual:
             constraint = anchor.constraint(lessThanOrEqualToConstant: constant)
+        @unknown default:
+            constraint = anchor.constraint(equalToConstant: constant)
         }
         return adding(constraint.withPriority(priority))
     }
