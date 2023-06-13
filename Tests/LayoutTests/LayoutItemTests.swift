@@ -24,7 +24,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToGuide() {
+    func testToSafeArea() {
         assertLayout { view in
             view.layout {
                 pinkView
@@ -36,7 +36,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToGuideDimensionAttributeConstantRequiredPriority() {
+    func testToSafeAreaDimensionAttributeConstantRequiredPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
