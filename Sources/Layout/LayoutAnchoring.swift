@@ -1,5 +1,10 @@
 //
+//  All Contributions by Match Group
+//
 //  Copyright © 2023 Tinder (Match Group, LLC)
+//
+//  Licensed under the Match Group Modified 3-Clause BSD License.
+//  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
 import UIKit
@@ -70,7 +75,7 @@ extension UILayoutSupport {
 extension NSLayoutXAxisAnchor {
 
     public func constraint(
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         to anchor: NSLayoutXAxisAnchor,
         constant: CGFloat = 0
     ) -> NSLayoutConstraint {
@@ -81,6 +86,8 @@ extension NSLayoutXAxisAnchor {
             return constraint(greaterThanOrEqualTo: anchor, constant: constant)
         case .lessThanOrEqual:
             return constraint(lessThanOrEqualTo: anchor, constant: constant)
+        @unknown default:
+            return constraint(equalTo: anchor, constant: constant)
         }
     }
 }
@@ -88,7 +95,7 @@ extension NSLayoutXAxisAnchor {
 extension NSLayoutYAxisAnchor {
 
     public func constraint(
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         to anchor: NSLayoutYAxisAnchor,
         constant: CGFloat = 0
     ) -> NSLayoutConstraint {
@@ -99,6 +106,8 @@ extension NSLayoutYAxisAnchor {
             return constraint(greaterThanOrEqualTo: anchor, constant: constant)
         case .lessThanOrEqual:
             return constraint(lessThanOrEqualTo: anchor, constant: constant)
+        @unknown default:
+            return constraint(equalTo: anchor, constant: constant)
         }
     }
 }
@@ -106,7 +115,7 @@ extension NSLayoutYAxisAnchor {
 extension NSLayoutDimension {
 
     public func constraint(
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         to anchor: NSLayoutDimension,
         constant: CGFloat = 0
     ) -> NSLayoutConstraint {
@@ -117,11 +126,13 @@ extension NSLayoutDimension {
             return constraint(greaterThanOrEqualTo: anchor, constant: constant)
         case .lessThanOrEqual:
             return constraint(lessThanOrEqualTo: anchor, constant: constant)
+        @unknown default:
+            return constraint(equalTo: anchor, constant: constant)
         }
     }
 
     public func constraint(
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         _ constant: CGFloat
     ) -> NSLayoutConstraint {
         switch relation {
@@ -131,6 +142,8 @@ extension NSLayoutDimension {
             return constraint(greaterThanOrEqualToConstant: constant)
         case .lessThanOrEqual:
             return constraint(lessThanOrEqualToConstant: constant)
+        @unknown default:
+            return constraint(equalToConstant: constant)
         }
     }
 }

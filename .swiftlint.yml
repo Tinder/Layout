@@ -5,10 +5,18 @@ included:
 
 child_config: .swiftlint-rules.yml
 
+empty_count:
+  only_after_dot: true
+
 file_header:
   required_pattern: |
     \/\/
-    \/\/ {2}Copyright © \d{4} Tinder \(Match Group, LLC\)
+    \/\/ {2}All Contributions by Match Group
+    \/\/
+    \/\/ {2}Copyright © \d{4}(-\d{4})? Tinder \(Match Group, LLC\)
+    \/\/
+    \/\/ {2}Licensed under the Match Group Modified 3-Clause BSD License.
+    \/\/ {2}See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
     \/\/
 
 private_over_fileprivate:
@@ -16,3 +24,11 @@ private_over_fileprivate:
 
 trailing_whitespace:
   ignores_comments: false
+
+custom_rules:
+  given_when_then:
+    name: GIVEN / WHEN / THEN
+    message: |
+      "GIVEN / WHEN / THEN" comments must be uppercase, without punctuation and both preceded and followed by an empty line.
+    regex: |
+      ((?<=\n) +\/\/ (Given|given|When|when|Then|then)(?= *\n))|((?<=\n) +[^ ]\/\/ (GIVEN|WHEN|THEN))|((?<=\n) +\/\/  +(GIVEN|WHEN|THEN))|((?<=[^\n]\n) +\/\/ (GIVEN|WHEN|THEN))|((?<=\n) +\/\/ (GIVEN|WHEN|THEN)(?!\n\n))
