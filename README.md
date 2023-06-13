@@ -1,4 +1,4 @@
-[![Swift](https://github.com/Tinder/Layout/actions/workflows/swift.yml/badge.svg)](https://github.com/Tinder/Layout/actions/workflows/swift.yml)
+[![Swift](https://github.com/Tinder/Layout/actions/workflows/swift.yml/badge.svg?event=push)](https://github.com/Tinder/Layout/actions/workflows/swift.yml)
 
 # Layout
 
