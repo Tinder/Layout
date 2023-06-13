@@ -28,10 +28,10 @@ final class LayoutItemTests: XCTestCase {
         assertLayout { view in
             view.layout {
                 pinkView
-                    .toGuide(.top)
-                    .toGuide(.bottom)
-                    .toGuide(.leading)
-                    .toGuide(.trailing)
+                    .toSafeArea(.top)
+                    .toSafeArea(.bottom)
+                    .toSafeArea(.leading)
+                    .toSafeArea(.trailing)
             }
         }
     }
@@ -40,15 +40,17 @@ final class LayoutItemTests: XCTestCase {
         assertLayout { view in
             view.layout {
                 pinkView
-                    .to(.top)
-                    .toGuide(.width, 0, priority: .low)
-                    .toGuide(.width, 100, priority: .high)
-                    .size(height: 100)
+                    .to(.leading)
+                    .toSafeArea(.top)
+                    .toSafeArea(.height, 0, priority: .high)
+                    .toSafeArea(.height, -100, priority: .low)
+                    .size(width: 100)
                 blueView
-                    .to(.bottom)
-                    .toGuide(.width, 0, priority: .high)
-                    .toGuide(.width, 100, priority: .low)
-                    .size(height: 100)
+                    .to(.trailing)
+                    .toSafeArea(.top)
+                    .toSafeArea(.height, 0, priority: .low)
+                    .toSafeArea(.height, -100, priority: .high)
+                    .size(width: 100)
             }
         }
     }
