@@ -24,22 +24,21 @@ final class LayoutItemTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = .init()
-        let item: ViewLayoutItem = .init(layoutItemView: view) { _ in [] }
+        let item: ViewLayoutItem = .init(layoutItemView: UIView()) { _ in [] }
 
         // THEN
 
-        expect(item.left) == view.left
-        expect(item.centerX) == view.centerX
-        expect(item.right) == view.right
-        expect(item.leading) == view.leading
-        expect(item.trailing) == view.trailing
-        expect(item.top) == view.top
-        expect(item.centerY) == view.centerY
-        expect(item.firstBaseline) == view.firstBaseline
-        expect(item.lastBaseline) == view.lastBaseline
-        expect(item.bottom) == view.bottom
-        expect(item.width) == view.width
-        expect(item.height) == view.height
+        expect(item.left) == item.layoutItemView.left
+        expect(item.centerX) == item.layoutItemView.centerX
+        expect(item.right) == item.layoutItemView.right
+        expect(item.leading) == item.layoutItemView.leading
+        expect(item.trailing) == item.layoutItemView.trailing
+        expect(item.top) == item.layoutItemView.top
+        expect(item.centerY) == item.layoutItemView.centerY
+        expect(item.firstBaseline) == item.layoutItemView.firstBaseline
+        expect(item.lastBaseline) == item.layoutItemView.lastBaseline
+        expect(item.bottom) == item.layoutItemView.bottom
+        expect(item.width) == item.layoutItemView.width
+        expect(item.height) == item.layoutItemView.height
     }
 }
