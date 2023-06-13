@@ -106,6 +106,10 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         let constraint: NSLayoutConstraint = .init()
 
+        // THEN
+
+        expect(constraint.constant) == 0
+
         // WHEN
 
         constraint.offsetBy(5)
@@ -121,6 +125,10 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         let constraint: NSLayoutConstraint = .init()
 
+        // THEN
+
+        expect(constraint.priority) == .required
+
         // WHEN
 
         constraint.withPriority(.high)
@@ -135,7 +143,11 @@ final class NSLayoutConstraintTests: XCTestCase {
         // GIVEN
 
         let constraint: NSLayoutConstraint = .init()
-        constraint.priority = .low
+        constraint.priority = .high
+
+        // THEN
+
+        expect(constraint.priority) == .high
 
         // WHEN
 
@@ -152,6 +164,10 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         let constraint: NSLayoutConstraint = .init()
 
+        // THEN
+
+        expect(constraint.priority) == .required
+
         // WHEN
 
         constraint.lowPriority()
@@ -167,6 +183,10 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         let constraint: NSLayoutConstraint = .init()
 
+        // THEN
+
+        expect(constraint.priority) == .required
+
         // WHEN
 
         constraint.highPriority()
@@ -178,246 +198,29 @@ final class NSLayoutConstraintTests: XCTestCase {
 
     func testMarginAttribute() {
 
-        // GIVEN
+        expect(NSLayoutConstraint.Attribute.left.marginAttribute) == .leftMargin
+        expect(NSLayoutConstraint.Attribute.right.marginAttribute) == .rightMargin
+        expect(NSLayoutConstraint.Attribute.top.marginAttribute) == .topMargin
+        expect(NSLayoutConstraint.Attribute.bottom.marginAttribute) == .bottomMargin
+        expect(NSLayoutConstraint.Attribute.leading.marginAttribute) == .leadingMargin
+        expect(NSLayoutConstraint.Attribute.trailing.marginAttribute) == .trailingMargin
 
-        let view: UIView = .init()
-        let view2: UIView = .init()
+        expect(NSLayoutConstraint.Attribute.centerX.marginAttribute) == .centerXWithinMargins
+        expect(NSLayoutConstraint.Attribute.centerY.marginAttribute) == .centerYWithinMargins
+        expect(NSLayoutConstraint.Attribute.leftMargin.marginAttribute) == .leftMargin
+        expect(NSLayoutConstraint.Attribute.rightMargin.marginAttribute) == .rightMargin
+        expect(NSLayoutConstraint.Attribute.topMargin.marginAttribute) == .topMargin
+        expect(NSLayoutConstraint.Attribute.bottomMargin.marginAttribute) == .bottomMargin
+        expect(NSLayoutConstraint.Attribute.leadingMargin.marginAttribute) == .leadingMargin
+        expect(NSLayoutConstraint.Attribute.trailingMargin.marginAttribute) == .trailingMargin
+        expect(NSLayoutConstraint.Attribute.centerXWithinMargins.marginAttribute) == .centerXWithinMargins
+        expect(NSLayoutConstraint.Attribute.centerYWithinMargins.marginAttribute) == .centerYWithinMargins
 
-        // WHEN
-
-        let centerXConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .centerXWithinMargins,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .centerXWithinMargins,
-            multiplier: 1,
-            constant: 0
-        )
-        let centerYConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .centerYWithinMargins,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .centerYWithinMargins,
-            multiplier: 1,
-            constant: 0
-        )
-        let leadingConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .leadingMargin,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .leadingMargin,
-            multiplier: 1,
-            constant: 0
-        )
-        let leftConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .leftMargin,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .leftMargin,
-            multiplier: 1,
-            constant: 0
-        )
-        let trailingConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .trailingMargin,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .trailingMargin,
-            multiplier: 1,
-            constant: 0
-        )
-        let rightConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .rightMargin,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .rightMargin,
-            multiplier: 1,
-            constant: 0
-        )
-        let topConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .topMargin,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .topMargin,
-            multiplier: 1,
-            constant: 0
-        )
-        let bottomConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .bottomMargin,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .bottomMargin,
-            multiplier: 1,
-            constant: 0
-        )
-
-        // THEN
-
-        expect(centerXConstraint.firstAttribute.marginAttribute) == .centerXWithinMargins
-        expect(centerYConstraint.firstAttribute.marginAttribute) == .centerYWithinMargins
-
-        expect(leadingConstraint.firstAttribute.marginAttribute) == .leadingMargin
-        expect(leftConstraint.firstAttribute.marginAttribute) == .leftMargin
-        expect(trailingConstraint.firstAttribute.marginAttribute) == .trailingMargin
-        expect(rightConstraint.firstAttribute.marginAttribute) == .rightMargin
-
-        expect(topConstraint.firstAttribute.marginAttribute) == .topMargin
-        expect(bottomConstraint.firstAttribute.marginAttribute) == .bottomMargin
-    }
-
-    func testMarginAttribute_fromNonMarginAttribute() {
-
-        // GIVEN
-
-        let view: UIView = .init()
-        let view2: UIView = .init()
-
-        // WHEN
-
-        let widthConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .width,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .width,
-            multiplier: 1,
-            constant: 0
-        )
-        let heightConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .height,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .height,
-            multiplier: 1,
-            constant: 0
-        )
-        let centerXConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .centerX,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .centerX,
-            multiplier: 1,
-            constant: 0
-        )
-        let centerYConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .centerY,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .centerY,
-            multiplier: 1,
-            constant: 0
-        )
-        let leadingConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .leading,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .leading,
-            multiplier: 1,
-            constant: 0
-        )
-        let leftConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .left,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .left,
-            multiplier: 1,
-            constant: 0
-        )
-        let trailingConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .trailing,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .trailing,
-            multiplier: 1,
-            constant: 0
-        )
-        let rightConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .right,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .right,
-            multiplier: 1,
-            constant: 0
-        )
-        let topConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .top,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .top,
-            multiplier: 1,
-            constant: 0
-        )
-        let bottomConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .bottom,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .bottom,
-            multiplier: 1,
-            constant: 0
-        )
-        let firstBaselineConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .firstBaseline,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .firstBaseline,
-            multiplier: 1,
-            constant: 0
-        )
-        let lastBaselineConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .lastBaseline,
-            relatedBy: .equal,
-            toItem: view2,
-            attribute: .lastBaseline,
-            multiplier: 1,
-            constant: 0
-        )
-        let notAnAttributeConstraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .height,
-            relatedBy: .greaterThanOrEqual,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1,
-            constant: 0
-        )
-
-        // THEN
-
-        expect(widthConstraint.firstAttribute.marginAttribute) == .width
-        expect(heightConstraint.firstAttribute.marginAttribute) == .height
-        expect(centerXConstraint.firstAttribute.marginAttribute) == .centerXWithinMargins
-        expect(centerXConstraint.firstAttribute.marginAttribute) == .centerXWithinMargins
-        expect(centerYConstraint.firstAttribute.marginAttribute) == .centerYWithinMargins
-
-        expect(leadingConstraint.firstAttribute.marginAttribute) == .leadingMargin
-        expect(leftConstraint.firstAttribute.marginAttribute) == .leftMargin
-        expect(trailingConstraint.firstAttribute.marginAttribute) == .trailingMargin
-        expect(rightConstraint.firstAttribute.marginAttribute) == .rightMargin
-
-        expect(topConstraint.firstAttribute.marginAttribute) == .topMargin
-        expect(bottomConstraint.firstAttribute.marginAttribute) == .bottomMargin
-        expect(firstBaselineConstraint.firstAttribute.marginAttribute) == .firstBaseline
-        expect(lastBaselineConstraint.firstAttribute.marginAttribute) == .lastBaseline
-
-        expect(notAnAttributeConstraint.secondAttribute.marginAttribute) == .notAnAttribute
+        expect(NSLayoutConstraint.Attribute.width.marginAttribute) == .width
+        expect(NSLayoutConstraint.Attribute.height.marginAttribute) == .height
+        expect(NSLayoutConstraint.Attribute.lastBaseline.marginAttribute) == .lastBaseline
+        expect(NSLayoutConstraint.Attribute.firstBaseline.marginAttribute) == .firstBaseline
+        expect(NSLayoutConstraint.Attribute.notAnAttribute.marginAttribute) == .notAnAttribute
     }
 
     func testOrientation() {
@@ -478,24 +281,26 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // WHEN
 
-        constraints.activate()
+        let activatedConstraints: [NSLayoutConstraint] = constraints.activate()
 
         // THEN
 
         expect(constraint1.isActive) == true
         expect(constraint2.isActive) == true
+        expect(activatedConstraints) == constraints
 
         // WHEN
 
-        constraints.deactivate()
+        let deactivatedConstraints: [NSLayoutConstraint] = constraints.deactivate()
 
         // THEN
 
         expect(constraint1.isActive) == false
         expect(constraint2.isActive) == false
+        expect(deactivatedConstraints) == constraints
     }
 
-    func testBatchPriority() {
+    func testBatch_withPriority() {
 
         // GIVEN
 
@@ -520,22 +325,59 @@ final class NSLayoutConstraintTests: XCTestCase {
         )
         let constraints: [NSLayoutConstraint] = [constraint1, constraint2]
 
+        // THEN
+
+        expect(constraint1.priority) == .required
+        expect(constraint2.priority) == .required
+
         // WHEN
 
-        constraints.withPriority(.high)
+        let highPriorityConstraints: [NSLayoutConstraint] = constraints.withPriority(.high)
 
         // THEN
 
         expect(constraint1.priority) == .high
         expect(constraint2.priority) == .high
+        expect(highPriorityConstraints) == constraints
+    }
 
-        // WHEN
+    func testBatch_prioritize() {
 
-        constraints.prioritize(.low)
+        // GIVEN
+
+        let view: UIView = .init()
+        let constraint1: NSLayoutConstraint = .init(
+            item: view,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 0
+        )
+        let constraint2: NSLayoutConstraint = .init(
+            item: view,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 0
+        )
+        let constraints: [NSLayoutConstraint] = [constraint1, constraint2]
 
         // THEN
 
-        expect(constraint1.priority) == .low
-        expect(constraint2.priority) == .low
+        expect(constraint1.priority) == .required
+        expect(constraint2.priority) == .required
+
+        // WHEN
+
+        constraints.prioritize(.high)
+
+        // THEN
+
+        expect(constraint1.priority) == .high
+        expect(constraint2.priority) == .high
     }
 }
