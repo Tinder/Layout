@@ -161,28 +161,6 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testAspectRatioWithConstrain_andWithPriority() {
-        assertLayout { view in
-            view.layout {
-                pinkView
-                    .to([.top, .leading])
-                    .size(width: 100)
-                    .aspectRatio(.constrainHeight(0.75))
-                yellowView
-                    .to([.top, .trailing])
-                    .size(height: 100)
-                    .aspectRatio(.constrainWidth(0.75))
-            }
-        }
-    }
-
-    func testAspectRatio_givenInvalidConstrain() {
-        expect {
-            pinkView.aspectRatio(.constrainHeight(0))
-        }
-        .to(throwAssertion())
-    }
-
     func testPinWithUIEdgeInset_andWithPriority() {
         assertLayout { view in
             view.layout {
@@ -207,25 +185,22 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testPinToMargin() {
+    func testToMargins() {
         assertLayout { view in
-            view.layout {
-                pinkView
-                    .pinToMargin()
-            }
+            view.layout(pinkView.toMargins())
         }
     }
 
-    func testPinToMarginWithDirectionalInset_andWithPriority() {
+    func testToMarginsWithDirectionalInset_andWithPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
-                    .pinToMargin(
+                    .toMargins(
                         insets: NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12)
                     )
                 yellowView
-                    .pinToMargin(priority: .low)
-                    .pinToMargin(
+                    .toMargins(priority: .low)
+                    .toMargins(
                         insets: NSDirectionalEdgeInsets(top: 36, leading: 36, bottom: 36, trailing: 36),
                         priority: .high
                     )
@@ -233,14 +208,14 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testPinToMarginWithInset_andWithPriority() {
+    func testToMarginWithInset_andWithPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
-                    .pinToMargin(12)
+                    .toMargins(12)
                 yellowView
-                    .pinToMargin(0, priority: .low)
-                    .pinToMargin(36, priority: .high)
+                    .toMargins(0, priority: .low)
+                    .toMargins(36, priority: .high)
             }
         }
     }
