@@ -17,12 +17,6 @@ public enum Axis {
     case vertical
 }
 
-public enum AspectRatioConstraint {
-
-    case constrainWidth(_ widthToHeight: CGFloat)
-    case constrainHeight(_ widthToHeight: CGFloat)
-}
-
 public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
 
 // swiftlint:disable file_types_order
@@ -141,7 +135,7 @@ extension LayoutItem {
     ///   - width: width constraint
     ///   - priority: (optional) priority of constraint
     public func size(
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         width: CGFloat,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
@@ -157,7 +151,7 @@ extension LayoutItem {
     ///   - height: height constraint
     ///   - priority: (optional) priority of constraint
     public func size(
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         height: CGFloat,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
@@ -197,36 +191,8 @@ extension LayoutItem {
         _ ratio: CGFloat,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        aspectRatio(.constrainWidth(ratio), priority: priority)
-    }
-
-    /// Constrains the dimensions to an aspect ratio
-    ///
-    /// - Parameters:
-    ///   - aspectRatio: .constrainWidth adds a width constraint relative to a set height.
-    ///                  .constrainHeight adds a height constraint relative to a set width.
-    ///                  In both cases, the aspect ratio provided should be width : height.
-    ///   - priority: (optional) priority of constraint
-    public func aspectRatio(
-        _ aspectRatio: AspectRatioConstraint,
-        priority: UILayoutPriority = .required
-    ) -> LayoutItem {
-        switch aspectRatio {
-        case let .constrainWidth(widthToHeight):
-            return addingSuperviewConstraints {
-                $0.layoutItemView.width.constraint(equalTo: self.layoutItemView.height,
-                                                   multiplier: widthToHeight)
-            }
-        case let .constrainHeight(widthToHeight):
-            guard widthToHeight > 0
-            else {
-                assertionFailure("Attempting to constrain height by 0 aspect ratio.")
-                return self
-            }
-            return addingSuperviewConstraints {
-                $0.layoutItemView.height.constraint(equalTo: $0.layoutItemView.width,
-                                                    multiplier: 1 / widthToHeight)
-            }
+        addingSuperviewConstraints {
+            $0.layoutItemView.width.constraint(equalTo: $0.layoutItemView.height, multiplier: ratio)
         }
     }
 
@@ -257,12 +223,12 @@ extension LayoutItem {
             priority: priority)
     }
 
-    /// Constrains the edges to the superviews margin edges with `insets`.
+    /// Constrains the view to the margins of the superview with `insets`.
     ///
     /// - Parameters:
     ///   - insets: (optional) insets of view within margin edges.
     ///   - priority: (optional) priority of constraint
-    public func pinToMargin(
+    public func toMargins(
         insets: NSDirectionalEdgeInsets = .zero,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
@@ -273,17 +239,17 @@ extension LayoutItem {
             .toMargin(.bottom, -insets.bottom, priority: priority)
     }
 
-    /// Constrains the edges to the superviews margin edges with an `inset`.
+    /// Constrains the view to the margins of the superview with an `inset`.
     ///
     /// - Parameters:
     ///   - inset: inset of view within margin edges.
     ///   - priority: (optional) priority of constraint
-    public func pinToMargin(
+    public func toMargins(
         _ inset: CGFloat,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        pinToMargin(insets: NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset),
-                    priority: priority)
+        toMargins(insets: NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset),
+                  priority: priority)
     }
 
     /// Centers the view in the superview with an `offset`
@@ -309,7 +275,7 @@ extension LayoutItem {
     public func center(
         _ axis: Axis,
         offset: CGFloat = 0,
-        multiplier: CGFloat = 1.0,
+        multiplier: CGFloat = 1,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         switch axis {
@@ -356,8 +322,8 @@ extension LayoutItem {
     ///   - priority: (optional) priority of constraint
     public func to(
         _ attribute: NSLayoutConstraint.Attribute,
-        is relation: ConstraintRelation = .equal,
-        multiplier: CGFloat = 1.0,
+        is relation: NSLayoutConstraint.Relation = .equal,
+        multiplier: CGFloat = 1,
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
@@ -404,8 +370,8 @@ extension LayoutItem {
     ///   - priority: (optional) priority of constraint
     public func toMargin(
         _ attribute: NSLayoutConstraint.Attribute,
-        is relation: ConstraintRelation = .equal,
-        multiplier: CGFloat = 1.0,
+        is relation: NSLayoutConstraint.Relation = .equal,
+        multiplier: CGFloat = 1,
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
@@ -503,9 +469,7 @@ extension LayoutItem {
     /// ```
     public func center(
         between top: NSLayoutYAxisAnchor,
-        and bottom: NSLayoutYAxisAnchor,
-        topOffset: CGFloat = 0,
-        bottomOffest: CGFloat = 0
+        and bottom: NSLayoutYAxisAnchor
     ) -> LayoutItem {
         addingSuperviewConstraints {
             if let superview = $0.layoutItemView.superview {
@@ -514,8 +478,8 @@ extension LayoutItem {
                     superview.addLayoutGuide(guide)
                     return guide
                 }()
-                guide.top.constraint(to: top, constant: topOffset)
-                guide.bottom.constraint(to: bottom, constant: bottomOffest)
+                guide.top.constraint(to: top)
+                guide.bottom.constraint(to: bottom)
                 $0.layoutItemView.centerY.constraint(to: guide.centerY)
             }
         }
@@ -549,9 +513,7 @@ extension LayoutItem {
     /// ```
     public func center(
         between leading: NSLayoutXAxisAnchor,
-        and trailing: NSLayoutXAxisAnchor,
-        leadingOffset: CGFloat = 0,
-        trailingOffest: CGFloat = 0
+        and trailing: NSLayoutXAxisAnchor
     ) -> LayoutItem {
         addingSuperviewConstraints {
             if let superview = $0.layoutItemView.superview {
@@ -560,47 +522,47 @@ extension LayoutItem {
                     superview.addLayoutGuide(guide)
                     return guide
                 }()
-                guide.leading.constraint(to: leading, constant: leadingOffset)
-                guide.trailing.constraint(to: trailing, constant: trailingOffest)
+                guide.leading.constraint(to: leading)
+                guide.trailing.constraint(to: trailing)
                 $0.layoutItemView.centerX.constraint(to: guide.centerX)
             }
         }
     }
 
-    /// Constrains the edges to the superviews safeAreaGuides with `insets`
+    /// Constrains the edges to the superviews safeAreaGuide with `insets`
     ///
     /// - Postcondition:
     ///     Device must be running iOS 11 or higher
     /// - Parameters:
     ///   - insets: (optional) insets of view
     ///   - priority: (optional) priority of constraint
-    public func toGuides(
-        insets: UIEdgeInsets = .zero,
+    public func toSafeArea(
+        insets: NSDirectionalEdgeInsets = .zero,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         self
-            .toGuide(.top, insets.top, priority: priority)
-            .toGuide(.right, -insets.right, priority: priority)
-            .toGuide(.bottom, -insets.bottom, priority: priority)
-            .toGuide(.left, insets.left, priority: priority)
+            .toSafeArea(.top, insets.top, priority: priority)
+            .toSafeArea(.trailing, -insets.trailing, priority: priority)
+            .toSafeArea(.bottom, -insets.bottom, priority: priority)
+            .toSafeArea(.leading, insets.leading, priority: priority)
     }
 
-    /// Constrains the edges to the superviews safeAreaGuides with an `inset`
+    /// Constrains the edges to the superviews safeAreaGuide with an `inset`
     ///
     /// - Postcondition:
     ///     Device must be running iOS 11 or higher
     /// - Parameters:
     ///   - inset: inset of view
     ///   - priority: (optional) priority of constraint
-    public func toGuides(
+    public func toSafeArea(
         _ inset: CGFloat,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        toGuides(insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset),
-                 priority: priority)
+        toSafeArea(insets: NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset),
+                   priority: priority)
     }
 
-    /// Constrains the `attribute` to the superviews corresponding `attribute` safeAreaGuide
+    /// Constrains the `attribute` to the superviews corresponding safeAreaGuide `attribute`
     ///
     /// - Postcondition:
     ///     Device must be running iOS 11 or higher
@@ -610,15 +572,15 @@ extension LayoutItem {
     ///   - attribute: attribute to constrain
     ///   - constant: (optional) constant
     ///   - priority: (optional) priority of constraint
-    public func toGuide(
+    public func toSafeArea(
         _ attribute: XAxisAttribute,
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        toGuideAttribute(attribute, constant, priority: priority)
+        toSafeAreaAttribute(attribute, constant, priority: priority)
     }
 
-    /// Constrains the `attribute` to the superviews corresponding `attribute` safeAreaGuide
+    /// Constrains the `attribute` to the superviews corresponding safeAreaGuide `attribute`
     ///
     /// - Postcondition:
     ///     Device must be running iOS 11 or higher
@@ -628,15 +590,15 @@ extension LayoutItem {
     ///   - attribute: attribute to constrain
     ///   - constant: (optional) constant
     ///   - priority: (optional) priority of constraint
-    public func toGuide(
+    public func toSafeArea(
         _ attribute: YAxisAttribute,
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        toGuideAttribute(attribute, constant, priority: priority)
+        toSafeAreaAttribute(attribute, constant, priority: priority)
     }
 
-    /// Constrains the `attribute` to the superviews corresponding `attribute` safeAreaGuide
+    /// Constrains the `attribute` to the superviews corresponding safeAreaGuide `attribute`
     ///
     /// - Postcondition:
     ///     Device must be running iOS 11 or higher
@@ -646,15 +608,15 @@ extension LayoutItem {
     ///   - attribute: attribute to constrain
     ///   - constant: (optional) constant
     ///   - priority: (optional) priority of constraint
-    public func toGuide(
+    public func toSafeArea(
         _ attribute: DimensionAttribute,
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        toGuideAttribute(attribute, constant, priority: priority)
+        toSafeAreaAttribute(attribute, constant, priority: priority)
     }
 
-    private func toGuideAttribute<T: AnchorAttribute>(
+    private func toSafeAreaAttribute<T: AnchorAttribute>(
         _ attribute: T,
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
@@ -662,7 +624,7 @@ extension LayoutItem {
         addingSuperviewConstraints {
             if let safeAnchor = $0.safeAreaGuide?.anchor(for: attribute) {
                 let viewAnchor: NSLayoutAnchor<T.AnchorType> = $0.layoutItemView.anchor(for: attribute)
-                safeAnchor.constraint(equalTo: viewAnchor, constant: constant).withPriority(priority)
+                viewAnchor.constraint(equalTo: safeAnchor, constant: constant).withPriority(priority)
             }
         }
     }

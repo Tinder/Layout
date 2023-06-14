@@ -15,7 +15,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/Quick/Nimble.git",
-            from: "11.2.0"),
+            from: "12.0.0"),
         .package(
             url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
             from: "1.11.0"),
@@ -32,6 +32,9 @@ let package = Package(
                 "Layout",
                 "Nimble",
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
+            ],
+            exclude: [
+                "__Snapshots__",
             ],
             plugins: [
                 .plugin(name: "SwiftLintPlugin"),
