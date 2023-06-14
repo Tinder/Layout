@@ -42,38 +42,58 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testSizeWidth_andWithConstraintRelation_andWithPriority() {
+
         // swiftlint:disable:next closure_body_length
         assertLayout { view in
+
             // swiftlint:disable:next closure_body_length
             view.layout {
+
+                // Width Only
+
                 pinkView
                     .to([.top, .leading])
                     .size(height: 100)
                     .size(width: 50)
+
+                // With High Priority
+
                 yellowView
                     .to([.top, .trailing])
                     .size(height: 100)
                     .size(width: 1, priority: .low)
                     .size(width: 50, priority: .high)
+
+                // With GreaterThanOrEqual Relation and Width Priority
+
                 blueView
                     .to([.bottom, .leading])
                     .size(height: 100)
                     .size(width: 40, priority: .high)
                     .size(is: .greaterThanOrEqual, width: 50)
+
+                // With LessThanOrEqual Relation and Width Priority
+
                 greenView
                     .to([.bottom, .trailing])
                     .size(height: 100)
                     .size(width: 60, priority: .high)
                     .size(is: .lessThanOrEqual, width: 50)
+
+                // With GreaterThanOrEqual Relation
+
                 redView
-                    .to([.centerY], -50)
-                    .to([.centerX])
+                    .to(.centerY, -50)
+                    .to(.centerX)
                     .size(height: 100)
                     .size(width: 60)
                     .size(is: .greaterThanOrEqual, width: 50)
+
+                // With LessThanOrEqual Relation
+
                 orangeView
-                    .to([.centerY], 50)
-                    .to([.centerX])
+                    .to(.centerY, 50)
+                    .to(.centerX)
                     .size(height: 100)
                     .size(width: 40)
                     .size(is: .lessThanOrEqual, width: 50)
@@ -82,35 +102,55 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testSizeHeight_andWithConstraintRelation_andWithPriority() {
+
         // swiftlint:disable:next closure_body_length
         assertLayout { view in
+
             // swiftlint:disable:next closure_body_length
             view.layout {
+
+                // Height Only
+
                 pinkView
                     .to([.top, .leading])
                     .size(width: 50)
                     .size(height: 100)
+
+                // With Priority
+
                 yellowView
                     .to([.top, .trailing])
                     .size(width: 50)
                     .size(height: 1, priority: .low)
                     .size(height: 100, priority: .high)
+
+                // With GreaterThanOrEqual Relation
+
                 blueView
                     .to([.bottom, .leading])
                     .size(width: 50)
                     .size(height: 75, priority: .high)
                     .size(is: .greaterThanOrEqual, height: 100)
+
+                // With LessThanOrEqual Relation
+
                 greenView
                     .to([.bottom, .trailing])
                     .size(width: 50)
                     .size(height: 125, priority: .high)
                     .size(is: .lessThanOrEqual, width: 50)
+
+                // With GreaterThanOrEqual Relation and Height Priority
+
                 redView
                     .to([.centerY], -50)
                     .to([.centerX])
                     .size(width: 50)
                     .size(height: 110, priority: .high)
                     .size(is: .greaterThanOrEqual, height: 100)
+
+                // With LessThanOrEqual Relation and Height Priority
+
                 orangeView
                     .to([.centerY], 50)
                     .to([.centerX])
@@ -157,18 +197,38 @@ final class LayoutItemTests: XCTestCase {
                     .to([.top, .leading])
                     .size(height: 100)
                     .aspectRatio(0.75)
+                yellowView
+                    .to([.top, .trailing])
+                    .size(height: 100)
+                    .aspectRatio(0.25, priority: .low)
+                    .aspectRatio(0.75, priority: .high)
             }
         }
     }
 
-    func testPinWithUIEdgeInset_andWithPriority() {
+    func testPinWithUIEdgeInsets_andWithPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
-                    .pin(insets: UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12))
+                    .pin(
+                        insets: UIEdgeInsets(
+                            top: 12,
+                            left: 12,
+                            bottom: 12,
+                            right: 12
+                        )
+                    )
                 yellowView
                     .pin(insets: .zero, priority: .low)
-                    .pin(insets: UIEdgeInsets(top: 36, left: 36, bottom: 36, right: 36), priority: .high)
+                    .pin(
+                        insets: UIEdgeInsets(
+                            top: 36,
+                            left: 36,
+                            bottom: 36,
+                            right: 36
+                        ),
+                        priority: .high
+                    )
             }
         }
     }
@@ -191,17 +251,27 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToMarginsWithDirectionalInset_andWithPriority() {
+    func testToMarginsWithDirectionalInsets_andWithPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
                     .toMargins(
-                        insets: NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12)
+                        insets: NSDirectionalEdgeInsets(
+                            top: 12,
+                            leading: 12,
+                            bottom: 12,
+                            trailing: 12
+                        )
                     )
                 yellowView
                     .toMargins(priority: .low)
                     .toMargins(
-                        insets: NSDirectionalEdgeInsets(top: 36, leading: 36, bottom: 36, trailing: 36),
+                        insets: NSDirectionalEdgeInsets(
+                            top: 36,
+                            leading: 36,
+                            bottom: 36,
+                            trailing: 36
+                        ),
                         priority: .high
                     )
             }
@@ -223,12 +293,21 @@ final class LayoutItemTests: XCTestCase {
     func testCenterWithDefaultUIOffset_andWithCustomUIOffset_andWithPriority() {
         assertLayout { view in
             view.layout {
+
+                // Default Offset
+
                 pinkView
                     .size(width: 50, height: 50)
                     .center()
+
+                // With Custom Offset
+
                 yellowView
                     .size(width: 50, height: 50)
                     .center(offset: UIOffset(horizontal: 50, vertical: 50))
+
+                // With Priority
+
                 blueView
                     .size(width: 50, height: 50)
                     .center(offset: UIOffset(horizontal: -25, vertical: -25), priority: .low)
@@ -240,18 +319,33 @@ final class LayoutItemTests: XCTestCase {
     func testCenterWithAxis_andWithOffset_andWithMultiplier_andWithPriority() {
         assertLayout { view in
             view.layout {
+
+                // Vertical Axis
+
                 pinkView
                     .size(width: 100, height: 100)
                     .center(.vertical)
+
+                // Horizontal Axis
+
                 yellowView
                     .size(width: 100, height: 100)
                     .center(.horizontal)
+
+                // With Offset
+
                 blueView
                     .size(width: 100, height: 100)
                     .center(.vertical, offset: 100)
+
+                // With Multiplier
+
                 greenView
                     .size(width: 100, height: 100)
                     .center(.horizontal, multiplier: 1.5)
+
+                // With Priority
+
                 orangeView
                     .size(width: 100, height: 100)
                     .center(.vertical, offset: -350, priority: .low)
@@ -263,18 +357,30 @@ final class LayoutItemTests: XCTestCase {
     func testPadToMargins_andPadWithMargin_andWithPriority() {
         assertLayout { view in
             view.layout {
+
+                // Pad to Leading/Trailing
+
                 pinkView
                     .size(height: 100)
                     .pad()
+
+                // Pad with Value
+
                 yellowView
                     .size(height: 100)
                     .to([.bottom])
                     .pad(50)
+
+                // Pad to Leading/Trailing and with Priority
+
                 blueView
                     .size(height: 100)
                     .pad(priority: .high)
                     .pad(1, priority: .low)
                     .to([.top], 100)
+
+                // Pad with Value and with Priority
+
                 greenView
                     .size(height: 100)
                     .pad(100, priority: .low)
