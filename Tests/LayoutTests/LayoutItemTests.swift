@@ -1,5 +1,10 @@
 //
+//  All Contributions by Match Group
+//
 //  Copyright © 2023 Tinder (Match Group, LLC)
+//
+//  Licensed under the Match Group Modified 3-Clause BSD License.
+//  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
 @testable import Layout
@@ -40,5 +45,11 @@ final class LayoutItemTests: XCTestCase {
         expect(item.bottom) == item.layoutItemView.bottom
         expect(item.width) == item.layoutItemView.width
         expect(item.height) == item.layoutItemView.height
+    }
+
+    func testLayoutConstraintAttributeArrayExtension() {
+        expect([NSLayoutConstraint.Attribute].edges) == [.top, .left, .bottom, .right]
+        expect([NSLayoutConstraint.Attribute].vertical) == [.top, .bottom]
+        expect([NSLayoutConstraint.Attribute].horizontal) == [.left, .right]
     }
 }

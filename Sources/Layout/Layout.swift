@@ -1,12 +1,15 @@
 //
+//  All Contributions by Match Group
+//
 //  Copyright © 2023 Tinder (Match Group, LLC)
+//
+//  Licensed under the Match Group Modified 3-Clause BSD License.
+//  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
 // swiftlint:disable file_length
 
 import UIKit
-
-// swiftlint:disable type_body_length
 
 /// API for adding subviews and constraints to a view.
 ///
@@ -33,7 +36,7 @@ import UIKit
 ///         .vertical([view2, view3])
 ///         .activate()
 ///         ````
-public final class Layout {
+public final class Layout { // swiftlint:disable:this type_body_length
 
     /// The standard spacing when using vfl. The horizontal bars in `|[view1]-[view2]-|`
     public static let standardSpacing: CGFloat = 8
@@ -181,11 +184,11 @@ public final class Layout {
     public func constrain(
         _ view: UIView,
         _ attribute: NSLayoutConstraint.Attribute? = nil,
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         to targetAttribute: NSLayoutConstraint.Attribute,
         of targetView: UIView,
-        multiplier: CGFloat = 1.0,
-        constant: CGFloat = 0.0
+        multiplier: CGFloat = 1,
+        constant: CGFloat = 0
     ) -> Layout {
         adding(view.constraint(for: attribute,
                                is: relation,
@@ -208,9 +211,9 @@ public final class Layout {
     @discardableResult
     public func constrain<T>(
         _ anchor: NSLayoutAnchor<T>,
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         to targetAnchor: NSLayoutAnchor<T>,
-        constant: CGFloat = 0.0,
+        constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> Layout {
         let constraint: NSLayoutConstraint
@@ -223,6 +226,9 @@ public final class Layout {
                                            constant: constant)
         case .lessThanOrEqual:
             constraint = anchor.constraint(lessThanOrEqualTo: targetAnchor,
+                                           constant: constant)
+        @unknown default:
+            constraint = anchor.constraint(equalTo: targetAnchor,
                                            constant: constant)
         }
         return adding(constraint.withPriority(priority))
@@ -240,10 +246,10 @@ public final class Layout {
     @discardableResult
     public func constrain(
         _ anchor: NSLayoutDimension,
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         to targetAnchor: NSLayoutDimension,
-        multiplier: CGFloat = 1.0,
-        constant: CGFloat = 0.0,
+        multiplier: CGFloat = 1,
+        constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> Layout {
         let constraint: NSLayoutConstraint
@@ -260,6 +266,10 @@ public final class Layout {
             constraint = anchor.constraint(lessThanOrEqualTo: targetAnchor,
                                            multiplier: multiplier,
                                            constant: constant)
+        @unknown default:
+            constraint = anchor.constraint(equalTo: targetAnchor,
+                                           multiplier: multiplier,
+                                           constant: constant)
         }
         return adding(constraint.withPriority(priority))
     }
@@ -274,7 +284,7 @@ public final class Layout {
     @discardableResult
     public func constrain(
         _ anchor: NSLayoutDimension,
-        is relation: ConstraintRelation = .equal,
+        is relation: NSLayoutConstraint.Relation = .equal,
         to constant: CGFloat,
         priority: UILayoutPriority = .required
     ) -> Layout {
@@ -286,6 +296,8 @@ public final class Layout {
             constraint = anchor.constraint(greaterThanOrEqualToConstant: constant)
         case .lessThanOrEqual:
             constraint = anchor.constraint(lessThanOrEqualToConstant: constant)
+        @unknown default:
+            constraint = anchor.constraint(equalToConstant: constant)
         }
         return adding(constraint.withPriority(priority))
     }
@@ -647,8 +659,6 @@ public final class Layout {
     }
 }
 
-// swiftlint:enable type_body_length
-
 extension Collection where Element == Layout {
 
     /// Activates all constraints of each instance
@@ -661,5 +671,3 @@ extension Collection where Element == Layout {
         forEach { $0.deactivate() }
     }
 }
-
-// swiftlint:enable file_length
