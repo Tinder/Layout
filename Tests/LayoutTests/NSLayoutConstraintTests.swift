@@ -17,9 +17,8 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = .init()
         let constraint: NSLayoutConstraint = .init(
-            item: view,
+            item: UIView(),
             attribute: .height,
             relatedBy: .equal,
             toItem: nil,
@@ -62,13 +61,18 @@ final class NSLayoutConstraintTests: XCTestCase {
             "topMargin": 20,
             "height": 100
         ]
+        let constraints: [NSLayoutConstraint] = NSLayoutConstraint.constraints(
+            formats: formats,
+            views: views,
+            metrics: metrics
+        )
 
         // THEN
 
         assertLayout { view in
             view
                 .layout(subview)
-                .adding(NSLayoutConstraint.constraints(formats: formats, views: views, metrics: metrics))
+                .adding(constraints)
         }
     }
 
@@ -79,24 +83,26 @@ final class NSLayoutConstraintTests: XCTestCase {
         let subview: UIView = pinkView
         let formats: [String] = ["H:|-leftMargin-[subview(width)]", "V:|-topMargin-[subview(height)]"]
         let views: [String: Any] = ["subview": subview]
-
         let metrics: [String: Any] = [
             "leftMargin": 10,
             "width": 50,
             "topMargin": 20,
             "height": 100
         ]
-
         let options: NSLayoutConstraint.FormatOptions = .directionRightToLeft
+        let constraints: [NSLayoutConstraint] = NSLayoutConstraint.constraints(
+            formats: formats,
+            views: views,
+            metrics: metrics,
+            options: options
+        )
 
         // THEN
 
         assertLayout { view in
             view
                 .layout(subview)
-                .adding(
-                    NSLayoutConstraint.constraints(formats: formats, views: views, metrics: metrics, options: options)
-                )
+                .adding(constraints)
         }
     }
 
