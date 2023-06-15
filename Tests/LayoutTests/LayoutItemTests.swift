@@ -207,28 +207,15 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testPinWithUIEdgeInsets_andWithPriority() {
+        let insets12: UIEdgeInsets = .init(top: 12, left: 12, bottom: 12, right: 12)
+        let insets36: UIEdgeInsets = .init(top: 36, left: 36, bottom: 36, right: 36)
         assertLayout { view in
             view.layout {
                 pinkView
-                    .pin(
-                        insets: UIEdgeInsets(
-                            top: 12,
-                            left: 12,
-                            bottom: 12,
-                            right: 12
-                        )
-                    )
+                    .pin(insets: insets12)
                 yellowView
                     .pin(insets: .zero, priority: .low)
-                    .pin(
-                        insets: UIEdgeInsets(
-                            top: 36,
-                            left: 36,
-                            bottom: 36,
-                            right: 36
-                        ),
-                        priority: .high
-                    )
+                    .pin(insets: insets36, priority: .high)
             }
         }
     }
@@ -252,28 +239,15 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToMarginsWithDirectionalInsets_andWithPriority() {
+        let insets12: NSDirectionalEdgeInsets = .init(top: 12, leading: 12, bottom: 12, trailing: 12)
+        let insets36: NSDirectionalEdgeInsets = .init(top: 36, leading: 36, bottom: 36, trailing: 36)
         assertLayout { view in
             view.layout {
                 pinkView
-                    .toMargins(
-                        insets: NSDirectionalEdgeInsets(
-                            top: 12,
-                            leading: 12,
-                            bottom: 12,
-                            trailing: 12
-                        )
-                    )
+                    .toMargins(insets: insets12)
                 yellowView
                     .toMargins(priority: .low)
-                    .toMargins(
-                        insets: NSDirectionalEdgeInsets(
-                            top: 36,
-                            leading: 36,
-                            bottom: 36,
-                            trailing: 36
-                        ),
-                        priority: .high
-                    )
+                    .toMargins(insets: insets36, priority: .high)
             }
         }
     }
