@@ -25,19 +25,19 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToGuidesInsetZero() {
+    func testToSafeAreaInsetZero() {
         assertLayout { view in
             view.layout(pinkView.toSafeArea(0))
         }
     }
 
-    func testToGuidesInsetTen() {
+    func testToSafeAreaInsetTen() {
         assertLayout { view in
             view.layout(pinkView.toSafeArea(10))
         }
     }
 
-    func testToGuidesInsetPriority() {
+    func testToSafeAreaInsetPriority() {
 
         // GIVEN
 
