@@ -8,6 +8,7 @@
 //
 
 @testable import Layout
+import Nimble
 import XCTest
 
 final class LayoutItemTests: XCTestCase {
@@ -53,5 +54,11 @@ final class LayoutItemTests: XCTestCase {
                 blueView.toGuides(insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), priority: .high)
             }
         }
+    }
+
+    func testLayoutConstraintAttributeArrayExtension() {
+        expect([NSLayoutConstraint.Attribute].edges) == [.top, .left, .bottom, .right]
+        expect([NSLayoutConstraint.Attribute].vertical) == [.top, .bottom]
+        expect([NSLayoutConstraint.Attribute].horizontal) == [.left, .right]
     }
 }
