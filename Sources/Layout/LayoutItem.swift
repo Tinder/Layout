@@ -192,7 +192,9 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints {
-            $0.layoutItemView.width.constraint(equalTo: $0.layoutItemView.height, multiplier: ratio)
+            $0.layoutItemView.width
+                .constraint(equalTo: $0.layoutItemView.height, multiplier: ratio)
+                .withPriority(priority)
         }
     }
 
