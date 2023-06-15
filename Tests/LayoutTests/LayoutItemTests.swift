@@ -27,13 +27,15 @@ final class LayoutItemTests: XCTestCase {
 
     func testToGuides() {
         assertLayout { view in
-            view.layout(pinkView.toGuides())
+            view.layout(pinkView.toSafeArea())
         }
     }
 
     func testToGuidesInsets() {
         assertLayout { view in
-            view.layout(pinkView.toGuides(insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)))
+            view.layout(
+                pinkView.toSafeArea(insets: NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
+            )
         }
     }
 
@@ -48,10 +50,14 @@ final class LayoutItemTests: XCTestCase {
 
         assertLayout { view in
             view.layout {
-                pinkView.toGuides(insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), priority: .low)
-                pinkView.toGuides(priority: .high)
-                blueView.toGuides(priority: .low)
-                blueView.toGuides(insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), priority: .high)
+                pinkView.toSafeArea(
+                    insets: NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10), priority: .low
+                )
+                pinkView.toSafeArea(priority: .high)
+                blueView.toSafeArea(priority: .low)
+                blueView.toSafeArea(
+                    insets: NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10), priority: .high
+                )
             }
         }
     }
