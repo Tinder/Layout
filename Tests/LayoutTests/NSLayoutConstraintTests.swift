@@ -97,18 +97,18 @@ final class NSLayoutConstraintTests: XCTestCase {
                                            metrics: metrics,
                                            options: options)
         }
-        
+
         // THEN
-        
+
         assertLayout { view in
             view
                 .layout(subview)
                 .adding(constraints())
         }
     }
-    
+
     func testOffset() {
-        
+
         // GIVEN
 
         let constraint: NSLayoutConstraint = .init()
