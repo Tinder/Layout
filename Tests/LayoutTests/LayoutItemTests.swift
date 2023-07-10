@@ -364,6 +364,89 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToAttribute_andWithConstant_andWithMultiplier_andWithPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Top Leading
+
+                pinkView
+                    .size(width: 100, height: 100)
+                    .to(.top)
+                    .to(.leading)
+
+                // To Top Trailing with Constant
+
+                yellowView
+                    .size(width: 100, height: 100)
+                    .to(.top, 25)
+                    .to(.trailing, -25)
+
+                // To Bottom Leading with Bottom Multiplier
+
+                blueView
+                    .size(width: 100, height: 100)
+                    .to(.bottom, multiplier: 0.5)
+                    .to(.leading)
+
+                // To Bottom Leading with Bottom Constant and Multiplier
+
+                greenView
+                    .size(width: 100, height: 100)
+                    .to(.bottom, multiplier: 0.75, 50)
+                    .to(.leading)
+
+                // To Bottom Trailing with Constant and Priority
+
+                orangeView
+                    .size(width: 100, height: 100)
+                    .to(.bottom, -100, priority: .low)
+                    .to(.bottom, -50, priority: .high)
+                    .to(.trailing, -100, priority: .low)
+                    .to(.trailing, -50, priority: .high)
+            }
+        }
+    }
+
+    func testToAttributeWithRelation() {
+        assertLayout { view in
+            view.layout {
+
+                // To Top Leading With Less Than Or Equal Relation and Higher Constraint
+
+                pinkView
+                    .size(width: 100, height: 100)
+                    .to(.top, is: .lessThanOrEqual, 100)
+                    .to(.top, 150, priority: .high)
+                    .to(.leading, 50)
+
+                // To Top Trailing With Less Than Or Equal Relation and Lower Constraint
+
+                yellowView
+                    .size(width: 100, height: 100)
+                    .to(.top, is: .lessThanOrEqual, 100)
+                    .to(.top, 50, priority: .high)
+                    .to(.trailing, -50)
+
+                // To Top Trailing With Greater Than Or Equal Relation and Lower Constraint
+
+                blueView
+                    .size(width: 100, height: 100)
+                    .to(.bottom, is: .greaterThanOrEqual, -100)
+                    .to(.bottom, -150, priority: .high)
+                    .to(.leading, 50)
+
+                // To Top Trailing With Greater Than Or Equal Relation and Higher Constraint
+
+                greenView
+                    .size(width: 100, height: 100)
+                    .to(.bottom, is: .greaterThanOrEqual, -100)
+                    .to(.bottom, -50, priority: .high)
+                    .to(.trailing, -50)
+            }
+        }
+    }
+
     func testViewLayoutItemLayoutAnchoring() {
 
         // GIVEN
