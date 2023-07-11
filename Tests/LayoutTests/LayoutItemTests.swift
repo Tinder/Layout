@@ -729,6 +729,35 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToSafeAreaWithDimensionAttribute_andWithConstant_andWithPriority() {
+        assertLayout { view in
+            view.layout{
+
+                // To Safe Area DimensionAttribute
+
+                pinkView
+                    .size(width: 50)
+                    .to([.leading, .bottom])
+                    .toSafeArea(.height)
+
+                // To Safe Area DimensionAttribute with Constant
+
+                yellowView
+                    .size(height: 50)
+                    .to(.top)
+                    .toSafeArea(.width, -50)
+
+                // To Safe Area DimensionAttribute with Priority
+
+                blueView
+                    .size(width: 50)
+                    .to([.trailing, .bottom])
+                    .toSafeArea(.height, -250, priority: .low)
+                    .toSafeArea(.height, -50, priority: .high)
+            }
+        }
+    }
+
     func testViewLayoutItemLayoutAnchoring() {
 
         // GIVEN
