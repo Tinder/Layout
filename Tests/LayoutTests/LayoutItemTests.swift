@@ -516,6 +516,44 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToMarginWithRelation() {
+        assertLayout { view in
+            view.layout {
+                // To Top Leading With Less Than Or Equal Relation and Higher Constraint
+
+                pinkView
+                    .size(width: 100, height: 100)
+                    .toMargin(.top, is: .lessThanOrEqual, 100)
+                    .toMargin(.top, 150, priority: .high)
+                    .toMargin(.leading, 50)
+
+                // To Top Trailing With Less Than Or Equal Relation and Lower Constraint
+
+                yellowView
+                    .size(width: 100, height: 100)
+                    .toMargin(.top, is: .lessThanOrEqual, 100)
+                    .toMargin(.top, 50, priority: .high)
+                    .toMargin(.trailing, -50)
+
+                // To Top Trailing With Greater Than Or Equal Relation and Lower Constraint
+
+                blueView
+                    .size(width: 100, height: 100)
+                    .toMargin(.bottom, is: .greaterThanOrEqual, -100)
+                    .toMargin(.bottom, -150, priority: .high)
+                    .toMargin(.leading, 50)
+
+                // To Top Trailing With Greater Than Or Equal Relation and Higher Constraint
+
+                greenView
+                    .size(width: 100, height: 100)
+                    .toMargin(.bottom, is: .greaterThanOrEqual, -100)
+                    .toMargin(.bottom, -50, priority: .high)
+                    .toMargin(.trailing, -50)
+            }
+        }
+    }
+
     func testViewLayoutItemLayoutAnchoring() {
 
         // GIVEN
