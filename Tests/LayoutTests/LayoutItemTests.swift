@@ -580,6 +580,28 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToBottomMargin_andWithPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Bottom Leading
+
+                pinkView
+                    .size(width: 100, height: 100)
+                    .to(.leading)
+                    .toBottomMargin(minInset: 100)
+
+                // To Bottom Trailing with Priority
+
+                blueView
+                    .size(width: 100, height: 100)
+                    .to(.trailing)
+                    .toBottomMargin(minInset: 50, priority: .low)
+                    .toBottomMargin(minInset: 100, priority: .high)
+            }
+        }
+    }
+
     func testViewLayoutItemLayoutAnchoring() {
 
         // GIVEN
