@@ -624,6 +624,37 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToSafeArea_andWithInsets_andWithPriority() {
+
+        // GIVEN
+
+        let smallInsets: NSDirectionalEdgeInsets = .init(top: 25, leading: 25, bottom: 25, trailing: 25)
+        let largeInsets: NSDirectionalEdgeInsets = .init(top: 50, leading: 50, bottom: 50, trailing: 50)
+
+        // THEN
+
+        assertLayout { view in
+            view.layout{
+
+                // To Safe Area
+
+                pinkView
+                    .toSafeArea()
+
+                // To Safe Area with Insets
+
+                yellowView
+                    .toSafeArea(insets: smallInsets)
+
+                // To Safe Area with Priority
+
+                blueView
+                    .toSafeArea(insets: smallInsets, priority: .low)
+                    .toSafeArea(insets: largeInsets, priority: .high)
+            }
+        }
+    }
+
     func testViewLayoutItemLayoutAnchoring() {
 
         // GIVEN
