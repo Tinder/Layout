@@ -473,6 +473,49 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToMargin_andWithMultiplier_andWithConstant_andWithPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Top Leading
+
+                pinkView
+                    .size(width: 100, height: 100)
+                    .toMargin(.top)
+                    .toMargin(.leading)
+
+                // To Top Leading with Constant
+
+                yellowView
+                    .size(width: 100, height: 100)
+                    .toMargin(.top, 100)
+                    .toMargin(.leading, 100)
+
+                // To Top Trailing with Multiplier
+
+                blueView
+                    .size(width: 100, height: 100)
+                    .toMargin(.top)
+                    .toMargin(.trailing, multiplier: 0.75)
+
+                // To Bottom Leading with Bottom Constant and Multiplier
+
+                greenView
+                    .size(width: 100, height: 100)
+                    .to(.bottom, multiplier: 0.75, 50)
+                    .to(.leading)
+
+                // To Bottom Trailing with Constant and Priority
+
+                orangeView
+                    .size(width: 100, height: 100)
+                    .toMargin(.bottom, -100, priority: .low)
+                    .toMargin(.bottom, -50, priority: .high)
+                    .toMargin(.trailing, -50)
+            }
+        }
+    }
+
     func testViewLayoutItemLayoutAnchoring() {
 
         // GIVEN
