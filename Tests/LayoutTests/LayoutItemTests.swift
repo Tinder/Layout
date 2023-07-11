@@ -632,7 +632,7 @@ final class LayoutItemTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-            view.layout{
+            view.layout {
 
                 // To Safe Area
 
@@ -655,7 +655,7 @@ final class LayoutItemTests: XCTestCase {
 
     func testToSafeAreaWithInset_andWithPriority() {
         assertLayout { view in
-            view.layout{
+            view.layout {
 
                 // To Safe Area Inset
 
@@ -673,7 +673,7 @@ final class LayoutItemTests: XCTestCase {
 
     func testToSafeAreaWithXAttribute_andWithConstant_andWithPriority() {
         assertLayout { view in
-            view.layout{
+            view.layout {
 
                 // To Safe Area XAttribute
 
@@ -702,7 +702,7 @@ final class LayoutItemTests: XCTestCase {
 
     func testToSafeAreaWithYAttribute_andWithConstant_andWithPriority() {
         assertLayout { view in
-            view.layout{
+            view.layout {
 
                 // To Safe Area YAttribute
 
@@ -731,7 +731,7 @@ final class LayoutItemTests: XCTestCase {
 
     func testToSafeAreaWithDimensionAttribute_andWithConstant_andWithPriority() {
         assertLayout { view in
-            view.layout{
+            view.layout {
 
                 // To Safe Area DimensionAttribute
 
