@@ -447,6 +447,32 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToAttributes_andWithConstant_andWithPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Bottom Leading
+
+                pinkView
+                    .size(width: 100, height: 100)
+                    .to([.bottom, .leading])
+
+                // To Bottom Trailing with Constant
+
+                yellowView
+                    .size(width: 100, height: 100)
+                    .to([.bottom, .trailing], -100)
+
+                // To Top Leading with Priority
+
+                blueView
+                    .size(width: 100, height: 100)
+                    .to([.top, .leading], 25, priority: .low)
+                    .to([.top, .leading], 100, priority: .high)
+            }
+        }
+    }
+
     func testViewLayoutItemLayoutAnchoring() {
 
         // GIVEN
