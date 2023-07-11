@@ -602,6 +602,28 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testCenterBetweenTopAndBottom() {
+
+        assertLayout { view in
+            view.layout(
+                pinkView
+                    .size(width: 200, height: 400)
+                    .center(between: view.safeAreaLayoutGuide.top, and: view.safeAreaLayoutGuide.bottom)
+            )
+        }
+    }
+
+    func testCenterBetweenLeadingAndTrailing() {
+
+        assertLayout { view in
+            view.layout(
+                pinkView
+                    .size(width: 200, height: 400)
+                    .center(between: view.safeAreaLayoutGuide.leading, and: view.safeAreaLayoutGuide.trailing)
+            )
+        }
+    }
+
     func testViewLayoutItemLayoutAnchoring() {
 
         // GIVEN
