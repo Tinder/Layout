@@ -603,7 +603,6 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testCenterBetweenTopAndBottom() {
-
         assertLayout { view in
             view.layout(
                 pinkView
@@ -614,7 +613,6 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testCenterBetweenLeadingAndTrailing() {
-
         assertLayout { view in
             view.layout(
                 pinkView
