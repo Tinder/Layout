@@ -653,6 +653,24 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToSafeAreaWithInset_andWithPriority() {
+        assertLayout { view in
+            view.layout{
+
+                // To Safe Area Inset
+
+                pinkView
+                    .toSafeArea(25)
+
+                // To Safe Area Inset with Priority
+
+                yellowView
+                    .toSafeArea(25, priority: .low)
+                    .toSafeArea(50, priority: .high)
+            }
+        }
+    }
+
     func testViewLayoutItemLayoutAnchoring() {
 
         // GIVEN
