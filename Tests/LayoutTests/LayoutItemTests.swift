@@ -13,6 +13,25 @@ import XCTest
 
 final class LayoutItemTests: XCTestCase {
 
+    func testID() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+
+        // THEN
+
+        expect(view.identifier) == nil
+
+        // WHEN
+
+        _ = view.id("testID")
+
+        // THEN
+
+        expect(view.identifier) == "testID"
+    }
+
     func testSizeWidthAndHeight_andWithPriority() {
         assertLayout { view in
             view.layout {
