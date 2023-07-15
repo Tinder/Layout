@@ -292,7 +292,7 @@ extension LayoutItem {
     ///
     /// - Note:
     ///     * `.pad()` constrains to margins
-    ///     * `.pad(20)` constrains to leading and traiing with a space of 20
+    ///     * `.pad(20)` constrains to leading and trailing with a space of 20
     ///     * `.to([.leading, .trailing])` is preferred over `.pad(0)`
     /// - Parameters:
     ///   - margin: (optional) Inset from superviews leading and trailing anchors
