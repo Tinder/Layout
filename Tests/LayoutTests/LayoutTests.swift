@@ -142,6 +142,7 @@ final class LayoutTests: XCTestCase {
         expect(layout.items["subView1"]) === subView1
         expect(layout.items["subView2"]) === subView2
     }
+
     func testVerticalWithFormatAndMetricsAndOptions() {
 
         // GIVEN
@@ -171,6 +172,37 @@ final class LayoutTests: XCTestCase {
             let layout: Layout = .init(view, subView)
             layout.adding(widthConstraint)
             return layout.vertical(format, metrics: metrics, options: .alignAllLeft)
+        }
+    }
+    func testHorizontalWithFormatAndMetricsAndOptions() {
+
+        // GIVEN
+
+        let subView: UIView = .init()
+            .id("subView")
+        subView.backgroundColor = .systemPink
+        let heightConstraint: NSLayoutConstraint = .init(
+            item: subView,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 75
+        )
+        let format: String = "|-leftMargin-[subView(width)]"
+        let metrics: [String: Any] = [
+            "leftMargin": 25,
+            "width": 275,
+            "subView": subView
+        ]
+
+        // THEN
+
+        assertLayout { view in
+            let layout: Layout = .init(view, subView)
+            layout.adding(heightConstraint)
+            return layout.horizontal(format, metrics: metrics, options: .alignAllTop)
         }
     }
 }
