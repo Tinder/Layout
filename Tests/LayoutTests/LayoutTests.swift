@@ -114,4 +114,36 @@ final class LayoutTests: XCTestCase {
         expect(layout2.metrics["height"] as? Int) == 100
         expect(layout2.items["subView2"]) === subView2
     }
+
+    func testVerticalWithFormatAndMetricsAndOptions() {
+
+        // GIVEN
+
+        let subView: UIView = .init()
+            .id("subView")
+        subView.backgroundColor = .systemPink
+        let widthConstraint: NSLayoutConstraint = .init(
+            item: subView,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 75
+        )
+        let format: String = "|-topMargin-[subView(height)]"
+        let metrics: [String: Any] = [
+            "topMargin": 25,
+            "height": 300,
+            "subView": subView
+        ]
+
+        // THEN
+
+        assertLayout { view in
+            let layout: Layout = .init(view, subView)
+            layout.adding(widthConstraint)
+            return layout.vertical(format, metrics: metrics, options: .alignAllLeft)
+        }
+    }
 }
