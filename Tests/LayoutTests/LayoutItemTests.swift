@@ -408,7 +408,7 @@ final class LayoutItemTests: XCTestCase {
                     .to(.bottom, multiplier: 0.5)
                     .to(.leading)
 
-                // To Bottom Leading with Bottom Constant and Multiplier
+                // To Bottom Leading with Bottom Multiplier and Constant
 
                 greenView
                     .size(width: 100, height: 100)
