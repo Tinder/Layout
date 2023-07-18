@@ -517,7 +517,7 @@ final class LayoutItemTests: XCTestCase {
                     .toMargin(.top)
                     .toMargin(.trailing, multiplier: 0.75)
 
-                // To Bottom Leading with Bottom Constant and Multiplier
+                // To Bottom Leading with Bottom Multiplier and Constant
 
                 greenView
                     .size(width: 100, height: 100)
