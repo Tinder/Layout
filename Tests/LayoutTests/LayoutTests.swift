@@ -115,6 +115,33 @@ final class LayoutTests: XCTestCase {
         expect(layout2.items["subView2"]) === subView2
     }
 
+    func testInitWithContainerViewAndWithMetricsAndWithItems() {
+
+        // GIVEN
+
+        let containerView: UIView = .init()
+        let subView1: UIView = .init()
+        let subView2: UIView = .init()
+        let metrics: [String: Any] = ["height": 100]
+        let layoutItems: [LayoutItem] = [
+            subView1.id("subView1"),
+            subView2.id("subView2")
+        ]
+
+        // WHEN
+
+        let layout: Layout = .init(containerView, metrics: metrics, items: layoutItems)
+
+        // THEN
+
+        expect(layout.containerView) === containerView
+        expect(layout.metrics.count) == 1
+        expect(layout.metrics["height"] as? Int) == 100
+
+        expect(layout.items.count) == 2
+        expect(layout.items["subView1"]) === subView1
+        expect(layout.items["subView2"]) === subView2
+    }
     func testVerticalWithFormatAndMetricsAndOptions() {
 
         // GIVEN
