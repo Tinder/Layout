@@ -1,0 +1,4 @@
+<UIView; frame = (0 0; 375 812); autoresize = W+H; backgroundColor = UIExtendedGrayColorSpace 1 1; layer = <CALayer>>
+   | <UIView; frame = (16 678; 100 100); backgroundColor = UIExtendedSRGBColorSpace 1 0.176471 0.333333 1; layer = <CALayer>>
+   | <UIView; frame = (159 578; 100 100); backgroundColor = UIExtendedSRGBColorSpace 1 1 0 1; layer = <CALayer>>
+   | <UIView; frame = (116 150; 100 100); backgroundColor = UIExtendedSRGBColorSpace 0 0 1 1; layer = <CALayer>>

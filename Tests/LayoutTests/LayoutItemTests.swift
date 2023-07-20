@@ -13,6 +13,25 @@ import XCTest
 
 final class LayoutItemTests: XCTestCase {
 
+    func testID() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+
+        // THEN
+
+        expect(view.identifier) == nil
+
+        // WHEN
+
+        _ = view.id("testID")
+
+        // THEN
+
+        expect(view.identifier) == "testID"
+    }
+
     func testSizeWidthAndHeight_andWithPriority() {
         assertLayout { view in
             view.layout {
@@ -360,6 +379,401 @@ final class LayoutItemTests: XCTestCase {
                     .pad(100, priority: .low)
                     .pad(50, priority: .high)
                     .to([.bottom], -100)
+            }
+        }
+    }
+
+    func testToAttribute_andWithConstant_andWithMultiplier_andWithPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Top Leading
+
+                pinkView
+                    .size(width: 100, height: 100)
+                    .to(.top)
+                    .to(.leading)
+
+                // To Top Trailing with Constant
+
+                yellowView
+                    .size(width: 100, height: 100)
+                    .to(.top, 25)
+                    .to(.trailing, -25)
+
+                // To Bottom Leading with Bottom Multiplier
+
+                blueView
+                    .size(width: 100, height: 100)
+                    .to(.bottom, multiplier: 0.5)
+                    .to(.leading)
+
+                // To Bottom Leading with Bottom Multiplier and Constant
+
+                greenView
+                    .size(width: 100, height: 100)
+                    .to(.bottom, multiplier: 0.75, 50)
+                    .to(.leading)
+
+                // To Bottom Trailing with Constant and Priority
+
+                orangeView
+                    .size(width: 100, height: 100)
+                    .to(.bottom, -100, priority: .low)
+                    .to(.bottom, -50, priority: .high)
+                    .to(.trailing, -100, priority: .low)
+                    .to(.trailing, -50, priority: .high)
+            }
+        }
+    }
+
+    func testToAttributeWithRelation() {
+        assertLayout { view in
+            view.layout {
+
+                // To Top Leading With Less Than Or Equal Relation and Higher Constraint
+
+                pinkView
+                    .size(width: 100, height: 100)
+                    .to(.top, is: .lessThanOrEqual, 100)
+                    .to(.top, 150, priority: .high)
+                    .to(.leading, 50)
+
+                // To Top Trailing With Less Than Or Equal Relation and Lower Constraint
+
+                yellowView
+                    .size(width: 100, height: 100)
+                    .to(.top, is: .lessThanOrEqual, 100)
+                    .to(.top, 50, priority: .high)
+                    .to(.trailing, -50)
+
+                // To Top Trailing With Greater Than Or Equal Relation and Lower Constraint
+
+                blueView
+                    .size(width: 100, height: 100)
+                    .to(.bottom, is: .greaterThanOrEqual, -100)
+                    .to(.bottom, -150, priority: .high)
+                    .to(.leading, 50)
+
+                // To Top Trailing With Greater Than Or Equal Relation and Higher Constraint
+
+                greenView
+                    .size(width: 100, height: 100)
+                    .to(.bottom, is: .greaterThanOrEqual, -100)
+                    .to(.bottom, -50, priority: .high)
+                    .to(.trailing, -50)
+            }
+        }
+    }
+
+    func testToAttributes_andWithConstant_andWithPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Bottom Leading
+
+                pinkView
+                    .size(width: 100, height: 100)
+                    .to([.bottom, .leading])
+
+                // To Bottom Trailing with Constant
+
+                yellowView
+                    .size(width: 100, height: 100)
+                    .to([.bottom, .trailing], -100)
+
+                // To Top Leading with Priority
+
+                blueView
+                    .size(width: 100, height: 100)
+                    .to([.top, .leading], 25, priority: .low)
+                    .to([.top, .leading], 100, priority: .high)
+            }
+        }
+    }
+
+    func testToMargin_andWithMultiplier_andWithConstant_andWithPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Top Leading
+
+                pinkView
+                    .size(width: 100, height: 100)
+                    .toMargin(.top)
+                    .toMargin(.leading)
+
+                // To Top Leading with Constant
+
+                yellowView
+                    .size(width: 100, height: 100)
+                    .toMargin(.top, 100)
+                    .toMargin(.leading, 100)
+
+                // To Top Trailing with Multiplier
+
+                blueView
+                    .size(width: 100, height: 100)
+                    .toMargin(.top)
+                    .toMargin(.trailing, multiplier: 0.75)
+
+                // To Bottom Leading with Bottom Multiplier and Constant
+
+                greenView
+                    .size(width: 100, height: 100)
+                    .to(.bottom, multiplier: 0.75, 50)
+                    .to(.leading)
+
+                // To Bottom Trailing with Constant and Priority
+
+                orangeView
+                    .size(width: 100, height: 100)
+                    .toMargin(.bottom, -100, priority: .low)
+                    .toMargin(.bottom, -50, priority: .high)
+                    .toMargin(.trailing, -50)
+            }
+        }
+    }
+
+    func testToMarginWithRelation() {
+        assertLayout { view in
+            view.layout {
+
+                // To Top Leading With Less Than Or Equal Relation and Higher Constraint
+
+                pinkView
+                    .size(width: 100, height: 100)
+                    .toMargin(.top, is: .lessThanOrEqual, 100)
+                    .toMargin(.top, 150, priority: .high)
+                    .toMargin(.leading, 50)
+
+                // To Top Trailing With Less Than Or Equal Relation and Lower Constraint
+
+                yellowView
+                    .size(width: 100, height: 100)
+                    .toMargin(.top, is: .lessThanOrEqual, 100)
+                    .toMargin(.top, 50, priority: .high)
+                    .toMargin(.trailing, -50)
+
+                // To Top Trailing With Greater Than Or Equal Relation and Lower Constraint
+
+                blueView
+                    .size(width: 100, height: 100)
+                    .toMargin(.bottom, is: .greaterThanOrEqual, -100)
+                    .toMargin(.bottom, -150, priority: .high)
+                    .toMargin(.leading, 50)
+
+                // To Top Trailing With Greater Than Or Equal Relation and Higher Constraint
+
+                greenView
+                    .size(width: 100, height: 100)
+                    .toMargin(.bottom, is: .greaterThanOrEqual, -100)
+                    .toMargin(.bottom, -50, priority: .high)
+                    .toMargin(.trailing, -50)
+            }
+        }
+    }
+
+    func testToMarginWithAttributes_andWithConstant_andWithPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Bottom Leading
+
+                pinkView
+                    .size(width: 100, height: 100)
+                    .toMargin([.bottom, .leading])
+
+                // To Bottom Trailing with Constant
+
+                yellowView
+                    .size(width: 100, height: 100)
+                    .toMargin([.bottom, .trailing], -100)
+
+                // To Top Leading with Priority
+
+                blueView
+                    .size(width: 100, height: 100)
+                    .toMargin([.top, .leading], 25, priority: .low)
+                    .toMargin([.top, .leading], 100, priority: .high)
+            }
+        }
+    }
+
+    func testToBottomMargin_andWithPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Bottom Leading
+
+                pinkView
+                    .size(width: 100, height: 100)
+                    .to(.leading)
+                    .toBottomMargin(minInset: 100)
+
+                // To Bottom Trailing with Priority
+
+                blueView
+                    .size(width: 100, height: 100)
+                    .to(.trailing)
+                    .toBottomMargin(minInset: 50, priority: .low)
+                    .toBottomMargin(minInset: 100, priority: .high)
+            }
+        }
+    }
+
+    func testCenterBetweenTopAndBottom() {
+        assertLayout { view in
+            view.layout(
+                pinkView
+                    .size(width: 200, height: 400)
+                    .center(between: view.safeAreaLayoutGuide.top, and: view.safeAreaLayoutGuide.bottom)
+            )
+        }
+    }
+
+    func testCenterBetweenLeadingAndTrailing() {
+        assertLayout { view in
+            view.layout(
+                pinkView
+                    .size(width: 200, height: 400)
+                    .center(between: view.safeAreaLayoutGuide.leading, and: view.safeAreaLayoutGuide.trailing)
+            )
+        }
+    }
+
+    func testToSafeArea_andWithInsets_andWithPriority() {
+
+        // GIVEN
+
+        let smallInsets: NSDirectionalEdgeInsets = .init(top: 25, leading: 25, bottom: 25, trailing: 25)
+        let largeInsets: NSDirectionalEdgeInsets = .init(top: 50, leading: 50, bottom: 50, trailing: 50)
+
+        // THEN
+
+        assertLayout { view in
+            view.layout {
+
+                // To Safe Area
+
+                pinkView
+                    .toSafeArea()
+
+                // To Safe Area with Insets
+
+                yellowView
+                    .toSafeArea(insets: smallInsets)
+
+                // To Safe Area with Priority
+
+                blueView
+                    .toSafeArea(insets: smallInsets, priority: .low)
+                    .toSafeArea(insets: largeInsets, priority: .high)
+            }
+        }
+    }
+
+    func testToSafeAreaWithInset_andWithPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Safe Area Inset
+
+                pinkView
+                    .toSafeArea(25)
+
+                // To Safe Area Inset with Priority
+
+                yellowView
+                    .toSafeArea(25, priority: .low)
+                    .toSafeArea(50, priority: .high)
+            }
+        }
+    }
+
+    func testToSafeAreaWithXAttribute_andWithConstant_andWithPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Safe Area XAttribute
+
+                pinkView
+                    .size(width: 100, height: 100)
+                    .to(.top)
+                    .toSafeArea(.leading)
+
+                // To Safe Area XAttribute with Constant
+
+                yellowView
+                    .size(width: 100, height: 100)
+                    .to(.top)
+                    .toSafeArea(.trailing, -100)
+
+                // To Safe Area XAttribute with Priority
+
+                blueView
+                    .size(width: 100, height: 100)
+                    .to(.bottom)
+                    .toSafeArea(.leading, 50, priority: .low)
+                    .toSafeArea(.leading, 100, priority: .high)
+            }
+        }
+    }
+
+    func testToSafeAreaWithYAttribute_andWithConstant_andWithPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Safe Area YAttribute
+
+                pinkView
+                    .size(width: 100, height: 100)
+                    .to(.leading)
+                    .toSafeArea(.top)
+
+                // To Safe Area YAttribute with Constant
+
+                yellowView
+                    .size(width: 100, height: 100)
+                    .to(.trailing)
+                    .toSafeArea(.top, 100)
+
+                // To Safe Area YAttribute with Priority
+
+                blueView
+                    .size(width: 100, height: 100)
+                    .to(.leading)
+                    .toSafeArea(.bottom, -50, priority: .low)
+                    .toSafeArea(.bottom, -100, priority: .high)
+            }
+        }
+    }
+
+    func testToSafeAreaWithDimensionAttribute_andWithConstant_andWithPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Safe Area DimensionAttribute
+
+                pinkView
+                    .size(width: 50)
+                    .to([.leading, .bottom])
+                    .toSafeArea(.height)
+
+                // To Safe Area DimensionAttribute with Constant
+
+                yellowView
+                    .size(height: 50)
+                    .to(.top)
+                    .toSafeArea(.width, -50)
+
+                // To Safe Area DimensionAttribute with Priority
+
+                blueView
+                    .size(width: 50)
+                    .to([.trailing, .bottom])
+                    .toSafeArea(.height, -250, priority: .low)
+                    .toSafeArea(.height, -50, priority: .high)
             }
         }
     }
