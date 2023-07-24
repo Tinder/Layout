@@ -668,10 +668,12 @@ final class LayoutItemTests: XCTestCase {
 
         assertLayout { view in
             view.layout {
-                pinkView.toSafeArea(insets: insets, priority: .low)
-                pinkView.toSafeArea(priority: .high)
-                blueView.toSafeArea(priority: .low)
-                blueView.toSafeArea(insets: insets, priority: .high)
+                pinkView
+                    .toSafeArea(insets: insets, priority: .low)
+                    .toSafeArea(priority: .high)
+                blueView
+                    .toSafeArea(priority: .low)
+                    .toSafeArea(insets: insets, priority: .high)
             }
         }
     }
