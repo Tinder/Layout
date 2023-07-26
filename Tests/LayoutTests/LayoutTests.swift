@@ -225,35 +225,63 @@ final class LayoutTests: XCTestCase {
             expect(constraint).to(match(expected[index]))
         }
     }
-    func testHorizontalWithFormatAndMetricsAndOptions() {
+
+    func testHorizontalWithFormat() {
 
         // GIVEN
 
-        let subView: UIView = .init()
-            .id("subView")
-        subView.backgroundColor = .systemPink
-        let heightConstraint: NSLayoutConstraint = .init(
-            item: subView,
-            attribute: .height,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1,
-            constant: 75
-        )
-        let format: String = "|-leftMargin-[subView(width)]"
-        let metrics: [String: Any] = [
-            "leftMargin": 25,
-            "width": 275,
-            "subView": subView
-        ]
+        let view: UIView = .init()
+        let subview: UIView = .init()
+        let layout: Layout = .init(view)
+        let format: String = "|-[subview]-|"
+
+        // WHEN
+
+        layout
+            .addItems(subview.id("subview"))
+            .horizontal(format)
 
         // THEN
 
-        assertLayout { view in
-            let layout: Layout = .init(view, subView)
-            layout.adding(heightConstraint)
-            return layout.horizontal(format, metrics: metrics, options: .alignAllTop)
+        expect(layout.constraints.count) == 2
+        let expected: [NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "H:\(format)",
+                                                                            metrics: nil,
+                                                                            views: ["subview": subview])
+        for (index, constraint) in layout.constraints.enumerated() {
+            expect(constraint).to(match(expected[index]))
+        }
+    }
+
+    func testHorizontalWithFormat_andMetricsAndOptions() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let subview: UIView = .init()
+        let layout: Layout = .init(view)
+        let format: String = "|-leftMargin-[subview(width)]"
+        let metrics: [String: Any] = [
+            "leftMargin": 25,
+            "width": 275
+        ]
+
+        // WHEN
+
+        layout
+            .addItems(subview.id("subview"))
+            .horizontal(format, metrics: metrics, options: .alignAllLeading)
+
+        // THEN
+
+        expect(layout.constraints.count) == 2
+        let expected: [NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "H:\(format)",
+                                                                            metrics: metrics,
+                                                                            views: ["subview": subview])
+        for (index, constraint) in layout.constraints.enumerated() {
+            expect(constraint).to(match(expected[index]))
+        }
+    }
+
         }
     }
 }
