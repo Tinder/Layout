@@ -131,7 +131,8 @@ extension XCTestCase {
 
 extension Optional {
 
-    internal var stringValue: String {
+    // swiftlint:disable:next strict_fileprivate
+    fileprivate var stringValue: String {
         guard let self
         else { return "nil" }
         return "\(self)"
