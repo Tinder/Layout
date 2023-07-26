@@ -281,7 +281,4 @@ final class LayoutTests: XCTestCase {
             expect(constraint).to(match(expected[index]))
         }
     }
-
-        }
-    }
 }
