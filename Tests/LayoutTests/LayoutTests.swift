@@ -169,18 +169,60 @@ final class LayoutTests: XCTestCase {
         expect(layout.constraints.count) == 1
         expect(layout.constraints.first) === constraint
     }
-        let metrics: [String: Any] = [
-            "topMargin": 25,
-            "height": 300,
-            "subView": subView
-        ]
+
+    func testVerticalWithFormat() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let subview: UIView = .init()
+        let layout: Layout = .init(view)
+        let format: String = "|-[subview]-|"
+
+        // WHEN
+
+        layout
+            .addItems(subview.id("subview"))
+            .vertical(format)
 
         // THEN
 
-        assertLayout { view in
-            let layout: Layout = .init(view, subView)
-            layout.adding(widthConstraint)
-            return layout.vertical(format, metrics: metrics, options: .alignAllLeft)
+        expect(layout.constraints.count) == 2
+        let expected: [NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "V:\(format)",
+                                                                            metrics: nil,
+                                                                            views: ["subview": subview])
+        for (index, constraint) in layout.constraints.enumerated() {
+            expect(constraint).to(match(expected[index]))
+        }
+    }
+
+    func testVerticalWithFormat_andMetricsAndOptions() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let subview: UIView = .init()
+        let layout: Layout = .init(view)
+        let format: String = "|-topMargin-[subview(height)]"
+        let metrics: [String: Any] = [
+            "topMargin": 25,
+            "height": 275
+        ]
+
+        // WHEN
+
+        layout
+            .addItems(subview.id("subview"))
+            .vertical(format, metrics: metrics, options: .alignAllLeading)
+
+        // THEN
+
+        expect(layout.constraints.count) == 2
+        let expected: [NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "V:\(format)",
+                                                                            metrics: metrics,
+                                                                            views: ["subview": subview])
+        for (index, constraint) in layout.constraints.enumerated() {
+            expect(constraint).to(match(expected[index]))
         }
     }
     func testHorizontalWithFormatAndMetricsAndOptions() {
