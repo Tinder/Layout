@@ -30,7 +30,7 @@ extension XCTestCase {
             guard constraint.firstItem === expectedConstraint.firstItem
             else {
                 let message: String = """
-                    match first item <\(expectedConstraint.firstItem.stringValue)>, \
+                    match `firstItem` <\(expectedConstraint.firstItem.stringValue)>, \
                     got <\(constraint.firstItem.stringValue)>
                     """
                 return PredicateResult(status: .fail, message: .expectedTo(message))
@@ -38,7 +38,7 @@ extension XCTestCase {
             guard constraint.firstAttribute == expectedConstraint.firstAttribute
             else {
                 let message: String = """
-                    match first attribute <\(expectedConstraint.firstAttribute)>, \
+                    match `firstAttribute` <\(expectedConstraint.firstAttribute)>, \
                     got <\(constraint.firstAttribute)>
                     """
                 return PredicateResult(status: .fail, message: .expectedTo(message))
@@ -46,7 +46,7 @@ extension XCTestCase {
             guard constraint.relation == expectedConstraint.relation
             else {
                 let message: String = """
-                    match relation <\(expectedConstraint.relation)>, \
+                    match `relation` <\(expectedConstraint.relation)>, \
                     got <\(constraint.relation)>
                     """
                 return PredicateResult(status: .fail, message: .expectedTo(message))
@@ -54,7 +54,7 @@ extension XCTestCase {
             guard constraint.secondItem === expectedConstraint.secondItem
             else {
                 let message: String = """
-                    match second item <\(expectedConstraint.secondItem.stringValue)>, \
+                    match `secondItem` <\(expectedConstraint.secondItem.stringValue)>, \
                     got <\(constraint.secondItem.stringValue)>
                     """
                 return PredicateResult(status: .fail, message: .expectedTo(message))
@@ -62,7 +62,7 @@ extension XCTestCase {
             guard constraint.secondAttribute == expectedConstraint.secondAttribute
             else {
                 let message: String = """
-                    match second attribute <\(expectedConstraint.secondAttribute)>, \
+                    match `secondAttribute` <\(expectedConstraint.secondAttribute)>, \
                     got <\(constraint.secondAttribute)>
                     """
                 return PredicateResult(status: .fail, message: .expectedTo(message))
@@ -70,7 +70,7 @@ extension XCTestCase {
             guard constraint.multiplier == expectedConstraint.multiplier
             else {
                 let message: String = """
-                    match multiplier <\(expectedConstraint.multiplier)>, \
+                    match `multiplier` <\(expectedConstraint.multiplier)>, \
                     got <\(constraint.multiplier)>
                     """
                 return PredicateResult(status: .fail, message: .expectedTo(message))
@@ -78,7 +78,7 @@ extension XCTestCase {
             guard constraint.constant == expectedConstraint.constant
             else {
                 let message: String = """
-                    match constant <\(expectedConstraint.constant)>, \
+                    match `constant` <\(expectedConstraint.constant)>, \
                     got <\(constraint.constant)>
                     """
                 return PredicateResult(status: .fail, message: .expectedTo(message))
@@ -86,7 +86,7 @@ extension XCTestCase {
             guard constraint.firstAnchor === expectedConstraint.firstAnchor
             else {
                 let message: String = """
-                    match first anchor <\(expectedConstraint.firstAnchor)>, \
+                    match `firstAnchor` <\(expectedConstraint.firstAnchor)>, \
                     got <\(constraint.firstAnchor)>
                     """
                 return PredicateResult(status: .fail, message: .expectedTo(message))
@@ -94,7 +94,7 @@ extension XCTestCase {
             guard constraint.secondAnchor === expectedConstraint.secondAnchor
             else {
                 let message: String = """
-                    match second anchor <\(expectedConstraint.secondAnchor.stringValue)>, \
+                    match `secondAnchor` <\(expectedConstraint.secondAnchor.stringValue)>, \
                     got <\(constraint.secondAnchor.stringValue)>
                     """
                 return PredicateResult(status: .fail, message: .expectedTo(message))
@@ -102,7 +102,7 @@ extension XCTestCase {
             guard constraint.priority == expectedConstraint.priority
             else {
                 let message: String = """
-                    match priority <\(expectedConstraint.priority)>, \
+                    match `priority` <\(expectedConstraint.priority)>, \
                     got <\(constraint.priority)>
                     """
                 return PredicateResult(status: .fail, message: .expectedTo(message))
@@ -110,7 +110,7 @@ extension XCTestCase {
             guard constraint.identifier == expectedConstraint.identifier
             else {
                 let message: String = """
-                    match identifier <\(expectedConstraint.identifier.stringValue)>, \
+                    match `identifier` <\(expectedConstraint.identifier.stringValue)>, \
                     got <\(constraint.identifier.stringValue)>
                     """
                 return PredicateResult(status: .fail, message: .expectedTo(message))
@@ -130,7 +130,8 @@ extension XCTestCase {
 }
 
 extension Optional {
-    var stringValue: String {
+
+    internal var stringValue: String {
         guard let self
         else { return "nil" }
         return "\(self)"
