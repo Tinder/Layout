@@ -72,20 +72,15 @@ internal enum Device: CustomStringConvertible {
     internal var name: String {
         switch self {
         case let .iPhone8(orientation):
-            let name: String = "iPhone 8"
-            return orientation == .portrait ? name : "\(name) - \(orientation)"
+            return "iPhone 8 - \(orientation)"
         case let .iPhoneSE(orientation):
-            let name: String = "iPhone SE"
-            return orientation == .portrait ? name : "\(name) - \(orientation)"
+            return "iPhone SE - \(orientation)"
         case let .iPhoneX(orientation):
-            let name: String = "iPhone X"
-            return orientation == .portrait ? name : "\(name) - \(orientation)"
+            return "iPhone X - \(orientation)"
         case let .iPhone13(orientation):
-            let name: String = "iPhone 13"
-            return orientation == .portrait ? name : "\(name) - \(orientation)"
+            return "iPhone 13 - \(orientation)"
         case let .iPhone13mini(orientation):
-            let name: String = "iPhone 13 mini"
-            return orientation == .portrait ? name : "\(name) - \(orientation)"
+            return "iPhone 13 mini - \(orientation)"
         }
     }
 }
