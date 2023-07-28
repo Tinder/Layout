@@ -813,14 +813,6 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToSafeAreaInsetPriority() {
-
-        // GIVEN
-
-        let pinkView: UIView = pinkView
-        let blueView: UIView = blueView
-
-        // THEN
-
         assertLayout { view in
             view.layout {
                 pinkView
