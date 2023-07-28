@@ -839,7 +839,7 @@ final class LayoutItemTests: XCTestCase {
         expect(item.height) == item.layoutItemView.height
     }
 
-    func testToSafeArea() {
+    func testToSafeAreaAttribute() {
         assertLayout { view in
             view.layout {
                 pinkView
