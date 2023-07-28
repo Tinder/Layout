@@ -198,7 +198,7 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the edges to the superviews edges with `insets`
+    /// Constrains the edges to the superview's edges with `insets`
     ///
     /// - Parameters:
     ///   - insets: (optional) insets of view
@@ -212,7 +212,7 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the edges to the superviews edges with an `inset`
+    /// Constrains the edges to the superview's edges with an `inset`
     ///
     /// - Parameters:
     ///   - inset: inset of view
@@ -292,10 +292,10 @@ extension LayoutItem {
     ///
     /// - Note:
     ///     * `.pad()` constrains to margins
-    ///     * `.pad(20)` constrains to leading and traiing with a space of 20
+    ///     * `.pad(20)` constrains to leading and trailing with a space of 20
     ///     * `.to([.leading, .trailing])` is preferred over `.pad(0)`
     /// - Parameters:
-    ///   - margin: (optional) Inset from superviews leading and trailing anchors
+    ///   - margin: (optional) Inset from superview's leading and trailing anchors
     ///   - priority: (optional) priority of constraint
     public func pad(
         _ margin: CGFloat? = nil,
@@ -312,7 +312,7 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the `attribute` to the superviews corresponding `attribute`
+    /// Constrains the `attribute` to the superview's corresponding `attribute`
     ///
     /// - Note:
     ///     Equation: view.attribute = multiplier × superview.attribute + constant
@@ -339,7 +339,7 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the `attributes` to the superviews corresponding `attributes`
+    /// Constrains the `attributes` to the superview's corresponding `attributes`
     ///
     /// - Note:
     ///     Equation: view.attribute = superview.attribute + constant
@@ -360,7 +360,7 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the `attribute` to the superviews corresponding `attribute` margin
+    /// Constrains the `attribute` to the superview's corresponding `attribute` margin
     ///
     /// - Note:
     ///     Equation: view.attribute = multiplier × superview.attribute + constant
@@ -388,7 +388,7 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the `attributes` to the superviews corresponding `attributes` margin
+    /// Constrains the `attributes` to the superview's corresponding `attributes` margin
     ///
     /// - Note:
     ///     Equation: view.attribute = superview.attribute + constant
@@ -531,7 +531,7 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the edges to the superviews safeAreaGuide with `insets`
+    /// Constrains the edges to the superview's safeAreaGuide with `insets`
     ///
     /// - Postcondition:
     ///     Device must be running iOS 11 or higher
@@ -549,7 +549,7 @@ extension LayoutItem {
             .toSafeArea(.leading, insets.leading, priority: priority)
     }
 
-    /// Constrains the edges to the superviews safeAreaGuide with an `inset`
+    /// Constrains the edges to the superview's safeAreaGuide with an `inset`
     ///
     /// - Postcondition:
     ///     Device must be running iOS 11 or higher
@@ -564,7 +564,7 @@ extension LayoutItem {
                    priority: priority)
     }
 
-    /// Constrains the `attribute` to the superviews corresponding safeAreaGuide `attribute`
+    /// Constrains the `attribute` to the superview's corresponding safeAreaGuide `attribute`
     ///
     /// - Postcondition:
     ///     Device must be running iOS 11 or higher
@@ -582,7 +582,7 @@ extension LayoutItem {
         toSafeAreaAttribute(attribute, constant, priority: priority)
     }
 
-    /// Constrains the `attribute` to the superviews corresponding safeAreaGuide `attribute`
+    /// Constrains the `attribute` to the superview's corresponding safeAreaGuide `attribute`
     ///
     /// - Postcondition:
     ///     Device must be running iOS 11 or higher
@@ -600,7 +600,7 @@ extension LayoutItem {
         toSafeAreaAttribute(attribute, constant, priority: priority)
     }
 
-    /// Constrains the `attribute` to the superviews corresponding safeAreaGuide `attribute`
+    /// Constrains the `attribute` to the superview's corresponding safeAreaGuide `attribute`
     ///
     /// - Postcondition:
     ///     Device must be running iOS 11 or higher

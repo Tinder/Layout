@@ -48,7 +48,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     public private(set) var items: [String: LayoutItem] = [:]
 
-    private var constraints: [NSLayoutConstraint] = []
+    internal private(set) var constraints: [NSLayoutConstraint] = []
 
     public convenience init(
         _ containerView: UIView,
