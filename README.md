@@ -27,39 +27,48 @@ Code written with Layout is declarative in nature such that it is easy to visual
 
 ## Usage
 
-The following example demonstrates adding a label and button as subviews of a view controller's view.
+The following example demonstrates adding a label, an image view and a button as subviews of a view controller's view.
 
 ```swift
 override func viewDidLoad() {
     super.viewDidLoad()
     view.layout {
         label
-            .to(.top, 100)
+            .toSafeArea(.top)
             .center(.horizontal)
-            .size(width: 300)
+        imageView
+            .pad(20)
+            .size(height: 200)
+            .center(.horizontal)
         button
             .center(.horizontal)
     }
-    .vertical([label, button], spacing: 50)
+    .vertical([label, imageView, button], spacing: 50)
     .activate()
 }
 ```
 
-The above layout translates to the following Auto Layout code.
+The above layout results in the following Auto Layout code.
 
 ```swift
 override func viewDidLoad() {
     super.viewDidLoad()
     label.translatesAutoresizingMaskIntoConstraints = false
+    imageView.translatesAutoresizingMaskIntoConstraints = false
     button.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(label)
+    view.addSubview(imageView)
     view.addSubview(button)
     NSLayoutConstraint.activate([
-        label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+        label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
         label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        label.widthAnchor.constraint(equalToConstant: 300),
-        button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 50),
-        button.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        imageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+        imageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+        imageView.heightAnchor.constraint(equalToConstant: 200),
+        imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        imageView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 50),
+        button.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 50)
     ])
 }
 ```
