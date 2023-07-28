@@ -812,7 +812,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToSafeAreaDimensionAttributeConstantRequiredPriority() {
+    func testToSafeAreaDimensionAttributeConstantPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
