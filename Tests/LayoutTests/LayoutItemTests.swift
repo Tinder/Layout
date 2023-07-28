@@ -649,18 +649,21 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToSafeAreaInsets() {
+
+        // GIVEN
+
         let insets: NSDirectionalEdgeInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
+
+        // THEN
+
         assertLayout { view in
             view.layout(pinkView.toSafeArea(insets: insets))
         }
     }
 
-    func testToSafeAreaInsetPriority() {
+    func testToSafeAreaInsetsPriority() {
 
         // GIVEN
-
-        let pinkView: UIView = pinkView
-        let blueView: UIView = blueView
 
         let insets: NSDirectionalEdgeInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
 
