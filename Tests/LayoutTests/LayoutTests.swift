@@ -298,4 +298,21 @@ final class LayoutTests: XCTestCase {
             return layout
         }
     }
+
+    func testPin_andWithEdgeInsets() {
+
+        // GIVEN
+
+        let view1: UIView = .init()
+        view1.backgroundColor = .systemPink
+
+        // WHEN
+
+        assertLayout { containerView in
+            containerView.backgroundColor = .cyan
+            let layout: Layout = .init(containerView, metrics: [:], items: [view1])
+            layout.pin(view1, to: containerView, insets: .init(top: 40, left: 40, bottom: 40, right: 40))
+            return layout
+        }
+    }
 }
