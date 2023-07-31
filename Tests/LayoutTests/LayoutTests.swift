@@ -346,16 +346,14 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let view1: UIView = .init()
-        view1.backgroundColor = .systemPink
+        let pinkView: UIView = pinkView
 
-        // WHEN
+        // THEN
 
-        assertLayout { containerView in
-            containerView.backgroundColor = .cyan
-            let layout: Layout = .init(containerView, metrics: [:], items: [view1])
-            layout.pin(view1, to: containerView, inset: 20, direction: .leftToRight)
-            return layout
+        assertLayout { view in
+            view
+                .layout(pinkView)
+                .pin(pinkView, to: view, inset: 20, direction: .leftToRight)
         }
     }
 }
