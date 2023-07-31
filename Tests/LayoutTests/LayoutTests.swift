@@ -301,15 +301,13 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let view1: UIView = .init()
-        view1.backgroundColor = .systemPink
+        let pinkView: UIView = pinkView
 
         // WHEN
 
-        assertLayout { containerView in
-            containerView.backgroundColor = .cyan
-            let layout: Layout = .init(containerView, metrics: [:], items: [view1])
-            layout.pin(view1, to: containerView, insets: .init(top: 40, left: 40, bottom: 40, right: 40))
+        assertLayout { view in
+            let layout: Layout = .init(view, metrics: [:], items: [pinkView])
+            layout.pin(pinkView, to: view, insets: .init(top: 40, left: 40, bottom: 40, right: 40))
             return layout
         }
     }
