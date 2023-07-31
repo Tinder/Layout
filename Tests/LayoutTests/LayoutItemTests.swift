@@ -642,6 +642,70 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToSafeAreaInsetZero() {
+        assertLayout { view in
+            view.layout(pinkView.toSafeArea(0))
+        }
+    }
+
+    func testToSafeAreaInsetTen() {
+        assertLayout { view in
+            view.layout(pinkView.toSafeArea(10))
+        }
+    }
+
+    func testToSafeAreaInsetPriority() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .toSafeArea(10, priority: .low)
+                    .toSafeArea(0, priority: .high)
+                blueView
+                    .toSafeArea(0, priority: .low)
+                    .toSafeArea(10, priority: .high)
+            }
+        }
+    }
+
+    func testToSafeArea() {
+        assertLayout { view in
+            view.layout(pinkView.toSafeArea())
+        }
+    }
+
+    func testToSafeAreaInsets() {
+
+        // GIVEN
+
+        let insets: NSDirectionalEdgeInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
+
+        // THEN
+
+        assertLayout { view in
+            view.layout(pinkView.toSafeArea(insets: insets))
+        }
+    }
+
+    func testToSafeAreaInsetsPriority() {
+
+        // GIVEN
+
+        let insets: NSDirectionalEdgeInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
+
+        // THEN
+
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .toSafeArea(insets: insets, priority: .low)
+                    .toSafeArea(priority: .high)
+                blueView
+                    .toSafeArea(priority: .low)
+                    .toSafeArea(insets: insets, priority: .high)
+            }
+        }
+    }
+
     func testToSafeArea_andWithInsets_andWithPriority() {
 
         // GIVEN
@@ -800,27 +864,33 @@ final class LayoutItemTests: XCTestCase {
         expect(item.height) == item.layoutItemView.height
     }
 
-    func testToSafeAreaInsetZero() {
-        assertLayout { view in
-            view.layout(pinkView.toSafeArea(0))
-        }
-    }
-
-    func testToSafeAreaInsetTen() {
-        assertLayout { view in
-            view.layout(pinkView.toSafeArea(10))
-        }
-    }
-
-    func testToSafeAreaInsetPriority() {
+    func testToSafeAreaAttribute() {
         assertLayout { view in
             view.layout {
                 pinkView
-                    .toSafeArea(10, priority: .low)
-                    .toSafeArea(0, priority: .high)
+                    .toSafeArea(.top)
+                    .toSafeArea(.bottom)
+                    .toSafeArea(.leading)
+                    .toSafeArea(.trailing)
+            }
+        }
+    }
+
+    func testToSafeAreaDimensionAttributeConstantPriority() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .to(.leading)
+                    .toSafeArea(.top)
+                    .toSafeArea(.height, 0, priority: .high)
+                    .toSafeArea(.height, -100, priority: .low)
+                    .size(width: 100)
                 blueView
-                    .toSafeArea(0, priority: .low)
-                    .toSafeArea(10, priority: .high)
+                    .to(.trailing)
+                    .toSafeArea(.top)
+                    .toSafeArea(.height, 0, priority: .low)
+                    .toSafeArea(.height, -100, priority: .high)
+                    .size(width: 100)
             }
         }
     }
