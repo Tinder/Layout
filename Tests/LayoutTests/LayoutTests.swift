@@ -333,4 +333,21 @@ final class LayoutTests: XCTestCase {
         }
     }
 
+    func testPinWithInset() {
+
+        // GIVEN
+
+        let view1: UIView = .init()
+        view1.backgroundColor = .systemPink
+
+        // WHEN
+
+        assertLayout { containerView in
+            containerView.backgroundColor = .cyan
+            let layout: Layout = .init(containerView, metrics: [:], items: [view1])
+            layout.pin(view1, to: containerView, inset: 20)
+            return layout
+        }
+    }
+
 }
