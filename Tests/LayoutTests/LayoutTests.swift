@@ -306,9 +306,9 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-            let layout: Layout = .init(view, metrics: [:], items: [pinkView])
-            layout.pin(pinkView, to: view, insets: .init(top: 40, left: 40, bottom: 40, right: 40))
-            return layout
+            view
+                .layout(pinkView)
+                .pin(pinkView, to: view, insets: .init(top: 40, left: 40, bottom: 40, right: 40))
         }
     }
 
