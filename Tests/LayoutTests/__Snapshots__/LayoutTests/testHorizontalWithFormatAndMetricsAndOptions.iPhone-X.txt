@@ -1,2 +1,0 @@
-<UIView; frame = (0 0; 375 812); autoresize = W+H; backgroundColor = UIExtendedGrayColorSpace 1 1; layer = <CALayer>>
-   | <UIView; frame = (25 0; 275 75); backgroundColor = <UIDynamicModifiedColor; contrast = normal, baseColor = <UIDynamicCatalogSystemColor; name = systemPinkColor>>; layer = <CALayer>>
