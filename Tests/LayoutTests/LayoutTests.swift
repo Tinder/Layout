@@ -288,7 +288,7 @@ final class LayoutTests: XCTestCase {
 
         let pinkView: UIView = pinkView
 
-        // WHEN
+        // THEN
 
         assertLayout { view in
             view
@@ -303,7 +303,7 @@ final class LayoutTests: XCTestCase {
 
         let pinkView: UIView = pinkView
 
-        // WHEN
+        // THEN
 
         assertLayout { view in
             let layout: Layout = .init(view, metrics: [:], items: [pinkView])
