@@ -350,4 +350,20 @@ final class LayoutTests: XCTestCase {
         }
     }
 
+    func testPinwithInset_andWithHorizontalDirection() {
+
+        // GIVEN
+
+        let view1: UIView = .init()
+        view1.backgroundColor = .systemPink
+
+        // WHEN
+
+        assertLayout { containerView in
+            containerView.backgroundColor = .cyan
+            let layout: Layout = .init(containerView, metrics: [:], items: [view1])
+            layout.pin(view1, to: containerView, inset: 20, direction: .leftToRight)
+            return layout
+        }
+    }
 }
