@@ -426,33 +426,32 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testPinWithInset() {
-
-        // GIVEN
-
-        let pinkView: UIView = pinkView
-
-        // THEN
-
-        assertLayout { view in
-            view
-                .layout(pinkView)
-                .pin(pinkView, to: view, inset: 20)
-        }
-    }
-
     func testPinWithInset_andWithHorizontalDirection() {
 
         // GIVEN
 
         let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
 
         // THEN
 
         assertLayout { view in
-            view
-                .layout(pinkView)
-                .pin(pinkView, to: view, inset: 20, direction: .leftToRight)
+            let layout: Layout = view.layout {
+                pinkView
+                yellowView
+            }
+
+            // Pin to Inset
+
+            layout
+                .pin(pinkView, to: view, inset: 20)
+
+            // Pin to Inset with Horizontal Direction
+
+            layout
+                .pin(yellowView, to: view, inset: 40, direction: .leftToRight)
+
+            return layout
         }
     }
 
