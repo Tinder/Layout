@@ -537,26 +537,27 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-            view
+            let layout: Layout = view
                 .layout {
-
-                    // Horizontal With Views and Alignment
-
                     pinkView
                         .size(width: 100, height: 100)
                         .to([.centerY, .leading])
                     yellowView
                         .size(width: 50, height: 50)
-
-                    // Spacing, Direction and Priority
-
                     blueView
                         .size(width: 100, height: 100)
                     greenView
                         .size(width: 50, height: 50)
-
                 }
+
+            // Horizontal With Views and Alignment
+
+            layout
                 .horizontal([pinkView, yellowView], alignment: .centerY)
+
+            // Spacing, Direction and Priority
+
+            layout
                 .horizontal(
                     [blueView, greenView],
                     spacing: 12,
@@ -571,6 +572,8 @@ final class LayoutTests: XCTestCase {
                     priority: .high,
                     alignment: .bottom
                 )
+
+            return layout
         }
     }
 }
