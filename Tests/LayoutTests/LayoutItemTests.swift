@@ -642,6 +642,31 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToSafeAreaInsetZero() {
+        assertLayout { view in
+            view.layout(pinkView.toSafeArea(0))
+        }
+    }
+
+    func testToSafeAreaInsetTen() {
+        assertLayout { view in
+            view.layout(pinkView.toSafeArea(10))
+        }
+    }
+
+    func testToSafeAreaInsetPriority() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .toSafeArea(10, priority: .low)
+                    .toSafeArea(0, priority: .high)
+                blueView
+                    .toSafeArea(0, priority: .low)
+                    .toSafeArea(10, priority: .high)
+            }
+        }
+    }
+
     func testToSafeArea() {
         assertLayout { view in
             view.layout(pinkView.toSafeArea())
