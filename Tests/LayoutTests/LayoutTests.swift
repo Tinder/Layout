@@ -382,7 +382,7 @@ final class LayoutTests: XCTestCase {
     }
 
     func testEqualSize() {
-        
+
         // GIVEN
 
         let pinkView: UIView = pinkView
