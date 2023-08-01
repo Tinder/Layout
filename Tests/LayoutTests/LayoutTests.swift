@@ -282,6 +282,109 @@ final class LayoutTests: XCTestCase {
         }
     }
 
+    func testConstrainToAttribute_andWithRelation_andWithConstant() {
+
+        // GIVEN
+
+        let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
+
+        // WHEN
+
+        // swiftlint:disable:next closure_body_length
+        assertLayout { view in
+            let layout: Layout = view.layout {
+                pinkView
+                    .size(height: 100)
+                yellowView
+            }
+
+            // To Attribute With Constant
+
+            layout.constrain(
+                pinkView,
+                .bottom,
+                to: .top,
+                of: yellowView,
+                constant: -12
+            )
+
+            // To Attribute With Greater Than Or Equal Relation
+
+            layout.constrain(
+                pinkView,
+                .top,
+                to: .top,
+                of: view,
+                constant: 20
+            )
+
+            layout.constrain(
+                pinkView,
+                .top,
+                is: .greaterThanOrEqual,
+                to: .top,
+                of: view,
+                constant: 6
+            )
+
+            // To Attribute With Less Than Or Equal Relation
+
+            layout.constrain(
+                yellowView,
+                .bottom,
+                is: .lessThanOrEqual,
+                to: .bottom,
+                of: view,
+                constant: -10
+            )
+            layout.constrain(
+                yellowView,
+                .bottom,
+                to: .bottom,
+                of: view,
+                constant: -20
+            )
+
+            // To TargetAttribute (sans Attribute)
+
+            layout.constrain(
+                pinkView,
+                to: .leading,
+                of: view,
+                constant: 4
+            )
+
+            // To TargetAttribute (sans Constant)
+
+            layout.constrain(
+                yellowView,
+                to: .leading,
+                of: view
+            )
+
+            // To Attribute With Multiplier
+
+            layout.constrain(
+                pinkView,
+                .width,
+                is: .equal,
+                to: .width,
+                of: view,
+                multiplier: 0.75
+            )
+            layout.constrain(
+                yellowView,
+                .width,
+                is: .equal,
+                to: .width,
+                of: view,
+                multiplier: 0.5
+            )
+            return layout
+        }
+    }
+
     func testPinWithZeroEdgeInsets() {
 
         // GIVEN
