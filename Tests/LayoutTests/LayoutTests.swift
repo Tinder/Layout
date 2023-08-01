@@ -403,4 +403,27 @@ final class LayoutTests: XCTestCase {
                 .equalSize([pinkView, yellowView])
         }
     }
+
+    func testEqualAttributesWithViews() {
+
+        // GIVEN
+
+        let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout {
+                    pinkView
+                        .size(width: 50, height: 50)
+                        .to([.top, .leading])
+
+                    yellowView
+                        .to([.top, .trailing])
+                }
+                .equal([.height, .width], [pinkView, yellowView])
+        }
+    }
 }
