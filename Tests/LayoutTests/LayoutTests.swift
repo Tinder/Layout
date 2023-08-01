@@ -385,48 +385,44 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testPinWithZeroEdgeInsets() {
+    func testPin_andWithEdgeInsets_andWithHorizontalDirection() {
 
         // GIVEN
 
         let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
+        let blueView: UIView = blueView
 
         // THEN
 
         assertLayout { view in
-            view
-                .layout(pinkView)
+            let layout: Layout = view.layout {
+                pinkView
+                yellowView
+                blueView
+            }
+
+            // Pin to View
+
+            layout
                 .pin(pinkView, to: view)
-        }
-    }
 
-    func testPin_andWithEdgeInsets() {
+            // Pin to View with EdgeInsets
 
-        // GIVEN
+            layout
+                .pin(yellowView, to: view, insets: .init(top: 40, left: 40, bottom: 40, right: 40))
 
-        let pinkView: UIView = pinkView
+            // Pin to View with EdgeInsets and HorizontalDirection
 
-        // THEN
+            layout
+                .pin(
+                    blueView,
+                    to: view,
+                    insets: .init(top: 60, left: 60, bottom: 60, right: 60),
+                    direction: .leftToRight
+                )
 
-        assertLayout { view in
-            view
-                .layout(pinkView)
-                .pin(pinkView, to: view, insets: .init(top: 40, left: 40, bottom: 40, right: 40))
-        }
-    }
-
-    func testPinWithZeroEdgeInsets_andWithHorizontalDirection() {
-
-        // GIVEN
-
-        let pinkView: UIView = pinkView
-
-        // THEN
-
-        assertLayout { view in
-            view
-                .layout(pinkView)
-                .pin(pinkView, to: view, direction: .leftToRight)
+            return layout
         }
     }
 
