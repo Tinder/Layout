@@ -1,5 +1,10 @@
 //
+//  All Contributions by Match Group
+//
 //  Copyright © 2023 Tinder (Match Group, LLC)
+//
+//  Licensed under the Match Group Modified 3-Clause BSD License.
+//  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
 @testable import Layout
@@ -82,6 +87,70 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(layoutSupport.top) == view.topAnchor
         expect(layoutSupport.bottom) == view.bottomAnchor
         expect(layoutSupport.height) == view.heightAnchor
+    }
+
+    func testConstraintToLayoutDimension() {
+
+        // GIVEN
+
+        let subview: UIView = pinkView
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout(subview)
+                .adding(subview.widthAnchor.constraint(to: view.widthAnchor))
+                .adding(subview.heightAnchor.constraint(to: view.heightAnchor))
+        }
+    }
+
+    func testConstraintIsEqualToLayoutDimensionConstant() {
+
+        // GIVEN
+
+        let subview: UIView = pinkView
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout(subview)
+                .adding(subview.widthAnchor.constraint(is: .equal, to: view.widthAnchor, constant: -100))
+                .adding(subview.heightAnchor.constraint(is: .equal, to: view.heightAnchor, constant: -200))
+        }
+    }
+
+    func testConstraintConstant() {
+
+        // GIVEN
+
+        let subview: UIView = pinkView
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout(subview)
+                .adding(subview.widthAnchor.constraint(100))
+                .adding(subview.heightAnchor.constraint(200))
+        }
+    }
+
+    func testConstraintIsEqualConstant() {
+
+        // GIVEN
+
+        let subview: UIView = pinkView
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout(subview)
+                .adding(subview.widthAnchor.constraint(is: .equal, 100))
+                .adding(subview.heightAnchor.constraint(is: .equal, 200))
+        }
     }
 
     func testViewControllerSafeAreaLayoutGuides() {
