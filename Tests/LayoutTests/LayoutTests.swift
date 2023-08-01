@@ -426,4 +426,53 @@ final class LayoutTests: XCTestCase {
                 .equal([.height, .width], [pinkView, yellowView])
         }
     }
+
+    func testHorizontalViewsWithAlignment_andWithSpacingAndDirectionAndPriority() {
+
+        // GIVEN
+
+        let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
+        let blueView: UIView = blueView
+        let greenView: UIView = greenView
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout {
+
+                    // Horizontal With Views and Alignment
+
+                    pinkView
+                        .size(width: 100, height: 100)
+                        .to([.centerY, .leading])
+                    yellowView
+                        .size(width: 50, height: 50)
+
+                    // Spacing, Direction and Priority
+
+                    blueView
+                        .size(width: 100, height: 100)
+                    greenView
+                        .size(width: 50, height: 50)
+
+                }
+                .horizontal([pinkView, yellowView], alignment: .centerY)
+                .horizontal(
+                    [blueView, greenView],
+                    spacing: 12,
+                    direction: .leadingToTrailing,
+                    priority: .low,
+                    alignment: .bottom
+                )
+                .horizontal(
+                    [blueView, greenView],
+                    spacing: 50,
+                    direction: .leftToRight,
+                    priority: .high,
+                    alignment: .bottom
+                )
+        }
+    }
 }
