@@ -1,6 +1,11 @@
 // swiftlint:disable:this file_name
 //
+//  All Contributions by Match Group
+//
 //  Copyright © 2023 Tinder (Match Group, LLC)
+//
+//  Licensed under the Match Group Modified 3-Clause BSD License.
+//  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
 @testable import Layout
@@ -34,56 +39,7 @@ final class UIViewFramesTests: XCTestCase {
         expect(view.contentCompressionResistancePriority(for: .vertical)) == .disabled
     }
 
-    func testUsingFrames() {
-
-        // GIVEN
-
-        let view: UIView = givenView()
-        _ = view.usingFrames(.topLeft)
-
-        // THEN
-
-        expect(view.autoresizingMask) == .topLeft
-        expect(view.translatesAutoresizingMaskIntoConstraints) == true
-
-        // GIVEN
-
-        _ = view.usingFrames(.topRight)
-
-        // THEN
-
-        expect(view.autoresizingMask) == .topRight
-        expect(view.translatesAutoresizingMaskIntoConstraints) == true
-
-        // GIVEN
-
-        _ = view.usingFrames(.bottomLeft)
-
-        // THEN
-
-        expect(view.autoresizingMask) == .bottomLeft
-        expect(view.translatesAutoresizingMaskIntoConstraints) == true
-
-        // GIVEN
-
-        _ = view.usingFrames(.bottomRight)
-
-        // THEN
-
-        expect(view.autoresizingMask) == .bottomRight
-        expect(view.translatesAutoresizingMaskIntoConstraints) == true
-
-        // GIVEN
-
-        _ = view.usingFrames(.scaleWithSuperview)
-
-        // THEN
-
-        expect(view.autoresizingMask) == .scaleWithSuperview
-        expect(view.translatesAutoresizingMaskIntoConstraints) == true
-    }
-
-    func testAutoresizingMaskTopLeft() {
+    func testUsingFramesTopLeft() {
 
         // GIVEN
 
@@ -99,7 +55,7 @@ final class UIViewFramesTests: XCTestCase {
         expect(view.translatesAutoresizingMaskIntoConstraints) == true
     }
 
-    func testAutoresizingMaskTopRight() {
+    func testUsingFramesTopRight() {
 
         // GIVEN
 
@@ -115,7 +71,7 @@ final class UIViewFramesTests: XCTestCase {
         expect(view.translatesAutoresizingMaskIntoConstraints) == true
     }
 
-    func testAutoresizingMaskBottomLeft() {
+    func testUsingFramesBottomLeft() {
 
         // GIVEN
 
@@ -131,7 +87,7 @@ final class UIViewFramesTests: XCTestCase {
         expect(view.translatesAutoresizingMaskIntoConstraints) == true
     }
 
-    func testAutoresizingMaskBottomRight() {
+    func testUsingFramesBottomRight() {
 
         // GIVEN
 
@@ -147,7 +103,7 @@ final class UIViewFramesTests: XCTestCase {
         expect(view.translatesAutoresizingMaskIntoConstraints) == true
     }
 
-    func testAutoresizingMaskScaleWithSuperview() {
+    func testUsingFramesScaleWithSuperview() {
 
         // GIVEN
 
@@ -163,11 +119,8 @@ final class UIViewFramesTests: XCTestCase {
         expect(view.translatesAutoresizingMaskIntoConstraints) == true
     }
 
-    // MARK: - Private helpers
-
     private func givenView() -> UIView {
         let view: UIView = .init()
-
         view.autoresizingMask = []
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
