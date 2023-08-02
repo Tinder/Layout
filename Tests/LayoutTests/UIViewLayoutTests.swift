@@ -1,4 +1,3 @@
-// swiftlint:disable:this file_name
 //
 //  All Contributions by Match Group
 //
