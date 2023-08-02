@@ -74,10 +74,10 @@ final class UIViewLayoutTests: XCTestCase {
         }
 
         let metrics: [String: Any] = ["gap": 100]
-        let view = UIView(frame: .zero)
+        let view: UIView = .init(frame: .zero)
+        let layout: Layout = .init(view, metrics: metrics)
 
-        let layout: Layout = Layout(view, metrics: metrics)
-        layout.addItems(item1)
+        layout.addItems(items)
 
         expect(layout.metrics) == metrics
         expect(layout.items[0].key) == "item1"
