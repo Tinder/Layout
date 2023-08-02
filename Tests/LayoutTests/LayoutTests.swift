@@ -531,6 +531,50 @@ final class LayoutTests: XCTestCase {
         }
     }
 
+    func testConstrainAnchorDimension_andWithRelation_andWithPriority() {
+
+        // GIVEN
+
+        let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
+
+        // THEN
+
+        // swiftlint:disable:next closure_body_length
+        assertLayout { view in
+            let layout: Layout = view.layout {
+                pinkView
+                    .to(.trailing, -20)
+                    .to(.top, 20)
+                yellowView
+                    .to([.trailing, .bottom], -20)
+            }
+
+            // Anchor With Constant
+
+            layout.constrain(pinkView.height, to: 100)
+
+            // Anchor with Greater Than Or Equal Relation, Constant and Priority
+
+            layout.constrain(pinkView.widthAnchor, is: .greaterThanOrEqual, to: 40)
+            layout.constrain(pinkView.widthAnchor, to: 20, priority: .low)
+            layout.constrain(pinkView.widthAnchor, to: 200, priority: .high)
+
+            // Anchor with Constant and Priority
+
+            layout.constrain(yellowView.heightAnchor, to: 25, priority: .low)
+            layout.constrain(yellowView.heightAnchor, to: 100, priority: .high)
+
+            // Anchor with Less Than Or Equal Relation, Constant and Priority
+
+            layout.constrain(yellowView.widthAnchor, is: .lessThanOrEqual, to: 250, priority: .high)
+            layout.constrain(yellowView.widthAnchor, to: 300, priority: .low)
+            layout.constrain(yellowView.widthAnchor, to: 200, priority: .high)
+
+            return layout
+        }
+    }
+
     func testPin_andWithEdgeInsets_andWithHorizontalDirection() {
 
         // GIVEN
