@@ -13,73 +13,38 @@ import SnapshotTesting
 import XCTest
 
 final class UIViewLayoutTests: XCTestCase {
-
-    func testLayoutCallWithMetrics() {
-        let item1: LayoutItem = pinkView
-            .id("item1")
-            .size(width: 100, height: 100)
-            .center(.vertical)
-
-        assertLayout { view in
-            view
-                .layout(metrics: ["gap": 100])
-                .addItems(item1)
-                .horizontal("|-gap-[item1]-gap-|")
-                .activate()
-        }
-    }
-
-    func testLayoutCallWithLayoutItems() {
-        let item1: LayoutItem = pinkView
-            .size(width: 100, height: 100)
-            .center()
-
-        assertLayout { view in
-            view.layout {
-                item1
-            }
-            .activate()
-        }
-    }
-
-    func testLayoutCallWithLayoutItemsAndMetrics() {
-        let item1: LayoutItem = pinkView
-            .id("item1")
-            .size(width: 100, height: 100)
-            .center(.horizontal)
-
-        let items: () -> [LayoutItem] = {
-            [item1]
-        }
-
+    func testSetViewAndMetricsProperties() {
+        let view: UIView = .init()
+        let subview: UIView = .init()
         let metrics: [String: Any] = ["gap": 100]
+        let layout: Layout = view.layout(metrics: metrics)
 
-        assertLayout { view in
-            view
-                .layout(metrics: metrics, items: items)
-                .vertical("|-gap-[item1]-gap-|")
-                .activate()
-        }
-    }
-
-    func testPropertiesSetСorrectly() {
-        let item1: LayoutItem = pinkView
-            .id("item1")
-            .size(width: 100, height: 100)
-            .center(.horizontal)
-
-        let items: () -> [LayoutItem] = {
-            [item1]
-        }
-
-        let metrics: [String: Any] = ["gap": 100]
-        let view: UIView = .init(frame: .zero)
-        let layout: Layout = .init(view, metrics: metrics)
-
-        layout.addItems(items)
-
+        expect(layout.containerView) == view
         expect(layout.metrics) == metrics
-        expect(layout.items[0].key) == "item1"
-        expect(layout.containerView) === view
+        expect(layout.items.isEmpty) == true
+    }
+
+    func testSetMetricsAndItemsProperties() {
+        let view: UIView = .init()
+        let subview: UIView = .init()
+        let metrics: [String: Any] = ["gap": 100]
+        let layout: Layout = view.layout(metrics: metrics, subview.id("pinkView"))
+
+        expect(layout.containerView) == view
+        expect(layout.metrics) == metrics
+        expect(layout.items.values) == [subview]
+    }
+
+    func testSetMetricsBuilderAndItemsProperties() {
+        let view: UIView = .init()
+        let subview: UIView = .init()
+        let metrics: [String: Any] = ["gap": 100]
+        let layout: Layout = view.layout(metrics: metrics) {
+            subview.id("pinkView")
+        }
+
+        expect(layout.containerView) == view
+        expect(layout.metrics) == metrics
+        expect(layout.items.values) == [subview]
     }
 }
