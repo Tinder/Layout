@@ -1,10 +1,15 @@
+// swiftlint:disable:this file_name
 //
-//  UIViewLayoutTests.swift
+//  All Contributions by Match Group
 //
-//  Created by Igor Novik on 4/18/23.
+//  Copyright © 2023 Tinder (Match Group, LLC)
+//
+//  Licensed under the Match Group Modified 3-Clause BSD License.
+//  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
 @testable import Layout
+import Nimble
 import SnapshotTesting
 import XCTest
 
@@ -56,5 +61,26 @@ final class UIViewLayoutTests: XCTestCase {
                 .vertical("|-gap-[item1]-gap-|")
                 .activate()
         }
+    }
+
+    func testPropertiesSetСorrectly() {
+        let item1: LayoutItem = pinkView
+            .id("item1")
+            .size(width: 100, height: 100)
+            .center(.horizontal)
+
+        let items: () -> [LayoutItem] = {
+            [item1]
+        }
+
+        let metrics: [String: Any] = ["gap": 100]
+        let view = UIView(frame: .zero)
+
+        let layout: Layout = Layout(view, metrics: metrics)
+        layout.addItems(item1)
+
+        expect(layout.metrics) == metrics
+        expect(layout.items[0].key) == "item1"
+        expect(layout.containerView) === view
     }
 }
