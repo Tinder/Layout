@@ -168,6 +168,7 @@ only_rules:
 - redundant_nil_coalescing
 - redundant_objc_attribute
 - redundant_optional_initialization
+- redundant_self_in_closure
 - redundant_set_access_control
 # - redundant_string_enum_value
 - redundant_type_annotation
@@ -181,6 +182,7 @@ only_rules:
 - shorthand_operator
 - shorthand_optional_binding
 - single_test_class
+# - sorted_enum_cases
 - sorted_first_last
 - sorted_imports
 - statement_position
@@ -188,6 +190,7 @@ only_rules:
 - strict_fileprivate
 - strong_iboutlet
 - superfluous_disable_command
+- superfluous_else
 - switch_case_alignment
 - switch_case_on_newline
 - syntactic_sugar
@@ -204,8 +207,10 @@ only_rules:
 - type_name
 - unavailable_condition
 - unavailable_function
+- unhandled_throwing_task
 - unneeded_break_in_switch
 - unneeded_parentheses_in_closure_argument
+- unneeded_synthesized_initializer
 - unowned_variable_capture
 - untyped_error_in_catch
 - unused_capture_list

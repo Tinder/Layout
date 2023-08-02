@@ -11,15 +11,15 @@ Follow the [Swift Package Resources installation instructions](https://github.co
 
 ## Open Package in Xcode
 
+> The file header comment template will also be installed.
+
 ```
 make open
 ```
 
-> The file header comment template will also be installed.
-
 ## Static Analysis
 
-> SwiftLint violations will be shown in Xcode.
+> SwiftLint violations are visible in Xcode as well.
 
 Package dependencies must be resolved to download the SwiftLint binary.
 

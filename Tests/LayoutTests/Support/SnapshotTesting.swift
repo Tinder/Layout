@@ -13,12 +13,13 @@ import SnapshotTesting
 import UIKit
 
 internal func assertLayout(
+    devices: [Device] = Device.portraitTestDevices,
     file: StaticString = #file,
     testName: String = #function,
     line: UInt = #line,
     layout: (UIView) -> Layout
 ) {
-    Device.allCases.forEach { device in
+    for device: Device in devices {
         let viewController: UIViewController = .init()
         let view: UIView = viewController.view
         view.backgroundColor = .white
@@ -42,16 +43,28 @@ extension Device {
 
     internal var config: ViewImageConfig {
         switch self {
-        case .iPhone8:
-            return .iPhone8
-        case .iPhoneSE:
-            return .iPhoneSe
-        case .iPhoneX:
-            return .iPhoneX
-        case .iPhone13:
-            return .iPhone13
-        case .iPhone13mini:
-            return .iPhone13Mini
+        case let .iPhone8(orientation):
+            return .iPhone8(orientation.configOrientation)
+        case let .iPhoneSE(orientation):
+            return .iPhoneSe(orientation.configOrientation)
+        case let .iPhoneX(orientation):
+            return .iPhoneX(orientation.configOrientation)
+        case let .iPhone13(orientation):
+            return .iPhone13(orientation.configOrientation)
+        case let .iPhone13mini(orientation):
+            return .iPhone13Mini(orientation.configOrientation)
+        }
+    }
+}
+
+extension Device.Orientation {
+
+    internal var configOrientation: ViewImageConfig.Orientation {
+        switch self {
+        case .portrait:
+            return .portrait
+        case .landscape:
+            return .landscape
         }
     }
 }

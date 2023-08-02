@@ -1,9 +1,16 @@
-// swift-tools-version:5.7
+// swift-tools-version:5.8
 
 import PackageDescription
 
+let packageName = "Layout"
+
+enum SwiftLint {
+    static let plugin = "SwiftLintPlugin-\(packageName)"
+    static let binary = "SwiftLintBinary-\(packageName)"
+}
+
 let package = Package(
-    name: "Layout",
+    name: packageName,
     platforms: [
         .iOS(.v13),
     ],
@@ -15,7 +22,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/Quick/Nimble.git",
-            from: "12.0.0"),
+            from: "12.2.0"),
         .package(
             url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
             from: "1.11.0"),
@@ -24,7 +31,7 @@ let package = Package(
         .target(
             name: "Layout",
             plugins: [
-                .plugin(name: "SwiftLintPlugin"),
+                .plugin(name: SwiftLint.plugin),
             ]),
         .testTarget(
             name: "LayoutTests",
@@ -37,17 +44,18 @@ let package = Package(
                 "__Snapshots__",
             ],
             plugins: [
-                .plugin(name: "SwiftLintPlugin"),
+                .plugin(name: SwiftLint.plugin),
             ]),
         .plugin(
-            name: "SwiftLintPlugin",
+            name: SwiftLint.plugin,
             capability: .buildTool(),
             dependencies: [
-                "SwiftLintBinary",
-            ]),
+                .target(name: SwiftLint.binary)
+            ],
+            path: "Plugins/SwiftLintPlugin"),
         .binaryTarget(
-            name: "SwiftLintBinary",
-            url: "https://github.com/realm/SwiftLint/releases/download/0.51.0/SwiftLintBinary-macos.artifactbundle.zip",
-            checksum: "9fbfdf1c2a248469cfbe17a158c5fbf96ac1b606fbcfef4b800993e7accf43ae"),
+            name: SwiftLint.binary,
+            url: "https://github.com/realm/SwiftLint/releases/download/0.52.4/SwiftLintBinary-macos.artifactbundle.zip",
+            checksum: "8a8095e6235a07d00f34a9e500e7568b359f6f66a249f36d12cd846017a8c6f5"),
     ]
 )
