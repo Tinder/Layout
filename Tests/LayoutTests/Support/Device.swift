@@ -21,31 +21,31 @@ internal enum Device: CustomStringConvertible {
         case landscape
     }
 
-    internal static var iPhone8: [Device] {
+    internal static var iPhone8: [Self] {
         [.iPhone8(.portrait), .iPhone8(.landscape)]
     }
 
-    internal static var iPhoneSE: [Device] {
+    internal static var iPhoneSE: [Self] {
         [.iPhoneSE(.portrait), .iPhoneSE(.landscape)]
     }
 
-    internal static var iPhoneX: [Device] {
+    internal static var iPhoneX: [Self] {
         [.iPhoneX(.portrait), .iPhoneX(.landscape)]
     }
 
-    internal static var iPhone13: [Device] {
+    internal static var iPhone13: [Self] {
         [.iPhone13(.portrait), .iPhone13(.landscape)]
     }
 
-    internal static var iPhone13mini: [Device] {
+    internal static var iPhone13mini: [Self] {
         [.iPhone13mini(.portrait), .iPhone13mini(.landscape)]
     }
 
-    internal static var allTestDevices: [Device] {
+    internal static var allTestDevices: [Self] {
         portraitTestDevices + landscapeTestDevices
     }
 
-    internal static var portraitTestDevices: [Device] {
+    internal static var portraitTestDevices: [Self] {
         [
             .iPhone8(.portrait),
             .iPhoneSE(.portrait),
@@ -55,7 +55,7 @@ internal enum Device: CustomStringConvertible {
         ]
     }
 
-    internal static var landscapeTestDevices: [Device] {
+    internal static var landscapeTestDevices: [Self] {
         [
             .iPhone8(.landscape),
             .iPhoneSE(.landscape),
