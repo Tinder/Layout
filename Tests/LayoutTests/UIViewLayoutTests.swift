@@ -7,9 +7,7 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
-@testable import Layout
 import Nimble
-import SnapshotTesting
 import XCTest
 
 final class UIViewLayoutTests: XCTestCase {
