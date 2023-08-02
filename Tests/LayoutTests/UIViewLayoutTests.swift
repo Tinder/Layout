@@ -33,7 +33,7 @@ final class UIViewLayoutTests: XCTestCase {
         expect(layout.items.values) == [subview]
     }
 
-    func testSetMetricsBuilderAndItemsProperties() {
+    func testSetMetricsAndItemsBuilderProperties() {
         let view: UIView = .init()
         let subview: UIView = .init()
         let metrics: [String: Any] = ["gap": 100]
