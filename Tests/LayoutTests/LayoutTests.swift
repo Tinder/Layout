@@ -289,7 +289,7 @@ final class LayoutTests: XCTestCase {
         let pinkView: UIView = pinkView
         let yellowView: UIView = yellowView
 
-        // WHEN
+        // THEN
 
         // swiftlint:disable:next closure_body_length
         assertLayout { view in
