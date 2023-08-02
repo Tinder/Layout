@@ -385,6 +385,101 @@ final class LayoutTests: XCTestCase {
         }
     }
 
+    func testConstrainToAnchor_andWithRelation_andWithConstant_andWithPriority() {
+
+        // GIVEN
+
+        let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
+
+        // THEN
+
+        // swiftlint:disable:next closure_body_length
+        assertLayout { view in
+            let layout: Layout = view.layout {
+                pinkView
+                    .size(height: 100)
+                yellowView
+            }
+
+            // To Anchor
+
+            layout.constrain(pinkView.leadingAnchor, to: view.leadingAnchor)
+
+            // To Anchor with Constant
+
+            layout.constrain(yellowView.leadingAnchor, to: view.leadingAnchor, constant: 20)
+            layout.constrain(pinkView.trailingAnchor, to: view.trailingAnchor, constant: -20)
+            layout.constrain(yellowView.trailingAnchor, to: view.trailingAnchor, constant: -20)
+
+            // To Anchor with Constant and Priority
+
+            layout.constrain(
+                pinkView.topAnchor,
+                to: view.topAnchor,
+                constant: 10,
+                priority: .low
+            )
+
+            layout.constrain(
+                pinkView.topAnchor,
+                to: view.topAnchor,
+                constant: 30,
+                priority: .high
+            )
+
+            // To Anchor With Greater Than Or Equal Relation and Priority
+
+            layout.constrain(
+                pinkView.bottomAnchor,
+                is: .greaterThanOrEqual,
+                to: yellowView.topAnchor,
+                constant: -50,
+                priority: .required
+            )
+
+            layout.constrain(
+                pinkView.bottomAnchor,
+                to: yellowView.topAnchor,
+                constant: -100,
+                priority: .low
+            )
+
+            layout.constrain(
+                pinkView.bottomAnchor,
+                to: yellowView.topAnchor,
+                constant: -10,
+                priority: .high
+            )
+
+            // To Anchor With Less Than Or Equal Relation and Priority
+
+            layout.constrain(
+                yellowView.bottomAnchor,
+                is: .lessThanOrEqual,
+                to: view.bottomAnchor,
+                constant: -50,
+                priority: .required
+            )
+
+            layout.constrain(
+                yellowView.bottomAnchor,
+                to: view.bottomAnchor,
+                constant: -10,
+                priority: .low
+            )
+
+            layout.constrain(
+                yellowView.bottomAnchor,
+                to: view.bottomAnchor,
+                constant: -100,
+                priority: .high
+            )
+
+            return layout
+        }
+    }
+
     func testPin_andWithEdgeInsets_andWithHorizontalDirection() {
 
         // GIVEN
