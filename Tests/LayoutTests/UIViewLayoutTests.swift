@@ -7,15 +7,22 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
+@testable import Layout
 import Nimble
+import UIKit
 import XCTest
 
 final class UIViewLayoutTests: XCTestCase {
     func testSetViewAndMetricsProperties() {
+
+        // GIVEN
+
         let view: UIView = .init()
         let subview: UIView = .init()
         let metrics: [String: Any] = ["gap": 100]
         let layout: Layout = view.layout(metrics: metrics)
+
+        // THEN
 
         expect(layout.containerView) == view
         expect(layout.metrics) == metrics
@@ -23,10 +30,15 @@ final class UIViewLayoutTests: XCTestCase {
     }
 
     func testSetMetricsAndItemsProperties() {
+
+        // GIVEN
+
         let view: UIView = .init()
         let subview: UIView = .init()
         let metrics: [String: Any] = ["gap": 100]
         let layout: Layout = view.layout(metrics: metrics, subview.id("pinkView"))
+
+        // THEN
 
         expect(layout.containerView) == view
         expect(layout.metrics) == metrics
@@ -34,12 +46,17 @@ final class UIViewLayoutTests: XCTestCase {
     }
 
     func testSetMetricsAndItemsBuilderProperties() {
+
+        // GIVEN
+
         let view: UIView = .init()
         let subview: UIView = .init()
         let metrics: [String: Any] = ["gap": 100]
         let layout: Layout = view.layout(metrics: metrics) {
             subview.id("pinkView")
         }
+
+        // THEN
 
         expect(layout.containerView) == view
         expect(layout.metrics) == metrics
