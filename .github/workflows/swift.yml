@@ -34,7 +34,7 @@ jobs:
     - name: Lint
       run: >
         DIRECTORY_NAME=$(echo "${PWD##*/}" | tr '[:upper:]' '[:lower:]');
-        $(find ".build/artifacts/${DIRECTORY_NAME}" -type f -name swiftlint -perm +111 -print -quit)
+        "$(find ".build/artifacts/${DIRECTORY_NAME}" -type f -name swiftlint -perm +111 -print -quit)"
         lint --strict --reporter github-actions-logging
     - name: Build
       run: xcodebuild build-for-testing -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
