@@ -97,7 +97,7 @@ final class LayoutAnchoringTests: XCTestCase {
 
         // THEN
 
-        assertLayout { view in
+        assertLayout(assertUnambiguousLayout: false) { view in
             view
                 .layout(subview)
                 .adding(subview.widthAnchor.constraint(to: view.widthAnchor))
@@ -113,7 +113,7 @@ final class LayoutAnchoringTests: XCTestCase {
 
         // THEN
 
-        assertLayout { view in
+        assertLayout(assertUnambiguousLayout: false) { view in
             view
                 .layout(subview)
                 .adding(subview.widthAnchor.constraint(is: .equal, to: view.widthAnchor, constant: -100))
@@ -129,7 +129,7 @@ final class LayoutAnchoringTests: XCTestCase {
 
         // THEN
 
-        assertLayout { view in
+        assertLayout(assertUnambiguousLayout: false) { view in
             view
                 .layout(subview)
                 .adding(subview.widthAnchor.constraint(100))
@@ -145,7 +145,7 @@ final class LayoutAnchoringTests: XCTestCase {
 
         // THEN
 
-        assertLayout { view in
+        assertLayout(assertUnambiguousLayout: false) { view in
             view
                 .layout(subview)
                 .adding(subview.widthAnchor.constraint(is: .equal, 100))

@@ -9,9 +9,20 @@
 //
 
 import Nimble
+import UIKit
 import XCTest
 
 extension XCTestCase {
+
+    internal func haveUnambiguousLayout() -> Predicate<UIView> {
+        Predicate { expression in
+            guard let view: UIView = try expression.evaluate()
+            else { return PredicateResult(status: .fail, message: .expectedTo("not be nil, got <nil>")) }
+            guard !view.hasAmbiguousLayout
+            else { return PredicateResult(status: .fail, message: .fail("expected view to not have ambiguous layout")) }
+            return PredicateResult(bool: true, message: .fail(""))
+        }
+    }
 
     // swiftlint:disable:next cyclomatic_complexity
     internal func match(_ expectedConstraint: NSLayoutConstraint) -> Predicate<NSLayoutConstraint> {
