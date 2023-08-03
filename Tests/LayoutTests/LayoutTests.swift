@@ -50,11 +50,10 @@ final class LayoutTests: XCTestCase {
 
         let view1: UIView = .init()
         let subview1: UIView = .init()
-        let layoutItem1: LayoutItem = subview1.id("subView1")
 
         // WHEN
 
-        let layout1: Layout = .init(view1, layoutItem1)
+        let layout1: Layout = .init(view1, subview1.id("subView1"))
 
         // THEN
 
