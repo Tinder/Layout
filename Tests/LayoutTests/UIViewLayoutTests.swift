@@ -13,7 +13,8 @@ import UIKit
 import XCTest
 
 final class UIViewLayoutTests: XCTestCase {
-    func testSetViewAndMetricsProperties() {
+
+    func testLayoutWithMetrics() {
 
         // GIVEN
 
@@ -29,37 +30,42 @@ final class UIViewLayoutTests: XCTestCase {
         expect(layout.items.isEmpty) == true
     }
 
-    func testSetMetricsAndItemsProperties() {
+    func testLayoutWithMetricsAndItem() {
 
         // GIVEN
 
         let view: UIView = .init()
         let subview: UIView = .init()
         let metrics: [String: Any] = ["gap": 100]
-        let layout: Layout = view.layout(metrics: metrics, subview.id("pinkView"))
+        let identifier: String = UUID().uuidString
+        let layout: Layout = view.layout(metrics: metrics, subview.id(identifier))
 
         // THEN
 
         expect(layout.containerView) == view
         expect(layout.metrics) == metrics
-        expect(layout.items.values) == [subview]
+        expect(layout.items) == [identifier: subview]
     }
 
-    func testSetMetricsAndItemsBuilderProperties() {
+    func testLayoutWithMetricsAndItems() {
 
         // GIVEN
 
         let view: UIView = .init()
-        let subview: UIView = .init()
+        let subview1: UIView = .init()
+        let subview2: UIView = .init()
         let metrics: [String: Any] = ["gap": 100]
+        let identifier1: String = UUID().uuidString
+        let identifier2: String = UUID().uuidString
         let layout: Layout = view.layout(metrics: metrics) {
-            subview.id("pinkView")
+            subview1.id(identifier1)
+            subview2.id(identifier2)
         }
 
         // THEN
 
         expect(layout.containerView) == view
         expect(layout.metrics) == metrics
-        expect(layout.items.values) == [subview]
+        expect(layout.items.values) == [identifier1: subview1, identifier2: subview2]
     }
 }
