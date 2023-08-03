@@ -70,11 +70,10 @@ final class LayoutTests: XCTestCase {
             "height": 100
         ]
         let subview2: UIView = .init()
-        let layoutItem2: LayoutItem = subview2.id("subview2")
 
         // WHEN
 
-        let layoutTwo: Layout = .init(view2, metrics: metrics, layoutItem2)
+        let layoutTwo: Layout = .init(view2, metrics: metrics, subview2.id("subview2"))
 
         // THEN
 
@@ -83,7 +82,7 @@ final class LayoutTests: XCTestCase {
         expect(layoutTwo.metrics["leftMargin"] as? Int) == 10
         expect(layoutTwo.metrics["width"] as? Int) == 50
         expect(layoutTwo.metrics["height"] as? Int) == 100
-        expect(layoutTwo.items["subview2"]) === layoutItem2
+        expect(layoutTwo.items["subview2"]) === subview2
     }
 
     func testInitWithContainerView_andWithMetrics_andWithLayoutItemBuilder() {
@@ -95,13 +94,15 @@ final class LayoutTests: XCTestCase {
         let subview1: UIView = .init()
         let subview2: UIView = .init()
         let metrics: [String: Any] = ["height": 100]
-        let layoutItemsBuilder1: () -> [LayoutItem] = { [subview1.id("subview1")] }
-        let layoutItemsBuilder2: () -> [LayoutItem] = { [subview2.id("subview2")] }
 
         // WHEN
 
-        let layout1: Layout = .init(view1, items: layoutItemsBuilder1)
-        let layout2: Layout = .init(view2, metrics: metrics, items: layoutItemsBuilder2)
+        let layout1: Layout = .init(view1) {
+            [subview1.id("subview1")]
+        }
+        let layout2: Layout = .init(view2, metrics: metrics) {
+            [subview2.id("subview2")]
+        }
 
         // THEN
 
@@ -122,14 +123,13 @@ final class LayoutTests: XCTestCase {
         let subview1: UIView = .init()
         let subview2: UIView = .init()
         let metrics: [String: Any] = ["height": 100]
-        let layoutItems: [LayoutItem] = [
-            subview1.id("subview1"),
-            subview2.id("subview2")
-        ]
 
         // WHEN
 
-        let layout: Layout = .init(view, metrics: metrics, items: layoutItems)
+        let layout: Layout = .init(view, metrics: metrics, items: [
+            subview1.id("subview1"),
+            subview2.id("subview2")
+        ])
 
         // THEN
 
@@ -290,7 +290,6 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
-        // swiftlint:disable:next closure_body_length
         assertLayout { view in
 
             let layout: Layout = view.layout {
@@ -306,13 +305,11 @@ final class LayoutTests: XCTestCase {
             // To Attribute With Greater Than Or Equal Relation
 
             layout.constrain(pinkView, .top, to: .top, of: view, constant: 20)
-
             layout.constrain(pinkView, .top, is: .greaterThanOrEqual, to: .top, of: view, constant: 6)
 
             // To Attribute With Less Than Or Equal Relation
 
             layout.constrain(yellowView, .bottom, is: .lessThanOrEqual, to: .bottom, of: view, constant: -10)
-
             layout.constrain(yellowView, .bottom, to: .bottom, of: view, constant: -20)
 
             // To TargetAttribute (sans Attribute)
@@ -326,7 +323,6 @@ final class LayoutTests: XCTestCase {
             // To Attribute With Multiplier
 
             layout.constrain(pinkView, .width, is: .equal, to: .width, of: view, multiplier: 0.75)
-
             layout.constrain(yellowView, .width, is: .equal, to: .width, of: view, multiplier: 0.5)
 
             return layout
@@ -601,16 +597,15 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-            view
-                .layout {
-                    pinkView
-                        .size(width: 50, height: 50)
-                        .to([.top, .leading])
-                    yellowView
-                        .to([.top, .trailing])
-                }
-                .equal(.width, [pinkView, yellowView])
-                .equal(.height, [pinkView, yellowView])
+            view.layout {
+                pinkView
+                    .size(width: 50, height: 50)
+                    .to([.top, .leading])
+                yellowView
+                    .to([.top, .trailing])
+            }
+            .equal(.width, [pinkView, yellowView])
+            .equal(.height, [pinkView, yellowView])
         }
     }
 
@@ -624,15 +619,14 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-            view
-                .layout {
-                    pinkView
-                        .size(width: 50, height: 50)
-                        .to([.top, .leading])
-                    yellowView
-                        .to([.top, .trailing])
-                }
-                .equalSize([pinkView, yellowView])
+            view.layout {
+                pinkView
+                    .size(width: 50, height: 50)
+                    .to([.top, .leading])
+                yellowView
+                    .to([.top, .trailing])
+            }
+            .equalSize([pinkView, yellowView])
         }
     }
 
