@@ -63,22 +63,22 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let containerView2: UIView = .init()
+        let view2: UIView = .init()
         let metrics: [String: Any] = [
             "leftMargin": 10,
             "width": 50,
             "height": 100
         ]
-        let subView2: UIView = .init()
-        let layoutItem2: LayoutItem = subView2.id("subView2")
+        let subview2: UIView = .init()
+        let layoutItem2: LayoutItem = subview2.id("subView2")
 
         // WHEN
 
-        let layoutTwo: Layout = .init(containerView2, metrics: metrics, layoutItem2)
+        let layoutTwo: Layout = .init(view2, metrics: metrics, layoutItem2)
 
         // THEN
 
-        expect(layoutTwo.containerView) == containerView2
+        expect(layoutTwo.containerView) == view2
         expect(layoutTwo.metrics.count) == 3
         expect(layoutTwo.metrics["leftMargin"] as? Int) == 10
         expect(layoutTwo.metrics["width"] as? Int) == 50
@@ -90,66 +90,66 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let containerView1: UIView = .init()
-        let containerView2: UIView = .init()
-        let subView1: UIView = .init()
-        let subView2: UIView = .init()
+        let view1: UIView = .init()
+        let view2: UIView = .init()
+        let subview1: UIView = .init()
+        let subview2: UIView = .init()
         let metrics: [String: Any] = ["height": 100]
-        let layoutItemsBuilder1: () -> [LayoutItem] = { [subView1.id("subView1")] }
-        let layoutItemsBuilder2: () -> [LayoutItem] = { [subView2.id("subView2")] }
+        let layoutItemsBuilder1: () -> [LayoutItem] = { [subview1.id("subView1")] }
+        let layoutItemsBuilder2: () -> [LayoutItem] = { [subview2.id("subView2")] }
 
         // WHEN
 
-        let layout1: Layout = .init(containerView1, items: layoutItemsBuilder1)
-        let layout2: Layout = .init(containerView2, metrics: metrics, items: layoutItemsBuilder2)
+        let layout1: Layout = .init(view1, items: layoutItemsBuilder1)
+        let layout2: Layout = .init(view2, metrics: metrics, items: layoutItemsBuilder2)
 
         // THEN
 
-        expect(layout1.containerView) == containerView1
-        expect(layout1.items["subView1"]) === subView1
+        expect(layout1.containerView) == view1
+        expect(layout1.items["subView1"]) === subview1
 
-        expect(layout2.containerView) == containerView2
+        expect(layout2.containerView) == view2
         expect(layout2.metrics.count) == 1
         expect(layout2.metrics["height"] as? Int) == 100
-        expect(layout2.items["subView2"]) === subView2
+        expect(layout2.items["subView2"]) === subview2
     }
 
     func testInitWithContainerViewAndWithMetricsAndWithItems() {
 
         // GIVEN
 
-        let containerView: UIView = .init()
-        let subView1: UIView = .init()
-        let subView2: UIView = .init()
+        let view: UIView = .init()
+        let subview1: UIView = .init()
+        let subview2: UIView = .init()
         let metrics: [String: Any] = ["height": 100]
         let layoutItems: [LayoutItem] = [
-            subView1.id("subView1"),
-            subView2.id("subView2")
+            subview1.id("subView1"),
+            subview2.id("subView2")
         ]
 
         // WHEN
 
-        let layout: Layout = .init(containerView, metrics: metrics, items: layoutItems)
+        let layout: Layout = .init(view, metrics: metrics, items: layoutItems)
 
         // THEN
 
-        expect(layout.containerView) === containerView
+        expect(layout.containerView) === view
         expect(layout.metrics.count) == 1
         expect(layout.metrics["height"] as? Int) == 100
 
         expect(layout.items.count) == 2
-        expect(layout.items["subView1"]) === subView1
-        expect(layout.items["subView2"]) === subView2
+        expect(layout.items["subView1"]) === subview1
+        expect(layout.items["subView2"]) === subview2
     }
 
     func testAddingConstraints() {
 
         // GIVEN
 
-        let containerView: UIView = .init()
-        let subView: UIView = .init()
+        let view: UIView = .init()
+        let subview: UIView = .init()
         let constraint: NSLayoutConstraint = .init(
-            item: subView,
+            item: subview,
             attribute: .height,
             relatedBy: .equal,
             toItem: nil,
@@ -157,7 +157,7 @@ final class LayoutTests: XCTestCase {
             multiplier: 1,
             constant: 100
         )
-        let layout: Layout = .init(containerView, subView)
+        let layout: Layout = .init(view, subview)
 
         // WHEN
 
