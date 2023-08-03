@@ -17,8 +17,8 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let containerView1: UIView = .init()
-        let containerView2: UIView = .init()
+        let view1: UIView = .init()
+        let view2: UIView = .init()
         let metrics: [String: Any] = [
             "leftMargin": 10,
             "topMargin": 20,
@@ -28,15 +28,15 @@ final class LayoutTests: XCTestCase {
 
         // WHEN
 
-        let layout1: Layout = .init(containerView1)
-        let layout2: Layout = .init(containerView2, metrics: metrics)
+        let layout1: Layout = .init(view1)
+        let layout2: Layout = .init(view2, metrics: metrics)
 
         // THEN
 
-        expect(layout1.containerView) === containerView1
-        expect(layout1.metrics.count) == 0
+        expect(layout1.containerView) === view1
+        expect(layout1.metrics.isEmpty) == true
 
-        expect(layout2.containerView) === containerView2
+        expect(layout2.containerView) === view2
         expect(layout2.metrics.count) == 4
         expect(layout2.metrics["leftMargin"] as? Int) == 10
         expect(layout2.metrics["topMargin"] as? Int) == 20
@@ -48,19 +48,19 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let containerView1: UIView = .init()
-        let subView1: UIView = .init()
-        let layoutItem1: LayoutItem = subView1.id("subView1")
+        let view1: UIView = .init()
+        let subview1: UIView = .init()
+        let layoutItem1: LayoutItem = subview1.id("subView1")
 
         // WHEN
 
-        let layout1: Layout = .init(containerView1, layoutItem1)
+        let layout1: Layout = .init(view1, layoutItem1)
 
         // THEN
 
-        expect(layout1.containerView) === containerView1
+        expect(layout1.containerView) === view1
         expect(layout1.items.count) == 1
-        expect(layout1.items["subView1"]) === subView1
+        expect(layout1.items["subView1"]) === subview1
 
         // GIVEN
 
@@ -293,6 +293,7 @@ final class LayoutTests: XCTestCase {
 
         // swiftlint:disable:next closure_body_length
         assertLayout { view in
+
             let layout: Layout = view.layout {
                 pinkView
                     .size(height: 100)
@@ -301,86 +302,34 @@ final class LayoutTests: XCTestCase {
 
             // To Attribute With Constant
 
-            layout.constrain(
-                pinkView,
-                .bottom,
-                to: .top,
-                of: yellowView,
-                constant: -12
-            )
+            layout.constrain(pinkView, .bottom, to: .top, of: yellowView, constant: -12)
 
             // To Attribute With Greater Than Or Equal Relation
 
-            layout.constrain(
-                pinkView,
-                .top,
-                to: .top,
-                of: view,
-                constant: 20
-            )
+            layout.constrain(pinkView, .top, to: .top, of: view, constant: 20)
 
-            layout.constrain(
-                pinkView,
-                .top,
-                is: .greaterThanOrEqual,
-                to: .top,
-                of: view,
-                constant: 6
-            )
+            layout.constrain(pinkView, .top, is: .greaterThanOrEqual, to: .top, of: view, constant: 6)
 
             // To Attribute With Less Than Or Equal Relation
 
-            layout.constrain(
-                yellowView,
-                .bottom,
-                is: .lessThanOrEqual,
-                to: .bottom,
-                of: view,
-                constant: -10
-            )
-            layout.constrain(
-                yellowView,
-                .bottom,
-                to: .bottom,
-                of: view,
-                constant: -20
-            )
+            layout.constrain(yellowView, .bottom, is: .lessThanOrEqual, to: .bottom, of: view, constant: -10)
+
+            layout.constrain(yellowView, .bottom, to: .bottom, of: view, constant: -20)
 
             // To TargetAttribute (sans Attribute)
 
-            layout.constrain(
-                pinkView,
-                to: .leading,
-                of: view,
-                constant: 4
-            )
+            layout.constrain(pinkView, to: .leading, of: view, constant: 4)
 
             // To TargetAttribute (sans Constant)
 
-            layout.constrain(
-                yellowView,
-                to: .leading,
-                of: view
-            )
+            layout.constrain(yellowView, to: .leading, of: view)
 
             // To Attribute With Multiplier
 
-            layout.constrain(
-                pinkView,
-                .width,
-                is: .equal,
-                to: .width,
-                of: view,
-                multiplier: 0.75
-            )
-            layout.constrain(
-                yellowView,
-                .width,
-                is: .equal,
-                to: .width,
-                of: view,
-                multiplier: 0.5
-            )
+            layout.constrain(pinkView, .width, is: .equal, to: .width, of: view, multiplier: 0.75)
+
+            layout.constrain(yellowView, .width, is: .equal, to: .width, of: view, multiplier: 0.5)
+
             return layout
         }
     }
@@ -396,6 +345,7 @@ final class LayoutTests: XCTestCase {
 
         // swiftlint:disable:next closure_body_length
         assertLayout { view in
+
             let layout: Layout = view.layout {
                 pinkView
                     .size(height: 100)
@@ -490,6 +440,7 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
+
             let layout: Layout = view.layout {
                 pinkView
                     .size(height: 100)
@@ -540,6 +491,7 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
+
             let layout: Layout = view.layout {
                 pinkView
                     .to(.trailing, -20)
@@ -584,6 +536,7 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
+
             let layout: Layout = view.layout {
                 pinkView
                 yellowView
@@ -592,23 +545,20 @@ final class LayoutTests: XCTestCase {
 
             // Pin to View
 
-            layout
-                .pin(pinkView, to: view)
+            layout.pin(pinkView, to: view)
 
             // Pin to View with EdgeInsets
 
-            layout
-                .pin(yellowView, to: view, insets: .init(top: 40, left: 40, bottom: 40, right: 40))
+            layout.pin(yellowView, to: view, insets: UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40))
 
             // Pin to View with EdgeInsets and HorizontalDirection
 
-            layout
-                .pin(
-                    blueView,
-                    to: view,
-                    insets: .init(top: 60, left: 60, bottom: 60, right: 60),
-                    direction: .leftToRight
-                )
+            layout.pin(
+                blueView,
+                to: view,
+                insets: UIEdgeInsets(top: 60, left: 60, bottom: 60, right: 60),
+                direction: .leftToRight
+            )
 
             return layout
         }
@@ -624,6 +574,7 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
+
             let layout: Layout = view.layout {
                 pinkView
                 yellowView
@@ -631,13 +582,11 @@ final class LayoutTests: XCTestCase {
 
             // Pin to Inset
 
-            layout
-                .pin(pinkView, to: view, inset: 20)
+            layout.pin(pinkView, to: view, inset: 20)
 
             // Pin to Inset with Horizontal Direction
 
-            layout
-                .pin(yellowView, to: view, inset: 40, direction: .leftToRight)
+            layout.pin(yellowView, to: view, inset: 40, direction: .leftToRight)
 
             return layout
         }
@@ -658,7 +607,6 @@ final class LayoutTests: XCTestCase {
                     pinkView
                         .size(width: 50, height: 50)
                         .to([.top, .leading])
-
                     yellowView
                         .to([.top, .trailing])
                 }
@@ -682,7 +630,6 @@ final class LayoutTests: XCTestCase {
                     pinkView
                         .size(width: 50, height: 50)
                         .to([.top, .leading])
-
                     yellowView
                         .to([.top, .trailing])
                 }
@@ -700,16 +647,14 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-            view
-                .layout {
-                    pinkView
-                        .size(width: 50, height: 50)
-                        .to([.top, .leading])
-
-                    yellowView
-                        .to([.top, .trailing])
-                }
-                .equal([.height, .width], [pinkView, yellowView])
+            view.layout {
+                pinkView
+                    .size(width: 50, height: 50)
+                    .to([.top, .leading])
+                yellowView
+                    .to([.top, .trailing])
+            }
+            .equal([.height, .width], [pinkView, yellowView])
         }
     }
 
@@ -725,41 +670,40 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-            let layout: Layout = view
-                .layout {
-                    pinkView
-                        .size(width: 100, height: 100)
-                        .to([.centerY, .leading])
-                    yellowView
-                        .size(width: 50, height: 50)
-                    blueView
-                        .size(width: 100, height: 100)
-                    greenView
-                        .size(width: 50, height: 50)
-                }
+
+            let layout: Layout = view.layout {
+                pinkView
+                    .size(width: 100, height: 100)
+                    .to([.centerY, .leading])
+                yellowView
+                    .size(width: 50, height: 50)
+                blueView
+                    .size(width: 100, height: 100)
+                greenView
+                    .size(width: 50, height: 50)
+            }
 
             // Horizontal With Views and Alignment
 
-            layout
-                .horizontal([pinkView, yellowView], alignment: .centerY)
+            layout.horizontal([pinkView, yellowView], alignment: .centerY)
 
             // Spacing, Direction and Priority
 
-            layout
-                .horizontal(
-                    [blueView, greenView],
-                    spacing: 12,
-                    direction: .leadingToTrailing,
-                    priority: .low,
-                    alignment: .bottom
-                )
-                .horizontal(
-                    [blueView, greenView],
-                    spacing: 50,
-                    direction: .leftToRight,
-                    priority: .high,
-                    alignment: .bottom
-                )
+            layout.horizontal(
+                [blueView, greenView],
+                spacing: 12,
+                direction: .leadingToTrailing,
+                priority: .low,
+                alignment: .bottom
+            )
+
+            layout.horizontal(
+                [blueView, greenView],
+                spacing: 50,
+                direction: .leftToRight,
+                priority: .high,
+                alignment: .bottom
+            )
 
             return layout
         }
