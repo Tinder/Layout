@@ -760,10 +760,38 @@ final class LayoutTests: XCTestCase {
                     .to(.top)
             )
             .center(pinkView, between: view.leadingAnchor, and: view.trailingAnchor)
+        }
+    }
+
+    func testCenterViewBetween_andWithPriority() {
+
+        // GIVEN
+
+        let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
+
+        // THEN
+
         assertLayout { view in
-            view.layout(pinkView.size(width: 100, height: 100))
-                .center(pinkView, between: view.topAnchor, and: view.bottomAnchor)
-                .center(pinkView, between: view.leadingAnchor, and: view.trailingAnchor)
+            let layout: Layout = view.layout {
+                pinkView
+                    .size(width: 100, height: 100)
+                    .to(.leading)
+                yellowView
+                    .size(width: 100, height: 100)
+                    .to(.trailing)
+            }
+
+            // Center Between
+
+            layout.center(yellowView, between: view.topAnchor, and: view.bottomAnchor)
+
+            // With Priority
+
+            layout.center(pinkView, between: yellowView.topAnchor, and: yellowView.bottomAnchor, priority: .low)
+            layout.center(pinkView, between: view.topAnchor, and: view.bottomAnchor, priority: .high)
+
+            return layout
         }
     }
 }
