@@ -744,4 +744,17 @@ final class LayoutTests: XCTestCase {
             return layout
         }
     }
+
+    func testCenterViewBetween() {
+
+        // GIVEN
+
+        let pinkView: UIView = pinkView
+
+        assertLayout { view in
+            view.layout(pinkView.size(width: 100, height: 100))
+                .center(pinkView, between: view.topAnchor, and: view.bottomAnchor)
+                .center(pinkView, between: view.leadingAnchor, and: view.trailingAnchor)
+        }
+    }
 }
