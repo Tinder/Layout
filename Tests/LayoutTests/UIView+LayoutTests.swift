@@ -19,14 +19,14 @@ final class UIViewLayoutTests: XCTestCase {
         // GIVEN
 
         let view: UIView = .init()
-        let subview: UIView = .init()
         let metrics: [String: Any] = ["gap": 100]
         let layout: Layout = view.layout(metrics: metrics)
 
         // THEN
 
         expect(layout.containerView) == view
-        expect(layout.metrics) == metrics
+        expect(layout.metrics.count) == 1
+        expect(layout.metrics["gap"] as? Int) == 100
         expect(layout.items.isEmpty) == true
     }
 
@@ -43,8 +43,10 @@ final class UIViewLayoutTests: XCTestCase {
         // THEN
 
         expect(layout.containerView) == view
-        expect(layout.metrics) == metrics
-        expect(layout.items) == [identifier: subview]
+        expect(layout.metrics.count) == 1
+        expect(layout.metrics["gap"] as? Int) == 100
+        expect(layout.items.count) == 1
+        expect(layout.items[identifier] as? UIView) == subview
     }
 
     func testLayoutWithMetricsAndItems() {
@@ -65,7 +67,10 @@ final class UIViewLayoutTests: XCTestCase {
         // THEN
 
         expect(layout.containerView) == view
-        expect(layout.metrics) == metrics
-        expect(layout.items.values) == [identifier1: subview1, identifier2: subview2]
+        expect(layout.metrics.count) == 1
+        expect(layout.metrics["gap"] as? Int) == 100
+        expect(layout.items.count) == 2
+        expect(layout.items[identifier1] as? UIView) == subview1
+        expect(layout.items[identifier2] as? UIView) == subview2
     }
 }
