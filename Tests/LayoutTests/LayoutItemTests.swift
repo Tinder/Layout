@@ -13,7 +13,7 @@ import XCTest
 
 final class LayoutItemTests: XCTestCase {
 
-    func testID() {
+    func testIdentifier() {
 
         // GIVEN
 
@@ -25,11 +25,19 @@ final class LayoutItemTests: XCTestCase {
 
         // WHEN
 
-        _ = view.id("testID")
+        view.identifier = "identifier1"
 
         // THEN
 
-        expect(view.identifier) == "testID"
+        expect(view.identifier) == "identifier1"
+
+        // WHEN
+
+        _ = view.id("identifier2")
+
+        // THEN
+
+        expect(view.identifier) == "identifier2"
     }
 
     func testSizeWidthAndHeight_andWithPriority() {
@@ -310,7 +318,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testCenterWithAxis_andWithOffset_andWithMultiplier_andWithPriority() {
-        assertLayout { view in
+        assertLayout(assertUnambiguousLayout: false) { view in
             view.layout {
 
                 // Vertical Axis
@@ -348,7 +356,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testPadToMargins_andPadWithMargin_andWithPriority() {
-        assertLayout { view in
+        assertLayout(assertUnambiguousLayout: false) { view in
             view.layout {
 
                 // Pad to Leading/Trailing
@@ -623,7 +631,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testCenterBetweenTopAndBottom() {
-        assertLayout { view in
+        assertLayout(assertUnambiguousLayout: false) { view in
             view.layout(
                 pinkView
                     .size(width: 200, height: 400)
@@ -633,7 +641,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testCenterBetweenLeadingAndTrailing() {
-        assertLayout { view in
+        assertLayout(assertUnambiguousLayout: false) { view in
             view.layout(
                 pinkView
                     .size(width: 200, height: 400)
@@ -814,7 +822,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToSafeAreaWithDimensionAttribute_andWithConstant_andWithPriority() {
-        assertLayout { view in
+        assertLayout(assertUnambiguousLayout: false) { view in
             view.layout {
 
                 // To Safe Area DimensionAttribute

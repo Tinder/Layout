@@ -71,7 +71,7 @@ extension LayoutItem {
     }
 
     private var safeAreaGuide: UILayoutGuide? {
-        guard let superview = layoutItemView.superview
+        guard let superview: UIView = layoutItemView.superview
         else {
             assertionFailure("Missing required superview reference")
             return nil

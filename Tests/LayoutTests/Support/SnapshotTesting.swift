@@ -9,33 +9,44 @@
 //
 
 import Layout
+import Nimble
 import SnapshotTesting
 import UIKit
+import XCTest
 
-internal func assertLayout(
-    devices: [Device] = Device.portraitTestDevices,
-    file: StaticString = #file,
-    testName: String = #function,
-    line: UInt = #line,
-    layout: (UIView) -> Layout
-) {
-    for device: Device in devices {
-        let viewController: UIViewController = .init()
-        let view: UIView = viewController.view
-        view.backgroundColor = .white
-        layout(view).activate()
-        assertSnapshot(matching: viewController,
-                       as: .image(on: device.config),
-                       named: device.name,
-                       file: file,
-                       testName: testName,
-                       line: line)
-        assertSnapshot(matching: viewController,
-                       as: .recursiveDescription(on: device.config),
-                       named: device.name,
-                       file: file,
-                       testName: testName,
-                       line: line)
+extension XCTestCase {
+
+    internal func assertLayout(
+        devices: [Device] = Device.portraitTestDevices,
+        assertUnambiguousLayout: Bool = true,
+        file: StaticString = #file,
+        testName: String = #function,
+        line: UInt = #line,
+        layout: (UIView) -> Layout
+    ) {
+        for device: Device in devices {
+            let viewController: UIViewController = .init()
+            let view: UIView = viewController.view
+            view.backgroundColor = .white
+            layout(view).activate()
+            assertSnapshot(matching: viewController,
+                           as: .image(on: device.config),
+                           named: device.name,
+                           file: file,
+                           testName: testName,
+                           line: line)
+            assertSnapshot(matching: viewController,
+                           as: .recursiveDescription(on: device.config),
+                           named: device.name,
+                           file: file,
+                           testName: testName,
+                           line: line)
+            if assertUnambiguousLayout {
+                for view: UIView in view.recursiveSubviews {
+                    expect(file: "\(file)", line: line, view).to(haveUnambiguousLayout())
+                }
+            }
+        }
     }
 }
 
@@ -146,5 +157,13 @@ extension UITraitCollection {
                 ]
             )
         }
+    }
+}
+
+extension UIView {
+
+    // swiftlint:disable:next strict_fileprivate
+    fileprivate var recursiveSubviews: [UIView] {
+        subviews + subviews.flatMap(\.recursiveSubviews)
     }
 }
