@@ -2,4 +2,4 @@
    | <UIView; frame = (0 283.667; 100 100); backgroundColor = UIExtendedSRGBColorSpace 1 0.176471 0.333333 1; layer = <CALayer>>
    | <UIView; frame = (100 308.667; 50 50); backgroundColor = UIExtendedSRGBColorSpace 1 1 0 1; layer = <CALayer>>
    | <UIView; frame = (0 0; 100 100); backgroundColor = UIExtendedSRGBColorSpace 0 0 1 1; layer = <CALayer>>
-   | <UIView; frame = (150 50; 50 50); backgroundColor = UIExtendedSRGBColorSpace 0 1 0 1; layer = <CALayer>>
+   | <UIView; frame = (150 0; 50 50); backgroundColor = UIExtendedSRGBColorSpace 0 1 0 1; layer = <CALayer>>
