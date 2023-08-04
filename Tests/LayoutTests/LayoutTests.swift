@@ -702,4 +702,46 @@ final class LayoutTests: XCTestCase {
             return layout
         }
     }
+
+    func testVerticalViewsWithAlignment_andWithSpacing() {
+
+        // GIVEN
+
+        let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
+        let blueView: UIView = blueView
+        let greenView: UIView = greenView
+
+        // THEN
+
+        assertLayout { view in
+
+            let layout: Layout = view.layout {
+                pinkView
+                    .to([.top, .leading])
+                    .size(width: 100, height: 100)
+                yellowView
+                    .size(width: 50, height: 50)
+                blueView
+                    .size(width: 100, height: 100)
+                    .to([.top, .trailing])
+                greenView
+                    .size(width: 50, height: 50)
+            }
+
+            // Vertical With Views and Alignment
+
+            layout.vertical([pinkView, yellowView], alignment: .centerX)
+
+            // Spacing
+
+            layout.vertical(
+                [blueView, greenView],
+                spacing: 12,
+                alignment: .centerX
+            )
+
+            return layout
+        }
+    }
 }
