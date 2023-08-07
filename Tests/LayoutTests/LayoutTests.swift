@@ -148,9 +148,18 @@ final class LayoutTests: XCTestCase {
 
         let view: UIView = .init()
         let subview: UIView = .init()
-        let constraint: NSLayoutConstraint = .init(
+        let heightConstraint: NSLayoutConstraint = .init(
             item: subview,
             attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 100
+        )
+        let widthConstraint: NSLayoutConstraint = .init(
+            item: subview,
+            attribute: .width,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
@@ -161,12 +170,13 @@ final class LayoutTests: XCTestCase {
 
         // WHEN
 
-        layout.adding(constraint)
+        layout.adding(heightConstraint, widthConstraint)
 
         // THEN
 
-        expect(layout.constraints.count) == 1
-        expect(layout.constraints.first) === constraint
+        expect(layout.constraints.count) == 2
+        expect(layout.constraints.contains(heightConstraint)) == true
+        expect(layout.constraints.contains(widthConstraint)) == true
     }
 
     func testVerticalWithFormat() {
@@ -793,5 +803,235 @@ final class LayoutTests: XCTestCase {
 
             return layout
         }
+    }
+
+    func testAddItemsVariadically() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let layout: Layout = .init(view)
+        let pinkView: UIView = pinkView.id("pinkView")
+        let yellowView: UIView = yellowView.id("yellowView")
+
+        // THEN
+
+        expect(layout.items.isEmpty) == true
+
+        // WHEN
+
+        layout.addItems(pinkView, yellowView)
+
+        // THEN
+
+        expect(layout.items.count) == 2
+        expect(layout.items["pinkView"]) === pinkView
+        expect(layout.items["yellowView"]) === yellowView
+    }
+
+    func testAddItemsWithArray() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let layout: Layout = .init(view)
+        let pinkView: UIView = pinkView.id("pinkView")
+        let yellowView: UIView = yellowView.id("yellowView")
+
+        // THEN
+
+        expect(layout.items.isEmpty) == true
+
+        // WHEN
+
+        layout.addItems([pinkView, yellowView])
+
+        // THEN
+
+        expect(layout.items.count) == 2
+        expect(layout.items["pinkView"]) === pinkView
+        expect(layout.items["yellowView"]) === yellowView
+    }
+
+    func testWithPriority() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let subview: UIView = .init()
+        let heightConstraint: NSLayoutConstraint = .init(
+            item: subview,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 100
+        )
+        let widthConstraint: NSLayoutConstraint = .init(
+            item: subview,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 100
+        )
+        let layout: Layout = .init(view, subview)
+
+        // WHEN
+
+        layout.adding(heightConstraint, widthConstraint)
+
+        // THEN
+
+        expect(layout.constraints[0].priority) == UILayoutPriority.required
+        expect(layout.constraints[1].priority) == UILayoutPriority.required
+
+        // WHEN
+
+        layout.withPriority(.high)
+
+        // THEN
+
+        expect(layout.constraints[0].priority) == UILayoutPriority.high
+        expect(layout.constraints[1].priority) == UILayoutPriority.high
+    }
+
+    func testActivate_andDeactivate() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let subview: UIView = .init()
+        let heightConstraint: NSLayoutConstraint = .init(
+            item: subview,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 100
+        )
+        let widthConstraint: NSLayoutConstraint = .init(
+            item: subview,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 100
+        )
+        let layout: Layout = .init(view, subview)
+
+        // WHEN
+
+        layout.adding(heightConstraint, widthConstraint)
+
+        // THEN
+
+        expect(layout.constraints[0].isActive) == false
+        expect(layout.constraints[1].isActive) == false
+
+        // WHEN
+
+        layout.activate()
+
+        // THEN
+
+        expect(layout.constraints[0].isActive) == true
+        expect(layout.constraints[1].isActive) == true
+
+        // WHEN
+
+        layout.deactivate()
+
+        // THEN
+
+        expect(layout.constraints[0].isActive) == false
+        expect(layout.constraints[1].isActive) == false
+    }
+
+    func testCollectionActivate_andCollectionDeactivate() {
+
+        // GIVEN
+
+        let view1: UIView = .init()
+        let subview1: UIView = .init()
+        let heightConstraint1: NSLayoutConstraint = .init(
+            item: subview1,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 100
+        )
+        let widthConstraint1: NSLayoutConstraint = .init(
+            item: subview1,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 100
+        )
+        let layout1: Layout = .init(view1, subview1)
+        let view2: UIView = .init()
+        let subview2: UIView = .init()
+        let heightConstraint2: NSLayoutConstraint = .init(
+            item: subview2,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 100
+        )
+        let widthConstraint2: NSLayoutConstraint = .init(
+            item: subview1,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 100
+        )
+        let layout2: Layout = .init(view2, subview2)
+        let layouts: [Layout] = [layout1, layout2]
+
+        // WHEN
+
+        layout1.adding(heightConstraint1, widthConstraint1)
+        layout2.adding(heightConstraint2, widthConstraint2)
+
+        // THEN
+
+        expect(layout1.constraints[0].isActive) == false
+        expect(layout1.constraints[1].isActive) == false
+        expect(layout2.constraints[0].isActive) == false
+        expect(layout2.constraints[1].isActive) == false
+
+        // WHEN
+
+        layouts.activate()
+
+        // THEN
+
+        expect(layout1.constraints[0].isActive) == true
+        expect(layout1.constraints[1].isActive) == true
+        expect(layout2.constraints[0].isActive) == true
+        expect(layout2.constraints[1].isActive) == true
+
+        // WHEN
+
+        layouts.deactivate()
+
+        // THEN
+
+        expect(layout1.constraints[0].isActive) == false
+        expect(layout1.constraints[1].isActive) == false
+        expect(layout2.constraints[0].isActive) == false
+        expect(layout2.constraints[1].isActive) == false
     }
 }
