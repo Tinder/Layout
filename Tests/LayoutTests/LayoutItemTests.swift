@@ -13,7 +13,7 @@ import XCTest
 
 final class LayoutItemTests: XCTestCase {
 
-    func testID() {
+    func testIdentifier() {
 
         // GIVEN
 
@@ -25,11 +25,19 @@ final class LayoutItemTests: XCTestCase {
 
         // WHEN
 
-        _ = view.id("testID")
+        view.identifier = "identifier1"
 
         // THEN
 
-        expect(view.identifier) == "testID"
+        expect(view.identifier) == "identifier1"
+
+        // WHEN
+
+        _ = view.id("identifier2")
+
+        // THEN
+
+        expect(view.identifier) == "identifier2"
     }
 
     func testSizeWidthAndHeight_andWithPriority() {
