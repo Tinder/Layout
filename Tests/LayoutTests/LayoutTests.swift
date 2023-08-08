@@ -98,10 +98,10 @@ final class LayoutTests: XCTestCase {
         // WHEN
 
         let layout1: Layout = .init(view1) {
-            [subview1.id("subview1")]
+            subview1.id("subview1")
         }
         let layout2: Layout = .init(view2, metrics: metrics) {
-            [subview2.id("subview2")]
+            subview2.id("subview2")
         }
 
         // THEN
@@ -148,18 +148,9 @@ final class LayoutTests: XCTestCase {
 
         let view: UIView = .init()
         let subview: UIView = .init()
-        let heightConstraint: NSLayoutConstraint = .init(
+        let constraint: NSLayoutConstraint = .init(
             item: subview,
             attribute: .height,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1,
-            constant: 100
-        )
-        let widthConstraint: NSLayoutConstraint = .init(
-            item: subview,
-            attribute: .width,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
@@ -170,13 +161,12 @@ final class LayoutTests: XCTestCase {
 
         // WHEN
 
-        layout.adding(heightConstraint, widthConstraint)
+        layout.adding(constraint)
 
         // THEN
 
-        expect(layout.constraints.count) == 2
-        expect(layout.constraints.contains(heightConstraint)) == true
-        expect(layout.constraints.contains(widthConstraint)) == true
+        expect(layout.constraints.count) == 1
+        expect(layout.constraints.first) === constraint
     }
 
     func testVerticalWithFormat() {
@@ -210,26 +200,34 @@ final class LayoutTests: XCTestCase {
         // GIVEN
 
         let view: UIView = .init()
-        let subview: UIView = .init()
+        let subview1: UIView = .init()
+        let subview2: UIView = .init()
         let layout: Layout = .init(view)
-        let format: String = "|-topMargin-[subview(height)]"
+        let format: String = "|-topMargin-[subview1(height)]-[subview2(height)]"
         let metrics: [String: Any] = [
             "topMargin": 25,
             "height": 275
+        ]
+        let views: [String: UIView] = [
+            "subview1": subview1,
+            "subview2": subview2
         ]
 
         // WHEN
 
         layout
-            .addItems(subview.id("subview"))
-            .vertical(format, metrics: metrics, options: .alignAllLeading)
+            .addItems(subview1.id("subview1"), subview2.id("subview2"))
+            .vertical(format, metrics: metrics, options: .alignAllCenterX)
 
         // THEN
 
-        expect(layout.constraints.count) == 2
-        let expected: [NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "V:\(format)",
-                                                                            metrics: metrics,
-                                                                            views: ["subview": subview])
+        let expected: [NSLayoutConstraint] = NSLayoutConstraint.constraints(
+            withVisualFormat: "V:\(format)",
+            options: .alignAllCenterX,
+            metrics: metrics,
+            views: views
+        )
+        expect(layout.constraints.count) == expected.count
         for (index, constraint) in layout.constraints.enumerated() {
             expect(constraint).to(match(expected[index]))
         }
@@ -266,26 +264,34 @@ final class LayoutTests: XCTestCase {
         // GIVEN
 
         let view: UIView = .init()
-        let subview: UIView = .init()
+        let subview1: UIView = .init()
+        let subview2: UIView = .init()
         let layout: Layout = .init(view)
-        let format: String = "|-leftMargin-[subview(width)]"
+        let format: String = "|-leftMargin-[subview1(width)]-[subview2(width)]"
         let metrics: [String: Any] = [
             "leftMargin": 25,
             "width": 275
+        ]
+        let views: [String: UIView] = [
+            "subview1": subview1,
+            "subview2": subview2
         ]
 
         // WHEN
 
         layout
-            .addItems(subview.id("subview"))
-            .horizontal(format, metrics: metrics, options: .alignAllLeading)
+            .addItems(subview1.id("subview1"), subview2.id("subview2"))
+            .horizontal(format, metrics: metrics, options: .alignAllCenterY)
 
         // THEN
 
-        expect(layout.constraints.count) == 2
-        let expected: [NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "H:\(format)",
-                                                                            metrics: metrics,
-                                                                            views: ["subview": subview])
+        let expected: [NSLayoutConstraint] = NSLayoutConstraint.constraints(
+            withVisualFormat: "H:\(format)",
+            options: .alignAllCenterY,
+            metrics: metrics,
+            views: views
+        )
+        expect(layout.constraints.count) == expected.count
         for (index, constraint) in layout.constraints.enumerated() {
             expect(constraint).to(match(expected[index]))
         }
