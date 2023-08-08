@@ -421,10 +421,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
             anchor = view.anchor(for: direction.attributes.1)
         }
         for attribute: YAxisAttribute in alignment {
-            adding(
-                equalAttribute(attribute, views)
-                    .withPriority(priority)
-            )
+            adding(equalAttribute(attribute, views).withPriority(priority))
         }
         return self
     }
@@ -456,10 +453,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
             anchor = view.anchor(for: YAxisAttribute.bottom)
         }
         for attribute: XAxisAttribute in alignment {
-            adding(
-                equalAttribute(attribute, views)
-                    .withPriority(priority)
-            )
+            adding(equalAttribute(attribute, views).withPriority(priority))
         }
         return self
     }
@@ -591,14 +585,12 @@ public final class Layout { // swiftlint:disable:this type_body_length
         guard views.count >= 2,
               let first = views.first
         else { return [] }
-        var constraints: [NSLayoutConstraint] = []
         let firstAnchor: NSLayoutAnchor<T.AnchorType> = first.anchor(for: attribute)
-        for view in views.dropFirst() {
-            constraints.append(view
+        return views.dropFirst().map { view in
+            view
                 .anchor(for: attribute)
-                .constraint(equalTo: firstAnchor))
+                .constraint(equalTo: firstAnchor)
         }
-        return constraints
     }
 
     /// Adds LayoutItems
