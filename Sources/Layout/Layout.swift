@@ -494,6 +494,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     /// |                                         |
     /// +-----------------------------------------+
     /// ```
+    @discardableResult
     public func center(
         _ view: UIView,
         between leading: NSLayoutAnchor<NSLayoutXAxisAnchor>,
@@ -551,6 +552,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     /// |                                         |
     /// +-----------------------------------------+
     /// ```
+    @discardableResult
     public func center(
         _ view: UIView,
         between top: NSLayoutAnchor<NSLayoutYAxisAnchor>,
