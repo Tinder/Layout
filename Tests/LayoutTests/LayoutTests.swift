@@ -952,6 +952,41 @@ final class LayoutTests: XCTestCase {
         expect(layout.constraints[1].isActive) == false
     }
 
+    func testUpdate() {
+        // GIVEN
+
+        final class ViewMock: UIView {
+
+            var setNeedsUpdateConstraintsCount: Int = 0
+            var updateConstraintsIfNeededCount: Int = 0
+
+            override func setNeedsUpdateConstraints() {
+                setNeedsUpdateConstraintsCount += 1
+            }
+
+            override func updateConstraintsIfNeeded() {
+                updateConstraintsIfNeededCount += 1
+            }
+        }
+
+        let view: ViewMock = .init()
+        let layout: Layout = .init(view)
+
+        // THEN
+
+        expect(view.setNeedsUpdateConstraintsCount) == 0
+        expect(view.updateConstraintsIfNeededCount) == 0
+
+        // WHEN
+
+        layout.update()
+
+        // THEN
+
+        expect(view.setNeedsUpdateConstraintsCount) == 1
+        expect(view.updateConstraintsIfNeededCount) == 1
+    }
+
     func testCollectionActivate_andCollectionDeactivate() {
 
         // GIVEN
