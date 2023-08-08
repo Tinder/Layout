@@ -953,7 +953,7 @@ final class LayoutTests: XCTestCase {
     }
 
     func testUpdate() {
-        
+
         // GIVEN
 
         final class ViewMock: UIView {
