@@ -398,7 +398,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ///   - spacing: (optional) spacing between `views`
     ///   - direction: (optional) determines if the views change direction with respect to the language
     ///   - priority: (optional) priority of the constraint, defaults to .required
-    ///   - alignment: X﹘Axis attributes to align
+    ///   - alignment: Y﹘Axis attributes to align
     @discardableResult
     public func horizontal(
         _ views: [UIView],
@@ -412,14 +412,19 @@ public final class Layout { // swiftlint:disable:this type_body_length
         else { return self }
         var anchor: NSLayoutAnchor<XAxisAttribute.AnchorType> = first.anchor(for: direction.attributes.1)
         for view in views.dropFirst() {
-            constraints.append(view
-                .anchor(for: direction.attributes.0)
-                .constraint(equalTo: anchor, constant: spacing)
-                .withPriority(priority))
+            adding(
+                view
+                    .anchor(for: direction.attributes.0)
+                    .constraint(equalTo: anchor, constant: spacing)
+                    .withPriority(priority)
+            )
             anchor = view.anchor(for: direction.attributes.1)
         }
-        for attribute in alignment {
-            equalAttribute(attribute, views)
+        for attribute: YAxisAttribute in alignment {
+            adding(
+                equalAttribute(attribute, views)
+                    .withPriority(priority)
+            )
         }
         return self
     }
@@ -434,6 +439,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     public func vertical(
         _ views: [UIView],
         spacing: CGFloat = 0,
+        priority: UILayoutPriority = .required,
         alignment: XAxisAttribute...
     ) -> Layout {
         guard views.count >= 2,
@@ -441,13 +447,19 @@ public final class Layout { // swiftlint:disable:this type_body_length
         else { return self }
         var anchor: NSLayoutAnchor<YAxisAttribute.AnchorType> = first.anchor(for: YAxisAttribute.bottom)
         for view in views.dropFirst() {
-            constraints.append(view
-                .anchor(for: YAxisAttribute.top)
-                .constraint(equalTo: anchor, constant: spacing))
+            adding(
+                view
+                    .anchor(for: YAxisAttribute.top)
+                    .constraint(equalTo: anchor, constant: spacing)
+                    .withPriority(priority)
+            )
             anchor = view.anchor(for: YAxisAttribute.bottom)
         }
-        for attribute in alignment {
-            equalAttribute(attribute, views)
+        for attribute: XAxisAttribute in alignment {
+            adding(
+                equalAttribute(attribute, views)
+                    .withPriority(priority)
+            )
         }
         return self
     }
@@ -575,17 +587,18 @@ public final class Layout { // swiftlint:disable:this type_body_length
     private func equalAttribute<T: AnchorAttribute>(
         _ attribute: T,
         _ views: [UIView]
-    ) -> Layout {
+    ) -> [NSLayoutConstraint] {
         guard views.count >= 2,
               let first = views.first
-        else { return self }
+        else { return [] }
+        var constraints: [NSLayoutConstraint] = []
         let firstAnchor: NSLayoutAnchor<T.AnchorType> = first.anchor(for: attribute)
         for view in views.dropFirst() {
             constraints.append(view
                 .anchor(for: attribute)
                 .constraint(equalTo: firstAnchor))
         }
-        return self
+        return constraints
     }
 
     /// Adds LayoutItems
