@@ -375,19 +375,9 @@ final class LayoutTests: XCTestCase {
 
             // To Anchor with Constant and Priority
 
-            layout.constrain(
-                pinkView.topAnchor,
-                to: view.topAnchor,
-                constant: 10,
-                priority: .low
-            )
+            layout.constrain(pinkView.topAnchor, to: view.topAnchor, constant: 10, priority: .low)
 
-            layout.constrain(
-                pinkView.topAnchor,
-                to: view.topAnchor,
-                constant: 30,
-                priority: .high
-            )
+            layout.constrain(pinkView.topAnchor, to: view.topAnchor, constant: 30, priority: .high)
 
             // To Anchor With Greater Than Or Equal Relation and Priority
 
@@ -399,19 +389,9 @@ final class LayoutTests: XCTestCase {
                 priority: .required
             )
 
-            layout.constrain(
-                pinkView.bottomAnchor,
-                to: yellowView.topAnchor,
-                constant: -100,
-                priority: .low
-            )
+            layout.constrain(pinkView.bottomAnchor, to: yellowView.topAnchor, constant: -100, priority: .low)
 
-            layout.constrain(
-                pinkView.bottomAnchor,
-                to: yellowView.topAnchor,
-                constant: -10,
-                priority: .high
-            )
+            layout.constrain(pinkView.bottomAnchor, to: yellowView.topAnchor, constant: -10, priority: .high)
 
             // To Anchor With Less Than Or Equal Relation and Priority
 
@@ -423,19 +403,9 @@ final class LayoutTests: XCTestCase {
                 priority: .required
             )
 
-            layout.constrain(
-                yellowView.bottomAnchor,
-                to: view.bottomAnchor,
-                constant: -10,
-                priority: .low
-            )
+            layout.constrain(yellowView.bottomAnchor, to: view.bottomAnchor, constant: -10, priority: .low)
 
-            layout.constrain(
-                yellowView.bottomAnchor,
-                to: view.bottomAnchor,
-                constant: -100,
-                priority: .high
-            )
+            layout.constrain(yellowView.bottomAnchor, to: view.bottomAnchor, constant: -100, priority: .high)
 
             return layout
         }
