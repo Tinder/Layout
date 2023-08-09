@@ -687,7 +687,7 @@ final class LayoutTests: XCTestCase {
                 yellowView
                     .size(width: 50, height: 50)
                 blueView
-                    .to([.top, .leading])
+                    .to([.bottom, .leading])
                     .size(width: 100, height: 100)
                 greenView
                     .size(width: 50, height: 50)
@@ -704,7 +704,7 @@ final class LayoutTests: XCTestCase {
                 spacing: 12,
                 direction: .leadingToTrailing,
                 priority: .low,
-                alignment: .top
+                alignment: .centerY
             )
 
             layout.horizontal(
@@ -712,7 +712,7 @@ final class LayoutTests: XCTestCase {
                 spacing: 50,
                 direction: .leftToRight,
                 priority: .high,
-                alignment: .top
+                alignment: .bottom
             )
 
             return layout
