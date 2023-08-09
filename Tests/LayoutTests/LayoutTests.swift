@@ -790,12 +790,13 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-            view.layout(
-                pinkView
-                    .size(width: 100, height: 100)
-                    .to(.top)
-            )
-            .center(pinkView, between: view.leadingAnchor, and: view.trailingAnchor)
+            view
+                .layout(
+                    pinkView
+                        .size(width: 100, height: 100)
+                        .to(.top)
+                )
+                .center(pinkView, between: view.leadingAnchor, and: view.trailingAnchor)
         }
     }
 
