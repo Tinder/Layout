@@ -737,7 +737,11 @@ final class LayoutTests: XCTestCase {
                 yellowView
                     .size(width: 100, height: 50, priority: .low)
             }
+
+            // Horizontal With Views and Alignment
+
             layout.horizontal([pinkView, yellowView], alignment: .top, .bottom)
+
             return layout
         }
     }
@@ -774,11 +778,7 @@ final class LayoutTests: XCTestCase {
 
             // Spacing
 
-            layout.vertical(
-                [blueView, greenView],
-                spacing: 12,
-                alignment: .centerX
-            )
+            layout.vertical([blueView, greenView], spacing: 12, alignment: .centerX)
 
             return layout
         }
@@ -802,7 +802,11 @@ final class LayoutTests: XCTestCase {
                 yellowView
                     .size(width: 50, height: 100, priority: .low)
             }
+
+            // Vertical With Views and Alignment
+
             layout.vertical([pinkView, yellowView], alignment: .leading, .trailing)
+
             return layout
         }
     }
@@ -835,6 +839,7 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
+
             let layout: Layout = view.layout {
                 pinkView
                     .size(width: 100, height: 100)
@@ -863,8 +868,8 @@ final class LayoutTests: XCTestCase {
 
         let view: UIView = .init()
         let layout: Layout = .init(view)
-        let pinkView: UIView = pinkView.id("pinkView")
-        let yellowView: UIView = yellowView.id("yellowView")
+        let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
 
         // THEN
 
@@ -872,7 +877,7 @@ final class LayoutTests: XCTestCase {
 
         // WHEN
 
-        layout.addItems(pinkView, yellowView)
+        layout.addItems(pinkView.id("pinkView"), yellowView.id("yellowView"))
 
         // THEN
 
@@ -887,8 +892,8 @@ final class LayoutTests: XCTestCase {
 
         let view: UIView = .init()
         let layout: Layout = .init(view)
-        let pinkView: UIView = pinkView.id("pinkView")
-        let yellowView: UIView = yellowView.id("yellowView")
+        let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
 
         // THEN
 
@@ -896,7 +901,7 @@ final class LayoutTests: XCTestCase {
 
         // WHEN
 
-        layout.addItems([pinkView, yellowView])
+        layout.addItems([pinkView.id("pinkView"), yellowView.id("yellowView")])
 
         // THEN
 
