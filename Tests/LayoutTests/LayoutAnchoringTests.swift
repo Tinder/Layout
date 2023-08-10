@@ -355,20 +355,42 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
-    func testConstraintIsEqualConstant() {
+    func testConstraint_withGreaterThanRelation() {
 
         // GIVEN
 
-        let subview: UIView = pinkView
+        let viewA: UIView = .init()
+        let expected: NSLayoutConstraint = viewA
+            .widthAnchor
+            .constraint(greaterThanOrEqualToConstant: 50)
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .widthAnchor.constraint(is: .greaterThanOrEqual, 50)
 
         // THEN
 
-        assertLayout(assertUnambiguousLayout: false) { view in
-            view
-                .layout(subview)
-                .adding(subview.widthAnchor.constraint(is: .equal, 100))
-                .adding(subview.heightAnchor.constraint(is: .equal, 200))
-        }
+        expect(constraint).to(match(expected))
+    }
+
+    func testConstraint_withLessThanRelation() {
+
+        // GIVEN
+
+        let viewA: UIView = .init()
+        let expected: NSLayoutConstraint = viewA
+            .widthAnchor
+            .constraint(lessThanOrEqualToConstant: 50)
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .widthAnchor.constraint(is: .lessThanOrEqual, 50)
+
+        // THEN
+
+        expect(constraint).to(match(expected))
     }
 
     func testViewControllerSafeAreaLayoutGuides() {
