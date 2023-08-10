@@ -257,36 +257,83 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
-    func testConstraintToLayoutDimension() {
+    func testConstraintToLayoutDimension_withDefaults() {
 
         // GIVEN
 
-        let subview: UIView = pinkView
+        let viewA: UIView = .init()
+        let viewB: UIView = .init()
+        let expected: NSLayoutConstraint = viewA
+            .widthAnchor
+            .constraint(equalTo: viewB.widthAnchor)
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA.widthAnchor.constraint(to: viewB.widthAnchor)
 
         // THEN
 
-        assertLayout(assertUnambiguousLayout: false) { view in
-            view
-                .layout(subview)
-                .adding(subview.widthAnchor.constraint(to: view.widthAnchor))
-                .adding(subview.heightAnchor.constraint(to: view.heightAnchor))
-        }
+        expect(constraint).to(match(expected))
     }
 
-    func testConstraintIsEqualToLayoutDimensionConstant() {
+    func testConstraintToLayoutDimension_withConstant() {
 
         // GIVEN
 
-        let subview: UIView = pinkView
+        let viewA: UIView = .init()
+        let viewB: UIView = .init()
+        let expected: NSLayoutConstraint = viewA
+            .widthAnchor
+            .constraint(equalTo: viewB.widthAnchor, constant: -100)
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .widthAnchor.constraint(to: viewB.widthAnchor, constant: -100)
 
         // THEN
 
-        assertLayout(assertUnambiguousLayout: false) { view in
-            view
-                .layout(subview)
-                .adding(subview.widthAnchor.constraint(is: .equal, to: view.widthAnchor, constant: -100))
-                .adding(subview.heightAnchor.constraint(is: .equal, to: view.heightAnchor, constant: -200))
-        }
+        expect(constraint).to(match(expected))
+    }
+
+    func testConstraintToLayoutDimension_withGreaterThanOrEqualRelation() {
+
+        // GIVEN
+
+        let viewA: UIView = .init()
+        let viewB: UIView = .init()
+        let expected: NSLayoutConstraint = viewA
+            .widthAnchor
+            .constraint(greaterThanOrEqualTo: viewB.widthAnchor)
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .widthAnchor.constraint(is: .greaterThanOrEqual, to: viewB.widthAnchor)
+
+        // THEN
+
+        expect(constraint).to(match(expected))
+    }
+
+    func testConstraintToLayoutDimension_withLessThanOrEqualRelation() {
+
+        // GIVEN
+
+        let viewA: UIView = .init()
+        let viewB: UIView = .init()
+        let expected: NSLayoutConstraint = viewA
+            .widthAnchor
+            .constraint(lessThanOrEqualTo: viewB.widthAnchor)
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .widthAnchor.constraint(is: .lessThanOrEqual, to: viewB.widthAnchor)
+
+        // THEN
+
+        expect(constraint).to(match(expected))
     }
 
     func testConstraintConstant() {
