@@ -131,7 +131,7 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
-    func testConstraintToXAnchor_withIsGreaterThanOrEqualRelation() {
+    func testConstraintToXAnchor_withGreaterThanOrEqualRelation() {
 
         // GIVEN
 
@@ -152,7 +152,7 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
-    func testConstraintToXAnchor_withIsLessThanOrEqualRelation() {
+    func testConstraintToXAnchor_withLessThanOrEqualRelation() {
 
         // GIVEN
 
@@ -215,7 +215,7 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
-    func testConstraintToYAnchor_withIsGreaterThanOrEqualRelation() {
+    func testConstraintToYAnchor_withGreaterThanOrEqualRelation() {
 
         // GIVEN
 
@@ -236,7 +236,7 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
-    func testConstraintToYAnchor_withIsLessThanOrEqualRelation() {
+    func testConstraintToYAnchor_withLessThanOrEqualRelation() {
 
         // GIVEN
 
