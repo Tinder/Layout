@@ -89,7 +89,7 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(layoutSupport.height) == view.heightAnchor
     }
 
-    func testXAxisAnchorConstraintIsEqual() {
+    func testConstraintToXAnchor_withDefaults() {
 
         // GIVEN
 
@@ -97,76 +97,160 @@ final class LayoutAnchoringTests: XCTestCase {
         let viewB: UIView = .init()
         let expected: NSLayoutConstraint = viewA
             .centerXAnchor
-            .constraint(equalTo: viewB.centerXAnchor, constant: 23)
-
-        // WHEN
-
-        let constraint: NSLayoutConstraint = viewA
-            .centerXAnchor
-            .constraint(is: .equal, to: viewB.centerXAnchor, constant: 23)
-
-        // THEN
-
-        expect(constraint).to(match(expected))
-    }
-
-    func testXAxisAnchorConstraintIsGreaterThanOrEqual() {
-
-        // GIVEN
-
-        let viewA: UIView = .init()
-        let viewB: UIView = .init()
-        let expected: NSLayoutConstraint = viewA
-            .centerXAnchor
-            .constraint(greaterThanOrEqualTo: viewB.centerXAnchor, constant: 23)
-
-        // WHEN
-
-        let constraint: NSLayoutConstraint = viewA
-            .centerXAnchor
-            .constraint(is: .greaterThanOrEqual, to: viewB.centerXAnchor, constant: 23)
-
-        // THEN
-
-        expect(constraint).to(match(expected))
-    }
-
-    func testXAxisAnchorConstraintIsLessThanOrEqual() {
-
-        // GIVEN
-
-        let viewA: UIView = .init()
-        let viewB: UIView = .init()
-        let expected: NSLayoutConstraint = viewA
-            .centerXAnchor
-            .constraint(lessThanOrEqualTo: viewB.centerXAnchor, constant: 23)
-
-        // WHEN
-
-        let constraint: NSLayoutConstraint = viewA
-            .centerXAnchor
-            .constraint(is: .lessThanOrEqual, to: viewB.centerXAnchor, constant: 23)
-
-        // THEN
-
-        expect(constraint).to(match(expected))
-    }
-
-    func testXAxisAnchorConstraintDefaults() {
-
-        // GIVEN
-
-        let viewA: UIView = .init()
-        let viewB: UIView = .init()
-        let expected: NSLayoutConstraint = viewA
-            .centerXAnchor
-            .constraint(equalTo: viewB.centerXAnchor, constant: 0)
+            .constraint(equalTo: viewB.centerXAnchor)
 
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
             .centerXAnchor
             .constraint(to: viewB.centerXAnchor)
+
+        // THEN
+
+        expect(constraint).to(match(expected))
+    }
+
+    func testConstraintToXAnchor_withConstant() {
+
+        // GIVEN
+
+        let viewA: UIView = .init()
+        let viewB: UIView = .init()
+        let expected: NSLayoutConstraint = viewA
+            .centerXAnchor
+            .constraint(equalTo: viewB.centerXAnchor, constant: 50)
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .centerXAnchor
+            .constraint(is: .equal, to: viewB.centerXAnchor, constant: 50)
+
+        // THEN
+
+        expect(constraint).to(match(expected))
+    }
+
+    func testConstraintToXAnchor_withIsGreaterThanOrEqualRelation() {
+
+        // GIVEN
+
+        let viewA: UIView = .init()
+        let viewB: UIView = .init()
+        let expected: NSLayoutConstraint = viewA
+            .centerXAnchor
+            .constraint(greaterThanOrEqualTo: viewB.centerXAnchor)
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .centerXAnchor
+            .constraint(is: .greaterThanOrEqual, to: viewB.centerXAnchor)
+
+        // THEN
+
+        expect(constraint).to(match(expected))
+    }
+
+    func testConstraintToXAnchor_withIsLessThanOrEqualRelation() {
+
+        // GIVEN
+
+        let viewA: UIView = .init()
+        let viewB: UIView = .init()
+        let expected: NSLayoutConstraint = viewA
+            .centerXAnchor
+            .constraint(lessThanOrEqualTo: viewB.centerXAnchor)
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .centerXAnchor
+            .constraint(is: .lessThanOrEqual, to: viewB.centerXAnchor)
+
+        // THEN
+
+        expect(constraint).to(match(expected))
+    }
+
+    func testConstraintToYAnchor_withDefaults() {
+
+        // GIVEN
+
+        let viewA: UIView = .init()
+        let viewB: UIView = .init()
+        let expected: NSLayoutConstraint = viewA
+            .centerYAnchor
+            .constraint(equalTo: viewB.centerYAnchor)
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .centerYAnchor
+            .constraint(to: viewB.centerYAnchor)
+
+        // THEN
+
+        expect(constraint).to(match(expected))
+    }
+
+    func testConstraintToYAnchor_withConstant() {
+
+        // GIVEN
+
+        let viewA: UIView = .init()
+        let viewB: UIView = .init()
+        let expected: NSLayoutConstraint = viewA
+            .centerYAnchor
+            .constraint(equalTo: viewB.centerYAnchor, constant: 50)
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .centerYAnchor
+            .constraint(is: .equal, to: viewB.centerYAnchor, constant: 50)
+
+        // THEN
+
+        expect(constraint).to(match(expected))
+    }
+
+    func testConstraintToYAnchor_withIsGreaterThanOrEqualRelation() {
+
+        // GIVEN
+
+        let viewA: UIView = .init()
+        let viewB: UIView = .init()
+        let expected: NSLayoutConstraint = viewA
+            .centerYAnchor
+            .constraint(greaterThanOrEqualTo: viewB.centerYAnchor)
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .centerYAnchor
+            .constraint(is: .greaterThanOrEqual, to: viewB.centerYAnchor)
+
+        // THEN
+
+        expect(constraint).to(match(expected))
+    }
+
+    func testConstraintToYAnchor_withIsLessThanOrEqualRelation() {
+
+        // GIVEN
+
+        let viewA: UIView = .init()
+        let viewB: UIView = .init()
+        let expected: NSLayoutConstraint = viewA
+            .centerYAnchor
+            .constraint(lessThanOrEqualTo: viewB.centerYAnchor)
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .centerYAnchor
+            .constraint(is: .lessThanOrEqual, to: viewB.centerYAnchor)
 
         // THEN
 
