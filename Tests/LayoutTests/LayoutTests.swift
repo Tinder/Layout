@@ -142,6 +142,46 @@ final class LayoutTests: XCTestCase {
         expect(layout.items["subview2"]) === subview2
     }
 
+    func testAddingConstraintsWithBuilder() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let subview: UIView = .init()
+        let heightConstraint: NSLayoutConstraint = .init(
+            item: subview,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 100
+        )
+        let widthConstraint: NSLayoutConstraint = .init(
+            item: subview,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 100
+        )
+        let layout: Layout = .init(view, subview)
+
+        // WHEN
+
+        layout.adding {
+            heightConstraint
+            widthConstraint
+        }
+
+        // THEN
+
+        expect(layout.constraints.count) == 2
+        expect(layout.constraints.contains(heightConstraint)) == true
+        expect(layout.constraints.contains(widthConstraint)) == true
+    }
+
     func testAddingConstraints() {
 
         // GIVEN
