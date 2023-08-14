@@ -66,6 +66,7 @@ final class LayoutAnchoringTests: XCTestCase {
         // GIVEN
 
         final class LayoutSupportMock: NSObject, UILayoutSupport {
+
             var topAnchor: NSLayoutYAxisAnchor { view.topAnchor }
             var bottomAnchor: NSLayoutYAxisAnchor { view.bottomAnchor }
             var heightAnchor: NSLayoutDimension { view.heightAnchor }
