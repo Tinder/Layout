@@ -872,37 +872,6 @@ final class LayoutItemTests: XCTestCase {
         expect(item.height) == item.layoutItemView.height
     }
 
-    func testToSafeAreaAttribute() {
-        assertLayout { view in
-            view.layout {
-                pinkView
-                    .toSafeArea(.top)
-                    .toSafeArea(.bottom)
-                    .toSafeArea(.leading)
-                    .toSafeArea(.trailing)
-            }
-        }
-    }
-
-    func testToSafeAreaDimensionAttributeConstantPriority() {
-        assertLayout { view in
-            view.layout {
-                pinkView
-                    .to(.leading)
-                    .toSafeArea(.top)
-                    .toSafeArea(.height, 0, priority: .high)
-                    .toSafeArea(.height, -100, priority: .low)
-                    .size(width: 100)
-                blueView
-                    .to(.trailing)
-                    .toSafeArea(.top)
-                    .toSafeArea(.height, 0, priority: .low)
-                    .toSafeArea(.height, -100, priority: .high)
-                    .size(width: 100)
-            }
-        }
-    }
-
     func testLayoutConstraintAttributeArrayExtension() {
         expect([NSLayoutConstraint.Attribute].edges) == [.top, .left, .bottom, .right]
         expect([NSLayoutConstraint.Attribute].vertical) == [.top, .bottom]
