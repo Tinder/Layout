@@ -487,6 +487,8 @@ final class LayoutTests: XCTestCase {
 
         let pinkView: UIView = pinkView
         let yellowView: UIView = yellowView
+        let blueView: UIView = blueView
+        let greenView: UIView = greenView
 
         // THEN
 
@@ -495,38 +497,45 @@ final class LayoutTests: XCTestCase {
             let layout: Layout = view.layout {
                 pinkView
                     .size(height: 100)
+                    .to([.top, .leading])
                 yellowView
+                    .to([.bottom, .trailing])
+                blueView
+                    .size(height: 100)
+                    .to([.centerY, .centerX])
+                greenView
+                    .to(.leading, 10)
+                    .to(.bottom, -10)
             }
 
             // To Anchor
 
-            layout.constrain(pinkView.topAnchor, to: view.topAnchor)
-            layout.constrain(yellowView.bottomAnchor, to: view.bottomAnchor)
-
-            // To Anchor with Constant
-
-            layout.constrain(pinkView.leadingAnchor, to: view.leadingAnchor, constant: 20)
-
-            // To Anchor with Multiplier
-
-            layout.constrain(pinkView.widthAnchor, to: view.widthAnchor, multiplier: 0.50)
+            layout.constrain(pinkView.heightAnchor, to: yellowView.heightAnchor)
 
             // To Anchor with Constant and Priority
 
-            layout.constrain(pinkView.bottomAnchor, to: yellowView.topAnchor, priority: .low)
-            layout.constrain(pinkView.bottomAnchor, to: yellowView.topAnchor, constant: -40, priority: .high)
+            layout.constrain(pinkView.widthAnchor, to: view.widthAnchor, constant: -150)
 
-            // To Anchor with Greater Than or Equal Relation and Constant and Priority
+            // To Anchor with Multiplier
 
-            layout.constrain(yellowView.leadingAnchor, is: .greaterThanOrEqual, to: view.leadingAnchor, constant: 20)
-            layout.constrain(yellowView.leadingAnchor, to: view.leadingAnchor, constant: 10, priority: .low)
-            layout.constrain(yellowView.leadingAnchor, to: view.leadingAnchor, constant: 60, priority: .high)
+            layout.constrain(yellowView.widthAnchor, to: view.widthAnchor, multiplier: 0.33)
 
-            // To Anchor with Less Than or Equal Relation
+            // To Anchor with Priority
 
-            layout.constrain(yellowView.trailingAnchor, is: .lessThanOrEqual, to: view.trailingAnchor, constant: -20)
-            layout.constrain(yellowView.trailingAnchor, to: view.trailingAnchor, constant: -10, priority: .low)
-            layout.constrain(yellowView.trailingAnchor, to: view.trailingAnchor, constant: -60, priority: .high)
+            layout.constrain(blueView.widthAnchor, to: view.widthAnchor, priority: .low)
+            layout.constrain(blueView.widthAnchor, to: yellowView.widthAnchor, priority: .high)
+
+            // To Anchor with Greater Than or Equal Relation and Priority
+
+            layout.constrain(greenView.heightAnchor, is: .greaterThanOrEqual, to: yellowView.heightAnchor)
+            layout.constrain(greenView.heightAnchor, to: yellowView.heightAnchor, constant: -50, priority: .low)
+            layout.constrain(greenView.heightAnchor, to: yellowView.heightAnchor, constant: 50, priority: .high)
+
+            // To Anchor with Less Than or Equal Relation and Priority
+
+            layout.constrain(greenView.widthAnchor, is: .lessThanOrEqual, to: yellowView.widthAnchor)
+            layout.constrain(greenView.widthAnchor, to: yellowView.widthAnchor, constant: 50, priority: .low)
+            layout.constrain(greenView.widthAnchor, to: yellowView.widthAnchor, constant: -50, priority: .high)
 
             return layout
         }
