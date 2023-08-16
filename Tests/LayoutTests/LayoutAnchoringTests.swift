@@ -270,7 +270,9 @@ final class LayoutAnchoringTests: XCTestCase {
 
         // WHEN
 
-        let constraint: NSLayoutConstraint = viewA.widthAnchor.constraint(to: viewB.widthAnchor)
+        let constraint: NSLayoutConstraint = viewA
+            .widthAnchor
+            .constraint(to: viewB.widthAnchor)
 
         // THEN
 
@@ -290,7 +292,8 @@ final class LayoutAnchoringTests: XCTestCase {
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .widthAnchor.constraint(to: viewB.widthAnchor, constant: -100)
+            .widthAnchor
+            .constraint(to: viewB.widthAnchor, constant: -100)
 
         // THEN
 
@@ -310,7 +313,8 @@ final class LayoutAnchoringTests: XCTestCase {
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .widthAnchor.constraint(is: .greaterThanOrEqual, to: viewB.widthAnchor)
+            .widthAnchor
+            .constraint(is: .greaterThanOrEqual, to: viewB.widthAnchor)
 
         // THEN
 
@@ -330,7 +334,8 @@ final class LayoutAnchoringTests: XCTestCase {
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .widthAnchor.constraint(is: .lessThanOrEqual, to: viewB.widthAnchor)
+            .widthAnchor
+            .constraint(is: .lessThanOrEqual, to: viewB.widthAnchor)
 
         // THEN
 
@@ -349,7 +354,8 @@ final class LayoutAnchoringTests: XCTestCase {
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .widthAnchor.constraint(50)
+            .widthAnchor
+            .constraint(50)
 
         // THEN
 
@@ -368,7 +374,8 @@ final class LayoutAnchoringTests: XCTestCase {
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .widthAnchor.constraint(is: .greaterThanOrEqual, 50)
+            .widthAnchor
+            .constraint(is: .greaterThanOrEqual, 50)
 
         // THEN
 
@@ -387,7 +394,8 @@ final class LayoutAnchoringTests: XCTestCase {
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .widthAnchor.constraint(is: .lessThanOrEqual, 50)
+            .widthAnchor
+            .constraint(is: .lessThanOrEqual, 50)
 
         // THEN
 
