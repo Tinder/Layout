@@ -177,9 +177,7 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
-        expect(layout.constraints.count) == 2
-        expect(layout.constraints.contains(heightConstraint)) == true
-        expect(layout.constraints.contains(widthConstraint)) == true
+        expect(layout.constraints) == [heightConstraint, widthConstraint]
     }
 
     func testAddingConstraints() {
