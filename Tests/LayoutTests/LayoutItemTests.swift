@@ -654,7 +654,7 @@ final class LayoutItemTests: XCTestCase {
                 pinkView
                     .size(width: 200, height: 400)
                     .to(.top)
-                    .center(between: view.leading, and: view.trailing)
+                    .center(between: view.safeAreaLayoutGuide.leading, and: view.safeAreaLayoutGuide.trailing)
             )
         }
     }
