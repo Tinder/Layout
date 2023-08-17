@@ -318,37 +318,42 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testCenterWithAxis_andWithOffset_andWithMultiplier_andWithPriority() {
-        assertLayout(assertUnambiguousLayout: false) { view in
+        assertLayout { view in
             view.layout {
 
                 // Vertical Axis
 
                 pinkView
                     .size(width: 100, height: 100)
+                    .to(.leading)
                     .center(.vertical)
 
                 // Horizontal Axis
 
                 yellowView
                     .size(width: 100, height: 100)
+                    .to(.top)
                     .center(.horizontal)
 
                 // With Offset
 
                 blueView
                     .size(width: 100, height: 100)
+                    .to(.leading)
                     .center(.vertical, offset: 100)
 
                 // With Multiplier
 
                 greenView
                     .size(width: 100, height: 100)
+                    .to(.top)
                     .center(.horizontal, multiplier: 1.5)
 
                 // With Priority
 
                 orangeView
                     .size(width: 100, height: 100)
+                    .to(.leading)
                     .center(.vertical, offset: -350, priority: .low)
                     .center(.vertical, offset: -100, priority: .high)
             }
@@ -356,13 +361,14 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testPadToMargins_andPadWithMargin_andWithPriority() {
-        assertLayout(assertUnambiguousLayout: false) { view in
+        assertLayout { view in
             view.layout {
 
                 // Pad to Leading/Trailing
 
                 pinkView
                     .size(height: 100)
+                    .to(.top)
                     .pad()
 
                 // Pad with Value
@@ -384,6 +390,7 @@ final class LayoutItemTests: XCTestCase {
 
                 greenView
                     .size(height: 100)
+                    .to(.bottom)
                     .pad(100, priority: .low)
                     .pad(50, priority: .high)
                     .to([.bottom], -100)
@@ -631,20 +638,22 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testCenterBetweenTopAndBottom() {
-        assertLayout(assertUnambiguousLayout: false) { view in
+        assertLayout { view in
             view.layout(
                 pinkView
                     .size(width: 200, height: 400)
+                    .to(.leading)
                     .center(between: view.safeAreaLayoutGuide.top, and: view.safeAreaLayoutGuide.bottom)
             )
         }
     }
 
     func testCenterBetweenLeadingAndTrailing() {
-        assertLayout(assertUnambiguousLayout: false) { view in
+        assertLayout { view in
             view.layout(
                 pinkView
                     .size(width: 200, height: 400)
+                    .to(.top)
                     .center(between: view.safeAreaLayoutGuide.leading, and: view.safeAreaLayoutGuide.trailing)
             )
         }
@@ -822,7 +831,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToSafeAreaWithDimensionAttribute_andWithConstant_andWithPriority() {
-        assertLayout(assertUnambiguousLayout: false) { view in
+        assertLayout { view in
             view.layout {
 
                 // To Safe Area DimensionAttribute
@@ -836,7 +845,7 @@ final class LayoutItemTests: XCTestCase {
 
                 yellowView
                     .size(height: 50)
-                    .to(.top)
+                    .to([.top, .leading])
                     .toSafeArea(.width, -50)
 
                 // To Safe Area DimensionAttribute with Priority

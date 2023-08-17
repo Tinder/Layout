@@ -18,7 +18,6 @@ extension XCTestCase {
 
     internal func assertLayout(
         devices: [Device] = Device.portraitTestDevices,
-        assertUnambiguousLayout: Bool = true,
         file: StaticString = #file,
         testName: String = #function,
         line: UInt = #line,
@@ -41,10 +40,8 @@ extension XCTestCase {
                            file: file,
                            testName: testName,
                            line: line)
-            if assertUnambiguousLayout {
-                for view: UIView in view.recursiveSubviews {
-                    expect(file: "\(file)", line: line, view).to(haveUnambiguousLayout())
-                }
+            for view: UIView in view.recursiveSubviews {
+                expect(file: "\(file)", line: line, view).to(haveUnambiguousLayout())
             }
         }
     }
