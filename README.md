@@ -12,8 +12,8 @@ Code written with Layout is declarative in nature such that it is easy to visual
 
 ## Minimum Requirements
 
-- iOS `11.0`
-- Swift `5.7`
+- iOS `13.0`
+- Swift `5.8`
 
 ## Installation
 
