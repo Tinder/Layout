@@ -9,6 +9,7 @@
 
 import UIKit
 
+@MainActor
 public protocol LayoutAnchoring {
 
     var left: NSLayoutXAxisAnchor { get }

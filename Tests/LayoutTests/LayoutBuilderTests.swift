@@ -11,11 +11,12 @@
 import Nimble
 import XCTest
 
+@MainActor
 final class LayoutBuilderTests: XCTestCase {
 
     private final class LayoutItemMock: Equatable, LayoutItem {
 
-        static func == (lhs: LayoutItemMock, rhs: LayoutItemMock) -> Bool {
+        nonisolated static func == (lhs: LayoutItemMock, rhs: LayoutItemMock) -> Bool {
             lhs === rhs
         }
 

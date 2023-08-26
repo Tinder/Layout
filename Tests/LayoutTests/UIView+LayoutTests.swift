@@ -13,6 +13,7 @@ import Nimble
 import UIKit
 import XCTest
 
+@MainActor
 final class UIViewLayoutTests: XCTestCase {
 
     func testLayoutWithMetrics() {

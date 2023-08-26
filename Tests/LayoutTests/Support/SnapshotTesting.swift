@@ -16,6 +16,7 @@ import XCTest
 
 extension XCTestCase {
 
+    @MainActor
     internal func assertLayout(
         devices: [Device] = Device.portraitTestDevices,
         file: StaticString = #file,
