@@ -36,6 +36,8 @@ import UIKit
 ///         .vertical([view2, view3])
 ///         .activate()
 ///         ````
+@preconcurrency
+@MainActor
 public final class Layout { // swiftlint:disable:this type_body_length
 
     /// The standard spacing when using vfl. The horizontal bars in `|[view1]-[view2]-|`
@@ -669,11 +671,15 @@ public final class Layout { // swiftlint:disable:this type_body_length
 extension Collection where Element == Layout {
 
     /// Activates all constraints of each instance
+    @preconcurrency
+    @MainActor
     public func activate() {
         forEach { $0.activate() }
     }
 
     /// Deactivates all constraints of each instance
+    @preconcurrency
+    @MainActor
     public func deactivate() {
         forEach { $0.deactivate() }
     }

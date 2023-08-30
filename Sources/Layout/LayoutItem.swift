@@ -29,6 +29,8 @@ public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
 ///     let item = view1.pin()
 ///     mainView.layout(item).activate()
 ///     ````
+@preconcurrency
+@MainActor
 public protocol LayoutItem: AnyObject {
 
     /// View of the LayoutItem

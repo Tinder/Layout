@@ -11,6 +11,8 @@
 import Nimble
 import XCTest
 
+@preconcurrency
+@MainActor
 final class LayoutTests: XCTestCase {
 
     func testInitWithContainerView_andWithMetrics() {

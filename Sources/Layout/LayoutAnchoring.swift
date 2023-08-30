@@ -9,6 +9,8 @@
 
 import UIKit
 
+@preconcurrency
+@MainActor
 public protocol LayoutAnchoring {
 
     var left: NSLayoutXAxisAnchor { get }

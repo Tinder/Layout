@@ -30,6 +30,9 @@ let package = Package(
     targets: [
         .target(
             name: "Layout",
+            swiftSettings: [
+                .unsafeFlags(["-strict-concurrency=complete"]),
+            ],
             plugins: [
                 .plugin(name: SwiftLint.plugin),
             ]),

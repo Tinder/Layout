@@ -11,6 +11,8 @@
 import Nimble
 import XCTest
 
+@preconcurrency
+@MainActor
 final class LayoutAnchoringTests: XCTestCase {
 
     func testViewAnchors() {
