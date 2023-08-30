@@ -140,6 +140,7 @@ extension NSLayoutConstraint.Axis {
 
 extension Array where Element == NSLayoutConstraint {
 
+    @preconcurrency
     @MainActor
     @discardableResult
     public func activate() -> [NSLayoutConstraint] {
@@ -147,6 +148,7 @@ extension Array where Element == NSLayoutConstraint {
         return self
     }
 
+    @preconcurrency
     @MainActor
     @discardableResult
     public func deactivate() -> [NSLayoutConstraint] {
@@ -154,6 +156,7 @@ extension Array where Element == NSLayoutConstraint {
         return self
     }
 
+    @preconcurrency
     @MainActor
     @discardableResult
     public func withPriority(
@@ -162,6 +165,7 @@ extension Array where Element == NSLayoutConstraint {
         map { $0.withPriority(priority) }
     }
 
+    @preconcurrency
     @MainActor
     public func prioritize(_ priority: UILayoutPriority) {
         forEach { $0.priority = priority }

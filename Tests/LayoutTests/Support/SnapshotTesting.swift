@@ -16,6 +16,7 @@ import XCTest
 
 extension XCTestCase {
 
+    @preconcurrency
     @MainActor
     internal func assertLayout(
         devices: [Device] = Device.portraitTestDevices,

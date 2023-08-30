@@ -13,6 +13,7 @@ import Nimble
 import UIKit
 import XCTest
 
+@preconcurrency
 @MainActor
 final class UIViewLayoutTests: XCTestCase {
 

@@ -11,6 +11,7 @@
 import Nimble
 import XCTest
 
+@preconcurrency
 @MainActor
 final class LayoutItemTests: XCTestCase {
 

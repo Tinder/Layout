@@ -9,6 +9,7 @@
 
 import UIKit
 
+@preconcurrency
 @MainActor
 public protocol LayoutAnchoring {
 
