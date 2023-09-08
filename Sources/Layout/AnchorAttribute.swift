@@ -11,7 +11,7 @@ import UIKit
 
 // swiftlint:disable file_types_order
 
-public protocol AnchorAttribute {
+internal protocol AnchorAttribute {
 
     associatedtype AnchorType: AnyObject
 
@@ -21,7 +21,7 @@ public protocol AnchorAttribute {
 
 // swiftlint:enable file_types_order
 
-public enum AnchorAttributeType {
+internal enum AnchorAttributeType {
 
     case xAxisAnchor, yAxisAnchor, dimension
 }
@@ -30,13 +30,13 @@ public enum XAxisAttribute: AnchorAttribute {
 
     case left, centerX, right, leading, trailing
 
-    public typealias AnchorType = NSLayoutXAxisAnchor
+    internal typealias AnchorType = NSLayoutXAxisAnchor
 
-    public var attributeType: AnchorAttributeType {
+    internal var attributeType: AnchorAttributeType {
         .xAxisAnchor
     }
 
-    public var attribute: NSLayoutConstraint.Attribute {
+    internal var attribute: NSLayoutConstraint.Attribute {
         switch self {
         case .left:
             return .left
@@ -56,13 +56,13 @@ public enum YAxisAttribute: AnchorAttribute {
 
     case top, centerY, firstBaseline, lastBaseline, bottom
 
-    public typealias AnchorType = NSLayoutYAxisAnchor
+    internal typealias AnchorType = NSLayoutYAxisAnchor
 
-    public var attributeType: AnchorAttributeType {
+    internal var attributeType: AnchorAttributeType {
         .yAxisAnchor
     }
 
-    public var attribute: NSLayoutConstraint.Attribute {
+    internal var attribute: NSLayoutConstraint.Attribute {
         switch self {
         case .top:
             return .top
@@ -82,13 +82,13 @@ public enum DimensionAttribute: AnchorAttribute {
 
     case width, height
 
-    public typealias AnchorType = NSLayoutDimension
+    internal typealias AnchorType = NSLayoutDimension
 
-    public var attributeType: AnchorAttributeType {
+    internal var attributeType: AnchorAttributeType {
         .dimension
     }
 
-    public var attribute: NSLayoutConstraint.Attribute {
+    internal var attribute: NSLayoutConstraint.Attribute {
         switch self {
         case .width:
             return .width
@@ -100,7 +100,7 @@ public enum DimensionAttribute: AnchorAttribute {
 
 extension LayoutAnchoring {
 
-    public func anchor<T: AnchorAttribute>(for attribute: T) -> NSLayoutAnchor<T.AnchorType> {
+    internal func anchor<T: AnchorAttribute>(for attribute: T) -> NSLayoutAnchor<T.AnchorType> {
         // swiftlint:disable force_cast
         switch attribute.attributeType {
         case .xAxisAnchor:
