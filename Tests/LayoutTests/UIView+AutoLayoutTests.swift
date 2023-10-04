@@ -321,7 +321,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // GIVEN
 
-        let insets: UIEdgeInsets = .init(top: 1, left: 2, bottom: 3, right: 4)
+        let insets: NSDirectionalEdgeInsets = .init(top: 1, leading: 2, bottom: 3, trailing: 4)
         let constraints3: [NSLayoutConstraint] = view.edgeConstraints(insetBy: insets)
 
         // THEN
@@ -331,9 +331,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints3[1].firstAttribute) == .bottom
         expect(constraints3[1].constant) == -insets.bottom
         expect(constraints3[2].firstAttribute) == .leading
-        expect(constraints3[2].constant) == insets.left
+        expect(constraints3[2].constant) == insets.leading
         expect(constraints3[3].firstAttribute) == .trailing
-        expect(constraints3[3].constant) == -insets.right
+        expect(constraints3[3].constant) == -insets.trailing
     }
 
     func testCenterConstraints() {

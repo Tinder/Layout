@@ -206,7 +206,7 @@ extension LayoutItem {
     ///   - insets: (optional) insets of view
     ///   - priority: (optional) priority of constraint
     public func pin(
-        insets: UIEdgeInsets = .zero,
+        insets: NSDirectionalEdgeInsets = .zero,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints {
@@ -223,7 +223,7 @@ extension LayoutItem {
         _ inset: CGFloat,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        pin(insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset),
+        pin(insets: NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset),
             priority: priority)
     }
 
