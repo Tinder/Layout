@@ -236,8 +236,8 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testPinWithUIEdgeInsets_andWithPriority() {
-        let insets12: UIEdgeInsets = .init(top: 12, left: 12, bottom: 12, right: 12)
-        let insets36: UIEdgeInsets = .init(top: 36, left: 36, bottom: 36, right: 36)
+        let insets12: NSDirectionalEdgeInsets = .init(top: 12, leading: 12, bottom: 12, trailing: 12)
+        let insets36: NSDirectionalEdgeInsets = .init(top: 36, leading: 36, bottom: 36, trailing: 36)
         assertLayout { view in
             view.layout {
                 pinkView
