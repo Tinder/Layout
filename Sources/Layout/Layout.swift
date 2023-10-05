@@ -310,21 +310,34 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ///   - view1: subview to constrain
     ///   - view2: subview to constrain
     ///   - insets: (optional) insets of `view1`
-    ///   - direction: (optional) determines if the views change direction with respect to the language
     @discardableResult
     public func pin(
         _ view1: UIView,
         to view2: UIView,
-        insets: UIEdgeInsets = .zero,
-        direction: HorizontalDirection = .leadingToTrailing
+        insets: NSDirectionalEdgeInsets
     ) -> Layout {
         self
-            .constrain(view1.anchor(for: direction.attributes.0),
-                       to: view2.anchor(for: direction.attributes.0),
-                       constant: insets.left)
-            .constrain(view1.anchor(for: direction.attributes.1),
-                       to: view2.anchor(for: direction.attributes.1),
-                       constant: -insets.right)
+            .constrain(view1.leading, to: view2.leading, constant: insets.leading)
+            .constrain(view1.trailing, to: view2.trailing, constant: -insets.trailing)
+            .constrain(view1.top, to: view2.top, constant: insets.top)
+            .constrain(view1.bottom, to: view2.bottom, constant: -insets.bottom)
+    }
+
+    /// Constrains the edges of a subview to another
+    ///
+    /// - Parameters:
+    ///   - view1: subview to constrain
+    ///   - view2: subview to constrain
+    ///   - insets: (optional) insets of `view1`
+    @discardableResult
+    public func pin(
+        _ view1: UIView,
+        to view2: UIView,
+        insets: UIEdgeInsets = .zero
+    ) -> Layout {
+        self
+            .constrain(view1.left, to: view2.left, constant: insets.left)
+            .constrain(view1.right, to: view2.right, constant: -insets.right)
             .constrain(view1.top, to: view2.top, constant: insets.top)
             .constrain(view1.bottom, to: view2.bottom, constant: -insets.bottom)
     }
@@ -335,18 +348,15 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ///   - view1: subview to constrain
     ///   - view2: subview to constrain
     ///   - inset: inset of `view1`
-    ///   - direction: (optional) determines if the views change direction with respect to the language
     @discardableResult
     public func pin(
         _ view1: UIView,
         to view2: UIView,
-        inset: CGFloat,
-        direction: HorizontalDirection = .leadingToTrailing
+        inset: CGFloat
     ) -> Layout {
         pin(view1,
             to: view2,
-            insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset),
-            direction: direction)
+            insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset))
     }
 
     /// Constrains the corresponding `attribute` of the `views` to each other

@@ -585,13 +585,12 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testPin_andWithEdgeInsets_andWithHorizontalDirection() {
+    func testPin_andWithDirectionalInsets() {
 
         // GIVEN
 
         let pinkView: UIView = pinkView
         let yellowView: UIView = yellowView
-        let blueView: UIView = blueView
 
         // THEN
 
@@ -600,7 +599,6 @@ final class LayoutTests: XCTestCase {
             let layout: Layout = view.layout {
                 pinkView
                 yellowView
-                blueView
             }
 
             // Pin to View
@@ -609,22 +607,15 @@ final class LayoutTests: XCTestCase {
 
             // Pin to View with EdgeInsets
 
-            layout.pin(yellowView, to: view, insets: UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40))
-
-            // Pin to View with EdgeInsets and HorizontalDirection
-
-            layout.pin(
-                blueView,
-                to: view,
-                insets: UIEdgeInsets(top: 60, left: 60, bottom: 60, right: 60),
-                direction: .leftToRight
-            )
+            layout.pin(yellowView,
+                       to: view,
+                       insets: NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 40))
 
             return layout
         }
     }
 
-    func testPinWithInset_andWithHorizontalDirection() {
+    func testPin_andWithInsets() {
 
         // GIVEN
 
@@ -640,15 +631,33 @@ final class LayoutTests: XCTestCase {
                 yellowView
             }
 
-            // Pin to Inset
+            // Pin to View
 
-            layout.pin(pinkView, to: view, inset: 20)
+            layout.pin(pinkView, to: view)
 
-            // Pin to Inset with Horizontal Direction
+            // Pin to View with EdgeInsets
 
-            layout.pin(yellowView, to: view, inset: 40, direction: .leftToRight)
+            layout.pin(yellowView,
+                       to: view,
+                       insets: UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40))
 
             return layout
+        }
+    }
+
+    func testPinWithInset() {
+
+        // GIVEN
+
+        let pinkView: UIView = pinkView
+
+        // THEN
+
+        assertLayout { view in
+            view.layout {
+                pinkView
+            }
+            .pin(pinkView, to: view, inset: 20)
         }
     }
 
