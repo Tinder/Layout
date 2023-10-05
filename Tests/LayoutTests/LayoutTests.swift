@@ -585,13 +585,12 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testPin_andWithEdgeInsets_andWithHorizontalDirection() {
+    func testPin_andWithDirectionalInsets() {
 
         // GIVEN
 
         let pinkView: UIView = pinkView
         let yellowView: UIView = yellowView
-        let blueView: UIView = blueView
 
         // THEN
 
@@ -600,7 +599,6 @@ final class LayoutTests: XCTestCase {
             let layout: Layout = view.layout {
                 pinkView
                 yellowView
-                blueView
             }
 
             // Pin to View
@@ -609,21 +607,45 @@ final class LayoutTests: XCTestCase {
 
             // Pin to View with EdgeInsets
 
-            layout.pin(yellowView, to: view, insets: UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40))
-
-            // Pin to View with EdgeInsets and HorizontalDirection
-
-            layout.pin(
-                blueView,
-                to: view,
-                insets: UIEdgeInsets(top: 60, left: 60, bottom: 60, right: 60)
-            )
+            layout.pin(yellowView,
+                       to: view,
+                       insets: NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 40))
 
             return layout
         }
     }
 
-    func testPinWithInset_andWithHorizontalDirection() {
+    func testPin_andWithInsets() {
+
+        // GIVEN
+
+        let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
+
+        // THEN
+
+        assertLayout { view in
+
+            let layout: Layout = view.layout {
+                pinkView
+                yellowView
+            }
+
+            // Pin to View
+
+            layout.pin(pinkView, to: view)
+
+            // Pin to View with EdgeInsets
+
+            layout.pin(yellowView,
+                       to: view,
+                       insets: UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40))
+
+            return layout
+        }
+    }
+
+    func testPinWithInset() {
 
         // GIVEN
 
@@ -642,10 +664,6 @@ final class LayoutTests: XCTestCase {
             // Pin to Inset
 
             layout.pin(pinkView, to: view, inset: 20)
-
-            // Pin to Inset with Horizontal Direction
-
-            layout.pin(yellowView, to: view, inset: 40)
 
             return layout
         }
