@@ -310,7 +310,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ///   - view1: subview to constrain
     ///   - view2: subview to constrain
     ///   - insets: (optional) insets of `view1`
-    ///   - direction: (optional) determines if the views change direction with respect to the language
     @discardableResult
     public func pin(
         _ view1: UIView,
@@ -330,7 +329,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ///   - view1: subview to constrain
     ///   - view2: subview to constrain
     ///   - insets: (optional) insets of `view1`
-    ///   - direction: (optional) determines if the views change direction with respect to the language
     @discardableResult
     public func pin(
         _ view1: UIView,
@@ -350,7 +348,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ///   - view1: subview to constrain
     ///   - view2: subview to constrain
     ///   - inset: inset of `view1`
-    ///   - direction: (optional) determines if the views change direction with respect to the language
     @discardableResult
     public func pin(
         _ view1: UIView,
