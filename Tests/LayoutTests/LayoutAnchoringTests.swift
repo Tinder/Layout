@@ -29,14 +29,14 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(view.leading) == view.leadingAnchor
         expect(view.trailing) == view.trailingAnchor
 
-        expect(view.top) == view.top
-        expect(view.centerY) == view.centerY
-        expect(view.firstBaseline) == view.firstBaseline
-        expect(view.lastBaseline) == view.lastBaseline
-        expect(view.bottom) == view.bottom
+        expect(view.top) == view.topAnchor
+        expect(view.centerY) == view.centerYAnchor
+        expect(view.firstBaseline) == view.firstBaselineAnchor
+        expect(view.lastBaseline) == view.lastBaselineAnchor
+        expect(view.bottom) == view.bottomAnchor
 
-        expect(view.width) == view.width
-        expect(view.height) == view.height
+        expect(view.width) == view.widthAnchor
+        expect(view.height) == view.heightAnchor
     }
 
     func testLayoutGuideAnchors() {
