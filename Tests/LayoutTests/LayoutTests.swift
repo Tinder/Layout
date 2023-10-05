@@ -654,16 +654,10 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-
-            let layout: Layout = view.layout {
+            view.layout {
                 pinkView
             }
-
-            // Pin to Inset
-
-            layout.pin(pinkView, to: view, inset: 20)
-
-            return layout
+            .pin(pinkView, to: view, inset: 20)
         }
     }
 
