@@ -187,7 +187,7 @@ extension LayoutItem {
     /// Constrains the width to the height by a `ratio`
     ///
     /// - Parameters:
-    ///   - ratio: ratio constriant, width:height
+    ///   - ratio: ratio constraint, width:height
     ///   - priority: (optional) priority of constraint
     public func aspectRatio(
         _ ratio: CGFloat,
