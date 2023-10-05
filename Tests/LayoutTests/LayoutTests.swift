@@ -650,7 +650,6 @@ final class LayoutTests: XCTestCase {
         // GIVEN
 
         let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
 
         // THEN
 
@@ -658,7 +657,6 @@ final class LayoutTests: XCTestCase {
 
             let layout: Layout = view.layout {
                 pinkView
-                yellowView
             }
 
             // Pin to Inset
