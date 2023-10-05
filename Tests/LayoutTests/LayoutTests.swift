@@ -616,8 +616,7 @@ final class LayoutTests: XCTestCase {
             layout.pin(
                 blueView,
                 to: view,
-                insets: UIEdgeInsets(top: 60, left: 60, bottom: 60, right: 60),
-                direction: .leftToRight
+                insets: UIEdgeInsets(top: 60, left: 60, bottom: 60, right: 60)
             )
 
             return layout
@@ -646,7 +645,7 @@ final class LayoutTests: XCTestCase {
 
             // Pin to Inset with Horizontal Direction
 
-            layout.pin(yellowView, to: view, inset: 40, direction: .leftToRight)
+            layout.pin(yellowView, to: view, inset: 40)
 
             return layout
         }
