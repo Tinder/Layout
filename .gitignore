@@ -8,3 +8,6 @@
 # Xcode
 *.xcworkspace/
 *.xcodeproj/
+
+# Bazel
+bazel-*
