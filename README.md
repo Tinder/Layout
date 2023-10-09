@@ -3,6 +3,8 @@
 [![Bazel](https://github.com/Tinder/Layout/actions/workflows/bazel.yml/badge.svg?event=push)](https://github.com/Tinder/Layout/actions/workflows/bazel.yml)
 &nbsp;
 [![CocoaPods](https://github.com/Tinder/Layout/actions/workflows/cocoapods.yml/badge.svg?event=push)](https://github.com/Tinder/Layout/actions/workflows/cocoapods.yml)
+&nbsp;
+[![Artifactory](https://github.com/Tinder/Layout/actions/workflows/artifactory.yml/badge.svg?event=push)](https://github.com/Tinder/Layout/actions/workflows/artifactory.yml)
 
 # Layout
 

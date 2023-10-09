@@ -1,0 +1,31 @@
+name: Artifactory
+
+on:
+  push:
+    tags: ['[0-9]+.[0-9]+.[0-9]+']
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_14.3.app/Contents/Developer
+
+jobs:
+  artifactory:
+    name: Artifactory
+    runs-on: macos-13
+    concurrency:
+      group: ${{ github.ref_name }}
+      cancel-in-progress: true
+    steps:
+    - name: Install dependencies
+      run: brew install jfrog-cli
+    - name: Checkout source
+      uses: actions/checkout@v3
+    - name: Archive
+      run: tar -czf "Layout-${GITHUB_REF_NAME}.tar.gz" Sources
+    - name: Upload
+      run: >
+        jf rt u
+        --url="https://tinder.jfrog.io/artifactory"
+        --access-token="${{ secrets.ARTIFACTORY_ACCESS_TOKEN }}"
+        --flat="true"
+        "Layout-${GITHUB_REF_NAME}.tar.gz"
+        "swift-package-releases/Layout/"
