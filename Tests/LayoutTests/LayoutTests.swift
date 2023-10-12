@@ -584,7 +584,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testPin_andWithDirectionalInsets() {
+    func testConstrain_andWithDirectionalInsets() {
 
         // GIVEN
 
@@ -602,19 +602,19 @@ final class LayoutTests: XCTestCase {
 
             // Pin to View
 
-            layout.pin(pinkView, to: view)
+            layout.constrain(pinkView, to: view)
 
             // Pin to View with EdgeInsets
 
-            layout.pin(yellowView,
-                       to: view,
-                       insets: NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 40))
+            layout.constrain(yellowView,
+                             to: view,
+                             insets: NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 40))
 
             return layout
         }
     }
 
-    func testPin_andWithInsets() {
+    func testConstrain_andWithInsets() {
 
         // GIVEN
 
@@ -632,19 +632,19 @@ final class LayoutTests: XCTestCase {
 
             // Pin to View
 
-            layout.pin(pinkView, to: view)
+            layout.constrain(pinkView, to: view)
 
             // Pin to View with EdgeInsets
 
-            layout.pin(yellowView,
-                       to: view,
-                       insets: UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40))
+            layout.constrain(yellowView,
+                             to: view,
+                             insets: UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40))
 
             return layout
         }
     }
 
-    func testPinWithInset() {
+    func testConstrainWithInset() {
 
         // GIVEN
 
@@ -653,10 +653,7 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-            view.layout {
-                pinkView
-            }
-            .pin(pinkView, to: view, inset: 20)
+            view.layout(pinkView).constrain(pinkView, to: view, inset: 20)
         }
     }
 
