@@ -56,7 +56,7 @@ public final class ViewLayoutItem: LayoutItem {
     public let layoutItemView: UIView
     public let superviewConstraints: SuperviewConstraints
 
-    internal init(
+    public init(
         layoutItemView: UIView,
         superviewConstraints: @escaping SuperviewConstraints
     ) {
