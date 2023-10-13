@@ -247,19 +247,6 @@ final class NSLayoutConstraintTests: XCTestCase {
         expect(verticalAxis.orientation) == "V"
     }
 
-    func testCenterAttribute() {
-
-        // GIVEN
-
-        let horizontalAxis: NSLayoutConstraint.Axis = .horizontal
-        let verticalAxis: NSLayoutConstraint.Axis = .vertical
-
-        // THEN
-
-        expect(horizontalAxis.centerAttribute) == .centerX
-        expect(verticalAxis.centerAttribute) == .centerY
-    }
-
     func testBatchActivation() {
 
         // GIVEN
