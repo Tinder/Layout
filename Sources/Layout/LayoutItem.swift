@@ -250,11 +250,20 @@ extension LayoutItem {
         insets: NSDirectionalEdgeInsets = .zero,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        self
-            .toMargin(.leading, insets.leading, priority: priority)
-            .toMargin(.trailing, -insets.trailing, priority: priority)
-            .toMargin(.top, insets.top, priority: priority)
-            .toMargin(.bottom, -insets.bottom, priority: priority)
+        addingSuperviewConstraints {
+            $0.layoutItemView
+                .constraint(for: .top, toSuperview: .topMargin, constant: insets.top)
+                .withPriority(priority)
+            $0.layoutItemView
+                .constraint(for: .bottom, toSuperview: .bottomMargin, constant: -insets.bottom)
+                .withPriority(priority)
+            $0.layoutItemView
+                .constraint(for: .leading, toSuperview: .leadingMargin, constant: insets.leading)
+                .withPriority(priority)
+            $0.layoutItemView
+                .constraint(for: .trailing, toSuperview: .trailingMargin, constant: -insets.trailing)
+                .withPriority(priority)
+        }
     }
 
     /// Constrains the view to the margins of the superview with an `inset`.
@@ -373,58 +382,6 @@ extension LayoutItem {
                 .constraints(toSuperview: attributes,
                              constant: constant)
                 .withPriority(priority)
-        }
-    }
-
-    /// Constrains the `attribute` to the superview's corresponding `attribute` margin
-    ///
-    /// - Note:
-    ///     Equation: view.attribute = multiplier × superview.attribute + constant
-    /// - Parameters:
-    ///   - attribute: attribute to constrain
-    ///   - relation: (optional) relationship (=, ≤, ≥)
-    ///   - multiplier: (optional) multiplier
-    ///   - constant: (optional) constant
-    ///   - priority: (optional) priority of constraint
-    public func toMargin(
-        _ attribute: NSLayoutConstraint.Attribute,
-        is relation: NSLayoutConstraint.Relation = .equal,
-        multiplier: CGFloat = 1,
-        _ constant: CGFloat = 0,
-        priority: UILayoutPriority = .required
-    ) -> LayoutItem {
-        addingSuperviewConstraints {
-            $0.layoutItemView
-                .constraint(for: attribute,
-                            is: relation,
-                            toSuperview: attribute.marginAttribute,
-                            multiplier: multiplier,
-                            constant: constant)
-                .withPriority(priority)
-        }
-    }
-
-    /// Constrains the `attributes` to the superview's corresponding `attributes` margin
-    ///
-    /// - Note:
-    ///     Equation: view.attribute = superview.attribute + constant
-    /// - Parameters:
-    ///   - attributes: attribute to constrain
-    ///   - constant: (optional) constant
-    ///   - priority: (optional) priority of constraint
-    public func toMargin(
-        _ attributes: [NSLayoutConstraint.Attribute],
-        _ constant: CGFloat = 0,
-        priority: UILayoutPriority = .required
-    ) -> LayoutItem {
-        addingSuperviewConstraints {
-            for attribute in attributes {
-                $0.layoutItemView
-                    .constraint(for: attribute,
-                                toSuperview: attribute.marginAttribute,
-                                constant: constant)
-                    .withPriority(priority)
-            }
         }
     }
 
