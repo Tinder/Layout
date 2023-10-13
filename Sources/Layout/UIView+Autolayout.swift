@@ -80,10 +80,10 @@ extension UIView {
     ) {
         translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: directionalEdgeInsets.leading),
-            trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -directionalEdgeInsets.trailing),
-            topAnchor.constraint(equalTo: superview.topAnchor, constant: directionalEdgeInsets.top),
-            bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: -directionalEdgeInsets.bottom)
+            leading.constraint(equalTo: superview.leading, constant: directionalEdgeInsets.leading),
+            trailing.constraint(equalTo: superview.trailing, constant: -directionalEdgeInsets.trailing),
+            top.constraint(equalTo: superview.top, constant: directionalEdgeInsets.top),
+            bottom.constraint(equalTo: superview.bottom, constant: -directionalEdgeInsets.bottom)
         ])
     }
 

@@ -174,11 +174,11 @@ final class AnchorAttributeTests: XCTestCase {
 
         // THEN
 
-        expect(view.anchor(for: XAxisAttribute.left)) == view.leftAnchor
-        expect(view.anchor(for: XAxisAttribute.centerX)) == view.centerXAnchor
-        expect(view.anchor(for: XAxisAttribute.right)) == view.rightAnchor
-        expect(view.anchor(for: XAxisAttribute.leading)) == view.leadingAnchor
-        expect(view.anchor(for: XAxisAttribute.trailing)) == view.trailingAnchor
+        expect(view.anchor(for: XAxisAttribute.left)) == view.left
+        expect(view.anchor(for: XAxisAttribute.centerX)) == view.centerX
+        expect(view.anchor(for: XAxisAttribute.right)) == view.right
+        expect(view.anchor(for: XAxisAttribute.leading)) == view.leading
+        expect(view.anchor(for: XAxisAttribute.trailing)) == view.trailing
     }
 
     func testAnchorForYAxisAttributes() {
@@ -189,11 +189,11 @@ final class AnchorAttributeTests: XCTestCase {
 
         // THEN
 
-        expect(view.anchor(for: YAxisAttribute.top)) == view.topAnchor
-        expect(view.anchor(for: YAxisAttribute.centerY)) == view.centerYAnchor
-        expect(view.anchor(for: YAxisAttribute.firstBaseline)) == view.firstBaselineAnchor
-        expect(view.anchor(for: YAxisAttribute.lastBaseline)) == view.lastBaselineAnchor
-        expect(view.anchor(for: YAxisAttribute.bottom)) == view.bottomAnchor
+        expect(view.anchor(for: YAxisAttribute.top)) == view.top
+        expect(view.anchor(for: YAxisAttribute.centerY)) == view.centerY
+        expect(view.anchor(for: YAxisAttribute.firstBaseline)) == view.firstBaseline
+        expect(view.anchor(for: YAxisAttribute.lastBaseline)) == view.lastBaseline
+        expect(view.anchor(for: YAxisAttribute.bottom)) == view.bottom
     }
 
     func testAnchorForDimensionAttributes() {
@@ -204,7 +204,7 @@ final class AnchorAttributeTests: XCTestCase {
 
         // THEN
 
-        expect(view.anchor(for: DimensionAttribute.width)) == view.widthAnchor
-        expect(view.anchor(for: DimensionAttribute.height)) == view.heightAnchor
+        expect(view.anchor(for: DimensionAttribute.width)) == view.width
+        expect(view.anchor(for: DimensionAttribute.height)) == view.height
     }
 }
