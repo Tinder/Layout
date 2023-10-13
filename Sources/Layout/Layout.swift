@@ -311,7 +311,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ///   - view2: subview to constrain
     ///   - insets: (optional) insets of `view1`
     @discardableResult
-    public func pin(
+    public func constrain(
         _ view1: UIView,
         to view2: UIView,
         insets: NSDirectionalEdgeInsets
@@ -330,7 +330,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ///   - view2: subview to constrain
     ///   - insets: (optional) insets of `view1`
     @discardableResult
-    public func pin(
+    public func constrain(
         _ view1: UIView,
         to view2: UIView,
         insets: UIEdgeInsets = .zero
@@ -349,14 +349,14 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ///   - view2: subview to constrain
     ///   - inset: inset of `view1`
     @discardableResult
-    public func pin(
+    public func constrain(
         _ view1: UIView,
         to view2: UIView,
         inset: CGFloat
     ) -> Layout {
-        pin(view1,
-            to: view2,
-            insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset))
+        constrain(view1,
+                  to: view2,
+                  insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset))
     }
 
     /// Constrains the corresponding `attribute` of the `views` to each other
