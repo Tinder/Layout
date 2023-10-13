@@ -123,17 +123,6 @@ extension NSLayoutConstraint.Axis {
             return "H"
         }
     }
-
-    internal var centerAttribute: NSLayoutConstraint.Attribute {
-        switch self {
-        case .horizontal:
-            return .centerX
-        case .vertical:
-            return .centerY
-        @unknown default:
-            return .centerX
-        }
-    }
 }
 
 // MARK: - NSLayoutConstraint Array Helpers
