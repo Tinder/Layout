@@ -347,7 +347,8 @@ extension LayoutItem {
     ) -> LayoutItem {
         addingSuperviewConstraints {
             $0.layoutItemView
-                .constraint(is: relation,
+                .constraint(for: attribute.canonicalAttribute,
+                            is: relation,
                             toSuperview: attribute,
                             multiplier: multiplier,
                             constant: constant)
@@ -368,11 +369,13 @@ extension LayoutItem {
         _ constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        addingSuperviewConstraints {
-            $0.layoutItemView
-                .constraints(toSuperview: attributes,
-                             constant: constant)
-                .withPriority(priority)
+        addingSuperviewConstraints { layoutItem in
+            for attribute: NSLayoutConstraint.Attribute in attributes {
+                layoutItem
+                    .layoutItemView
+                    .constraint(for: attribute.canonicalAttribute, toSuperview: attribute, constant: constant)
+                    .withPriority(priority)
+            }
         }
     }
 
