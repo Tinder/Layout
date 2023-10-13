@@ -296,7 +296,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToMarginWithInset_andWithPriority() {
+    func testToMarginsWithInset_andWithPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
@@ -520,114 +520,6 @@ final class LayoutItemTests: XCTestCase {
                     .size(width: 100, height: 100)
                     .to([.top, .leading], 25, priority: .low)
                     .to([.top, .leading], 100, priority: .high)
-            }
-        }
-    }
-
-    func testToMargin_andWithMultiplier_andWithConstant_andWithPriority() {
-        assertLayout { view in
-            view.layout {
-
-                // To Top Leading
-
-                pinkView
-                    .size(width: 100, height: 100)
-                    .toMargin(.top)
-                    .toMargin(.leading)
-
-                // To Top Leading with Constant
-
-                yellowView
-                    .size(width: 100, height: 100)
-                    .toMargin(.top, 100)
-                    .toMargin(.leading, 100)
-
-                // To Top Trailing with Multiplier
-
-                blueView
-                    .size(width: 100, height: 100)
-                    .toMargin(.top)
-                    .toMargin(.trailing, multiplier: 0.75)
-
-                // To Bottom Leading with Bottom Multiplier and Constant
-
-                greenView
-                    .size(width: 100, height: 100)
-                    .to(.bottom, multiplier: 0.75, 50)
-                    .to(.leading)
-
-                // To Bottom Trailing with Constant and Priority
-
-                orangeView
-                    .size(width: 100, height: 100)
-                    .toMargin(.bottom, -100, priority: .low)
-                    .toMargin(.bottom, -50, priority: .high)
-                    .toMargin(.trailing, -50)
-            }
-        }
-    }
-
-    func testToMarginWithRelation() {
-        assertLayout { view in
-            view.layout {
-
-                // To Top Leading With Less Than Or Equal Relation and Higher Constraint
-
-                pinkView
-                    .size(width: 100, height: 100)
-                    .toMargin(.top, is: .lessThanOrEqual, 100)
-                    .toMargin(.top, 150, priority: .high)
-                    .toMargin(.leading, 50)
-
-                // To Top Trailing With Less Than Or Equal Relation and Lower Constraint
-
-                yellowView
-                    .size(width: 100, height: 100)
-                    .toMargin(.top, is: .lessThanOrEqual, 100)
-                    .toMargin(.top, 50, priority: .high)
-                    .toMargin(.trailing, -50)
-
-                // To Top Trailing With Greater Than Or Equal Relation and Lower Constraint
-
-                blueView
-                    .size(width: 100, height: 100)
-                    .toMargin(.bottom, is: .greaterThanOrEqual, -100)
-                    .toMargin(.bottom, -150, priority: .high)
-                    .toMargin(.leading, 50)
-
-                // To Top Trailing With Greater Than Or Equal Relation and Higher Constraint
-
-                greenView
-                    .size(width: 100, height: 100)
-                    .toMargin(.bottom, is: .greaterThanOrEqual, -100)
-                    .toMargin(.bottom, -50, priority: .high)
-                    .toMargin(.trailing, -50)
-            }
-        }
-    }
-
-    func testToMarginWithAttributes_andWithConstant_andWithPriority() {
-        assertLayout { view in
-            view.layout {
-
-                // To Bottom Leading
-
-                pinkView
-                    .size(width: 100, height: 100)
-                    .toMargin([.bottom, .leading])
-
-                // To Bottom Trailing with Constant
-
-                yellowView
-                    .size(width: 100, height: 100)
-                    .toMargin([.bottom, .trailing], -100)
-
-                // To Top Leading with Priority
-
-                blueView
-                    .size(width: 100, height: 100)
-                    .toMargin([.top, .leading], 25, priority: .low)
-                    .toMargin([.top, .leading], 100, priority: .high)
             }
         }
     }
