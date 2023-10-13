@@ -404,26 +404,26 @@ final class LayoutTests: XCTestCase {
 
             // To Anchor
 
-            layout.constrain(pinkView.leadingAnchor, to: view.leadingAnchor)
+            layout.constrain(pinkView.leading, to: view.leading)
 
             // To Anchor with Constant
 
-            layout.constrain(yellowView.leadingAnchor, to: view.leadingAnchor, constant: 20)
-            layout.constrain(pinkView.trailingAnchor, to: view.trailingAnchor, constant: -20)
-            layout.constrain(yellowView.trailingAnchor, to: view.trailingAnchor, constant: -20)
+            layout.constrain(yellowView.leading, to: view.leading, constant: 20)
+            layout.constrain(pinkView.trailing, to: view.trailing, constant: -20)
+            layout.constrain(yellowView.trailing, to: view.trailing, constant: -20)
 
             // To Anchor with Constant and Priority
 
             layout.constrain(
-                pinkView.topAnchor,
-                to: view.topAnchor,
+                pinkView.top,
+                to: view.top,
                 constant: 10,
                 priority: .low
             )
 
             layout.constrain(
-                pinkView.topAnchor,
-                to: view.topAnchor,
+                pinkView.top,
+                to: view.top,
                 constant: 30,
                 priority: .high
             )
@@ -431,23 +431,23 @@ final class LayoutTests: XCTestCase {
             // To Anchor With Greater Than Or Equal Relation and Priority
 
             layout.constrain(
-                pinkView.bottomAnchor,
+                pinkView.bottom,
                 is: .greaterThanOrEqual,
-                to: yellowView.topAnchor,
+                to: yellowView.top,
                 constant: -50,
                 priority: .required
             )
 
             layout.constrain(
-                pinkView.bottomAnchor,
-                to: yellowView.topAnchor,
+                pinkView.bottom,
+                to: yellowView.top,
                 constant: -100,
                 priority: .low
             )
 
             layout.constrain(
-                pinkView.bottomAnchor,
-                to: yellowView.topAnchor,
+                pinkView.bottom,
+                to: yellowView.top,
                 constant: -10,
                 priority: .high
             )
@@ -455,23 +455,23 @@ final class LayoutTests: XCTestCase {
             // To Anchor With Less Than Or Equal Relation and Priority
 
             layout.constrain(
-                yellowView.bottomAnchor,
+                yellowView.bottom,
                 is: .lessThanOrEqual,
-                to: view.bottomAnchor,
+                to: view.bottom,
                 constant: -50,
                 priority: .required
             )
 
             layout.constrain(
-                yellowView.bottomAnchor,
-                to: view.bottomAnchor,
+                yellowView.bottom,
+                to: view.bottom,
                 constant: -10,
                 priority: .low
             )
 
             layout.constrain(
-                yellowView.bottomAnchor,
-                to: view.bottomAnchor,
+                yellowView.bottom,
+                to: view.bottom,
                 constant: -100,
                 priority: .high
             )
@@ -509,32 +509,32 @@ final class LayoutTests: XCTestCase {
 
             // To Anchor
 
-            layout.constrain(pinkView.heightAnchor, to: yellowView.heightAnchor)
+            layout.constrain(pinkView.height, to: yellowView.height)
 
             // To Anchor with Constant
 
-            layout.constrain(pinkView.widthAnchor, to: view.widthAnchor, constant: -150)
+            layout.constrain(pinkView.width, to: view.width, constant: -150)
 
             // To Anchor with Multiplier
 
-            layout.constrain(yellowView.widthAnchor, to: view.widthAnchor, multiplier: 0.33)
+            layout.constrain(yellowView.width, to: view.width, multiplier: 0.33)
 
             // To Anchor with Priority
 
-            layout.constrain(blueView.widthAnchor, to: view.widthAnchor, priority: .low)
-            layout.constrain(blueView.widthAnchor, to: yellowView.widthAnchor, priority: .high)
+            layout.constrain(blueView.width, to: view.width, priority: .low)
+            layout.constrain(blueView.width, to: yellowView.width, priority: .high)
 
             // To Anchor with Greater Than or Equal Relationm Constant and Priority
 
-            layout.constrain(greenView.heightAnchor, is: .greaterThanOrEqual, to: yellowView.heightAnchor)
-            layout.constrain(greenView.heightAnchor, to: yellowView.heightAnchor, constant: -50, priority: .low)
-            layout.constrain(greenView.heightAnchor, to: yellowView.heightAnchor, constant: 50, priority: .high)
+            layout.constrain(greenView.height, is: .greaterThanOrEqual, to: yellowView.height)
+            layout.constrain(greenView.height, to: yellowView.height, constant: -50, priority: .low)
+            layout.constrain(greenView.height, to: yellowView.height, constant: 50, priority: .high)
 
             // To Anchor with Less Than or Equal Relation, Constant and Priority
 
-            layout.constrain(greenView.widthAnchor, is: .lessThanOrEqual, to: yellowView.widthAnchor)
-            layout.constrain(greenView.widthAnchor, to: yellowView.widthAnchor, constant: 50, priority: .low)
-            layout.constrain(greenView.widthAnchor, to: yellowView.widthAnchor, constant: -50, priority: .high)
+            layout.constrain(greenView.width, is: .lessThanOrEqual, to: yellowView.width)
+            layout.constrain(greenView.width, to: yellowView.width, constant: 50, priority: .low)
+            layout.constrain(greenView.width, to: yellowView.width, constant: -50, priority: .high)
 
             return layout
         }
@@ -565,20 +565,20 @@ final class LayoutTests: XCTestCase {
 
             // Anchor with Greater Than Or Equal Relation, Constant and Priority
 
-            layout.constrain(pinkView.widthAnchor, is: .greaterThanOrEqual, to: 40)
-            layout.constrain(pinkView.widthAnchor, to: 20, priority: .low)
-            layout.constrain(pinkView.widthAnchor, to: 200, priority: .high)
+            layout.constrain(pinkView.width, is: .greaterThanOrEqual, to: 40)
+            layout.constrain(pinkView.width, to: 20, priority: .low)
+            layout.constrain(pinkView.width, to: 200, priority: .high)
 
             // Anchor with Constant and Priority
 
-            layout.constrain(yellowView.heightAnchor, to: 25, priority: .low)
-            layout.constrain(yellowView.heightAnchor, to: 100, priority: .high)
+            layout.constrain(yellowView.height, to: 25, priority: .low)
+            layout.constrain(yellowView.height, to: 100, priority: .high)
 
             // Anchor with Less Than Or Equal Relation, Constant and Priority
 
-            layout.constrain(yellowView.widthAnchor, is: .lessThanOrEqual, to: 250, priority: .high)
-            layout.constrain(yellowView.widthAnchor, to: 300, priority: .low)
-            layout.constrain(yellowView.widthAnchor, to: 200, priority: .high)
+            layout.constrain(yellowView.width, is: .lessThanOrEqual, to: 250, priority: .high)
+            layout.constrain(yellowView.width, to: 300, priority: .low)
+            layout.constrain(yellowView.width, to: 200, priority: .high)
 
             return layout
         }
@@ -879,7 +879,7 @@ final class LayoutTests: XCTestCase {
                     .size(width: 100, height: 100)
                     .to(.top)
             )
-            .center(pinkView, between: view.leadingAnchor, and: view.trailingAnchor)
+            .center(pinkView, between: view.leading, and: view.trailing)
         }
     }
 
@@ -905,12 +905,12 @@ final class LayoutTests: XCTestCase {
 
             // Center Between
 
-            layout.center(yellowView, between: view.topAnchor, and: view.bottomAnchor)
+            layout.center(yellowView, between: view.top, and: view.bottom)
 
             // With Priority
 
-            layout.center(pinkView, between: yellowView.topAnchor, and: yellowView.bottomAnchor, priority: .low)
-            layout.center(pinkView, between: view.topAnchor, and: view.bottomAnchor, priority: .high)
+            layout.center(pinkView, between: yellowView.top, and: yellowView.bottom, priority: .low)
+            layout.center(pinkView, between: view.top, and: view.bottom, priority: .high)
 
             return layout
         }

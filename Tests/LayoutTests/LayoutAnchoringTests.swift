@@ -68,9 +68,9 @@ final class LayoutAnchoringTests: XCTestCase {
 
         final class LayoutSupportMock: NSObject, UILayoutSupport {
 
-            var topAnchor: NSLayoutYAxisAnchor { view.topAnchor }
-            var bottomAnchor: NSLayoutYAxisAnchor { view.bottomAnchor }
-            var heightAnchor: NSLayoutDimension { view.heightAnchor }
+            var topAnchor: NSLayoutYAxisAnchor { view.top }
+            var bottomAnchor: NSLayoutYAxisAnchor { view.bottom }
+            var heightAnchor: NSLayoutDimension { view.height }
 
             var length: CGFloat { fatalError("Not Used") }
 
@@ -86,9 +86,9 @@ final class LayoutAnchoringTests: XCTestCase {
 
         // THEN
 
-        expect(layoutSupport.top) == view.topAnchor
-        expect(layoutSupport.bottom) == view.bottomAnchor
-        expect(layoutSupport.height) == view.heightAnchor
+        expect(layoutSupport.top) == view.top
+        expect(layoutSupport.bottom) == view.bottom
+        expect(layoutSupport.height) == view.height
     }
 
     func testConstraintToXAnchor_withDefaults() {
@@ -98,14 +98,14 @@ final class LayoutAnchoringTests: XCTestCase {
         let viewA: UIView = .init()
         let viewB: UIView = .init()
         let expected: NSLayoutConstraint = viewA
-            .centerXAnchor
-            .constraint(equalTo: viewB.centerXAnchor)
+            .centerX
+            .constraint(equalTo: viewB.centerX)
 
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .centerXAnchor
-            .constraint(to: viewB.centerXAnchor)
+            .centerX
+            .constraint(to: viewB.centerX)
 
         // THEN
 
@@ -119,14 +119,14 @@ final class LayoutAnchoringTests: XCTestCase {
         let viewA: UIView = .init()
         let viewB: UIView = .init()
         let expected: NSLayoutConstraint = viewA
-            .centerXAnchor
-            .constraint(equalTo: viewB.centerXAnchor, constant: 50)
+            .centerX
+            .constraint(equalTo: viewB.centerX, constant: 50)
 
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .centerXAnchor
-            .constraint(is: .equal, to: viewB.centerXAnchor, constant: 50)
+            .centerX
+            .constraint(is: .equal, to: viewB.centerX, constant: 50)
 
         // THEN
 
@@ -140,14 +140,14 @@ final class LayoutAnchoringTests: XCTestCase {
         let viewA: UIView = .init()
         let viewB: UIView = .init()
         let expected: NSLayoutConstraint = viewA
-            .centerXAnchor
-            .constraint(greaterThanOrEqualTo: viewB.centerXAnchor)
+            .centerX
+            .constraint(greaterThanOrEqualTo: viewB.centerX)
 
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .centerXAnchor
-            .constraint(is: .greaterThanOrEqual, to: viewB.centerXAnchor)
+            .centerX
+            .constraint(is: .greaterThanOrEqual, to: viewB.centerX)
 
         // THEN
 
@@ -161,14 +161,14 @@ final class LayoutAnchoringTests: XCTestCase {
         let viewA: UIView = .init()
         let viewB: UIView = .init()
         let expected: NSLayoutConstraint = viewA
-            .centerXAnchor
-            .constraint(lessThanOrEqualTo: viewB.centerXAnchor)
+            .centerX
+            .constraint(lessThanOrEqualTo: viewB.centerX)
 
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .centerXAnchor
-            .constraint(is: .lessThanOrEqual, to: viewB.centerXAnchor)
+            .centerX
+            .constraint(is: .lessThanOrEqual, to: viewB.centerX)
 
         // THEN
 
@@ -182,14 +182,14 @@ final class LayoutAnchoringTests: XCTestCase {
         let viewA: UIView = .init()
         let viewB: UIView = .init()
         let expected: NSLayoutConstraint = viewA
-            .centerYAnchor
-            .constraint(equalTo: viewB.centerYAnchor)
+            .centerY
+            .constraint(equalTo: viewB.centerY)
 
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .centerYAnchor
-            .constraint(to: viewB.centerYAnchor)
+            .centerY
+            .constraint(to: viewB.centerY)
 
         // THEN
 
@@ -203,14 +203,14 @@ final class LayoutAnchoringTests: XCTestCase {
         let viewA: UIView = .init()
         let viewB: UIView = .init()
         let expected: NSLayoutConstraint = viewA
-            .centerYAnchor
-            .constraint(equalTo: viewB.centerYAnchor, constant: 50)
+            .centerY
+            .constraint(equalTo: viewB.centerY, constant: 50)
 
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .centerYAnchor
-            .constraint(is: .equal, to: viewB.centerYAnchor, constant: 50)
+            .centerY
+            .constraint(is: .equal, to: viewB.centerY, constant: 50)
 
         // THEN
 
@@ -224,14 +224,14 @@ final class LayoutAnchoringTests: XCTestCase {
         let viewA: UIView = .init()
         let viewB: UIView = .init()
         let expected: NSLayoutConstraint = viewA
-            .centerYAnchor
-            .constraint(greaterThanOrEqualTo: viewB.centerYAnchor)
+            .centerY
+            .constraint(greaterThanOrEqualTo: viewB.centerY)
 
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .centerYAnchor
-            .constraint(is: .greaterThanOrEqual, to: viewB.centerYAnchor)
+            .centerY
+            .constraint(is: .greaterThanOrEqual, to: viewB.centerY)
 
         // THEN
 
@@ -245,14 +245,14 @@ final class LayoutAnchoringTests: XCTestCase {
         let viewA: UIView = .init()
         let viewB: UIView = .init()
         let expected: NSLayoutConstraint = viewA
-            .centerYAnchor
-            .constraint(lessThanOrEqualTo: viewB.centerYAnchor)
+            .centerY
+            .constraint(lessThanOrEqualTo: viewB.centerY)
 
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .centerYAnchor
-            .constraint(is: .lessThanOrEqual, to: viewB.centerYAnchor)
+            .centerY
+            .constraint(is: .lessThanOrEqual, to: viewB.centerY)
 
         // THEN
 
@@ -266,14 +266,14 @@ final class LayoutAnchoringTests: XCTestCase {
         let viewA: UIView = .init()
         let viewB: UIView = .init()
         let expected: NSLayoutConstraint = viewA
-            .widthAnchor
-            .constraint(equalTo: viewB.widthAnchor)
+            .width
+            .constraint(equalTo: viewB.width)
 
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .widthAnchor
-            .constraint(to: viewB.widthAnchor)
+            .width
+            .constraint(to: viewB.width)
 
         // THEN
 
@@ -287,14 +287,14 @@ final class LayoutAnchoringTests: XCTestCase {
         let viewA: UIView = .init()
         let viewB: UIView = .init()
         let expected: NSLayoutConstraint = viewA
-            .widthAnchor
-            .constraint(equalTo: viewB.widthAnchor, constant: -100)
+            .width
+            .constraint(equalTo: viewB.width, constant: -100)
 
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .widthAnchor
-            .constraint(to: viewB.widthAnchor, constant: -100)
+            .width
+            .constraint(to: viewB.width, constant: -100)
 
         // THEN
 
@@ -308,14 +308,14 @@ final class LayoutAnchoringTests: XCTestCase {
         let viewA: UIView = .init()
         let viewB: UIView = .init()
         let expected: NSLayoutConstraint = viewA
-            .widthAnchor
-            .constraint(greaterThanOrEqualTo: viewB.widthAnchor)
+            .width
+            .constraint(greaterThanOrEqualTo: viewB.width)
 
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .widthAnchor
-            .constraint(is: .greaterThanOrEqual, to: viewB.widthAnchor)
+            .width
+            .constraint(is: .greaterThanOrEqual, to: viewB.width)
 
         // THEN
 
@@ -329,14 +329,14 @@ final class LayoutAnchoringTests: XCTestCase {
         let viewA: UIView = .init()
         let viewB: UIView = .init()
         let expected: NSLayoutConstraint = viewA
-            .widthAnchor
-            .constraint(lessThanOrEqualTo: viewB.widthAnchor)
+            .width
+            .constraint(lessThanOrEqualTo: viewB.width)
 
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .widthAnchor
-            .constraint(is: .lessThanOrEqual, to: viewB.widthAnchor)
+            .width
+            .constraint(is: .lessThanOrEqual, to: viewB.width)
 
         // THEN
 
@@ -349,13 +349,13 @@ final class LayoutAnchoringTests: XCTestCase {
 
         let viewA: UIView = .init()
         let expected: NSLayoutConstraint = viewA
-            .widthAnchor
+            .width
             .constraint(equalToConstant: 50)
 
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .widthAnchor
+            .width
             .constraint(50)
 
         // THEN
@@ -369,13 +369,13 @@ final class LayoutAnchoringTests: XCTestCase {
 
         let viewA: UIView = .init()
         let expected: NSLayoutConstraint = viewA
-            .widthAnchor
+            .width
             .constraint(greaterThanOrEqualToConstant: 50)
 
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .widthAnchor
+            .width
             .constraint(is: .greaterThanOrEqual, 50)
 
         // THEN
@@ -389,13 +389,13 @@ final class LayoutAnchoringTests: XCTestCase {
 
         let viewA: UIView = .init()
         let expected: NSLayoutConstraint = viewA
-            .widthAnchor
+            .width
             .constraint(lessThanOrEqualToConstant: 50)
 
         // WHEN
 
         let constraint: NSLayoutConstraint = viewA
-            .widthAnchor
+            .width
             .constraint(is: .lessThanOrEqual, 50)
 
         // THEN
