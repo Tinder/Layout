@@ -80,28 +80,33 @@ extension NSLayoutConstraint {
 
 extension NSLayoutConstraint.Attribute {
 
-    internal var marginAttribute: NSLayoutConstraint.Attribute {
+    internal var canonicalAttribute: NSLayoutConstraint.Attribute {
         switch self {
-        case .left:
-            return .leftMargin
-        case .right:
-            return .rightMargin
-        case .top:
-            return .topMargin
-        case .bottom:
-            return .bottomMargin
-        case .leading:
-            return .leadingMargin
-        case .trailing:
-            return .trailingMargin
-        case .centerX:
-            return .centerXWithinMargins
-        case .centerY:
-            return .centerYWithinMargins
-        case .leftMargin, .rightMargin, .topMargin, .bottomMargin,
-             .leadingMargin, .trailingMargin, .centerXWithinMargins, .centerYWithinMargins:
+        case .leftMargin:
+            return .left
+        case .rightMargin:
+            return .right
+        case .topMargin:
+            return .top
+        case .bottomMargin:
+            return .bottom
+        case .leadingMargin:
+            return .leading
+        case .trailingMargin:
+            return .trailing
+        case .centerXWithinMargins:
+            return .centerX
+        case .centerYWithinMargins:
+            return .centerY
+        case .left, .right, .top, .bottom, .leading, .trailing:
             return self
-        case .width, .height, .lastBaseline, .firstBaseline, .notAnAttribute:
+        case .centerX, .centerY:
+            return self
+        case .width, .height:
+            return self
+        case .firstBaseline, .lastBaseline:
+            return self
+        case .notAnAttribute:
             return self
         @unknown default:
             return self
