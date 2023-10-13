@@ -234,48 +234,6 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testPinWithDirectionalInsets_andWithPriority() {
-        let insets0: NSDirectionalEdgeInsets = .zero
-        let insets12: NSDirectionalEdgeInsets = .init(top: 12, leading: 12, bottom: 12, trailing: 12)
-        let insets36: NSDirectionalEdgeInsets = .init(top: 36, leading: 36, bottom: 36, trailing: 36)
-        assertLayout { view in
-            view.layout {
-                pinkView
-                    .pin(insets: insets12)
-                yellowView
-                    .pin(insets: insets0, priority: .low)
-                    .pin(insets: insets36, priority: .high)
-            }
-        }
-    }
-
-    func testPinWithInsets_andWithPriority() {
-        let insets0: UIEdgeInsets = .zero
-        let insets12: UIEdgeInsets = .init(top: 12, left: 12, bottom: 12, right: 12)
-        let insets36: UIEdgeInsets = .init(top: 36, left: 36, bottom: 36, right: 36)
-        assertLayout { view in
-            view.layout {
-                pinkView
-                    .pin(insets: insets12)
-                yellowView
-                    .pin(insets: insets0, priority: .low)
-                    .pin(insets: insets36, priority: .high)
-            }
-        }
-    }
-
-    func testPinWithInset_andWithPriority() {
-        assertLayout { view in
-            view.layout {
-                pinkView
-                    .pin(12)
-                yellowView
-                    .pin(0, priority: .low)
-                    .pin(36, priority: .high)
-            }
-        }
-    }
-
     func testToMargins() {
         assertLayout { view in
             view.layout(pinkView.toMargins())
@@ -373,44 +331,6 @@ final class LayoutItemTests: XCTestCase {
                     .to(.leading)
                     .center(.vertical, offset: -350, priority: .low)
                     .center(.vertical, offset: -100, priority: .high)
-            }
-        }
-    }
-
-    func testPadToMargins_andPadWithMargin_andWithPriority() {
-        assertLayout { view in
-            view.layout {
-
-                // Pad to Leading/Trailing
-
-                pinkView
-                    .size(height: 100)
-                    .to(.top)
-                    .pad()
-
-                // Pad with Value
-
-                yellowView
-                    .size(height: 100)
-                    .to([.bottom])
-                    .pad(50)
-
-                // Pad to Leading/Trailing and with Priority
-
-                blueView
-                    .size(height: 100)
-                    .pad(priority: .high)
-                    .pad(1, priority: .low)
-                    .to([.top], 100)
-
-                // Pad with Value and with Priority
-
-                greenView
-                    .size(height: 100)
-                    .to(.bottom)
-                    .pad(100, priority: .low)
-                    .pad(50, priority: .high)
-                    .to([.bottom], -100)
             }
         }
     }

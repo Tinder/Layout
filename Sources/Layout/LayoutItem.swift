@@ -200,47 +200,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the edges to the superview's edges with `insets`
-    ///
-    /// - Parameters:
-    ///   - insets: (optional) insets of view
-    ///   - priority: (optional) priority of constraint
-    public func pin(
-        insets: NSDirectionalEdgeInsets,
-        priority: UILayoutPriority = .required
-    ) -> LayoutItem {
-        addingSuperviewConstraints {
-            $0.layoutItemView.edgeConstraints(insetBy: insets).withPriority(priority)
-        }
-    }
-
-    /// Constrains the edges to the superview's edges with `insets`
-    ///
-    /// - Parameters:
-    ///   - insets: (optional) insets of view
-    ///   - priority: (optional) priority of constraint
-    public func pin(
-        insets: UIEdgeInsets = .zero,
-        priority: UILayoutPriority = .required
-    ) -> LayoutItem {
-        addingSuperviewConstraints {
-            $0.layoutItemView.edgeConstraints(insetBy: insets).withPriority(priority)
-        }
-    }
-
-    /// Constrains the edges to the superview's edges with an `inset`
-    ///
-    /// - Parameters:
-    ///   - inset: inset of view
-    ///   - priority: (optional) priority of constraint
-    public func pin(
-        _ inset: CGFloat,
-        priority: UILayoutPriority = .required
-    ) -> LayoutItem {
-        pin(insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset),
-            priority: priority)
-    }
-
     /// Constrains the view to the margins of the superview with `insets`.
     ///
     /// - Parameters:
@@ -310,30 +269,6 @@ extension LayoutItem {
             return to(.centerX, multiplier: multiplier, offset, priority: priority)
         case .vertical:
             return to(.centerY, multiplier: multiplier, offset, priority: priority)
-        }
-    }
-
-    /// Constrains the leading and trailing anchors to superview
-    ///
-    /// - Note:
-    ///     * `.pad()` constrains to margins
-    ///     * `.pad(20)` constrains to leading and trailing with a space of 20
-    ///     * `.to([.leading, .trailing])` is preferred over `.pad(0)`
-    /// - Parameters:
-    ///   - margin: (optional) Inset from superview's leading and trailing anchors
-    ///   - priority: (optional) priority of constraint
-    public func pad(
-        _ margin: CGFloat? = nil,
-        priority: UILayoutPriority = .required
-    ) -> LayoutItem {
-        addingSuperviewConstraints {
-            if let margin: CGFloat {
-                $0.layoutItemView.constraint(toSuperview: .leading, constant: margin).withPriority(priority)
-                $0.layoutItemView.constraint(toSuperview: .trailing, constant: -margin).withPriority(priority)
-            } else {
-                $0.layoutItemView.constraint(for: .leading, toSuperview: .leadingMargin).withPriority(priority)
-                $0.layoutItemView.constraint(for: .trailing, toSuperview: .trailingMargin).withPriority(priority)
-            }
         }
     }
 
