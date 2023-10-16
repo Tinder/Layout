@@ -14,7 +14,7 @@ import XCTest
 
 final class UIEdgeInsetsTests: XCTestCase {
 
-    func testInitInset() {
+    func testInitWithInset() {
 
         // GIVEN
 
