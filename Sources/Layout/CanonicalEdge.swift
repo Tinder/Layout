@@ -7,8 +7,6 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
-import UIKit
-
 public enum CanonicalEdge: CaseIterable {
 
     case top, bottom, left, right
