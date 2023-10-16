@@ -26,8 +26,8 @@ final class NSDirectionalEdgeInsetsTests: XCTestCase {
         // THEN
 
         expect(insets.top) == inset
-        expect(insets.bottom) == inset
         expect(insets.leading) == inset
+        expect(insets.bottom) == inset
         expect(insets.trailing) == inset
     }
 
