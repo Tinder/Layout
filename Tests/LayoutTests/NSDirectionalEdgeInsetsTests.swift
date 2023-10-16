@@ -13,7 +13,7 @@ import XCTest
 
 final class NSDirectionalEdgeInsetsTests: XCTestCase {
 
-    func testInitInset() {
+    func testInitWithInset() {
 
         // GIVEN
 
