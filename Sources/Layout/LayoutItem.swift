@@ -25,7 +25,7 @@ public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
 ///     ````
 @preconcurrency
 @MainActor
-public protocol LayoutItem: AnyObject {
+public protocol LayoutItem: AnyObject, LayoutBoundary, LayoutCenter, LayoutSize, LayoutBaseline {
 
     /// View of the LayoutItem
     var layoutItemView: UIView { get }

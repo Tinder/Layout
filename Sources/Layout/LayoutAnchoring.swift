@@ -47,7 +47,7 @@ extension UIView: LayoutAnchoring {
     public var height: NSLayoutDimension { heightAnchor }
 }
 
-extension UILayoutGuide: LayoutAnchoring {
+extension UILayoutGuide: LayoutAnchoring, LayoutBoundary, LayoutCenter, LayoutSize {
 
     public var left: NSLayoutXAxisAnchor { leftAnchor }
     public var centerX: NSLayoutXAxisAnchor { centerXAnchor }
