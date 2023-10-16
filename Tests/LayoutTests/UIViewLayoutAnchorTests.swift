@@ -12,7 +12,7 @@ import Nimble
 import UIKit
 import XCTest
 
-final class UIViewNSLayoutAnchorTests: XCTestCase {
+final class UIViewLayoutAnchorTests: XCTestCase {
 
     func testAnchorForYAxisAttribute() {
 
