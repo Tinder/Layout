@@ -13,10 +13,10 @@ import UIKit
 @MainActor
 public protocol LayoutBoundary: AnyObject {
 
+    var top: NSLayoutYAxisAnchor { get }
+    var bottom: NSLayoutYAxisAnchor { get }
     var left: NSLayoutXAxisAnchor { get }
     var right: NSLayoutXAxisAnchor { get }
     var leading: NSLayoutXAxisAnchor { get }
     var trailing: NSLayoutXAxisAnchor { get }
-    var top: NSLayoutYAxisAnchor { get }
-    var bottom: NSLayoutYAxisAnchor { get }
 }
