@@ -81,6 +81,15 @@ extension LayoutItem {
         return superview.safeAreaLayoutGuide
     }
 
+    private var marginsGuide: UILayoutGuide? {
+        guard let superview: UIView = layoutItemView.superview
+        else {
+            assertionFailure("Missing required superview reference")
+            return nil
+        }
+        return superview.layoutMarginsGuide
+    }
+
     /// Adds an identifier
     ///
     /// - Parameter identifier: identifier
