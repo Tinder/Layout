@@ -552,6 +552,84 @@ extension LayoutItem {
     }
 
     // swiftlint:enable anonymous_argument_in_multiline_closure
+
+    private func constraint(
+        to edge: CanonicalEdge,
+        of boundary: LayoutBoundary,
+        insets: UIEdgeInsets,
+        priority: UILayoutPriority
+    ) -> NSLayoutConstraint {
+        switch edge {
+        case .top:
+            return layoutItemView
+                .top
+                .constraint(equalTo: boundary.top, constant: insets.constant(for: .top))
+                .withPriority(priority)
+        case .bottom:
+            return layoutItemView
+                .bottom
+                .constraint(equalTo: boundary.bottom, constant: insets.constant(for: .bottom))
+                .withPriority(priority)
+        case .left:
+            return layoutItemView
+                .left
+                .constraint(equalTo: boundary.left, constant: insets.constant(for: .left))
+                .withPriority(priority)
+        case .right:
+            return layoutItemView
+                .right
+                .constraint(equalTo: boundary.right, constant: insets.constant(for: .right))
+                .withPriority(priority)
+        }
+    }
+
+    private func constraint(
+        to edge: DirectionalEdge,
+        of boundary: LayoutBoundary,
+        insets: NSDirectionalEdgeInsets,
+        priority: UILayoutPriority
+    ) -> NSLayoutConstraint {
+        switch edge {
+        case .top:
+            return layoutItemView
+                .top
+                .constraint(equalTo: boundary.top, constant: insets.constant(for: .top))
+                .withPriority(priority)
+        case .bottom:
+            return layoutItemView
+                .bottom
+                .constraint(equalTo: boundary.bottom, constant: insets.constant(for: .bottom))
+                .withPriority(priority)
+        case .leading:
+            return layoutItemView
+                .leading
+                .constraint(equalTo: boundary.leading, constant: insets.constant(for: .leading))
+                .withPriority(priority)
+        case .trailing:
+            return layoutItemView
+                .trailing
+                .constraint(equalTo: boundary.trailing, constant: insets.constant(for: .trailing))
+                .withPriority(priority)
+        }
+    }
+
+    private func constraint(
+        to edge: CanonicalEdge,
+        of boundary: LayoutBoundary,
+        inset: CGFloat,
+        priority: UILayoutPriority
+    ) -> NSLayoutConstraint {
+        constraint(to: edge, of: boundary, insets: UIEdgeInsets(inset), priority: priority)
+    }
+
+    private func constraint(
+        to edge: DirectionalEdge,
+        of boundary: LayoutBoundary,
+        inset: CGFloat,
+        priority: UILayoutPriority
+    ) -> NSLayoutConstraint {
+        constraint(to: edge, of: boundary, insets: NSDirectionalEdgeInsets(inset), priority: priority)
+    }
 }
 
 // swiftlint:disable:next no_grouping_extension
