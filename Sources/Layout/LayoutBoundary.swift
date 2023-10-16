@@ -11,7 +11,7 @@ import UIKit
 
 @preconcurrency
 @MainActor
-public protocol LayoutBoundary: AnyObject {
+public protocol LayoutBoundary {
 
     var top: NSLayoutYAxisAnchor { get }
     var bottom: NSLayoutYAxisAnchor { get }
