@@ -131,10 +131,10 @@ extension NSLayoutConstraint.Axis {
 
     internal var attribute: NSLayoutConstraint.Attribute {
         switch self {
-        case .vertical:
-            return .centerY
         case .horizontal:
             return .centerX
+        case .vertical:
+            return .centerY
         @unknown default:
             return .notAnAttribute
         }
