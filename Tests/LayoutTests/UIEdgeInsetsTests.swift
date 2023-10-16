@@ -27,8 +27,8 @@ final class UIEdgeInsetsTests: XCTestCase {
         // THEN
 
         expect(insets.top) == inset
-        expect(insets.bottom) == inset
         expect(insets.left) == inset
+        expect(insets.bottom) == inset
         expect(insets.right) == inset
     }
 
@@ -41,8 +41,8 @@ final class UIEdgeInsetsTests: XCTestCase {
         // THEN
 
         expect(insets.constant(for: .top)) == 1
-        expect(insets.constant(for: .bottom)) == -3
         expect(insets.constant(for: .left)) == 2
+        expect(insets.constant(for: .bottom)) == -3
         expect(insets.constant(for: .right)) == -4
     }
 }
