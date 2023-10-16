@@ -72,6 +72,15 @@ extension LayoutItem {
         set { layoutItemView.accessibilityIdentifier = newValue }
     }
 
+    private var marginsGuide: UILayoutGuide? {
+        guard let superview: UIView = layoutItemView.superview
+        else {
+            assertionFailure("Missing required superview reference")
+            return nil
+        }
+        return superview.layoutMarginsGuide
+    }
+
     private var safeAreaGuide: UILayoutGuide? {
         guard let superview: UIView = layoutItemView.superview
         else {
