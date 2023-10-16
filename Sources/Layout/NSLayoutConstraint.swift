@@ -121,7 +121,7 @@ extension NSLayoutConstraint.Axis {
     internal var orientation: String {
         switch self {
         case .horizontal:
-            return "H"            
+            return "H"
         case .vertical:
             return "V"
         @unknown default:
