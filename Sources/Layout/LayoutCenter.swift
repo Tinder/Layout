@@ -11,7 +11,7 @@ import UIKit
 
 @preconcurrency
 @MainActor
-public protocol LayoutCenter: AnyObject {
+public protocol LayoutCenter {
 
     var centerX: NSLayoutXAxisAnchor { get }
     var centerY: NSLayoutYAxisAnchor { get }
