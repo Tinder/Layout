@@ -14,21 +14,6 @@ import XCTest
 
 final class UIViewLayoutAnchorTests: XCTestCase {
 
-    func testAnchorForYAxisAttribute() {
-
-        // GIVEN
-
-        let view: UIView = .init()
-
-        // THEN
-
-        expect(view.anchor(for: .top)) == view.top
-        expect(view.anchor(for: .bottom)) == view.bottom
-        expect(view.anchor(for: .firstBaseline)) == view.firstBaseline
-        expect(view.anchor(for: .lastBaseline)) == view.lastBaseline
-        expect(view.anchor(for: .centerY)) == view.centerY
-    }
-
     func testAnchorForXAxisAttribute() {
 
         // GIVEN
@@ -42,5 +27,20 @@ final class UIViewLayoutAnchorTests: XCTestCase {
         expect(view.anchor(for: .leading)) == view.leading
         expect(view.anchor(for: .trailing)) == view.trailing
         expect(view.anchor(for: .centerX)) == view.centerX
+    }
+
+    func testAnchorForYAxisAttribute() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+
+        // THEN
+
+        expect(view.anchor(for: .top)) == view.top
+        expect(view.anchor(for: .bottom)) == view.bottom
+        expect(view.anchor(for: .firstBaseline)) == view.firstBaseline
+        expect(view.anchor(for: .lastBaseline)) == view.lastBaseline
+        expect(view.anchor(for: .centerY)) == view.centerY
     }
 }

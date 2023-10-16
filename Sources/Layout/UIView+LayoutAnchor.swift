@@ -11,21 +11,6 @@ import UIKit
 
 extension UIView {
 
-    internal func anchor(for attribute: YAxisAttribute) -> NSLayoutYAxisAnchor {
-        switch attribute {
-        case .top:
-            return top
-        case .bottom:
-            return bottom
-        case .firstBaseline:
-            return firstBaseline
-        case .lastBaseline:
-            return lastBaseline
-        case .centerY:
-            return centerY
-        }
-    }
-
     internal func anchor(for attribute: XAxisAttribute) -> NSLayoutXAxisAnchor {
         switch attribute {
         case .left:
@@ -38,6 +23,21 @@ extension UIView {
             return trailing
         case .centerX:
             return centerX
+        }
+    }
+
+    internal func anchor(for attribute: YAxisAttribute) -> NSLayoutYAxisAnchor {
+        switch attribute {
+        case .top:
+            return top
+        case .bottom:
+            return bottom
+        case .firstBaseline:
+            return firstBaseline
+        case .lastBaseline:
+            return lastBaseline
+        case .centerY:
+            return centerY
         }
     }
 }
