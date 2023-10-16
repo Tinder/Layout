@@ -21,10 +21,10 @@ extension NSDirectionalEdgeInsets {
         switch edge {
         case .top:
             return top
-        case .bottom:
-            return -bottom
         case .leading:
             return leading
+        case .bottom:
+            return -bottom
         case .trailing:
             return -trailing
         }
