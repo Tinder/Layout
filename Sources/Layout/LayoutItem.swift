@@ -11,12 +11,6 @@
 
 import UIKit
 
-public enum Axis {
-
-    case horizontal
-    case vertical
-}
-
 public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
 
 // swiftlint:disable file_types_order
@@ -268,17 +262,12 @@ extension LayoutItem {
     ///   - offset: (optional) offset from superview
     ///   - priority: (optional) priority of constraint
     public func center(
-        _ axis: Axis,
+        _ axis: NSLayoutConstraint.Axis,
         offset: CGFloat = 0,
         multiplier: CGFloat = 1,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        switch axis {
-        case .horizontal:
-            return to(.centerX, multiplier: multiplier, offset, priority: priority)
-        case .vertical:
-            return to(.centerY, multiplier: multiplier, offset, priority: priority)
-        }
+        to(axis.attribute, multiplier: multiplier, offset, priority: priority)
     }
 
     /// Constrains the `attribute` to the superview's corresponding `attribute`
