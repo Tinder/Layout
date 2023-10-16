@@ -21,10 +21,10 @@ extension UIEdgeInsets {
         switch edge {
         case .top:
             return top
-        case .bottom:
-            return -bottom
         case .left:
             return left
+        case .bottom:
+            return -bottom
         case .right:
             return -right
         }
