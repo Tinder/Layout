@@ -11,7 +11,7 @@ import UIKit
 
 @preconcurrency
 @MainActor
-public protocol LayoutSize: AnyObject {
+public protocol LayoutSize {
 
     var width: NSLayoutDimension { get }
     var height: NSLayoutDimension { get }
