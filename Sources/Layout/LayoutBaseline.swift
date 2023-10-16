@@ -11,7 +11,7 @@ import UIKit
 
 @preconcurrency
 @MainActor
-public protocol LayoutBaseline: AnyObject {
+public protocol LayoutBaseline {
 
     var firstBaseline: NSLayoutYAxisAnchor { get }
     var lastBaseline: NSLayoutYAxisAnchor { get }
