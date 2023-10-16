@@ -40,8 +40,8 @@ final class NSDirectionalEdgeInsetsTests: XCTestCase {
         // THEN
 
         expect(insets.constant(for: .top)) == 1
-        expect(insets.constant(for: .bottom)) == -3
         expect(insets.constant(for: .leading)) == 2
+        expect(insets.constant(for: .bottom)) == -3
         expect(insets.constant(for: .trailing)) == -4
     }
 }
