@@ -45,12 +45,12 @@ extension UIView: LayoutItem {
 
 // swiftlint:enable file_types_order
 
-public final class ViewLayoutItem: LayoutItem {
+internal final class ViewLayoutItem: LayoutItem {
 
-    public let layoutItemView: UIView
-    public let superviewConstraints: SuperviewConstraints
+    internal let layoutItemView: UIView
+    internal let superviewConstraints: SuperviewConstraints
 
-    public init(
+    internal init(
         layoutItemView: UIView,
         superviewConstraints: @escaping SuperviewConstraints
     ) {
