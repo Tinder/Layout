@@ -53,10 +53,3 @@ final class LayoutBuilderTests: XCTestCase {
         expect(LayoutBuilder.buildFinalResult([layoutItem]) === [layoutItem]) == true
     }
 }
-
-extension Array where Element == LayoutItem {
-
-    internal static func === (lhs: [LayoutItem], rhs: [LayoutItem]) -> Bool {
-        zip(lhs, rhs).allSatisfy { $0.0 === $0.1 }
-    }
-}
