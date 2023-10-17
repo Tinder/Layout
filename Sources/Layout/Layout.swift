@@ -451,18 +451,17 @@ public final class Layout { // swiftlint:disable:this type_body_length
         guard views.count >= 2,
               let first = views.first
         else { return self }
-        var anchor: NSLayoutAnchor<YAxisAttribute.AnchorType> = first.anchor(for: YAxisAttribute.bottom)
+        var anchor: NSLayoutYAxisAnchor = first.bottom
         for view in views.dropFirst() {
-            adding(
-                view
-                    .anchor(for: YAxisAttribute.top)
-                    .constraint(equalTo: anchor, constant: spacing)
-                    .withPriority(priority)
-            )
-            anchor = view.anchor(for: YAxisAttribute.bottom)
+            adding(view.top.constraint(equalTo: anchor, constant: spacing).withPriority(priority))
+            anchor = view.bottom
         }
         for attribute: XAxisAttribute in alignment {
-            adding(equalAttribute(attribute, views).withPriority(priority))
+            let firstAnchor: NSLayoutXAxisAnchor = first.anchor(for: attribute)
+            let constraints: [NSLayoutConstraint] = views
+                .dropFirst()
+                .map { $0.anchor(for: attribute).constraint(equalTo: firstAnchor) }
+            adding(constraints.withPriority(priority))
         }
         return self
     }
