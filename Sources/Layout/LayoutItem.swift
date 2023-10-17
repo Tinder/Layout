@@ -637,10 +637,3 @@ extension ViewLayoutItem: LayoutAnchoring {
     public var width: NSLayoutDimension { layoutItemView.width }
     public var height: NSLayoutDimension { layoutItemView.height }
 }
-
-extension Array where Element == NSLayoutConstraint.Attribute {
-
-    public static let edges: [NSLayoutConstraint.Attribute] = [.top, .left, .bottom, .right]
-    public static let vertical: [NSLayoutConstraint.Attribute] = [.top, .bottom]
-    public static let horizontal: [NSLayoutConstraint.Attribute] = [.left, .right]
-}
