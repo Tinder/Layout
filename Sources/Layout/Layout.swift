@@ -419,18 +419,26 @@ public final class Layout { // swiftlint:disable:this type_body_length
         guard views.count >= 2,
               let first = views.first
         else { return self }
-        var anchor: NSLayoutAnchor<XAxisAttribute.AnchorType> = first.anchor(for: direction.attributes.1)
-        for view in views.dropFirst() {
-            adding(
-                view
-                    .anchor(for: direction.attributes.0)
-                    .constraint(equalTo: anchor, constant: spacing)
-                    .withPriority(priority)
-            )
-            anchor = view.anchor(for: direction.attributes.1)
+        switch direction {
+        case .leadingToTrailing:
+            var anchor: NSLayoutXAxisAnchor = first.trailing
+            for view in views.dropFirst() {
+                adding(view.leading.constraint(equalTo: anchor, constant: spacing).withPriority(priority))
+                anchor = view.trailing
+            }
+        case .leftToRight:
+            var anchor: NSLayoutXAxisAnchor = first.right
+            for view in views.dropFirst() {
+                adding(view.left.constraint(equalTo: anchor, constant: spacing).withPriority(priority))
+                anchor = view.right
+            }
         }
         for attribute: YAxisAttribute in alignment {
-            adding(equalAttribute(attribute, views).withPriority(priority))
+            let firstAnchor: NSLayoutYAxisAnchor = first.anchor(for: attribute)
+            let constraints: [NSLayoutConstraint] = views
+                .dropFirst()
+                .map { $0.anchor(for: attribute).constraint(equalTo: firstAnchor) }
+            adding(constraints.withPriority(priority))
         }
         return self
     }
