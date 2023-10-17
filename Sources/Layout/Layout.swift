@@ -40,9 +40,6 @@ import UIKit
 @MainActor
 public final class Layout { // swiftlint:disable:this type_body_length
 
-    /// The standard spacing when using vfl. The horizontal bars in `|[view1]-[view2]-|`
-    public static let standardSpacing: CGFloat = 8
-
     /// View of the Layout
     public weak var containerView: UIView?
 
