@@ -49,7 +49,7 @@ extension NSLayoutConstraint {
     }
 
     @discardableResult
-    public func offsetBy(_ constant: CGFloat) -> NSLayoutConstraint {
+    public func withConstant(_ constant: CGFloat) -> NSLayoutConstraint {
         self.constant = constant
         return self
     }

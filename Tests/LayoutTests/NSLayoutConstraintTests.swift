@@ -120,7 +120,7 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // WHEN
 
-        constraint.offsetBy(5)
+        constraint.withConstant(5)
 
         // THEN
 
