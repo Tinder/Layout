@@ -64,16 +64,6 @@ extension NSLayoutConstraint {
     public func require() -> NSLayoutConstraint {
         withPriority(.required)
     }
-
-    @discardableResult
-    public func lowPriority() -> NSLayoutConstraint {
-        withPriority(.low)
-    }
-
-    @discardableResult
-    public func highPriority() -> NSLayoutConstraint {
-        withPriority(.high)
-    }
 }
 
 // MARK: - NSLayoutConstraint.Attribute Extension

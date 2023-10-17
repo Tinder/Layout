@@ -166,44 +166,6 @@ final class NSLayoutConstraintTests: XCTestCase {
         expect(constraint.priority) == .required
     }
 
-    func testLowPriority() {
-
-        // GIVEN
-
-        let constraint: NSLayoutConstraint = .init()
-
-        // THEN
-
-        expect(constraint.priority) == .required
-
-        // WHEN
-
-        constraint.lowPriority()
-
-        // THEN
-
-        expect(constraint.priority) == .low
-    }
-
-    func testHighPriority() {
-
-        // GIVEN
-
-        let constraint: NSLayoutConstraint = .init()
-
-        // THEN
-
-        expect(constraint.priority) == .required
-
-        // WHEN
-
-        constraint.highPriority()
-
-        // THEN
-
-        expect(constraint.priority) == .high
-    }
-
     func testCanonicalAttribute() {
 
         expect(NSLayoutConstraint.Attribute.leftMargin.canonicalAttribute) == .left
