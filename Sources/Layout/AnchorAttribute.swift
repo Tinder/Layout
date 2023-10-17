@@ -23,7 +23,7 @@ internal protocol AnchorAttribute {
 
 internal enum AnchorAttributeType {
 
-    case xAxisAnchor, yAxisAnchor, dimension
+    case xAxisAnchor, yAxisAnchor
 }
 
 public enum XAxisAttribute: AnchorAttribute {
@@ -78,26 +78,6 @@ public enum YAxisAttribute: AnchorAttribute {
     }
 }
 
-public enum DimensionAttribute: AnchorAttribute {
-
-    case width, height
-
-    internal typealias AnchorType = NSLayoutDimension
-
-    internal var attributeType: AnchorAttributeType {
-        .dimension
-    }
-
-    internal var attribute: NSLayoutConstraint.Attribute {
-        switch self {
-        case .width:
-            return .width
-        case .height:
-            return .height
-        }
-    }
-}
-
 extension LayoutAnchoring {
 
     internal func anchor<T: AnchorAttribute>(for attribute: T) -> NSLayoutAnchor<T.AnchorType> {
@@ -109,9 +89,6 @@ extension LayoutAnchoring {
         case .yAxisAnchor:
             let attribute: YAxisAttribute = attribute as! YAxisAttribute
             return yAnchor(for: attribute) as! NSLayoutAnchor<T.AnchorType>
-        case .dimension:
-            let attribute: DimensionAttribute = attribute as! DimensionAttribute
-            return sizeAnchor(for: attribute) as! NSLayoutAnchor<T.AnchorType>
         }
         // swiftlint:enable force_cast
     }
@@ -143,15 +120,6 @@ extension LayoutAnchoring {
             return lastBaseline
         case .bottom:
             return bottom
-        }
-    }
-
-    private func sizeAnchor(for attribute: DimensionAttribute) -> NSLayoutDimension {
-        switch attribute {
-        case .width:
-            return width
-        case .height:
-            return height
         }
     }
 }
