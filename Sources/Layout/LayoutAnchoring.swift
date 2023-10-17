@@ -94,26 +94,6 @@ extension NSLayoutXAxisAnchor {
     }
 }
 
-extension NSLayoutYAxisAnchor {
-
-    public func constraint(
-        is relation: NSLayoutConstraint.Relation = .equal,
-        to anchor: NSLayoutYAxisAnchor,
-        constant: CGFloat = 0
-    ) -> NSLayoutConstraint {
-        switch relation {
-        case .equal:
-            return constraint(equalTo: anchor, constant: constant)
-        case .greaterThanOrEqual:
-            return constraint(greaterThanOrEqualTo: anchor, constant: constant)
-        case .lessThanOrEqual:
-            return constraint(lessThanOrEqualTo: anchor, constant: constant)
-        @unknown default:
-            return constraint(equalTo: anchor, constant: constant)
-        }
-    }
-}
-
 extension NSLayoutDimension {
 
     public func constraint(
