@@ -396,7 +396,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
               let first = views.first
         else { return self }
         for view in views.dropFirst() {
-            constraints += view.constraints(to: attributes, of: first)
+            adding(view.constraints(to: attributes, of: first))
         }
         return self
     }
@@ -522,12 +522,11 @@ public final class Layout { // swiftlint:disable:this type_body_length
         else { return self }
         let guide: UILayoutGuide = .init()
         containerView.addLayoutGuide(guide)
-        constraints += [
+        return adding([
             guide.leading.constraint(equalTo: leading),
             guide.trailing.constraint(equalTo: trailing),
             view.centerX.constraint(equalTo: guide.centerX)
-        ]
-        return self
+        ])
     }
 
     /// Vertically centers the view between two anchors.
@@ -581,12 +580,11 @@ public final class Layout { // swiftlint:disable:this type_body_length
         else { return self }
         let guide: UILayoutGuide = .init()
         containerView.addLayoutGuide(guide)
-        constraints += [
+        return adding([
             guide.top.constraint(equalTo: top),
             guide.bottom.constraint(equalTo: bottom),
             view.centerY.constraint(equalTo: guide.centerY).withPriority(priority)
-        ]
-        return self
+        ])
     }
 
     @discardableResult
@@ -640,7 +638,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
             if subview.superview != containerView {
                 containerView?.addSubview(subview)
             }
-            constraints += item.superviewConstraints(item)
+            adding(item.superviewConstraints(item))
             if let key: String = subview.identifier, !key.isEmpty {
                 self.items[key] = subview
             }
