@@ -203,44 +203,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view to the margins of the superview with `insets`.
-    ///
-    /// - Parameters:
-    ///   - insets: (optional) insets of view within margin edges.
-    ///   - priority: (optional) priority of constraint
-    public func toMargins(
-        insets: NSDirectionalEdgeInsets = .zero,
-        priority: UILayoutPriority = .required
-    ) -> LayoutItem {
-        addingSuperviewConstraints {
-            $0.layoutItemView
-                .constraint(for: .top, toSuperview: .topMargin, constant: insets.top)
-                .withPriority(priority)
-            $0.layoutItemView
-                .constraint(for: .bottom, toSuperview: .bottomMargin, constant: -insets.bottom)
-                .withPriority(priority)
-            $0.layoutItemView
-                .constraint(for: .leading, toSuperview: .leadingMargin, constant: insets.leading)
-                .withPriority(priority)
-            $0.layoutItemView
-                .constraint(for: .trailing, toSuperview: .trailingMargin, constant: -insets.trailing)
-                .withPriority(priority)
-        }
-    }
-
-    /// Constrains the view to the margins of the superview with an `inset`.
-    ///
-    /// - Parameters:
-    ///   - inset: inset of view within margin edges.
-    ///   - priority: (optional) priority of constraint
-    public func toMargins(
-        _ inset: CGFloat,
-        priority: UILayoutPriority = .required
-    ) -> LayoutItem {
-        toMargins(insets: NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset),
-                  priority: priority)
-    }
-
     /// Centers the view in the superview with an `offset`
     ///
     /// - Parameters:
