@@ -48,26 +48,6 @@ extension UILayoutGuide: LayoutBoundary, LayoutCenter, LayoutSize {
 
 // swiftlint:disable function_default_parameter_at_end
 
-extension NSLayoutXAxisAnchor {
-
-    public func constraint(
-        is relation: NSLayoutConstraint.Relation = .equal,
-        to anchor: NSLayoutXAxisAnchor,
-        constant: CGFloat = 0
-    ) -> NSLayoutConstraint {
-        switch relation {
-        case .equal:
-            return constraint(equalTo: anchor, constant: constant)
-        case .greaterThanOrEqual:
-            return constraint(greaterThanOrEqualTo: anchor, constant: constant)
-        case .lessThanOrEqual:
-            return constraint(lessThanOrEqualTo: anchor, constant: constant)
-        @unknown default:
-            return constraint(equalTo: anchor, constant: constant)
-        }
-    }
-}
-
 extension NSLayoutYAxisAnchor {
 
     public func constraint(
