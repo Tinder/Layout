@@ -104,33 +104,6 @@ extension NSLayoutConstraint.Attribute {
     }
 }
 
-// MARK: - NSLayoutConstraint.Axis Extension
-
-extension NSLayoutConstraint.Axis {
-
-    internal var orientation: String {
-        switch self {
-        case .horizontal:
-            return "H"
-        case .vertical:
-            return "V"
-        @unknown default:
-            return "H"
-        }
-    }
-
-    internal var attribute: NSLayoutConstraint.Attribute {
-        switch self {
-        case .horizontal:
-            return .centerX
-        case .vertical:
-            return .centerY
-        @unknown default:
-            return .notAnAttribute
-        }
-    }
-}
-
 // MARK: - NSLayoutConstraint Array Helpers
 
 extension Array where Element == NSLayoutConstraint {
