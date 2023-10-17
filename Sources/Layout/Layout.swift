@@ -513,7 +513,8 @@ public final class Layout { // swiftlint:disable:this type_body_length
     public func center(
         _ view: UIView,
         between leading: NSLayoutAnchor<NSLayoutXAxisAnchor>,
-        and trailing: NSLayoutAnchor<NSLayoutXAxisAnchor>
+        and trailing: NSLayoutAnchor<NSLayoutXAxisAnchor>,
+        priority: UILayoutPriority = .required
     ) -> Layout {
         guard let containerView
         else { return self }
@@ -522,7 +523,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return adding([
             guide.leading.constraint(equalTo: leading),
             guide.trailing.constraint(equalTo: trailing),
-            view.centerX.constraint(equalTo: guide.centerX)
+            view.centerX.constraint(equalTo: guide.centerX).withPriority(priority)
         ])
     }
 
