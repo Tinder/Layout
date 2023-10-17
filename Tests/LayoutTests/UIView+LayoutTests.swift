@@ -26,7 +26,7 @@ final class UIViewLayoutTests: XCTestCase {
 
         // THEN
 
-        expect(layout.containerView) == view
+        expect(layout.view) == view
         expect(layout.metrics.count) == 1
         expect(layout.metrics["gap"] as? Int) == 100
         expect(layout.items.isEmpty) == true
@@ -44,7 +44,7 @@ final class UIViewLayoutTests: XCTestCase {
 
         // THEN
 
-        expect(layout.containerView) == view
+        expect(layout.view) == view
         expect(layout.metrics.count) == 1
         expect(layout.metrics["gap"] as? Int) == 100
         expect(layout.items.count) == 1
@@ -68,7 +68,7 @@ final class UIViewLayoutTests: XCTestCase {
 
         // THEN
 
-        expect(layout.containerView) == view
+        expect(layout.view) == view
         expect(layout.metrics.count) == 1
         expect(layout.metrics["gap"] as? Int) == 100
         expect(layout.items.count) == 2

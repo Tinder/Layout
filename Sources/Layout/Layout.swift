@@ -41,7 +41,7 @@ import UIKit
 public final class Layout { // swiftlint:disable:this type_body_length
 
     /// View of the Layout
-    public weak var containerView: UIView?
+    public weak var view: UIView?
 
     public let metrics: [String: Any]
 
@@ -50,38 +50,38 @@ public final class Layout { // swiftlint:disable:this type_body_length
     internal private(set) var constraints: [NSLayoutConstraint] = []
 
     public convenience init(
-        _ containerView: UIView,
+        _ view: UIView,
         metrics: [String: Any] = [:]
     ) {
-        self.init(containerView, metrics: metrics, items: [])
+        self.init(view, metrics: metrics, items: [])
     }
 
     // swiftlint:disable function_default_parameter_at_end
 
     public convenience init(
-        _ containerView: UIView,
+        _ view: UIView,
         metrics: [String: Any] = [:],
         _ item: LayoutItem
     ) {
-        self.init(containerView, metrics: metrics, items: [item])
+        self.init(view, metrics: metrics, items: [item])
     }
 
     // swiftlint:enable function_default_parameter_at_end
 
     public convenience init(
-        _ containerView: UIView,
+        _ view: UIView,
         metrics: [String: Any] = [:],
         @LayoutBuilder items: () -> [LayoutItem]
     ) {
-        self.init(containerView, metrics: metrics, items: items())
+        self.init(view, metrics: metrics, items: items())
     }
 
     internal init(
-        _ containerView: UIView,
+        _ view: UIView,
         metrics: [String: Any],
         items: [LayoutItem]
     ) {
-        self.containerView = containerView
+        self.view = view
         self.metrics = metrics
         addItems(items)
     }
@@ -516,10 +516,10 @@ public final class Layout { // swiftlint:disable:this type_body_length
         and trailing: NSLayoutAnchor<NSLayoutXAxisAnchor>,
         priority: UILayoutPriority = .required
     ) -> Layout {
-        guard let containerView
+        guard let layoutView: UIView = self.view
         else { return self }
         let guide: UILayoutGuide = .init()
-        containerView.addLayoutGuide(guide)
+        layoutView.addLayoutGuide(guide)
         return adding([
             guide.leading.constraint(equalTo: leading),
             guide.trailing.constraint(equalTo: trailing),
@@ -574,10 +574,10 @@ public final class Layout { // swiftlint:disable:this type_body_length
         and bottom: NSLayoutAnchor<NSLayoutYAxisAnchor>,
         priority: UILayoutPriority = .required
     ) -> Layout {
-        guard let containerView
+        guard let layoutView: UIView = self.view
         else { return self }
         let guide: UILayoutGuide = .init()
-        containerView.addLayoutGuide(guide)
+        layoutView.addLayoutGuide(guide)
         return adding([
             guide.top.constraint(equalTo: top),
             guide.bottom.constraint(equalTo: bottom),
@@ -633,8 +633,8 @@ public final class Layout { // swiftlint:disable:this type_body_length
         items.forEach { item in
             let subview: UIView = item.layoutItemView
             subview.translatesAutoresizingMaskIntoConstraints = false
-            if subview.superview != containerView {
-                containerView?.addSubview(subview)
+            if subview.superview != view {
+                view?.addSubview(subview)
             }
             adding(item.superviewConstraints(item))
             if let key: String = subview.identifier, !key.isEmpty {
@@ -669,8 +669,8 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     /// Updates all constraints attached to the Layout's view
     public func update() {
-        containerView?.setNeedsUpdateConstraints()
-        containerView?.updateConstraintsIfNeeded()
+        view?.setNeedsUpdateConstraints()
+        view?.updateConstraintsIfNeeded()
     }
 }
 

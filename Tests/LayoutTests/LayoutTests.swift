@@ -34,10 +34,10 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
-        expect(layout1.containerView) === view1
+        expect(layout1.view) === view1
         expect(layout1.metrics.isEmpty) == true
 
-        expect(layout2.containerView) === view2
+        expect(layout2.view) === view2
         expect(layout2.metrics.count) == 4
         expect(layout2.metrics["leftMargin"] as? Int) == 10
         expect(layout2.metrics["topMargin"] as? Int) == 20
@@ -58,7 +58,7 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
-        expect(layout1.containerView) === view1
+        expect(layout1.view) === view1
         expect(layout1.items.count) == 1
         expect(layout1.items["subview1"]) === subview1
 
@@ -78,7 +78,7 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
-        expect(layoutTwo.containerView) == view2
+        expect(layoutTwo.view) == view2
         expect(layoutTwo.metrics.count) == 3
         expect(layoutTwo.metrics["leftMargin"] as? Int) == 10
         expect(layoutTwo.metrics["width"] as? Int) == 50
@@ -107,10 +107,10 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
-        expect(layout1.containerView) == view1
+        expect(layout1.view) == view1
         expect(layout1.items["subview1"]) === subview1
 
-        expect(layout2.containerView) == view2
+        expect(layout2.view) == view2
         expect(layout2.metrics.count) == 1
         expect(layout2.metrics["height"] as? Int) == 100
         expect(layout2.items["subview2"]) === subview2
@@ -134,7 +134,7 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
-        expect(layout.containerView) === view
+        expect(layout.view) === view
         expect(layout.metrics.count) == 1
         expect(layout.metrics["height"] as? Int) == 100
 
