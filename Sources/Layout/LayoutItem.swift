@@ -229,7 +229,7 @@ extension LayoutItem {
         multiplier: CGFloat = 1,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        to(axis.attribute, multiplier: multiplier, offset, priority: priority)
+        to(axis.attribute, multiplier: multiplier, constant: offset, priority: priority)
     }
 
     /// Constrains the `attribute` to the superview's corresponding `attribute`
@@ -246,7 +246,7 @@ extension LayoutItem {
         _ attribute: NSLayoutConstraint.Attribute,
         is relation: NSLayoutConstraint.Relation = .equal,
         multiplier: CGFloat = 1,
-        _ constant: CGFloat = 0,
+        constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints {
@@ -270,7 +270,7 @@ extension LayoutItem {
     ///   - priority: (optional) priority of constraint
     public func to(
         _ attributes: [NSLayoutConstraint.Attribute],
-        _ constant: CGFloat = 0,
+        constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in

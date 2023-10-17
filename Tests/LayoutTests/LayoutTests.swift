@@ -503,8 +503,8 @@ final class LayoutTests: XCTestCase {
                     .size(height: 100)
                     .to([.centerY, .centerX])
                 greenView
-                    .to(.leading, 10)
-                    .to(.bottom, -10)
+                    .to(.leading, constant: 10)
+                    .to(.bottom, constant: -10)
             }
 
             // To Anchor
@@ -553,10 +553,10 @@ final class LayoutTests: XCTestCase {
 
             let layout: Layout = view.layout {
                 pinkView
-                    .to(.trailing, -20)
-                    .to(.top, 20)
+                    .to(.trailing, constant: -20)
+                    .to(.top, constant: 20)
                 yellowView
-                    .to([.trailing, .bottom], -20)
+                    .to([.trailing, .bottom], constant: -20)
             }
 
             // Anchor With Constant

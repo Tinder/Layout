@@ -111,7 +111,7 @@ final class LayoutItemTests: XCTestCase {
                 // With GreaterThanOrEqual Relation
 
                 redView
-                    .to(.centerY, -50)
+                    .to(.centerY, constant: -50)
                     .to(.centerX)
                     .size(height: 100)
                     .size(width: 60)
@@ -120,7 +120,7 @@ final class LayoutItemTests: XCTestCase {
                 // With LessThanOrEqual Relation
 
                 orangeView
-                    .to(.centerY, 50)
+                    .to(.centerY, constant: 50)
                     .to(.centerX)
                     .size(height: 100)
                     .size(width: 40)
@@ -171,7 +171,7 @@ final class LayoutItemTests: XCTestCase {
                 // With GreaterThanOrEqual Relation and Height Priority
 
                 redView
-                    .to([.centerY], -50)
+                    .to([.centerY], constant: -50)
                     .to([.centerX])
                     .size(width: 50)
                     .size(height: 110, priority: .high)
@@ -180,7 +180,7 @@ final class LayoutItemTests: XCTestCase {
                 // With LessThanOrEqual Relation and Height Priority
 
                 orangeView
-                    .to([.centerY], 50)
+                    .to([.centerY], constant: 50)
                     .to([.centerX])
                     .size(width: 50)
                     .size(height: 90, priority: .high)
@@ -318,8 +318,8 @@ final class LayoutItemTests: XCTestCase {
 
                 yellowView
                     .size(width: 100, height: 100)
-                    .to(.top, 25)
-                    .to(.trailing, -25)
+                    .to(.top, constant: 25)
+                    .to(.trailing, constant: -25)
 
                 // To Bottom Leading with Bottom Multiplier
 
@@ -332,17 +332,17 @@ final class LayoutItemTests: XCTestCase {
 
                 greenView
                     .size(width: 100, height: 100)
-                    .to(.bottom, multiplier: 0.75, 50)
+                    .to(.bottom, multiplier: 0.75, constant: 50)
                     .to(.leading)
 
                 // To Bottom Trailing with Constant and Priority
 
                 orangeView
                     .size(width: 100, height: 100)
-                    .to(.bottom, -100, priority: .low)
-                    .to(.bottom, -50, priority: .high)
-                    .to(.trailing, -100, priority: .low)
-                    .to(.trailing, -50, priority: .high)
+                    .to(.bottom, constant: -100, priority: .low)
+                    .to(.bottom, constant: -50, priority: .high)
+                    .to(.trailing, constant: -100, priority: .low)
+                    .to(.trailing, constant: -50, priority: .high)
             }
         }
     }
@@ -355,33 +355,33 @@ final class LayoutItemTests: XCTestCase {
 
                 pinkView
                     .size(width: 100, height: 100)
-                    .to(.top, is: .lessThanOrEqual, 100)
-                    .to(.top, 150, priority: .high)
-                    .to(.leading, 50)
+                    .to(.top, is: .lessThanOrEqual, constant: 100)
+                    .to(.top, constant: 150, priority: .high)
+                    .to(.leading, constant: 50)
 
                 // To Top Trailing With Less Than Or Equal Relation and Lower Constraint
 
                 yellowView
                     .size(width: 100, height: 100)
-                    .to(.top, is: .lessThanOrEqual, 100)
-                    .to(.top, 50, priority: .high)
-                    .to(.trailing, -50)
+                    .to(.top, is: .lessThanOrEqual, constant: 100)
+                    .to(.top, constant: 50, priority: .high)
+                    .to(.trailing, constant: -50)
 
                 // To Top Trailing With Greater Than Or Equal Relation and Lower Constraint
 
                 blueView
                     .size(width: 100, height: 100)
-                    .to(.bottom, is: .greaterThanOrEqual, -100)
-                    .to(.bottom, -150, priority: .high)
-                    .to(.leading, 50)
+                    .to(.bottom, is: .greaterThanOrEqual, constant: -100)
+                    .to(.bottom, constant: -150, priority: .high)
+                    .to(.leading, constant: 50)
 
                 // To Top Trailing With Greater Than Or Equal Relation and Higher Constraint
 
                 greenView
                     .size(width: 100, height: 100)
-                    .to(.bottom, is: .greaterThanOrEqual, -100)
-                    .to(.bottom, -50, priority: .high)
-                    .to(.trailing, -50)
+                    .to(.bottom, is: .greaterThanOrEqual, constant: -100)
+                    .to(.bottom, constant: -50, priority: .high)
+                    .to(.trailing, constant: -50)
             }
         }
     }
@@ -400,14 +400,14 @@ final class LayoutItemTests: XCTestCase {
 
                 yellowView
                     .size(width: 100, height: 100)
-                    .to([.bottom, .trailing], -100)
+                    .to([.bottom, .trailing], constant: -100)
 
                 // To Top Leading with Priority
 
                 blueView
                     .size(width: 100, height: 100)
-                    .to([.top, .leading], 25, priority: .low)
-                    .to([.top, .leading], 100, priority: .high)
+                    .to([.top, .leading], constant: 25, priority: .low)
+                    .to([.top, .leading], constant: 100, priority: .high)
             }
         }
     }
