@@ -65,13 +65,6 @@ extension UILayoutGuide: LayoutAnchoring {
     public var height: NSLayoutDimension { heightAnchor }
 }
 
-extension UILayoutSupport {
-
-    public var top: NSLayoutYAxisAnchor { topAnchor }
-    public var bottom: NSLayoutYAxisAnchor { bottomAnchor }
-    public var height: NSLayoutDimension { heightAnchor }
-}
-
 // swiftlint:disable function_default_parameter_at_end
 
 extension NSLayoutXAxisAnchor {
