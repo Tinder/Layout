@@ -43,15 +43,16 @@ final class LayoutAnchoringTests: XCTestCase {
         // GIVEN
 
         let guide: UILayoutGuide = .init()
+        let boundary: LayoutBoundary = guide
 
         // THEN
 
-        expect(guide.left) == guide.leftAnchor
-        expect(guide.right) == guide.rightAnchor
-        expect(guide.leading) == guide.leadingAnchor
-        expect(guide.trailing) == guide.trailingAnchor
-        expect(guide.top) == guide.topAnchor
-        expect(guide.bottom) == guide.bottomAnchor
+        expect(boundary.left) == guide.leftAnchor
+        expect(boundary.right) == guide.rightAnchor
+        expect(boundary.leading) == guide.leadingAnchor
+        expect(boundary.trailing) == guide.trailingAnchor
+        expect(boundary.top) == guide.topAnchor
+        expect(boundary.bottom) == guide.bottomAnchor
     }
 
     func testUILayoutGuideLayoutCenter() {
@@ -59,11 +60,12 @@ final class LayoutAnchoringTests: XCTestCase {
         // GIVEN
 
         let guide: UILayoutGuide = .init()
+        let center: LayoutCenter = guide
 
         // THEN
 
-        expect(guide.centerX) == guide.centerXAnchor
-        expect(guide.centerY) == guide.centerYAnchor
+        expect(center.centerX) == guide.centerXAnchor
+        expect(center.centerY) == guide.centerYAnchor
     }
 
     func testUILayoutGuideLayoutSize() {
@@ -71,11 +73,12 @@ final class LayoutAnchoringTests: XCTestCase {
         // GIVEN
 
         let guide: UILayoutGuide = .init()
+        let size: LayoutSize = guide
 
         // THEN
 
-        expect(guide.width) == guide.widthAnchor
-        expect(guide.height) == guide.heightAnchor
+        expect(size.width) == guide.widthAnchor
+        expect(size.height) == guide.heightAnchor
     }
 
     func testLayoutSupportAnchors() {
