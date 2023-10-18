@@ -565,4 +565,21 @@ final class LayoutItemTests: XCTestCase {
         expect(baseline.firstBaseline) == view.firstBaseline
         expect(baseline.lastBaseline) == view.lastBaseline
     }
+
+    func testToSafeAreaCanonicalInsetPriority() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .toSafeArea()
+                blueView
+                    .toSafeArea(inset: 0, priority: .high)
+                    .toSafeArea(inset: 25)
+                orangeView
+                    .toSafeArea(inset: 0, priority: .low)
+                    .toSafeArea(inset: 50, priority: .high)
+                yellowView
+                    .toSafeArea(canonical: [.top, .left, .right, .bottom], inset: 75)
+            }
+        }
+    }
 }

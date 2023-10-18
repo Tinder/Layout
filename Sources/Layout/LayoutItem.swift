@@ -444,6 +444,26 @@ extension LayoutItem {
 
     // swiftlint:enable anonymous_argument_in_multiline_closure
 
+    /// Constrains the view's edges to the canonical edges of the superview's safeAreaLayoutGuide with an inset.
+    ///
+    /// - Parameters:
+    ///   - edges: The edges to constrain
+    ///   - inset: The inset amount
+    ///   - priority: The priority of the constraint(s)
+    public func toSafeArea(
+        canonical edges: [CanonicalEdge] = CanonicalEdge.allCases,
+        inset: CGFloat = 0,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let layoutGuide: UILayoutGuide = layoutItem.safeAreaGuide {
+                for edge: CanonicalEdge in edges {
+                    layoutItem.constraint(to: edge, of: layoutGuide, inset: inset, priority: priority)
+                }
+            }
+        }
+    }
+
     private func constraint(
         to edge: CanonicalEdge,
         of boundary: LayoutBoundary,
