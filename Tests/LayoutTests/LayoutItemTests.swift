@@ -466,7 +466,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToMarginsCanonicalInsetPriority() {
+    func testToMarginsCanonicalEdgesInsetPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
