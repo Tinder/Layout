@@ -283,7 +283,7 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the edges to the superview's canonical edges with `insets`
+    /// Constrains the edges to the superview's canonical edges with insets.
     ///
     /// - Parameters:
     ///   - insets: (optional) insets of view
