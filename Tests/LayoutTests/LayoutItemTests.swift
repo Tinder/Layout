@@ -461,7 +461,7 @@ final class LayoutItemTests: XCTestCase {
         // GIVEN
 
         let view: UIView = .init()
-        let item: LayoutBoundary = ViewLayoutItem(layoutItemView: view) { _ in [] }
+        let boundary: LayoutBoundary = ViewLayoutItem(layoutItemView: view) { _ in [] }
 
         // THEN
 
@@ -478,7 +478,7 @@ final class LayoutItemTests: XCTestCase {
         // GIVEN
 
         let view: UIView = .init()
-        let item: LayoutCenter = ViewLayoutItem(layoutItemView: view) { _ in [] }
+        let center: LayoutCenter = ViewLayoutItem(layoutItemView: view) { _ in [] }
 
         // THEN
 
@@ -491,7 +491,7 @@ final class LayoutItemTests: XCTestCase {
         // GIVEN
 
         let view: UIView = .init()
-        let item: LayoutSize = ViewLayoutItem(layoutItemView: view) { _ in [] }
+        let size: LayoutSize = ViewLayoutItem(layoutItemView: view) { _ in [] }
 
         // THEN
 
@@ -504,7 +504,7 @@ final class LayoutItemTests: XCTestCase {
         // GIVEN
 
         let view: UIView = .init()
-        let item: LayoutBaseline = ViewLayoutItem(layoutItemView: view) { _ in [] }
+        let baseline: LayoutBaseline = ViewLayoutItem(layoutItemView: view) { _ in [] }
 
         // THEN
 
