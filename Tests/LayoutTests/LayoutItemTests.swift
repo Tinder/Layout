@@ -465,12 +465,12 @@ final class LayoutItemTests: XCTestCase {
 
         // THEN
 
-        expect(item.left) == view.left
-        expect(item.right) == view.right
-        expect(item.leading) == view.leading
-        expect(item.trailing) == view.trailing
-        expect(item.top) == view.top
-        expect(item.bottom) == view.bottom
+        expect(boundary.left) == view.left
+        expect(boundary.right) == view.right
+        expect(boundary.leading) == view.leading
+        expect(boundary.trailing) == view.trailing
+        expect(boundary.top) == view.top
+        expect(boundary.bottom) == view.bottom
     }
 
     func testViewLayoutItemLayoutCenter() {
@@ -482,8 +482,8 @@ final class LayoutItemTests: XCTestCase {
 
         // THEN
 
-        expect(item.centerX) == view.centerX
-        expect(item.centerY) == view.centerY
+        expect(center.centerX) == view.centerX
+        expect(center.centerY) == view.centerY
     }
 
     func testViewLayoutItemLayoutSize() {
@@ -495,8 +495,8 @@ final class LayoutItemTests: XCTestCase {
 
         // THEN
 
-        expect(item.width) == view.width
-        expect(item.height) == view.height
+        expect(size.width) == view.width
+        expect(size.height) == view.height
     }
 
     func testViewLayoutItemLayoutBaseline() {
@@ -508,7 +508,7 @@ final class LayoutItemTests: XCTestCase {
 
         // THEN
 
-        expect(item.firstBaseline) == view.firstBaseline
-        expect(item.lastBaseline) == view.lastBaseline
+        expect(baseline.firstBaseline) == view.firstBaseline
+        expect(baseline.lastBaseline) == view.lastBaseline
     }
 }
