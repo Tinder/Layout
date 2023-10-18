@@ -430,6 +430,60 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToEdgesInsetPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Top, Leading and Trailing
+
+                pinkView
+                    .size(height: 100)
+                    .toEdges([.top, .leading, .trailing])
+
+                // To Bottom, Leading and Trailing with Inset
+
+                yellowView
+                    .size(height: 100)
+                    .toEdges([.bottom, .leading, .trailing], inset: 25)
+
+                // To Vertical Center, Leading and Trailing with Inset and with Priority
+
+                blueView
+                    .size(height: 100)
+                    .to(.centerY)
+                    .toEdges([.leading, .trailing], inset: 25, priority: .low)
+                    .toEdges([.leading, .trailing], inset: 50, priority: .high)
+            }
+        }
+    }
+
+    func testToCanonicalEdgesInsetPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Top, Left and Right
+
+                pinkView
+                    .size(height: 100)
+                    .toEdges(canonical: [.top, .left, .right])
+
+                // To Bottom, Left and Right with Inset
+
+                yellowView
+                    .size(height: 100)
+                    .toEdges(canonical: [.bottom, .left, .right], inset: 25)
+
+                // To Vertical Center, Left and Right with Inset and with Priority
+
+                blueView
+                    .size(height: 100)
+                    .to(.centerY)
+                    .toEdges(canonical: [.left, .right], inset: 25, priority: .low)
+                    .toEdges(canonical: [.left, .right], inset: 50, priority: .high)
+            }
+        }
+    }
+
     func testToBottomMargin_andWithPriority() {
         assertLayout { view in
             view.layout {
