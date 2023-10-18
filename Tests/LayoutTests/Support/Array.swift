@@ -7,7 +7,7 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
-extension Array where Element: AnyObject {
+extension Array where Element == AnyObject {
 
     internal static func === (lhs: Self, rhs: Self) -> Bool {
         zip(lhs, rhs).allSatisfy { $0.0 === $0.1 }
