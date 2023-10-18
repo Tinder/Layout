@@ -323,7 +323,7 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's edges to the superview's safeAreaGuide with directional `insets`
+    /// Constrains the view's directional edges to the superview's safe area with insets.
     ///
     /// - Parameters:
     ///   - insets: (optional) insets of view
