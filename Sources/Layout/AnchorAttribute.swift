@@ -1,3 +1,4 @@
+// swiftlint:disable:this file_name
 //
 //  All Contributions by Match Group
 //
@@ -8,23 +9,6 @@
 //
 
 import UIKit
-
-// swiftlint:disable file_types_order
-
-internal protocol AnchorAttribute {
-
-    associatedtype AnchorType: AnyObject
-
-    var attributeType: AnchorAttributeType { get }
-    var attribute: NSLayoutConstraint.Attribute { get }
-}
-
-// swiftlint:enable file_types_order
-
-internal enum AnchorAttributeType {
-
-    case xAxisAnchor, yAxisAnchor
-}
 
 public enum XAxisAttribute {
 
