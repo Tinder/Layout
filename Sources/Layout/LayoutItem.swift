@@ -323,7 +323,7 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's edges to the superview's directional margins with an inset.
+    /// Constrains the view's directional edges to the superview's margins with an inset.
     ///
     /// - Parameters:
     ///   - edges: The edges to constrain
