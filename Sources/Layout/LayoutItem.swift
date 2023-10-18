@@ -283,6 +283,26 @@ extension LayoutItem {
         }
     }
 
+    /// Constrains the edges to the superview's edges with `insets`.
+    ///
+    /// - Parameters:
+    ///   - anchors: anchors to constrain
+    ///   - inset: inset of view
+    ///   - priority: (optional) priority of constraint
+    public func toEdges(
+        canonical edges: [CanonicalEdge] = CanonicalEdge.allCases,
+        inset: CGFloat = 0,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let superview: UIView = layoutItem.layoutItemView.superview {
+                for edge: CanonicalEdge in edges {
+                    layoutItem.constraint(to: edge, of: superview, inset: inset, priority: priority)
+                }
+            }
+        }
+    }
+
     /// Constrains the `bottom` to the bottom margin with a minimum bottom inset
     /// Useful for bottom-aligned elements on iPhoneX family devices that require
     /// an additional bottom margin on non-iPhoneX devices.
