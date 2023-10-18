@@ -456,25 +456,59 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testViewLayoutItemLayoutAnchoring() {
+    func testViewLayoutItemLayoutBoundary() {
 
         // GIVEN
 
-        let item: ViewLayoutItem = .init(layoutItemView: UIView()) { _ in [] }
+        let view: UIView = .init()
+        let item: LayoutBoundary = ViewLayoutItem(layoutItemView: view) { _ in [] }
 
         // THEN
 
-        expect(item.left) == item.layoutItemView.left
-        expect(item.centerX) == item.layoutItemView.centerX
-        expect(item.right) == item.layoutItemView.right
-        expect(item.leading) == item.layoutItemView.leading
-        expect(item.trailing) == item.layoutItemView.trailing
-        expect(item.top) == item.layoutItemView.top
-        expect(item.centerY) == item.layoutItemView.centerY
-        expect(item.firstBaseline) == item.layoutItemView.firstBaseline
-        expect(item.lastBaseline) == item.layoutItemView.lastBaseline
-        expect(item.bottom) == item.layoutItemView.bottom
-        expect(item.width) == item.layoutItemView.width
-        expect(item.height) == item.layoutItemView.height
+        expect(item.left) == view.left
+        expect(item.right) == view.right
+        expect(item.leading) == view.leading
+        expect(item.trailing) == view.trailing
+        expect(item.top) == view.top
+        expect(item.bottom) == view.bottom
+    }
+
+    func testViewLayoutItemLayoutCenter() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let item: LayoutCenter = ViewLayoutItem(layoutItemView: view) { _ in [] }
+
+        // THEN
+
+        expect(item.centerX) == view.centerX
+        expect(item.centerY) == view.centerY
+    }
+
+    func testViewLayoutItemLayoutSize() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let item: LayoutSize = ViewLayoutItem(layoutItemView: view) { _ in [] }
+
+        // THEN
+
+        expect(item.width) == view.width
+        expect(item.height) == view.height
+    }
+
+    func testViewLayoutItemLayoutBaseline() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let item: LayoutBaseline = ViewLayoutItem(layoutItemView: view) { _ in [] }
+
+        // THEN
+
+        expect(item.firstBaseline) == view.firstBaseline
+        expect(item.lastBaseline) == view.lastBaseline
     }
 }
