@@ -434,6 +434,33 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToEdgesInsetPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Top, Leading and Trailing
+
+                pinkView
+                    .size(height: 100)
+                    .toEdges([.top, .leading, .trailing])
+
+                // To Top, Leading and Trailing with Inset
+
+                yellowView
+                    .size(height: 100)
+                    .toEdges([.bottom, .leading, .trailing], inset: 25)
+
+                // To Center, Leading and Trailing with Inset and with Priority
+
+                blueView
+                    .size(height: 100)
+                    .to(.centerY)
+                    .toEdges([.leading, .trailing], inset: 25, priority: .low)
+                    .toEdges([.leading, .trailing], inset: 50, priority: .high)
+            }
+        }
+    }
+
     func testCenterBetweenTopAndBottom() {
         assertLayout { view in
             view.layout(
