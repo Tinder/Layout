@@ -14,68 +14,6 @@ import XCTest
 @MainActor
 final class AnchorAttributeTests: XCTestCase {
 
-    // MARK: YAxisAttribute
-
-    func testYAxisAttributeTop() {
-
-        // GIVEN
-
-        let anchorAttribute: YAxisAttribute = .top
-
-        // THEN
-
-        expect(anchorAttribute.attributeType) == .yAxisAnchor
-        expect(anchorAttribute.attribute) == .top
-    }
-
-    func testYAxisAttributeCenterY() {
-
-        // GIVEN
-
-        let anchorAttribute: YAxisAttribute = .centerY
-
-        // THEN
-
-        expect(anchorAttribute.attributeType) == .yAxisAnchor
-        expect(anchorAttribute.attribute) == .centerY
-    }
-
-    func testYAxisAttributeFirstBaseline() {
-
-        // GIVEN
-
-        let anchorAttribute: YAxisAttribute = .firstBaseline
-
-        // THEN
-
-        expect(anchorAttribute.attributeType) == .yAxisAnchor
-        expect(anchorAttribute.attribute) == .firstBaseline
-    }
-
-    func testYAxisAttributeLastBaseline() {
-
-        // GIVEN
-
-        let anchorAttribute: YAxisAttribute = .lastBaseline
-
-        // THEN
-
-        expect(anchorAttribute.attributeType) == .yAxisAnchor
-        expect(anchorAttribute.attribute) == .lastBaseline
-    }
-
-    func testYAxisAttributeBottom() {
-
-        // GIVEN
-
-        let anchorAttribute: YAxisAttribute = .bottom
-
-        // THEN
-
-        expect(anchorAttribute.attributeType) == .yAxisAnchor
-        expect(anchorAttribute.attribute) == .bottom
-    }
-
     // MARK: LayoutAnchoring
 
     func testAnchorForXAxisAttributes() {

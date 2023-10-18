@@ -31,30 +31,9 @@ public enum XAxisAttribute {
     case left, centerX, right, leading, trailing
 }
 
-public enum YAxisAttribute: AnchorAttribute {
+public enum YAxisAttribute {
 
     case top, centerY, firstBaseline, lastBaseline, bottom
-
-    internal typealias AnchorType = NSLayoutYAxisAnchor
-
-    internal var attributeType: AnchorAttributeType {
-        .yAxisAnchor
-    }
-
-    internal var attribute: NSLayoutConstraint.Attribute {
-        switch self {
-        case .top:
-            return .top
-        case .centerY:
-            return .centerY
-        case .firstBaseline:
-            return .firstBaseline
-        case .lastBaseline:
-            return .lastBaseline
-        case .bottom:
-            return .bottom
-        }
-    }
 }
 
 extension LayoutAnchoring {
