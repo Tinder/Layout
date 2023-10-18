@@ -466,7 +466,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToSafeAreaNSDirectionalEdgeInsetsPriority() {
+    func testToSafeAreaWithDirectionalEdgeInsetsPriority() {
         assertLayout { view in
             view.layout {
 
