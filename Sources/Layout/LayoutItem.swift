@@ -327,7 +327,7 @@ extension LayoutItem {
     ///
     /// - Parameters:
     ///   - inset: The inset amount
-    ///   - priority: (optional) priority of constraint
+    ///   - priority: The priority of the constraints
     public func toSideEdges(
         inset: CGFloat = 0,
         priority: UILayoutPriority = .required
