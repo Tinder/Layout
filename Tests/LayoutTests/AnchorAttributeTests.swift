@@ -14,68 +14,6 @@ import XCTest
 @MainActor
 final class AnchorAttributeTests: XCTestCase {
 
-    // MARK: XAxisAttribute
-
-    func testXAxisAttributeLeft() {
-
-        // GIVEN
-
-        let anchorAttribute: XAxisAttribute = .left
-
-        // THEN
-
-        expect(anchorAttribute.attributeType) == .xAxisAnchor
-        expect(anchorAttribute.attribute) == .left
-    }
-
-    func testXAxisAttributeCenterX() {
-
-        // GIVEN
-
-        let anchorAttribute: XAxisAttribute = .centerX
-
-        // THEN
-
-        expect(anchorAttribute.attributeType) == .xAxisAnchor
-        expect(anchorAttribute.attribute) == .centerX
-    }
-
-    func testXAxisAttributeRight() {
-
-        // GIVEN
-
-        let anchorAttribute: XAxisAttribute = .right
-
-        // THEN
-
-        expect(anchorAttribute.attributeType) == .xAxisAnchor
-        expect(anchorAttribute.attribute) == .right
-    }
-
-    func testXAxisAttributeLeading() {
-
-        // GIVEN
-
-        let anchorAttribute: XAxisAttribute = .leading
-
-        // THEN
-
-        expect(anchorAttribute.attributeType) == .xAxisAnchor
-        expect(anchorAttribute.attribute) == .leading
-    }
-
-    func testXAxisAttributeTrailing() {
-
-        // GIVEN
-
-        let anchorAttribute: XAxisAttribute = .trailing
-
-        // THEN
-
-        expect(anchorAttribute.attributeType) == .xAxisAnchor
-        expect(anchorAttribute.attribute) == .trailing
-    }
-
     // MARK: LayoutAnchoring
 
     func testAnchorForXAxisAttributes() {

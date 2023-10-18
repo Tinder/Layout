@@ -26,30 +26,9 @@ internal enum AnchorAttributeType {
     case xAxisAnchor, yAxisAnchor
 }
 
-public enum XAxisAttribute: AnchorAttribute {
+public enum XAxisAttribute {
 
     case left, centerX, right, leading, trailing
-
-    internal typealias AnchorType = NSLayoutXAxisAnchor
-
-    internal var attributeType: AnchorAttributeType {
-        .xAxisAnchor
-    }
-
-    internal var attribute: NSLayoutConstraint.Attribute {
-        switch self {
-        case .left:
-            return .left
-        case .centerX:
-            return .centerX
-        case .right:
-            return .right
-        case .leading:
-            return .leading
-        case .trailing:
-            return .trailing
-        }
-    }
 }
 
 public enum YAxisAttribute {
