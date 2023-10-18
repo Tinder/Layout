@@ -484,7 +484,7 @@ final class LayoutItemTests: XCTestCase {
                     .to(.centerY)
                     .toSideEdges(inset: 50)
 
-                // To Sides with Inset and Priority
+                // To Side Edges with Inset and Priority
 
                 blueView
                     .size(height: 100)
