@@ -326,7 +326,7 @@ extension LayoutItem {
     /// Constrains the view's canonical edges to the superview's safe area with insets.
     ///
     /// - Parameters:
-    ///   - insets: (optional) insets of view
+    ///   - insets: The canonical insets
     ///   - priority: (optional) priority of constraint
     public func toSafeArea(
         insets: UIEdgeInsets,
