@@ -327,7 +327,7 @@ extension LayoutItem {
     ///
     /// - Parameters:
     ///   - insets: The canonical insets
-    ///   - priority: (optional) priority of constraint
+    ///   - priority: The priority of the constraints
     public func toSafeArea(
         insets: UIEdgeInsets,
         priority: UILayoutPriority = .required
