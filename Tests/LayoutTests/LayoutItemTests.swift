@@ -566,7 +566,7 @@ final class LayoutItemTests: XCTestCase {
         expect(baseline.lastBaseline) == view.lastBaseline
     }
 
-    func testToSafeAreaCanonicalInsetPriority() {
+    func testToSafeAreaCanonicalEdgesInsetPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
