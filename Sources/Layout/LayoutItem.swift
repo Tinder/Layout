@@ -327,7 +327,7 @@ extension LayoutItem {
     ///
     /// - Parameters:
     ///   - insets: The directional insets
-    ///   - priority: (optional) priority of constraint
+    ///   - priority: The priority of the constraints
     public func toSafeArea(
         insets: NSDirectionalEdgeInsets,
         priority: UILayoutPriority = .required
