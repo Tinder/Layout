@@ -286,7 +286,7 @@ extension LayoutItem {
     /// Constrains the edges to the superview's canonical edges with insets.
     ///
     /// - Parameters:
-    ///   - insets: (optional) insets of view
+    ///   - insets: The canonical edge insets
     ///   - priority: (optional) priority of constraint
     public func toEdges(
         insets: UIEdgeInsets,
