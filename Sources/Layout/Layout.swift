@@ -592,22 +592,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         ])
     }
 
-    @discardableResult
-    private func equalAttribute<T: AnchorAttribute>(
-        _ attribute: T,
-        _ views: [UIView]
-    ) -> [NSLayoutConstraint] {
-        guard views.count >= 2,
-              let first = views.first
-        else { return [] }
-        let firstAnchor: NSLayoutAnchor<T.AnchorType> = first.anchor(for: attribute)
-        return views.dropFirst().map { view in
-            view
-                .anchor(for: attribute)
-                .constraint(equalTo: firstAnchor)
-        }
-    }
-
     /// Adds LayoutItems
     ///
     /// - Note:
