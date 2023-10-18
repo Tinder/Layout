@@ -323,7 +323,7 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's leading and trailing edges to the superview's leading and trailing edges with an `inset`
+    /// Constrains the view's leading and trailing edges to the superview's edges with an inset.
     ///
     /// - Parameters:
     ///   - inset: inset of view
