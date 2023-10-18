@@ -287,7 +287,7 @@ extension LayoutItem {
     ///
     /// - Parameters:
     ///   - insets: The canonical edge insets
-    ///   - priority: (optional) priority of constraint
+    ///   - priority: The priority of the constraints
     public func toEdges(
         insets: UIEdgeInsets,
         priority: UILayoutPriority = .required
