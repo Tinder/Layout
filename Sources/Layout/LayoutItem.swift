@@ -326,7 +326,7 @@ extension LayoutItem {
     /// Constrains the view's directional edges to the superview's safe area with insets.
     ///
     /// - Parameters:
-    ///   - insets: (optional) insets of view
+    ///   - insets: The directional insets
     ///   - priority: (optional) priority of constraint
     public func toSafeArea(
         insets: NSDirectionalEdgeInsets,
