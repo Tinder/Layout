@@ -138,32 +138,6 @@ final class AnchorAttributeTests: XCTestCase {
         expect(anchorAttribute.attribute) == .bottom
     }
 
-    // MARK: DimensionAttribute
-
-    func testDimensionAttributeWidth() {
-
-        // GIVEN
-
-        let anchorAttribute: DimensionAttribute = .width
-
-        // THEN
-
-        expect(anchorAttribute.attributeType) == .dimension
-        expect(anchorAttribute.attribute) == .width
-    }
-
-    func testDimensionAttributeHeight() {
-
-        // GIVEN
-
-        let anchorAttribute: DimensionAttribute = .height
-
-        // THEN
-
-        expect(anchorAttribute.attributeType) == .dimension
-        expect(anchorAttribute.attribute) == .height
-    }
-
     // MARK: LayoutAnchoring
 
     func testAnchorForXAxisAttributes() {
@@ -194,17 +168,5 @@ final class AnchorAttributeTests: XCTestCase {
         expect(view.anchor(for: YAxisAttribute.firstBaseline)) == view.firstBaseline
         expect(view.anchor(for: YAxisAttribute.lastBaseline)) == view.lastBaseline
         expect(view.anchor(for: YAxisAttribute.bottom)) == view.bottom
-    }
-
-    func testAnchorForDimensionAttributes() {
-
-        // GIVEN
-
-        let view: UIView = .init()
-
-        // THEN
-
-        expect(view.anchor(for: DimensionAttribute.width)) == view.width
-        expect(view.anchor(for: DimensionAttribute.height)) == view.height
     }
 }
