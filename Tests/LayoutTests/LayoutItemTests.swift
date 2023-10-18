@@ -478,7 +478,7 @@ final class LayoutItemTests: XCTestCase {
                 // To Insets with Priority
 
                 yellowView
-                    .toSafeArea(insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), priority: .low)
+                    .toSafeArea(insets: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5), priority: .low)
                     .toSafeArea(insets: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50), priority: .high)
             }
         }
