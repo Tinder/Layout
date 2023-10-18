@@ -29,7 +29,7 @@ public protocol LayoutAnchoring {
     var height: NSLayoutDimension { get }
 }
 
-extension UIView: LayoutAnchoring {
+extension UIView {
 
     public var left: NSLayoutXAxisAnchor { leftAnchor }
     public var centerX: NSLayoutXAxisAnchor { centerXAnchor }
