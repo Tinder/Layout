@@ -283,6 +283,26 @@ extension LayoutItem {
         }
     }
 
+    /// Constrains the view's edges to the superview's directional edges with an inset.
+    ///
+    /// - Parameters:
+    ///   - edges: The edges to constrain
+    ///   - inset: The inset amount
+    ///   - priority: The priority of the constraint(s)
+    public func toEdges(
+        _ edges: [DirectionalEdge],
+        inset: CGFloat = 0,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let superview: UIView = layoutItem.layoutItemView.superview {
+                for edge: DirectionalEdge in edges {
+                    layoutItem.constraint(to: edge, of: superview, inset: inset, priority: priority)
+                }
+            }
+        }
+    }
+
     /// Constrains the view's edges to the superview's canonical edges with an inset.
     ///
     /// - Parameters:
