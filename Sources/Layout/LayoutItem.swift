@@ -323,6 +323,24 @@ extension LayoutItem {
         }
     }
 
+    /// Constrains the view's edges to the superview's safeAreaGuide with directional `insets`
+    ///
+    /// - Parameters:
+    ///   - insets: (optional) insets of view
+    ///   - priority: (optional) priority of constraint
+    public func toSafeArea(
+        insets: NSDirectionalEdgeInsets,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let layoutGuide: UILayoutGuide = layoutItem.safeAreaGuide {
+                for edge: DirectionalEdge in insets.edgeType.allCases {
+                    layoutItem.constraint(to: edge, of: layoutGuide, insets: insets, priority: priority)
+                }
+            }
+        }
+    }
+
     /// Constrains the `bottom` to the bottom margin with a minimum bottom inset
     /// Useful for bottom-aligned elements on iPhoneX family devices that require
     /// an additional bottom margin on non-iPhoneX devices.
