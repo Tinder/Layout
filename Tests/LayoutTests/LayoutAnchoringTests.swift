@@ -14,28 +14,60 @@ import XCTest
 @MainActor
 final class LayoutAnchoringTests: XCTestCase {
 
-    func testViewAnchors() {
+    func testUIViewLayoutBoundary() {
 
         // GIVEN
 
         let view: UIView = .init()
+        let boundary: LayoutBoundary = view
 
         // THEN
 
-        expect(view.left) == view.leftAnchor
-        expect(view.centerX) == view.centerXAnchor
-        expect(view.right) == view.rightAnchor
-        expect(view.leading) == view.leadingAnchor
-        expect(view.trailing) == view.trailingAnchor
+        expect(boundary.left) == view.leftAnchor
+        expect(boundary.right) == view.rightAnchor
+        expect(boundary.leading) == view.leadingAnchor
+        expect(boundary.trailing) == view.trailingAnchor
+        expect(boundary.top) == view.topAnchor
+        expect(boundary.bottom) == view.bottomAnchor
+    }
 
-        expect(view.top) == view.topAnchor
-        expect(view.centerY) == view.centerYAnchor
-        expect(view.firstBaseline) == view.firstBaselineAnchor
-        expect(view.lastBaseline) == view.lastBaselineAnchor
-        expect(view.bottom) == view.bottomAnchor
+    func testUIViewLayoutCenter() {
 
-        expect(view.width) == view.widthAnchor
-        expect(view.height) == view.heightAnchor
+        // GIVEN
+
+        let view: UIView = .init()
+        let center: LayoutCenter = view
+
+        // THEN
+
+        expect(center.centerX) == view.centerXAnchor
+        expect(center.centerY) == view.centerYAnchor
+    }
+
+    func testUIViewLayoutSize() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let size: LayoutSize = view
+
+        // THEN
+
+        expect(size.width) == view.widthAnchor
+        expect(size.height) == view.heightAnchor
+    }
+
+    func testUIViewLayoutBaseline() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let baseline: LayoutBaseline = view
+
+        // THEN
+
+        expect(baseline.firstBaseline) == view.firstBaseline
+        expect(baseline.lastBaseline) == view.lastBaseline
     }
 
     func testUILayoutGuideLayoutBoundary() {
