@@ -443,21 +443,26 @@ final class LayoutItemTests: XCTestCase {
         assertLayout { view in
             view.layout {
 
-                // To Top, Left and Right
+                // Defaults
 
                 pinkView
+                    .toEdges()
+
+                // To Top, Left and Right
+
+                yellowView
                     .size(height: 100)
                     .toEdges(canonical: [.top, .left, .right])
 
                 // To Bottom, Left and Right with Inset
 
-                yellowView
+                blueView
                     .size(height: 100)
                     .toEdges(canonical: [.bottom, .left, .right], inset: 25)
 
                 // To Vertical Center, Left and Right with Inset and with Priority
 
-                blueView
+                orangeView
                     .size(height: 100)
                     .to(.centerY)
                     .toEdges(canonical: [.left, .right], inset: 25, priority: .low)
