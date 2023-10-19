@@ -323,7 +323,7 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's canonical edges to the superview's margin edges with insets.
+    /// Constrains the view's canonical edges to the superview's margins with insets.
     ///
     /// - Parameters:
     ///   - insets: The canonical insets
