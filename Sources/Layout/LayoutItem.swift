@@ -444,7 +444,7 @@ extension LayoutItem {
 
     // swiftlint:enable anonymous_argument_in_multiline_closure
 
-    /// Constrains the view's canonical edges to superview's safe area with an inset.
+    /// Constrains the view's canonical edges to the superview's safe area with an inset.
     ///
     /// - Parameters:
     ///   - edges: The edges to constrain
