@@ -327,7 +327,9 @@ extension LayoutItem {
     ///
     /// - Parameters:
     ///   - insets: The canonical insets
-    ///   - priority: The priority of constraints
+    ///   - priority: The priority of the constraint(s)
+    ///
+    /// - Returns: The LayoutItem
     public func toMargins(
         insets: UIEdgeInsets,
         priority: UILayoutPriority = .required
