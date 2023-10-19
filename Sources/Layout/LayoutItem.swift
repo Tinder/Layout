@@ -327,8 +327,10 @@ extension LayoutItem {
     ///
     /// - Parameters:
     ///   - edges: The edges to constrain
-    ///   - inset: The inset amount
+    ///   - inset: The inset distance
     ///   - priority: The priority of the constraint(s)
+    ///
+    /// - Returns: The LayoutItem
     public func toMargins(
         _ edges: [DirectionalEdge],
         inset: CGFloat = 0,
