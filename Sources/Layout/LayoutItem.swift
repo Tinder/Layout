@@ -327,7 +327,7 @@ extension LayoutItem {
     ///
     /// - Parameters:
     ///   - insets: The canonical insets
-    ///   - priority: The priority of the constraint(s)
+    ///   - priority: The priority of the constraints
     ///
     /// - Returns: The LayoutItem
     public func toMargins(
