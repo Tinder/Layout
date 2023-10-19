@@ -326,8 +326,10 @@ extension LayoutItem {
     /// Constrains the view's directional edges to the superview's margins with insets.
     ///
     /// - Parameters:
-    ///   - insets: The  directional insets
+    ///   - insets: The directional insets
     ///   - priority: The priority of constraints
+    ///
+    /// - Returns: The LayoutItem
     public func toMargins(
         insets: NSDirectionalEdgeInsets,
         priority: UILayoutPriority = .required
