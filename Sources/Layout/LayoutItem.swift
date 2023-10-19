@@ -326,8 +326,10 @@ extension LayoutItem {
     /// Constrains the view's leading and trailing edges to the superview's edges with an inset.
     ///
     /// - Parameters:
-    ///   - inset: The inset amount
+    ///   - inset: The inset distance
     ///   - priority: The priority of the constraints
+    ///
+    /// - Returns: The LayoutItem
     public func toSideEdges(
         inset: CGFloat = 0,
         priority: UILayoutPriority = .required

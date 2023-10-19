@@ -466,7 +466,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToSideEdgesInsetPriority() {
+    func testToSideEdgesWithInsetPriority() {
         assertLayout { view in
             view.layout {
 
