@@ -412,7 +412,47 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToEdgesInsetPriority() {
+    func testToEdgesWithDirectionalInsetsPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // Insets
+                pinkView
+                    .toEdges(insets: NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 10, trailing: 15))
+
+                // Insets with Priority
+                yellowView
+                    .toEdges(
+                        insets: NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5),
+                        priority: .low
+                    )
+                    .toEdges(
+                        insets: NSDirectionalEdgeInsets(top: 50, leading: 50, bottom: 50, trailing: 50),
+                        priority: .high
+                    )
+            }
+        }
+    }
+
+    func testToEdgesWithCanonicalInsetsPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Edges with Insets
+
+                pinkView
+                    .toEdges(insets: UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 15))
+
+                // To Edges with Insets and Priority
+
+                yellowView
+                    .toEdges(insets: UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 15), priority: .low)
+                    .toEdges(insets: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50), priority: .high)
+            }
+        }
+    }
+
+    func testToEdgesWithDirectionalEdgesInsetPriority() {
         assertLayout { view in
             view.layout {
 
@@ -439,25 +479,30 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToCanonicalEdgesInsetPriority() {
+    func testToEdgesWithCanonicalEdgesInsetPriority() {
         assertLayout { view in
             view.layout {
 
-                // To Top, Left and Right
+                // Defaults
 
                 pinkView
+                    .toEdges()
+
+                // To Top, Left and Right
+
+                yellowView
                     .size(height: 100)
                     .toEdges(canonical: [.top, .left, .right])
 
                 // To Bottom, Left and Right with Inset
 
-                yellowView
+                blueView
                     .size(height: 100)
                     .toEdges(canonical: [.bottom, .left, .right], inset: 25)
 
                 // To Vertical Center, Left and Right with Inset and with Priority
 
-                blueView
+                orangeView
                     .size(height: 100)
                     .to(.centerY)
                     .toEdges(canonical: [.left, .right], inset: 25, priority: .low)
@@ -466,16 +511,61 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToSideEdgesWithInsetPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // Defaults
+
+                pinkView
+                    .size(height: 100)
+                    .to(.top)
+                    .toSideEdges()
+
+                // To Side Edges with Inset
+
+                yellowView
+                    .size(height: 100)
+                    .to(.centerY)
+                    .toSideEdges(inset: 50)
+
+                // To Side Edges with Inset and Priority
+
+                blueView
+                    .size(height: 100)
+                    .to(.bottom)
+                    .toSideEdges(inset: 0, priority: .low)
+                    .toSideEdges(inset: 50, priority: .high)
+            }
+        }
+    }
+
+    func testToMarginsWithDirectionalEdgeInsetsPriority() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .toMargins(insets: NSDirectionalEdgeInsets.zero)
+                blueView
+                    .toMargins(insets: NSDirectionalEdgeInsets.zero, priority: .high)
+                    .toMargins(insets: NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 40, trailing: 80))
+                orangeView
+                    .toMargins(insets: UIEdgeInsets.zero, priority: .low)
+                    .toMargins(insets: NSDirectionalEdgeInsets(top: 20, leading: 30, bottom: 50, trailing: 90),
+                               priority: .high)
+            }
+        }
+    }
+
     func testToMarginsWithCanonicalEdgeInsetsPriority() {
         assertLayout { view in
             view.layout {
                 pinkView
-                    .toMargins(insets: .zero)
+                    .toMargins(insets: UIEdgeInsets.zero)
                 blueView
-                    .toMargins(insets: .zero, priority: .high)
+                    .toMargins(insets: UIEdgeInsets.zero, priority: .high)
                     .toMargins(insets: UIEdgeInsets(top: 10, left: 20, bottom: 40, right: 80))
                 orangeView
-                    .toMargins(insets: .zero, priority: .low)
+                    .toMargins(insets: UIEdgeInsets.zero, priority: .low)
                     .toMargins(insets: UIEdgeInsets(top: 20, left: 30, bottom: 50, right: 90), priority: .high)
             }
         }
@@ -579,5 +669,37 @@ final class LayoutItemTests: XCTestCase {
 
         expect(baseline.firstBaseline) == view.firstBaseline
         expect(baseline.lastBaseline) == view.lastBaseline
+    }
+
+    func testToSafeAreaWithDirectionalEdgesInsetPriority() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .toSafeArea(DirectionalEdge.allCases)
+                blueView
+                    .toSafeArea(DirectionalEdge.allCases, inset: 0, priority: .low)
+                    .toSafeArea(DirectionalEdge.allCases, inset: 25, priority: .high)
+                orangeView
+                    .toSafeArea(DirectionalEdge.allCases, inset: 25, priority: .high)
+                    .toSafeArea(DirectionalEdge.allCases, inset: 50)
+            }
+        }
+    }
+
+    func testToSafeAreaWithCanonicalEdgesInsetPriority() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .toSafeArea()
+                blueView
+                    .toSafeArea(inset: 0, priority: .high)
+                    .toSafeArea(inset: 25)
+                orangeView
+                    .toSafeArea(inset: 0, priority: .low)
+                    .toSafeArea(inset: 50, priority: .high)
+                yellowView
+                    .toSafeArea(canonical: [.top, .left, .right, .bottom], inset: 75)
+            }
+        }
     }
 }
