@@ -1,5 +1,5 @@
-<UIView; frame = (0 0; 375 812); autoresize = W+H; backgroundColor = UIExtendedGrayColorSpace 1 1; layer = <CALayer>>
-   | <UIView; frame = (0 0; 225 100); backgroundColor = UIExtendedSRGBColorSpace 1 0.176471 0.333333 1; layer = <CALayer>>
-   | <UIView; frame = (251.333 712; 123.667 100); backgroundColor = UIExtendedSRGBColorSpace 1 1 0 1; layer = <CALayer>>
-   | <UIView; frame = (125.667 356; 123.667 100); backgroundColor = UIExtendedSRGBColorSpace 0 0 1 1; layer = <CALayer>>
-   | <UIView; frame = (10 652; 73.6667 150); backgroundColor = UIExtendedSRGBColorSpace 0 1 0 1; layer = <CALayer>>
+<View; frame = (0 0; 375 812)>
+   | <View "Pink"; frame = (0 0; 225 100)>
+   | <View "Yellow"; frame = (251.333 712; 123.667 100)>
+   | <View "Blue"; frame = (125.667 356; 123.667 100)>
+   | <View "Green"; frame = (10 652; 73.6667 150)>
