@@ -48,19 +48,16 @@ extension NSLayoutConstraint {
         return self
     }
 
-    @discardableResult
     public func withConstant(_ constant: CGFloat) -> NSLayoutConstraint {
         self.constant = constant
         return self
     }
 
-    @discardableResult
     public func withPriority(_ priority: UILayoutPriority) -> NSLayoutConstraint {
         self.priority = priority
         return self
     }
 
-    @discardableResult
     public func require() -> NSLayoutConstraint {
         withPriority(.required)
     }
@@ -153,11 +150,11 @@ extension Array where Element == NSLayoutConstraint {
 
     @preconcurrency
     @MainActor
-    @discardableResult
     public func withPriority(
         _ priority: UILayoutPriority
     ) -> [NSLayoutConstraint] {
-        map { $0.withPriority(priority) }
+        prioritize(priority)
+        return self
     }
 
     @preconcurrency
