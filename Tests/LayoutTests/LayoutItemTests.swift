@@ -546,12 +546,27 @@ final class LayoutItemTests: XCTestCase {
                 pinkView
                     .toMargins(insets: NSDirectionalEdgeInsets.zero)
                 blueView
-                    .toMargins(insets: .zero, priority: .high)
+                    .toMargins(insets: NSDirectionalEdgeInsets.zero, priority: .high)
                     .toMargins(insets: NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 40, trailing: 80))
                 orangeView
-                    .toMargins(insets: .zero, priority: .low)
+                    .toMargins(insets: NSDirectionalEdgeInsets.zero, priority: .low)
                     .toMargins(insets: NSDirectionalEdgeInsets(top: 20, leading: 30, bottom: 50, trailing: 90),
                                priority: .high)
+            }
+        }
+    }
+
+    func testToMarginsWithCanonicalEdgeInsetsPriority() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .toMargins(insets: UIEdgeInsets.zero)
+                blueView
+                    .toMargins(insets: UIEdgeInsets.zero, priority: .high)
+                    .toMargins(insets: UIEdgeInsets(top: 10, left: 20, bottom: 40, right: 80))
+                orangeView
+                    .toMargins(insets: UIEdgeInsets.zero, priority: .low)
+                    .toMargins(insets: UIEdgeInsets(top: 20, left: 30, bottom: 50, right: 90), priority: .high)
             }
         }
     }
