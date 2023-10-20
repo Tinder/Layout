@@ -412,6 +412,28 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToEdgesWithDirectionalInsetsPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // Insets
+                pinkView
+                    .toEdges(insets: NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 10, trailing: 15))
+
+                // Insets with Priority
+                yellowView
+                    .toEdges(
+                        insets: NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5),
+                        priority: .low
+                    )
+                    .toEdges(
+                        insets: NSDirectionalEdgeInsets(top: 50, leading: 50, bottom: 50, trailing: 50),
+                        priority: .high
+                    )
+            }
+        }
+    }
+
     func testToEdgesWithCanonicalInsetsPriority() {
         assertLayout { view in
             view.layout {
