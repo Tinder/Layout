@@ -381,6 +381,26 @@ extension LayoutItem {
         toEdges(canonical: [.left, .right], inset: inset, priority: priority)
     }
 
+    /// Constrains the view's directional edges to the superview's margins with insets.
+    ///
+    /// - Parameters:
+    ///   - insets: The directional insets
+    ///   - priority: The priority of constraints
+    ///
+    /// - Returns: The LayoutItem
+    public func toMargins(
+        insets: NSDirectionalEdgeInsets,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let layoutGuide: UILayoutGuide = layoutItem.marginsGuide {
+                for edge: DirectionalEdge in insets.edgeType.allCases {
+                    layoutItem.constraint(to: edge, of: layoutGuide, insets: insets, priority: priority)
+                }
+            }
+        }
+    }
+
     /// Constrains the `bottom` to the bottom margin with a minimum bottom inset
     /// Useful for bottom-aligned elements on iPhoneX family devices that require
     /// an additional bottom margin on non-iPhoneX devices.
