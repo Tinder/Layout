@@ -323,12 +323,14 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's edges to the superview's directional edges with an inset.
+    /// Constrains the view's directional edges to the superview's edges with an inset.
     ///
     /// - Parameters:
     ///   - edges: The edges to constrain
-    ///   - inset: The inset amount
+    ///   - inset: The inset distance
     ///   - priority: The priority of the constraint(s)
+    ///
+    /// - Returns: The LayoutItem
     public func toEdges(
         _ edges: [DirectionalEdge],
         inset: CGFloat = 0,
@@ -343,12 +345,14 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's edges to the superview's canonical edges with an inset.
+    /// Constrains the view's canonical edges to the superview's edges with an inset.
     ///
     /// - Parameters:
     ///   - edges: The edges to constrain
-    ///   - inset: The inset amount
+    ///   - inset: The inset distance
     ///   - priority: The priority of the constraint(s)
+    ///
+    /// - Returns: The LayoutItem
     public func toEdges(
         canonical edges: [CanonicalEdge] = CanonicalEdge.allCases,
         inset: CGFloat = 0,
