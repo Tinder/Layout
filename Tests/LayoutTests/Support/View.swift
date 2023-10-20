@@ -18,12 +18,15 @@ internal final class View: UIView {
         } else {
             identifier = "View"
         }
+        let origin: CGPoint = frame.origin
+        let size: CGSize = frame.size
         return super
             .description
             .replacingOccurrences(of: String(reflecting: Self.self), with: identifier)
             .split(separator: ";")[0...2]
             .joined(separator: ";")
-            .appending(">")
+            .split(separator: "=")[0]
+            .appending("= (x: \(origin.x), y: \(origin.y)), (w: \(size.width), h: \(size.height))>")
     }
 
     internal convenience init(named name: String, with color: UIColor) {
