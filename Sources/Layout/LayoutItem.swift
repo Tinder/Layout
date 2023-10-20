@@ -524,6 +524,28 @@ extension LayoutItem {
         }
     }
 
+    /// Constrains the view's canonical edges to the superview's safe area with an inset.
+    ///
+    /// - Parameters:
+    ///   - edges: The edges to constrain
+    ///   - inset: The inset distance
+    ///   - priority: The priority of the constraint(s)
+    ///
+    /// - Returns: The LayoutItem
+    public func toSafeArea(
+        canonical edges: [CanonicalEdge] = CanonicalEdge.allCases,
+        inset: CGFloat = 0,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let layoutGuide: UILayoutGuide = layoutItem.safeAreaGuide {
+                for edge: CanonicalEdge in edges {
+                    layoutItem.constraint(to: edge, of: layoutGuide, inset: inset, priority: priority)
+                }
+            }
+        }
+    }
+
     private func constraint(
         to edge: CanonicalEdge,
         of boundary: LayoutBoundary,
