@@ -1,3 +1,4 @@
+// swiftlint:disable:this file_name
 //
 //  All Contributions by Match Group
 //
@@ -8,26 +9,6 @@
 //
 
 import UIKit
-
-@preconcurrency
-@MainActor
-public protocol LayoutAnchoring {
-
-    var left: NSLayoutXAxisAnchor { get }
-    var centerX: NSLayoutXAxisAnchor { get }
-    var right: NSLayoutXAxisAnchor { get }
-    var leading: NSLayoutXAxisAnchor { get }
-    var trailing: NSLayoutXAxisAnchor { get }
-
-    var top: NSLayoutYAxisAnchor { get }
-    var centerY: NSLayoutYAxisAnchor { get }
-    var firstBaseline: NSLayoutYAxisAnchor { get }
-    var bottom: NSLayoutYAxisAnchor { get }
-    var lastBaseline: NSLayoutYAxisAnchor { get }
-
-    var width: NSLayoutDimension { get }
-    var height: NSLayoutDimension { get }
-}
 
 extension UIView {
 
