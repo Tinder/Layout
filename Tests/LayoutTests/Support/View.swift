@@ -22,7 +22,7 @@ internal final class View: UIView {
         let minY: String = frame.minY.withPrecision()
         let width: String = frame.width.withPrecision()
         let height: String = frame.height.withPrecision()
-        return "<\(identifier); frame = (minX: \(minX), y: \(minY), w: \(width), h: \(height))>"
+        return "<\(identifier); frame = (x: \(minX), y: \(minY), w: \(width), h: \(height))>"
     }
 
     internal convenience init(named name: String, with color: UIColor) {

@@ -1,2 +1,2 @@
-<View; frame = (minX: 0, y: 0, w: 375, h: 812)>
-   | <View; name = Pink; frame = (minX: 0, y: 214, w: 200, h: 400)>
+<View; frame = (x: 0, y: 0, w: 375, h: 812)>
+   | <View; name = Pink; frame = (x: 0, y: 214, w: 200, h: 400)>

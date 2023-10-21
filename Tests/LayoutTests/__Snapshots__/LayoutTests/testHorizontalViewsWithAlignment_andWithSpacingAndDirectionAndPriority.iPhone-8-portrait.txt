@@ -1,5 +1,5 @@
-<View; frame = (minX: 0, y: 0, w: 375, h: 667)>
-   | <View; name = Pink; frame = (minX: 0, y: 283.67, w: 100, h: 100)>
-   | <View; name = Yellow; frame = (minX: 100, y: 308.67, w: 50, h: 50)>
-   | <View; name = Blue; frame = (minX: 0, y: 567, w: 100, h: 100)>
-   | <View; name = Green; frame = (minX: 150, y: 617, w: 50, h: 50)>
+<View; frame = (x: 0, y: 0, w: 375, h: 667)>
+   | <View; name = Pink; frame = (x: 0, y: 283.67, w: 100, h: 100)>
+   | <View; name = Yellow; frame = (x: 100, y: 308.67, w: 50, h: 50)>
+   | <View; name = Blue; frame = (x: 0, y: 567, w: 100, h: 100)>
+   | <View; name = Green; frame = (x: 150, y: 617, w: 50, h: 50)>
