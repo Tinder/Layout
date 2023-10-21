@@ -11,8 +11,13 @@ import Foundation
 
 extension CGFloat {
 
-    internal func withPrecision(_ precision: Int = 2, truncate: Bool = true) -> String {
-        let precision: String = truncatingRemainder(dividingBy: 1) == 0 ? "0" : "\(precision)"
+    internal func withPrecision(_ value: Int = 2, truncate: Bool = true) -> String {
+        let precision: Int
+        if truncate, truncatingRemainder(dividingBy: 1) == 0 {
+            precision = 0
+        } else {
+            precision = value
+        }
         return String(format: "%.\(precision)f", self)
     }
 }
