@@ -1,3 +1,3 @@
-<View; frame = (x: 0.0, y: 0.0, w: 375.0, h: 812.0)>
-   | <View; name = Pink; frame = (x: 0.0, y: 0.0, w: 375.0, h: 812.0)>
-   | <View; name = Yellow; frame = (x: 40.0, y: 40.0, w: 295.0, h: 732.0)>
+<View; frame = (minX: 0, y: 0, w: 375, h: 812)>
+   | <View; name = Pink; frame = (minX: 0, y: 0, w: 375, h: 812)>
+   | <View; name = Yellow; frame = (minX: 40, y: 40, w: 295, h: 732)>

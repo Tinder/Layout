@@ -1,7 +1,7 @@
-<View; frame = (x: 0.0, y: 0.0, w: 375.0, h: 812.0)>
-   | <View; name = Pink; frame = (x: 0.0, y: 0.0, w: 50.0, h: 100.0)>
-   | <View; name = Yellow; frame = (x: 325.0, y: 0.0, w: 50.0, h: 100.0)>
-   | <View; name = Blue; frame = (x: 0.0, y: 712.0, w: 50.0, h: 100.0)>
-   | <View; name = Green; frame = (x: 325.0, y: 687.0, w: 50.0, h: 125.0)>
-   | <View; name = Red; frame = (x: 162.66666666666666, y: 301.0, w: 50.0, h: 110.0)>
-   | <View; name = Orange; frame = (x: 162.66666666666666, y: 411.0, w: 50.0, h: 90.0)>
+<View; frame = (minX: 0, y: 0, w: 375, h: 812)>
+   | <View; name = Pink; frame = (minX: 0, y: 0, w: 50, h: 100)>
+   | <View; name = Yellow; frame = (minX: 325, y: 0, w: 50, h: 100)>
+   | <View; name = Blue; frame = (minX: 0, y: 712, w: 50, h: 100)>
+   | <View; name = Green; frame = (minX: 325, y: 687, w: 50, h: 125)>
+   | <View; name = Red; frame = (minX: 162.67, y: 301, w: 50, h: 110)>
+   | <View; name = Orange; frame = (minX: 162.67, y: 411, w: 50, h: 90)>

@@ -18,7 +18,11 @@ internal final class View: UIView {
         } else {
             identifier = "View"
         }
-        return "<\(identifier); frame = (x: \(frame.minX), y: \(frame.minY), w: \(frame.width), h: \(frame.height))>"
+        let minX: String = frame.minX.withPrecision()
+        let minY: String = frame.minY.withPrecision()
+        let width: String = frame.width.withPrecision()
+        let height: String = frame.height.withPrecision()
+        return "<\(identifier); frame = (minX: \(minX), y: \(minY), w: \(width), h: \(height))>"
     }
 
     internal convenience init(named name: String, with color: UIColor) {
