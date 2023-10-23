@@ -18,11 +18,14 @@ internal final class View: UIView {
         } else {
             identifier = "View"
         }
-        let minX: String = frame.minX.withPrecision()
-        let minY: String = frame.minY.withPrecision()
-        let width: String = frame.width.withPrecision()
-        let height: String = frame.height.withPrecision()
-        return "<\(identifier); frame = (x: \(minX), y: \(minY), w: \(width), h: \(height))>"
+        if #available(iOS 15.0, *) {
+            let minX: String = frame.minX.formatted()
+            let minY: String = frame.minY.formatted()
+            let width: String = frame.width.formatted()
+            let height: String = frame.height.formatted()
+            return "<\(identifier); frame = (x: \(minX), y: \(minY), w: \(width), h: \(height))>"
+        }
+        fatalError("iOS 15+ required for unit tests.")
     }
 
     internal convenience init(named name: String, with color: UIColor) {
