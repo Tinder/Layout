@@ -708,6 +708,30 @@ final class LayoutItemTests: XCTestCase {
                 // To Insets
 
                 pinkView
+                    .toSafeArea(insets: NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 10, trailing: 15))
+
+                // To Insets with Priority
+
+                yellowView
+                    .toSafeArea(
+                        insets: NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5),
+                        priority: .low
+                    )
+                    .toSafeArea(
+                        insets: NSDirectionalEdgeInsets(top: 50, leading: 50, bottom: 50, trailing: 50),
+                        priority: .high
+                    )
+            }
+        }
+    }
+
+    func testToSafeAreaWithCanonicalEdgeInsetsPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Insets
+
+                pinkView
                     .toSafeArea(insets: UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 15))
 
                 // To Insets with Priority
