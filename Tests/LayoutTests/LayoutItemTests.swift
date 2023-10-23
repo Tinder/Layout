@@ -701,6 +701,24 @@ final class LayoutItemTests: XCTestCase {
         expect(baseline.lastBaseline) == view.lastBaseline
     }
 
+    func testToSafeAreaWithDirectionalEdgeInsetsPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Insets
+
+                pinkView
+                    .toSafeArea(insets: UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 15))
+
+                // To Insets with Priority
+
+                yellowView
+                    .toSafeArea(insets: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5), priority: .low)
+                    .toSafeArea(insets: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50), priority: .high)
+            }
+        }
+    }
+
     func testToSafeAreaWithDirectionalEdgesInsetPriority() {
         assertLayout { view in
             view.layout {
