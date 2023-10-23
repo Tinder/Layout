@@ -1,6 +1,6 @@
-<View; frame = (x: 0, y: 0, w: 375, h: 667)>
-   | <View; name = Pink; frame = (x: 0, y: 0, w: 100, h: 100)>
-   | <View; name = Yellow; frame = (x: 250, y: 25, w: 100, h: 100)>
-   | <View; name = Blue; frame = (x: 0, y: 233.67, w: 100, h: 100)>
-   | <View; name = Green; frame = (x: 0, y: 450.33, w: 100, h: 100)>
-   | <View; name = Orange; frame = (x: 225, y: 517, w: 100, h: 100)>
+<View; frame = (x: 0, y: 0, width: 375, height: 667)>
+   | <View; name = Pink; frame = (x: 0, y: 0, width: 100, height: 100)>
+   | <View; name = Yellow; frame = (x: 250, y: 25, width: 100, height: 100)>
+   | <View; name = Blue; frame = (x: 0, y: 233.666667, width: 100, height: 100)>
+   | <View; name = Green; frame = (x: 0, y: 450.333333, width: 100, height: 100)>
+   | <View; name = Orange; frame = (x: 225, y: 517, width: 100, height: 100)>
