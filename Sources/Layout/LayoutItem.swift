@@ -283,12 +283,54 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's edges to the superview's directional edges with an inset.
+    /// Constrains the view's directional edges to the superview's edges with insets.
+    ///
+    /// - Parameters:
+    ///   - insets: The directional edge insets
+    ///   - priority: The priority of the constraints
+    ///
+    /// - Returns: The LayoutItem
+    public func toEdges(
+        insets: NSDirectionalEdgeInsets,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let superview: UIView = layoutItem.layoutItemView.superview {
+                for edge: DirectionalEdge in insets.edgeType.allCases {
+                    layoutItem.constraint(to: edge, of: superview, insets: insets, priority: priority)
+                }
+            }
+        }
+    }
+
+    /// Constrains the view's canonical edges to the superview's edges with insets.
+    ///
+    /// - Parameters:
+    ///   - insets: The canonical edge insets
+    ///   - priority: The priority of the constraints
+    ///
+    /// - Returns: The LayoutItem
+    public func toEdges(
+        insets: UIEdgeInsets,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let superview: UIView = layoutItem.layoutItemView.superview {
+                for edge: CanonicalEdge in insets.edgeType.allCases {
+                    layoutItem.constraint(to: edge, of: superview, insets: insets, priority: priority)
+                }
+            }
+        }
+    }
+
+    /// Constrains the view's directional edges to the superview's edges with an inset.
     ///
     /// - Parameters:
     ///   - edges: The edges to constrain
-    ///   - inset: The inset amount
+    ///   - inset: The inset distance
     ///   - priority: The priority of the constraint(s)
+    ///
+    /// - Returns: The LayoutItem
     public func toEdges(
         _ edges: [DirectionalEdge],
         inset: CGFloat = 0,
@@ -303,12 +345,14 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's edges to the superview's canonical edges with an inset.
+    /// Constrains the view's canonical edges to the superview's edges with an inset.
     ///
     /// - Parameters:
     ///   - edges: The edges to constrain
-    ///   - inset: The inset amount
+    ///   - inset: The inset distance
     ///   - priority: The priority of the constraint(s)
+    ///
+    /// - Returns: The LayoutItem
     public func toEdges(
         canonical edges: [CanonicalEdge] = CanonicalEdge.allCases,
         inset: CGFloat = 0,
@@ -323,21 +367,99 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's directional edges to the superview's safe area with insets.
+    /// Constrains the view's leading and trailing edges to the superview's edges with an inset.
     ///
     /// - Parameters:
-    ///   - insets: The directional insets
+    ///   - inset: The inset distance
     ///   - priority: The priority of the constraints
     ///
     /// - Returns: The LayoutItem
-    public func toSafeArea(
+    public func toSideEdges(
+        inset: CGFloat = 0,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        toEdges(canonical: [.left, .right], inset: inset, priority: priority)
+    }
+
+    /// Constrains the view's directional edges to the superview's margins with insets.
+    ///
+    /// - Parameters:
+    ///   - insets: The directional insets
+    ///   - priority: The priority of constraints
+    ///
+    /// - Returns: The LayoutItem
+    public func toMargins(
         insets: NSDirectionalEdgeInsets,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let layoutGuide: UILayoutGuide = layoutItem.safeAreaGuide {
+            if let layoutGuide: UILayoutGuide = layoutItem.marginsGuide {
                 for edge: DirectionalEdge in insets.edgeType.allCases {
                     layoutItem.constraint(to: edge, of: layoutGuide, insets: insets, priority: priority)
+                }
+            }
+        }
+    }
+
+    /// Constrains the view's canonical edges to the superview's margins with insets.
+    ///
+    /// - Parameters:
+    ///   - insets: The canonical insets
+    ///   - priority: The priority of the constraints
+    ///
+    /// - Returns: The LayoutItem
+    public func toMargins(
+        insets: UIEdgeInsets,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let layoutGuide: UILayoutGuide = layoutItem.marginsGuide {
+                for edge: CanonicalEdge in insets.edgeType.allCases {
+                    layoutItem.constraint(to: edge, of: layoutGuide, insets: insets, priority: priority)
+                }
+            }
+        }
+    }
+
+    /// Constrains the view's directional edges to the superview's margins with an inset.
+    ///
+    /// - Parameters:
+    ///   - edges: The edges to constrain
+    ///   - inset: The inset distance
+    ///   - priority: The priority of the constraint(s)
+    ///
+    /// - Returns: The LayoutItem
+    public func toMargins(
+        _ edges: [DirectionalEdge],
+        inset: CGFloat = 0,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let layoutGuide: UILayoutGuide = layoutItem.marginsGuide {
+                for edge: DirectionalEdge in edges {
+                    layoutItem.constraint(to: edge, of: layoutGuide, inset: inset, priority: priority)
+                }
+            }
+        }
+    }
+
+    /// Constrains the view's canonical edges to the superview's margins with an inset.
+    ///
+    /// - Parameters:
+    ///   - edges: The edges to constrain
+    ///   - inset: The inset distance
+    ///   - priority: The priority of the constraint(s)
+    ///
+    /// - Returns: The LayoutItem
+    public func toMargins(
+        canonical edges: [CanonicalEdge] = CanonicalEdge.allCases,
+        inset: CGFloat = 0,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let layoutGuide: UILayoutGuide = layoutItem.marginsGuide {
+                for edge: CanonicalEdge in edges {
+                    layoutItem.constraint(to: edge, of: layoutGuide, inset: inset, priority: priority)
                 }
             }
         }
@@ -463,6 +585,90 @@ extension LayoutItem {
     }
 
     // swiftlint:enable anonymous_argument_in_multiline_closure
+
+    /// Constrains the view's directional edges to the superview's safe area with insets.
+    ///
+    /// - Parameters:
+    ///   - insets: The directional insets
+    ///   - priority: The priority of the constraints
+    ///
+    /// - Returns: The LayoutItem
+    public func toSafeArea(
+        insets: NSDirectionalEdgeInsets,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let layoutGuide: UILayoutGuide = layoutItem.safeAreaGuide {
+                for edge: DirectionalEdge in insets.edgeType.allCases {
+                    layoutItem.constraint(to: edge, of: layoutGuide, insets: insets, priority: priority)
+                }
+            }
+        }
+    }
+
+    /// Constrains the view's canonical edges to the superview's safe area with insets.
+    ///
+    /// - Parameters:
+    ///   - insets: The canonical insets
+    ///   - priority: The priority of the constraints
+    ///
+    /// - Returns: The LayoutItem
+    public func toSafeArea(
+        insets: UIEdgeInsets,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let layoutGuide: UILayoutGuide = layoutItem.safeAreaGuide {
+                for edge: CanonicalEdge in insets.edgeType.allCases {
+                    layoutItem.constraint(to: edge, of: layoutGuide, insets: insets, priority: priority)
+                }
+            }
+        }
+    }
+
+    /// Constrains the view's directional edges to the superview's safe area with an inset.
+    ///
+    /// - Parameters:
+    ///   - edges: The edges to constrain
+    ///   - inset: The inset distance
+    ///   - priority: The priority of the constraint(s)
+    ///
+    /// - Returns: The LayoutItem
+    public func toSafeArea(
+        _ edges: [DirectionalEdge],
+        inset: CGFloat = 0,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let layoutGuide: UILayoutGuide = layoutItem.safeAreaGuide {
+                for edge: DirectionalEdge in edges {
+                    layoutItem.constraint(to: edge, of: layoutGuide, inset: inset, priority: priority)
+                }
+            }
+        }
+    }
+
+    /// Constrains the view's canonical edges to the superview's safe area with an inset.
+    ///
+    /// - Parameters:
+    ///   - edges: The edges to constrain
+    ///   - inset: The inset distance
+    ///   - priority: The priority of the constraint(s)
+    ///
+    /// - Returns: The LayoutItem
+    public func toSafeArea(
+        canonical edges: [CanonicalEdge] = CanonicalEdge.allCases,
+        inset: CGFloat = 0,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let layoutGuide: UILayoutGuide = layoutItem.safeAreaGuide {
+                for edge: CanonicalEdge in edges {
+                    layoutItem.constraint(to: edge, of: layoutGuide, inset: inset, priority: priority)
+                }
+            }
+        }
+    }
 
     private func constraint(
         to edge: CanonicalEdge,
