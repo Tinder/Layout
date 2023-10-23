@@ -23,7 +23,7 @@ internal final class View: UIView {
             let minY: String = frame.minY.formatted()
             let width: String = frame.width.formatted()
             let height: String = frame.height.formatted()
-            return "<\(identifier); frame = (x: \(minX), y: \(minY), w: \(width), h: \(height))>"
+            return "<\(identifier); frame = (x: \(minX), y: \(minY), width: \(width), height: \(height))>"
         }
         fatalError("iOS 15+ required for unit tests.")
     }
