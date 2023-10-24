@@ -601,6 +601,27 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToSideMarginsWithInsetPriority() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .to(.top)
+                    .size(height: 100)
+                    .toSideMargins()
+                    .toSideMargins(inset: 20, priority: .high)
+                blueView
+                    .center(.vertical)
+                    .size(height: 100)
+                    .toSideMargins(inset: 20)
+                orangeView
+                    .to(.bottom)
+                    .size(height: 100)
+                    .toSideMargins(inset: 20, priority: .low)
+                    .toSideMargins(inset: 40, priority: .high)
+            }
+        }
+    }
+
     func testToBottomMargin_andWithPriority() {
         assertLayout { view in
             view.layout {
