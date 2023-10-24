@@ -1,4 +1,4 @@
-<UIView; frame = (0 0; 320 568); autoresize = W+H; backgroundColor = UIExtendedGrayColorSpace 1 1; layer = <CALayer>>
-   | <UIView; frame = (16 0; 288 100); backgroundColor = UIExtendedSRGBColorSpace 1 0.176471 0.333333 1; layer = <CALayer>>
-   | <UIView; frame = (36 234; 248 100); backgroundColor = UIExtendedSRGBColorSpace 0 0 1 1; layer = <CALayer>>
-   | <UIView; frame = (56 468; 208 100); backgroundColor = UIExtendedSRGBColorSpace 1 0.5 0 1; layer = <CALayer>>
+<View; frame = (x: 0, y: 0, width: 320, height: 568)>
+   | <View; name = Pink; frame = (x: 16, y: 0, width: 288, height: 100)>
+   | <View; name = Blue; frame = (x: 36, y: 234, width: 248, height: 100)>
+   | <View; name = Orange; frame = (x: 56, y: 468, width: 208, height: 100)>
