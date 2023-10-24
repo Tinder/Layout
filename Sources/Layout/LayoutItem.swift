@@ -465,11 +465,11 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view to the margins of the superview with `inset`.
+    /// Constrains the view's side edges to the superview margins with `inset`.
     ///
     /// - Parameters:
-    ///   - inset: (optional) inset of view within margin edges.
-    ///   - priority: (optional) priority of constraint
+    ///   - inset: (optional) The inset distance.
+    ///   - priority: (optional) The priority of constraints.
     public func toSideMargins(
         inset: CGFloat = 0,
         priority: UILayoutPriority = .required
