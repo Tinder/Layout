@@ -465,6 +465,18 @@ extension LayoutItem {
         }
     }
 
+    /// Constrains the view's side edges to the superview's margins with an inset.
+    ///
+    /// - Parameters:
+    ///   - inset: (optional) The inset distance.
+    ///   - priority: (optional) The priority of constraints.
+    public func toSideMargins(
+        inset: CGFloat = 0,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        toMargins(canonical: [.left, .right], inset: inset, priority: priority)
+    }
+
     /// Constrains the `bottom` to the bottom margin with a minimum bottom inset
     /// Useful for bottom-aligned elements on iPhoneX family devices that require
     /// an additional bottom margin on non-iPhoneX devices.
