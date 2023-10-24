@@ -30,7 +30,7 @@ extension NSLayoutConstraint.Axis {
         case .vertical:
             return .centerY
         @unknown default:
-            return .notAnAttribute
+            return .centerX
         }
     }
 }
