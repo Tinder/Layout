@@ -48,59 +48,18 @@ extension NSLayoutConstraint {
         return self
     }
 
-    @discardableResult
     public func withConstant(_ constant: CGFloat) -> NSLayoutConstraint {
         self.constant = constant
         return self
     }
 
-    @discardableResult
     public func withPriority(_ priority: UILayoutPriority) -> NSLayoutConstraint {
         self.priority = priority
         return self
     }
 
-    @discardableResult
     public func require() -> NSLayoutConstraint {
         withPriority(.required)
-    }
-}
-
-// MARK: - NSLayoutConstraint.Attribute Extension
-
-extension NSLayoutConstraint.Attribute {
-
-    internal var canonicalAttribute: NSLayoutConstraint.Attribute {
-        switch self {
-        case .leftMargin:
-            return .left
-        case .rightMargin:
-            return .right
-        case .topMargin:
-            return .top
-        case .bottomMargin:
-            return .bottom
-        case .leadingMargin:
-            return .leading
-        case .trailingMargin:
-            return .trailing
-        case .centerXWithinMargins:
-            return .centerX
-        case .centerYWithinMargins:
-            return .centerY
-        case .left, .right, .top, .bottom, .leading, .trailing:
-            return self
-        case .centerX, .centerY:
-            return self
-        case .width, .height:
-            return self
-        case .firstBaseline, .lastBaseline:
-            return self
-        case .notAnAttribute:
-            return self
-        @unknown default:
-            return self
-        }
     }
 }
 
@@ -126,11 +85,11 @@ extension Array where Element == NSLayoutConstraint {
 
     @preconcurrency
     @MainActor
-    @discardableResult
     public func withPriority(
         _ priority: UILayoutPriority
     ) -> [NSLayoutConstraint] {
-        map { $0.withPriority(priority) }
+        prioritize(priority)
+        return self
     }
 
     @preconcurrency

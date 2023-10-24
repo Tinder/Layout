@@ -16,6 +16,13 @@ import XCTest
 
 extension XCTestCase {
 
+    private final class ViewController: UIViewController {
+
+        override func loadView() {
+            view = View(named: "", with: .white)
+        }
+    }
+
     @MainActor
     internal func assertLayout(
         devices: [Device] = Device.portraitTestDevices,
@@ -25,7 +32,7 @@ extension XCTestCase {
         layout: (UIView) -> Layout
     ) {
         for device: Device in devices {
-            let viewController: UIViewController = .init()
+            let viewController: ViewController = .init()
             let view: UIView = viewController.view
             view.backgroundColor = .white
             layout(view).activate()
