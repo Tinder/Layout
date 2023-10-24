@@ -132,14 +132,3 @@ extension NSLayoutDimension {
 }
 
 // swiftlint:enable function_default_parameter_at_end
-
-extension UIViewController {
-
-    public var safeTop: NSLayoutYAxisAnchor {
-        view.safeAreaLayoutGuide.top
-    }
-
-    public var safeBottom: NSLayoutYAxisAnchor {
-        view.safeAreaLayoutGuide.bottom
-    }
-}
