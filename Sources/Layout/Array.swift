@@ -29,11 +29,11 @@ extension Array where Element == NSLayoutConstraint {
 
     @preconcurrency
     @MainActor
-    @discardableResult
     public func withPriority(
         _ priority: UILayoutPriority
     ) -> [NSLayoutConstraint] {
-        map { $0.withPriority(priority) }
+        prioritize(priority)
+        return self
     }
 
     @preconcurrency

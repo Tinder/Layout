@@ -419,18 +419,26 @@ public final class Layout { // swiftlint:disable:this type_body_length
         guard views.count >= 2,
               let first = views.first
         else { return self }
-        var anchor: NSLayoutAnchor<XAxisAttribute.AnchorType> = first.anchor(for: direction.attributes.1)
-        for view in views.dropFirst() {
-            adding(
-                view
-                    .anchor(for: direction.attributes.0)
-                    .constraint(equalTo: anchor, constant: spacing)
-                    .withPriority(priority)
-            )
-            anchor = view.anchor(for: direction.attributes.1)
+        switch direction {
+        case .leadingToTrailing:
+            var anchor: NSLayoutXAxisAnchor = first.trailing
+            for view in views.dropFirst() {
+                adding(view.leading.constraint(equalTo: anchor, constant: spacing).withPriority(priority))
+                anchor = view.trailing
+            }
+        case .leftToRight:
+            var anchor: NSLayoutXAxisAnchor = first.right
+            for view in views.dropFirst() {
+                adding(view.left.constraint(equalTo: anchor, constant: spacing).withPriority(priority))
+                anchor = view.right
+            }
         }
         for attribute: YAxisAttribute in alignment {
-            adding(equalAttribute(attribute, views).withPriority(priority))
+            let firstAnchor: NSLayoutYAxisAnchor = first.anchor(for: attribute)
+            let constraints: [NSLayoutConstraint] = views
+                .dropFirst()
+                .map { $0.anchor(for: attribute).constraint(equalTo: firstAnchor) }
+            adding(constraints.withPriority(priority))
         }
         return self
     }
@@ -451,18 +459,17 @@ public final class Layout { // swiftlint:disable:this type_body_length
         guard views.count >= 2,
               let first = views.first
         else { return self }
-        var anchor: NSLayoutAnchor<YAxisAttribute.AnchorType> = first.anchor(for: YAxisAttribute.bottom)
+        var anchor: NSLayoutYAxisAnchor = first.bottom
         for view in views.dropFirst() {
-            adding(
-                view
-                    .anchor(for: YAxisAttribute.top)
-                    .constraint(equalTo: anchor, constant: spacing)
-                    .withPriority(priority)
-            )
-            anchor = view.anchor(for: YAxisAttribute.bottom)
+            adding(view.top.constraint(equalTo: anchor, constant: spacing).withPriority(priority))
+            anchor = view.bottom
         }
         for attribute: XAxisAttribute in alignment {
-            adding(equalAttribute(attribute, views).withPriority(priority))
+            let firstAnchor: NSLayoutXAxisAnchor = first.anchor(for: attribute)
+            let constraints: [NSLayoutConstraint] = views
+                .dropFirst()
+                .map { $0.anchor(for: attribute).constraint(equalTo: firstAnchor) }
+            adding(constraints.withPriority(priority))
         }
         return self
     }
@@ -585,22 +592,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         ])
     }
 
-    @discardableResult
-    private func equalAttribute<T: AnchorAttribute>(
-        _ attribute: T,
-        _ views: [UIView]
-    ) -> [NSLayoutConstraint] {
-        guard views.count >= 2,
-              let first = views.first
-        else { return [] }
-        let firstAnchor: NSLayoutAnchor<T.AnchorType> = first.anchor(for: attribute)
-        return views.dropFirst().map { view in
-            view
-                .anchor(for: attribute)
-                .constraint(equalTo: firstAnchor)
-        }
-    }
-
     /// Adds LayoutItems
     ///
     /// - Note:
@@ -671,22 +662,5 @@ public final class Layout { // swiftlint:disable:this type_body_length
     public func update() {
         view?.setNeedsUpdateConstraints()
         view?.updateConstraintsIfNeeded()
-    }
-}
-
-extension Collection where Element == Layout {
-
-    /// Activates all constraints of each instance
-    @preconcurrency
-    @MainActor
-    public func activate() {
-        forEach { $0.activate() }
-    }
-
-    /// Deactivates all constraints of each instance
-    @preconcurrency
-    @MainActor
-    public func deactivate() {
-        forEach { $0.deactivate() }
     }
 }
