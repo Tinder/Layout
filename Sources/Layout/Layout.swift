@@ -664,20 +664,3 @@ public final class Layout { // swiftlint:disable:this type_body_length
         view?.updateConstraintsIfNeeded()
     }
 }
-
-extension Collection where Element == Layout {
-
-    /// Activates all constraints of each instance
-    @preconcurrency
-    @MainActor
-    public func activate() {
-        forEach { $0.activate() }
-    }
-
-    /// Deactivates all constraints of each instance
-    @preconcurrency
-    @MainActor
-    public func deactivate() {
-        forEach { $0.deactivate() }
-    }
-}
