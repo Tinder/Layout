@@ -1,0 +1,32 @@
+{
+  "configurations" : [
+    {
+      "id" : "8B8BAB00-8833-4807-8BD2-9F3056913032",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:",
+          "identifier" : "Layout",
+          "name" : "Layout"
+        }
+      ]
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "LayoutTests",
+        "name" : "LayoutTests"
+      }
+    }
+  ],
+  "version" : 1
+}
