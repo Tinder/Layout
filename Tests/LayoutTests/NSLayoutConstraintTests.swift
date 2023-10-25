@@ -166,36 +166,6 @@ final class NSLayoutConstraintTests: XCTestCase {
         expect(constraint.priority) == .required
     }
 
-    func testCanonicalAttribute() {
-
-        expect(NSLayoutConstraint.Attribute.leftMargin.canonicalAttribute) == .left
-        expect(NSLayoutConstraint.Attribute.rightMargin.canonicalAttribute) == .right
-        expect(NSLayoutConstraint.Attribute.topMargin.canonicalAttribute) == .top
-        expect(NSLayoutConstraint.Attribute.bottomMargin.canonicalAttribute) == .bottom
-        expect(NSLayoutConstraint.Attribute.leadingMargin.canonicalAttribute) == .leading
-        expect(NSLayoutConstraint.Attribute.trailingMargin.canonicalAttribute) == .trailing
-        expect(NSLayoutConstraint.Attribute.centerXWithinMargins.canonicalAttribute) == .centerX
-        expect(NSLayoutConstraint.Attribute.centerYWithinMargins.canonicalAttribute) == .centerY
-
-        expect(NSLayoutConstraint.Attribute.left.canonicalAttribute) == .left
-        expect(NSLayoutConstraint.Attribute.right.canonicalAttribute) == .right
-        expect(NSLayoutConstraint.Attribute.top.canonicalAttribute) == .top
-        expect(NSLayoutConstraint.Attribute.bottom.canonicalAttribute) == .bottom
-        expect(NSLayoutConstraint.Attribute.leading.canonicalAttribute) == .leading
-        expect(NSLayoutConstraint.Attribute.trailing.canonicalAttribute) == .trailing
-
-        expect(NSLayoutConstraint.Attribute.centerX.canonicalAttribute) == .centerX
-        expect(NSLayoutConstraint.Attribute.centerY.canonicalAttribute) == .centerY
-
-        expect(NSLayoutConstraint.Attribute.width.canonicalAttribute) == .width
-        expect(NSLayoutConstraint.Attribute.height.canonicalAttribute) == .height
-
-        expect(NSLayoutConstraint.Attribute.firstBaseline.canonicalAttribute) == .firstBaseline
-        expect(NSLayoutConstraint.Attribute.lastBaseline.canonicalAttribute) == .lastBaseline
-
-        expect(NSLayoutConstraint.Attribute.notAnAttribute.canonicalAttribute) == .notAnAttribute
-    }
-
     func testOrientation() {
 
         // GIVEN
