@@ -11,7 +11,9 @@ import UIKit
 
 extension UIView: LayoutItem {
 
-    public var layoutItemView: UIView { self }
+    public var layoutItemView: UIView {
+        self
+    }
 
     public var superviewConstraints: SuperviewConstraints {
         { _ in [] }
