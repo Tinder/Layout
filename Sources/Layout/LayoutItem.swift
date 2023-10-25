@@ -743,7 +743,6 @@ extension LayoutItem {
     }
 }
 
-// swiftlint:disable:next no_grouping_extension
 extension ViewLayoutItem {
 
     public var left: NSLayoutXAxisAnchor { layoutItemView.left }
