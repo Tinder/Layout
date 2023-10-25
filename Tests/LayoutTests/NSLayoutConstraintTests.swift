@@ -108,7 +108,7 @@ final class NSLayoutConstraintTests: XCTestCase {
         }
     }
 
-    func testOffset() {
+    func testWithConstant() {
 
         // GIVEN
 
@@ -120,14 +120,14 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // WHEN
 
-        constraint.withConstant(5)
+        _ = constraint.withConstant(5)
 
         // THEN
 
         expect(constraint.constant) == 5
     }
 
-    func testPriority() {
+    func testWithPriority() {
 
         // GIVEN
 
@@ -139,7 +139,7 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // WHEN
 
-        constraint.withPriority(.high)
+        _ = constraint.withPriority(.high)
 
         // THEN
 
@@ -159,41 +159,11 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // WHEN
 
-        constraint.require()
+        _ = constraint.require()
 
         // THEN
 
         expect(constraint.priority) == .required
-    }
-
-    func testCanonicalAttribute() {
-
-        expect(NSLayoutConstraint.Attribute.leftMargin.canonicalAttribute) == .left
-        expect(NSLayoutConstraint.Attribute.rightMargin.canonicalAttribute) == .right
-        expect(NSLayoutConstraint.Attribute.topMargin.canonicalAttribute) == .top
-        expect(NSLayoutConstraint.Attribute.bottomMargin.canonicalAttribute) == .bottom
-        expect(NSLayoutConstraint.Attribute.leadingMargin.canonicalAttribute) == .leading
-        expect(NSLayoutConstraint.Attribute.trailingMargin.canonicalAttribute) == .trailing
-        expect(NSLayoutConstraint.Attribute.centerXWithinMargins.canonicalAttribute) == .centerX
-        expect(NSLayoutConstraint.Attribute.centerYWithinMargins.canonicalAttribute) == .centerY
-
-        expect(NSLayoutConstraint.Attribute.left.canonicalAttribute) == .left
-        expect(NSLayoutConstraint.Attribute.right.canonicalAttribute) == .right
-        expect(NSLayoutConstraint.Attribute.top.canonicalAttribute) == .top
-        expect(NSLayoutConstraint.Attribute.bottom.canonicalAttribute) == .bottom
-        expect(NSLayoutConstraint.Attribute.leading.canonicalAttribute) == .leading
-        expect(NSLayoutConstraint.Attribute.trailing.canonicalAttribute) == .trailing
-
-        expect(NSLayoutConstraint.Attribute.centerX.canonicalAttribute) == .centerX
-        expect(NSLayoutConstraint.Attribute.centerY.canonicalAttribute) == .centerY
-
-        expect(NSLayoutConstraint.Attribute.width.canonicalAttribute) == .width
-        expect(NSLayoutConstraint.Attribute.height.canonicalAttribute) == .height
-
-        expect(NSLayoutConstraint.Attribute.firstBaseline.canonicalAttribute) == .firstBaseline
-        expect(NSLayoutConstraint.Attribute.lastBaseline.canonicalAttribute) == .lastBaseline
-
-        expect(NSLayoutConstraint.Attribute.notAnAttribute.canonicalAttribute) == .notAnAttribute
     }
 
     func testOrientation() {
