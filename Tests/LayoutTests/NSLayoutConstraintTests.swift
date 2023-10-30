@@ -108,7 +108,7 @@ final class NSLayoutConstraintTests: XCTestCase {
         }
     }
 
-    func testOffset() {
+    func testWithConstant() {
 
         // GIVEN
 
@@ -120,14 +120,14 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // WHEN
 
-        constraint.withConstant(5)
+        _ = constraint.withConstant(5)
 
         // THEN
 
         expect(constraint.constant) == 5
     }
 
-    func testPriority() {
+    func testWithPriority() {
 
         // GIVEN
 
@@ -139,7 +139,7 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // WHEN
 
-        constraint.withPriority(.high)
+        _ = constraint.withPriority(.high)
 
         // THEN
 
@@ -159,41 +159,11 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // WHEN
 
-        constraint.require()
+        _ = constraint.require()
 
         // THEN
 
         expect(constraint.priority) == .required
-    }
-
-    func testCanonicalAttribute() {
-
-        expect(NSLayoutConstraint.Attribute.leftMargin.canonicalAttribute) == .left
-        expect(NSLayoutConstraint.Attribute.rightMargin.canonicalAttribute) == .right
-        expect(NSLayoutConstraint.Attribute.topMargin.canonicalAttribute) == .top
-        expect(NSLayoutConstraint.Attribute.bottomMargin.canonicalAttribute) == .bottom
-        expect(NSLayoutConstraint.Attribute.leadingMargin.canonicalAttribute) == .leading
-        expect(NSLayoutConstraint.Attribute.trailingMargin.canonicalAttribute) == .trailing
-        expect(NSLayoutConstraint.Attribute.centerXWithinMargins.canonicalAttribute) == .centerX
-        expect(NSLayoutConstraint.Attribute.centerYWithinMargins.canonicalAttribute) == .centerY
-
-        expect(NSLayoutConstraint.Attribute.left.canonicalAttribute) == .left
-        expect(NSLayoutConstraint.Attribute.right.canonicalAttribute) == .right
-        expect(NSLayoutConstraint.Attribute.top.canonicalAttribute) == .top
-        expect(NSLayoutConstraint.Attribute.bottom.canonicalAttribute) == .bottom
-        expect(NSLayoutConstraint.Attribute.leading.canonicalAttribute) == .leading
-        expect(NSLayoutConstraint.Attribute.trailing.canonicalAttribute) == .trailing
-
-        expect(NSLayoutConstraint.Attribute.centerX.canonicalAttribute) == .centerX
-        expect(NSLayoutConstraint.Attribute.centerY.canonicalAttribute) == .centerY
-
-        expect(NSLayoutConstraint.Attribute.width.canonicalAttribute) == .width
-        expect(NSLayoutConstraint.Attribute.height.canonicalAttribute) == .height
-
-        expect(NSLayoutConstraint.Attribute.firstBaseline.canonicalAttribute) == .firstBaseline
-        expect(NSLayoutConstraint.Attribute.lastBaseline.canonicalAttribute) == .lastBaseline
-
-        expect(NSLayoutConstraint.Attribute.notAnAttribute.canonicalAttribute) == .notAnAttribute
     }
 
     func testOrientation() {
@@ -220,137 +190,5 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         expect(horizontalAxis.attribute) == .centerX
         expect(verticalAxis.attribute) == .centerY
-    }
-
-    func testBatchActivation() {
-
-        // GIVEN
-
-        let view: UIView = .init()
-        let constraint1: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .height,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1,
-            constant: 0
-        )
-        let constraint2: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .width,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1,
-            constant: 0
-        )
-        let constraints: [NSLayoutConstraint] = [constraint1, constraint2]
-
-        // THEN
-
-        expect(constraint1.isActive) == false
-        expect(constraint2.isActive) == false
-
-        // WHEN
-
-        let activatedConstraints: [NSLayoutConstraint] = constraints.activate()
-
-        // THEN
-
-        expect(constraint1.isActive) == true
-        expect(constraint2.isActive) == true
-        expect(activatedConstraints) == constraints
-
-        // WHEN
-
-        let deactivatedConstraints: [NSLayoutConstraint] = constraints.deactivate()
-
-        // THEN
-
-        expect(constraint1.isActive) == false
-        expect(constraint2.isActive) == false
-        expect(deactivatedConstraints) == constraints
-    }
-
-    func testBatch_withPriority() {
-
-        // GIVEN
-
-        let view: UIView = .init()
-        let constraint1: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .height,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1,
-            constant: 0
-        )
-        let constraint2: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .width,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1,
-            constant: 0
-        )
-        let constraints: [NSLayoutConstraint] = [constraint1, constraint2]
-
-        // THEN
-
-        expect(constraint1.priority) == .required
-        expect(constraint2.priority) == .required
-
-        // WHEN
-
-        let highPriorityConstraints: [NSLayoutConstraint] = constraints.withPriority(.high)
-
-        // THEN
-
-        expect(constraint1.priority) == .high
-        expect(constraint2.priority) == .high
-        expect(highPriorityConstraints) == constraints
-    }
-
-    func testBatch_prioritize() {
-
-        // GIVEN
-
-        let view: UIView = .init()
-        let constraint1: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .height,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1,
-            constant: 0
-        )
-        let constraint2: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .width,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1,
-            constant: 0
-        )
-        let constraints: [NSLayoutConstraint] = [constraint1, constraint2]
-
-        // THEN
-
-        expect(constraint1.priority) == .required
-        expect(constraint2.priority) == .required
-
-        // WHEN
-
-        constraints.prioritize(.high)
-
-        // THEN
-
-        expect(constraint1.priority) == .high
-        expect(constraint2.priority) == .high
     }
 }

@@ -1,0 +1,4 @@
+<View; frame = (x: 0, y: 0, width: 375, height: 812)>
+   | <View; name = Pink; frame = (x: 16, y: 50, width: 343, height: 728)>
+   | <View; name = Blue; frame = (x: 41, y: 75, width: 293, height: 678)>
+   | <View; name = Orange; frame = (x: 66, y: 100, width: 243, height: 628)>

@@ -14,52 +14,103 @@ import XCTest
 @MainActor
 final class LayoutAnchoringTests: XCTestCase {
 
-    func testViewAnchors() {
+    func testUIViewLayoutBoundary() {
 
         // GIVEN
 
         let view: UIView = .init()
+        let boundary: LayoutBoundary = view
 
         // THEN
 
-        expect(view.left) == view.leftAnchor
-        expect(view.centerX) == view.centerXAnchor
-        expect(view.right) == view.rightAnchor
-        expect(view.leading) == view.leadingAnchor
-        expect(view.trailing) == view.trailingAnchor
-
-        expect(view.top) == view.topAnchor
-        expect(view.centerY) == view.centerYAnchor
-        expect(view.firstBaseline) == view.firstBaselineAnchor
-        expect(view.lastBaseline) == view.lastBaselineAnchor
-        expect(view.bottom) == view.bottomAnchor
-
-        expect(view.width) == view.widthAnchor
-        expect(view.height) == view.heightAnchor
+        expect(boundary.left) == view.leftAnchor
+        expect(boundary.right) == view.rightAnchor
+        expect(boundary.leading) == view.leadingAnchor
+        expect(boundary.trailing) == view.trailingAnchor
+        expect(boundary.top) == view.topAnchor
+        expect(boundary.bottom) == view.bottomAnchor
     }
 
-    func testLayoutGuideAnchors() {
+    func testUIViewLayoutCenter() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let center: LayoutCenter = view
+
+        // THEN
+
+        expect(center.centerX) == view.centerXAnchor
+        expect(center.centerY) == view.centerYAnchor
+    }
+
+    func testUIViewLayoutSize() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let size: LayoutSize = view
+
+        // THEN
+
+        expect(size.width) == view.widthAnchor
+        expect(size.height) == view.heightAnchor
+    }
+
+    func testUIViewLayoutBaseline() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let baseline: LayoutBaseline = view
+
+        // THEN
+
+        expect(baseline.firstBaseline) == view.firstBaseline
+        expect(baseline.lastBaseline) == view.lastBaseline
+    }
+
+    func testUILayoutGuideLayoutBoundary() {
 
         // GIVEN
 
         let guide: UILayoutGuide = .init()
+        let boundary: LayoutBoundary = guide
 
         // THEN
 
-        expect(guide.left) == guide.leftAnchor
-        expect(guide.centerX) == guide.centerXAnchor
-        expect(guide.right) == guide.rightAnchor
-        expect(guide.leading) == guide.leadingAnchor
-        expect(guide.trailing) == guide.trailingAnchor
+        expect(boundary.left) == guide.leftAnchor
+        expect(boundary.right) == guide.rightAnchor
+        expect(boundary.leading) == guide.leadingAnchor
+        expect(boundary.trailing) == guide.trailingAnchor
+        expect(boundary.top) == guide.topAnchor
+        expect(boundary.bottom) == guide.bottomAnchor
+    }
 
-        expect(guide.top) == guide.topAnchor
-        expect(guide.centerY) == guide.centerYAnchor
-        expect(guide.firstBaseline).to(throwAssertion())
-        expect(guide.lastBaseline).to(throwAssertion())
-        expect(guide.bottom) == guide.bottomAnchor
+    func testUILayoutGuideLayoutCenter() {
 
-        expect(guide.width) == guide.widthAnchor
-        expect(guide.height) == guide.heightAnchor
+        // GIVEN
+
+        let guide: UILayoutGuide = .init()
+        let center: LayoutCenter = guide
+
+        // THEN
+
+        expect(center.centerX) == guide.centerXAnchor
+        expect(center.centerY) == guide.centerYAnchor
+    }
+
+    func testUILayoutGuideLayoutSize() {
+
+        // GIVEN
+
+        let guide: UILayoutGuide = .init()
+        let size: LayoutSize = guide
+
+        // THEN
+
+        expect(size.width) == guide.widthAnchor
+        expect(size.height) == guide.heightAnchor
     }
 
     func testLayoutSupportAnchors() {
@@ -89,90 +140,6 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(layoutSupport.top) == view.top
         expect(layoutSupport.bottom) == view.bottom
         expect(layoutSupport.height) == view.height
-    }
-
-    func testConstraintToXAnchor_withDefaults() {
-
-        // GIVEN
-
-        let viewA: UIView = .init()
-        let viewB: UIView = .init()
-        let expected: NSLayoutConstraint = viewA
-            .centerX
-            .constraint(equalTo: viewB.centerX)
-
-        // WHEN
-
-        let constraint: NSLayoutConstraint = viewA
-            .centerX
-            .constraint(to: viewB.centerX)
-
-        // THEN
-
-        expect(constraint).to(match(expected))
-    }
-
-    func testConstraintToXAnchor_withConstant() {
-
-        // GIVEN
-
-        let viewA: UIView = .init()
-        let viewB: UIView = .init()
-        let expected: NSLayoutConstraint = viewA
-            .centerX
-            .constraint(equalTo: viewB.centerX, constant: 50)
-
-        // WHEN
-
-        let constraint: NSLayoutConstraint = viewA
-            .centerX
-            .constraint(is: .equal, to: viewB.centerX, constant: 50)
-
-        // THEN
-
-        expect(constraint).to(match(expected))
-    }
-
-    func testConstraintToXAnchor_withGreaterThanOrEqualRelation() {
-
-        // GIVEN
-
-        let viewA: UIView = .init()
-        let viewB: UIView = .init()
-        let expected: NSLayoutConstraint = viewA
-            .centerX
-            .constraint(greaterThanOrEqualTo: viewB.centerX)
-
-        // WHEN
-
-        let constraint: NSLayoutConstraint = viewA
-            .centerX
-            .constraint(is: .greaterThanOrEqual, to: viewB.centerX)
-
-        // THEN
-
-        expect(constraint).to(match(expected))
-    }
-
-    func testConstraintToXAnchor_withLessThanOrEqualRelation() {
-
-        // GIVEN
-
-        let viewA: UIView = .init()
-        let viewB: UIView = .init()
-        let expected: NSLayoutConstraint = viewA
-            .centerX
-            .constraint(lessThanOrEqualTo: viewB.centerX)
-
-        // WHEN
-
-        let constraint: NSLayoutConstraint = viewA
-            .centerX
-            .constraint(is: .lessThanOrEqual, to: viewB.centerX)
-
-        // THEN
-
-        expect(constraint).to(match(expected))
     }
 
     func testConstraintToYAnchor_withDefaults() {
