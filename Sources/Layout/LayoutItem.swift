@@ -34,15 +34,6 @@ public protocol LayoutItem: AnyObject, LayoutBoundary, LayoutCenter, LayoutSize,
     var superviewConstraints: SuperviewConstraints { get }
 }
 
-extension UIView: LayoutItem {
-
-    public var layoutItemView: UIView { self }
-
-    public var superviewConstraints: SuperviewConstraints {
-        { _ in [] }
-    }
-}
-
 // swiftlint:enable file_types_order
 
 internal final class ViewLayoutItem: LayoutItem {
