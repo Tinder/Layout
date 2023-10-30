@@ -62,39 +62,3 @@ extension NSLayoutConstraint {
         withPriority(.required)
     }
 }
-
-// MARK: - NSLayoutConstraint Array Helpers
-
-extension Array where Element == NSLayoutConstraint {
-
-    @preconcurrency
-    @MainActor
-    @discardableResult
-    public func activate() -> [NSLayoutConstraint] {
-        NSLayoutConstraint.activate(self)
-        return self
-    }
-
-    @preconcurrency
-    @MainActor
-    @discardableResult
-    public func deactivate() -> [NSLayoutConstraint] {
-        NSLayoutConstraint.deactivate(self)
-        return self
-    }
-
-    @preconcurrency
-    @MainActor
-    public func withPriority(
-        _ priority: UILayoutPriority
-    ) -> [NSLayoutConstraint] {
-        prioritize(priority)
-        return self
-    }
-
-    @preconcurrency
-    @MainActor
-    public func prioritize(_ priority: UILayoutPriority) {
-        forEach { $0.priority = priority }
-    }
-}
