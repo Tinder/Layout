@@ -32,15 +32,6 @@ public protocol LayoutItem: AnyObject, LayoutBoundary, LayoutCenter, LayoutSize,
     var superviewConstraints: SuperviewConstraints { get }
 }
 
-extension UIView: LayoutItem {
-
-    public var layoutItemView: UIView { self }
-
-    public var superviewConstraints: SuperviewConstraints {
-        { _ in [] }
-    }
-}
-
 extension LayoutItem {
 
     public var identifier: String? {
