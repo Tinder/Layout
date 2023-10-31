@@ -1,4 +1,3 @@
-// swiftlint:disable:this file_name
 //
 //  All Contributions by Match Group
 //
@@ -10,19 +9,17 @@
 
 import UIKit
 
-extension UIView {
+extension UILayoutGuide: LayoutBoundary, LayoutCenter, LayoutSize {
 
+    public var top: NSLayoutYAxisAnchor { topAnchor }
+    public var bottom: NSLayoutYAxisAnchor { bottomAnchor }
     public var left: NSLayoutXAxisAnchor { leftAnchor }
-    public var centerX: NSLayoutXAxisAnchor { centerXAnchor }
     public var right: NSLayoutXAxisAnchor { rightAnchor }
     public var leading: NSLayoutXAxisAnchor { leadingAnchor }
     public var trailing: NSLayoutXAxisAnchor { trailingAnchor }
 
-    public var top: NSLayoutYAxisAnchor { topAnchor }
+    public var centerX: NSLayoutXAxisAnchor { centerXAnchor }
     public var centerY: NSLayoutYAxisAnchor { centerYAnchor }
-    public var firstBaseline: NSLayoutYAxisAnchor { firstBaselineAnchor }
-    public var lastBaseline: NSLayoutYAxisAnchor { lastBaselineAnchor }
-    public var bottom: NSLayoutYAxisAnchor { bottomAnchor }
 
     public var width: NSLayoutDimension { widthAnchor }
     public var height: NSLayoutDimension { heightAnchor }

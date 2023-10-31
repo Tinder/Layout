@@ -70,49 +70,6 @@ final class LayoutAnchoringTests: XCTestCase {
         expect(baseline.lastBaseline) == view.lastBaseline
     }
 
-    func testUILayoutGuideLayoutBoundary() {
-
-        // GIVEN
-
-        let guide: UILayoutGuide = .init()
-        let boundary: LayoutBoundary = guide
-
-        // THEN
-
-        expect(boundary.left) == guide.leftAnchor
-        expect(boundary.right) == guide.rightAnchor
-        expect(boundary.leading) == guide.leadingAnchor
-        expect(boundary.trailing) == guide.trailingAnchor
-        expect(boundary.top) == guide.topAnchor
-        expect(boundary.bottom) == guide.bottomAnchor
-    }
-
-    func testUILayoutGuideLayoutCenter() {
-
-        // GIVEN
-
-        let guide: UILayoutGuide = .init()
-        let center: LayoutCenter = guide
-
-        // THEN
-
-        expect(center.centerX) == guide.centerXAnchor
-        expect(center.centerY) == guide.centerYAnchor
-    }
-
-    func testUILayoutGuideLayoutSize() {
-
-        // GIVEN
-
-        let guide: UILayoutGuide = .init()
-        let size: LayoutSize = guide
-
-        // THEN
-
-        expect(size.width) == guide.widthAnchor
-        expect(size.height) == guide.heightAnchor
-    }
-
     func testLayoutSupportAnchors() {
 
         // GIVEN
