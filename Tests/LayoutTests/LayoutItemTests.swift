@@ -764,6 +764,19 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToSafeAreaWithTopLeadingBottomTrailingPriority() {
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .toSafeArea(top: 10, leading: 20, bottom: 30, trailing: 40, priority: .high)
+                    .toSafeArea(top: 40, leading: 30, bottom: 20, trailing: 10)
+                blueView
+                    .toSafeArea(top: 10, leading: 20, bottom: 30, trailing: 40, priority: .low)
+                    .toSafeArea(top: 50, leading: 40, bottom: 30, trailing: 20, priority: .high)
+            }
+        }
+    }
+
     func testToSafeAreaWithDirectionalEdgesInsetPriority() {
         assertLayout { view in
             view.layout {
