@@ -28,6 +28,7 @@ final class ViewLayoutItemTests: XCTestCase {
             layoutItems.append(layoutItem)
             return [constraint]
         }
+
         // THEN
 
         expect(viewLayoutItem.layoutItemView) == view
