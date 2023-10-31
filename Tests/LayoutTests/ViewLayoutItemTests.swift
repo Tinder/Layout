@@ -13,18 +13,19 @@ import XCTest
 
 final class ViewLayoutItemTests: XCTestCase {
 
-    func testInitalize() {
+    func testInitalizer() {
 
         // GIVEN
 
-        let view: UIView = .init()
         let superview: UIView = .init()
+        let view: UIView = .init()
         let constraint: NSLayoutConstraint = .init()
+        var layoutItems: [LayoutItem] = []
 
         // WHEN
 
         let viewLayoutItem: ViewLayoutItem = .init(layoutItemView: view) { layoutItem in
-            expect(layoutItem) === superview
+            layoutItems.append(layoutItem)
             return [constraint]
         }
         let superviewConstraints: [NSLayoutConstraint] = viewLayoutItem.superviewConstraints(superview)
@@ -33,5 +34,6 @@ final class ViewLayoutItemTests: XCTestCase {
 
         expect(viewLayoutItem.layoutItemView) == view
         expect(superviewConstraints === [constraint]) == true
+        expect(layoutItems === [view]) == true
     }
 }
