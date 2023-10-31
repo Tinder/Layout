@@ -17,18 +17,16 @@ final class ViewLayoutItemTests: XCTestCase {
 
         // GIVEN
 
-        let parentView: UIView = .init()
-        let childView: UIView = .init()
+        let view: UIView = .init()
         let constraint: NSLayoutConstraint = .init()
 
         // WHEN
 
-        let viewLayoutItem: ViewLayoutItem = .init(layoutItemView: childView) { _ in [constraint] }
+        let viewLayoutItem: ViewLayoutItem = .init(layoutItemView: view) { _ in [constraint] }
 
         // THEN
 
-        expect(viewLayoutItem.layoutItemView) == childView
-        expect(viewLayoutItem.superviewConstraints(parentView).count) == 1
-        expect(viewLayoutItem.superviewConstraints(parentView)[0]).to(match(constraint))
+        expect(viewLayoutItem.layoutItemView) == view
+        expect(viewLayoutItem.superviewConstraints(UIView())) === [constraint]
     }
 }
