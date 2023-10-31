@@ -32,8 +32,8 @@ final class ViewLayoutItemTests: XCTestCase {
 
         // THEN
 
+        expect(layoutItems === [superview]) == true
         expect(viewLayoutItem.layoutItemView) == view
         expect(superviewConstraints === [constraint]) == true
-        expect(layoutItems === [view]) == true
     }
 }
