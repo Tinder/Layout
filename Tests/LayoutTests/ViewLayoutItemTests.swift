@@ -28,12 +28,17 @@ final class ViewLayoutItemTests: XCTestCase {
             layoutItems.append(layoutItem)
             return [constraint]
         }
+        // THEN
+
+        expect(viewLayoutItem.layoutItemView) == view
+
+        // WHEN
+
         let superviewConstraints: [NSLayoutConstraint] = viewLayoutItem.superviewConstraints(superview)
 
         // THEN
 
-        expect(layoutItems === [superview]) == true
-        expect(viewLayoutItem.layoutItemView) == view
         expect(superviewConstraints === [constraint]) == true
+        expect(layoutItems === [superview]) == true
     }
 }
