@@ -1,4 +1,3 @@
-// swiftlint:disable:this file_name
 //
 //  All Contributions by Match Group
 //
@@ -8,9 +7,9 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
-import UIKit
+import Foundation
 
-public enum XAxisAttribute {
+public enum YAxisAttribute {
 
-    case left, centerX, right, leading, trailing
+    case top, centerY, firstBaseline, lastBaseline, bottom
 }
