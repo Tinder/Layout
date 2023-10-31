@@ -27,6 +27,6 @@ final class ViewLayoutItemTests: XCTestCase {
         // THEN
 
         expect(viewLayoutItem.layoutItemView) == view
-        expect(viewLayoutItem.superviewConstraints(UIView())) === [constraint]
+        expect(viewLayoutItem.superviewConstraints(UIView())[0]) === constraint
     }
 }
