@@ -7,7 +7,6 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
-
 public enum YAxisAttribute {
 
     case top, centerY, firstBaseline, lastBaseline, bottom
