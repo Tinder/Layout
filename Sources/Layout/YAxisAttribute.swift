@@ -1,4 +1,3 @@
-// swiftlint:disable:this file_name
 //
 //  All Contributions by Match Group
 //
@@ -7,8 +6,6 @@
 //  Licensed under the Match Group Modified 3-Clause BSD License.
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
-
-import UIKit
 
 public enum YAxisAttribute {
 
