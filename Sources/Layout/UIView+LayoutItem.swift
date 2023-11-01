@@ -18,4 +18,20 @@ extension UIView: LayoutItem {
     public var superviewConstraints: SuperviewConstraints {
         { _ in [] }
     }
+
+    public var top: NSLayoutYAxisAnchor { topAnchor }
+    public var bottom: NSLayoutYAxisAnchor { bottomAnchor }
+    public var left: NSLayoutXAxisAnchor { leftAnchor }
+    public var right: NSLayoutXAxisAnchor { rightAnchor }
+    public var leading: NSLayoutXAxisAnchor { leadingAnchor }
+    public var trailing: NSLayoutXAxisAnchor { trailingAnchor }
+
+    public var centerX: NSLayoutXAxisAnchor { centerXAnchor }
+    public var centerY: NSLayoutYAxisAnchor { centerYAnchor }
+
+    public var width: NSLayoutDimension { widthAnchor }
+    public var height: NSLayoutDimension { heightAnchor }
+
+    public var firstBaseline: NSLayoutYAxisAnchor { firstBaselineAnchor }
+    public var lastBaseline: NSLayoutYAxisAnchor { lastBaselineAnchor }
 }
