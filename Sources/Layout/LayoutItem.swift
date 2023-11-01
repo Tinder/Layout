@@ -13,8 +13,6 @@ import UIKit
 
 public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
 
-// swiftlint:disable file_types_order
-
 /// Items to be used with the `Layout` API
 ///
 /// - Note:
@@ -32,22 +30,6 @@ public protocol LayoutItem: AnyObject, LayoutBoundary, LayoutCenter, LayoutSize,
 
     /// Constraints to the superview
     var superviewConstraints: SuperviewConstraints { get }
-}
-
-// swiftlint:enable file_types_order
-
-internal final class ViewLayoutItem: LayoutItem {
-
-    internal let layoutItemView: UIView
-    internal let superviewConstraints: SuperviewConstraints
-
-    internal init(
-        layoutItemView: UIView,
-        superviewConstraints: @escaping SuperviewConstraints
-    ) {
-        self.layoutItemView = layoutItemView
-        self.superviewConstraints = superviewConstraints
-    }
 }
 
 extension LayoutItem {
@@ -752,7 +734,6 @@ extension LayoutItem {
     }
 }
 
-// swiftlint:disable:next no_grouping_extension
 extension ViewLayoutItem {
 
     public var left: NSLayoutXAxisAnchor { layoutItemView.left }
