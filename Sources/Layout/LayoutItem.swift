@@ -315,6 +315,27 @@ extension LayoutItem {
                 priority: priority)
     }
 
+    /// Constrains the view's canonical edges to the superview's edges with insets.
+    ///
+    /// - Parameters:
+    ///   - top: The top inset
+    ///   - left: The left inset
+    ///   - bottom: The bottom inset
+    ///   - right: The right inset
+    ///   - priority: The priority of the constraints
+    ///
+    /// - Returns: The LayoutItem instance
+    public func toEdges(
+        top: CGFloat,
+        left: CGFloat,
+        bottom: CGFloat,
+        right: CGFloat,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        toEdges(insets: UIEdgeInsets(top: top, left: left, bottom: bottom, right: right),
+                priority: priority)
+    }
+
     /// Constrains the view's directional edges to the superview's edges with an inset.
     ///
     /// - Parameters:
