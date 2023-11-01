@@ -14,7 +14,7 @@ import XCTest
 @MainActor
 final class UILayoutSupportTests: XCTestCase {
 
-    func testLayoutSupportAnchors() {
+    func testAnchors() {
 
         // GIVEN
 
