@@ -11,6 +11,22 @@ import UIKit
 
 internal final class ViewLayoutItem: LayoutItem {
 
+    internal var top: NSLayoutYAxisAnchor { layoutItemView.top }
+    internal var bottom: NSLayoutYAxisAnchor { layoutItemView.bottom }
+    internal var left: NSLayoutXAxisAnchor { layoutItemView.left }
+    internal var right: NSLayoutXAxisAnchor { layoutItemView.right }
+    internal var leading: NSLayoutXAxisAnchor { layoutItemView.leading }
+    internal var trailing: NSLayoutXAxisAnchor { layoutItemView.trailing }
+
+    internal var centerX: NSLayoutXAxisAnchor { layoutItemView.centerX }
+    internal var centerY: NSLayoutYAxisAnchor { layoutItemView.centerY }
+
+    internal var width: NSLayoutDimension { layoutItemView.width }
+    internal var height: NSLayoutDimension { layoutItemView.height }
+
+    internal var firstBaseline: NSLayoutYAxisAnchor { layoutItemView.firstBaseline }
+    internal var lastBaseline: NSLayoutYAxisAnchor { layoutItemView.lastBaseline }
+
     internal let layoutItemView: UIView
     internal let superviewConstraints: SuperviewConstraints
 
