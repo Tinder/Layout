@@ -459,7 +459,7 @@ final class LayoutItemTests: XCTestCase {
                 // To Edges with Top, Leading, Bottom, Trailing and Default Priority
 
                 pinkView
-                    .toEdges(top: 10, leading: 20, bottom: 10, trailing: 20, priority: .high)
+                    .toEdges(top: 0, leading: 0, bottom: 0, trailing: 0, priority: .high)
                     .toEdges(top: 10, leading: 20, bottom: 10, trailing: 20)
 
                 // To Edges with Top, Leading, Bottom, Trailing with Priority
