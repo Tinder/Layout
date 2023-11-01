@@ -11,14 +11,6 @@ import UIKit
 
 extension UIView: LayoutItem {
 
-    public var layoutItemView: UIView {
-        self
-    }
-
-    public var superviewConstraints: SuperviewConstraints {
-        { _ in [] }
-    }
-
     public var top: NSLayoutYAxisAnchor { topAnchor }
     public var bottom: NSLayoutYAxisAnchor { bottomAnchor }
     public var left: NSLayoutXAxisAnchor { leftAnchor }
@@ -34,4 +26,12 @@ extension UIView: LayoutItem {
 
     public var firstBaseline: NSLayoutYAxisAnchor { firstBaselineAnchor }
     public var lastBaseline: NSLayoutYAxisAnchor { lastBaselineAnchor }
+
+    public var layoutItemView: UIView {
+        self
+    }
+
+    public var superviewConstraints: SuperviewConstraints {
+        { _ in [] }
+    }
 }
