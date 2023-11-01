@@ -7,7 +7,6 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
-import Foundation
 
 public enum YAxisAttribute {
 
