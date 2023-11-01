@@ -331,10 +331,8 @@ extension LayoutItem {
         trailing: CGFloat,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        toEdges(
-            insets: NSDirectionalEdgeInsets(top: top, leading: leading, bottom: bottom, trailing: trailing),
-            priority: priority
-        )
+        toEdges(insets: NSDirectionalEdgeInsets(top: top, leading: leading, bottom: bottom, trailing: trailing),
+                priority: priority)
     }
 
     /// Constrains the view's directional edges to the superview's edges with an inset.
