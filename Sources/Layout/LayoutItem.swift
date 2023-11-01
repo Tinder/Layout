@@ -323,7 +323,7 @@ extension LayoutItem {
     ///   - trailing: The trailing inset
     ///   - priority: The priority of the constraints
     ///
-    /// - Returns: The LayoutItem
+    /// - Returns: The LayoutItem instance
     public func toEdges(
         top: CGFloat,
         leading: CGFloat,
