@@ -14,7 +14,7 @@ import XCTest
 @MainActor
 final class UILayoutGuideTests: XCTestCase {
 
-    func testUILayoutGuideLayoutBoundary() {
+    func testLayoutBoundary() {
 
         // GIVEN
 
@@ -31,7 +31,7 @@ final class UILayoutGuideTests: XCTestCase {
         expect(boundary.trailing) == guide.trailingAnchor
     }
 
-    func testUILayoutGuideLayoutCenter() {
+    func testLayoutCenter() {
 
         // GIVEN
 
@@ -44,7 +44,7 @@ final class UILayoutGuideTests: XCTestCase {
         expect(center.centerY) == guide.centerYAnchor
     }
 
-    func testUILayoutGuideLayoutSize() {
+    func testLayoutSize() {
 
         // GIVEN
 
