@@ -609,6 +609,25 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToMarginsWithTopLeftBottomRightPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Margins with Top, Left, Bottom, Right, and Default Priority
+
+                pinkView
+                    .toMargins(top: 10, left: 20, bottom: 30, right: 40, priority: .high)
+                    .toMargins(top: 40, left: 30, bottom: 20, right: 10)
+
+                // To Margins with Top, Left, Bottom, Right, and Priority
+
+                blueView
+                    .toMargins(top: 10, left: 20, bottom: 30, right: 40, priority: .low)
+                    .toMargins(top: 50, left: 40, bottom: 30, right: 20, priority: .high)
+            }
+        }
+    }
+
     func testToMarginsWithDirectionalEdgesInsetPriority() {
         assertLayout { view in
             view.layout {
