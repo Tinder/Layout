@@ -575,7 +575,7 @@ final class LayoutItemTests: XCTestCase {
         assertLayout { view in
             view.layout {
 
-                // To Margins with Top, Leading, Bottom, Trailing, and Default Priority.
+                // To Margins with Top, Leading, Bottom, Trailing, and Default Priority
 
                 pinkView
                     .toMargins(top: 10, leading: 20, bottom: 30, trailing: 40, priority: .high)
