@@ -456,9 +456,10 @@ final class LayoutItemTests: XCTestCase {
         assertLayout { view in
             view.layout {
 
-                // To Edges with Top, Leading, Bottom, Trailing
+                // To Edges with Top, Leading, Bottom, Trailing and Default Priority
 
                 pinkView
+                    .toEdges(top: 10, leading: 20, bottom: 10, trailing: 20, priority: .high)
                     .toEdges(top: 10, leading: 20, bottom: 10, trailing: 20)
 
                 // To Edges with Top, Leading, Bottom, Trailing with Priority
