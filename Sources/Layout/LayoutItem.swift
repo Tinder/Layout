@@ -321,7 +321,7 @@ extension LayoutItem {
     ///   - leading: The leading inset
     ///   - bottom: The bottom inset
     ///   - trailing: The trailing inset
-    ///   - priority: The priority of constraints
+    ///   - priority: The priority of the constraints
     ///
     /// - Returns: The LayoutItem
     public func toEdges(
