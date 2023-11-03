@@ -840,6 +840,25 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToSafeAreaWithTopLeftBottomRightPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Safe Area with Top, Left, Bottom, Right, and Default Priority
+
+                pinkView
+                    .toSafeArea(top: 10, left: 20, bottom: 30, right: 40, priority: .high)
+                    .toSafeArea(top: 40, left: 30, bottom: 20, right: 10)
+
+                // To Safe Area with Top, Left, Bottom, Right, and Priority
+
+                blueView
+                    .toSafeArea(top: 10, left: 20, bottom: 30, right: 40, priority: .low)
+                    .toSafeArea(top: 50, left: 40, bottom: 30, right: 20, priority: .high)
+            }
+        }
+    }
+
     func testToSafeAreaWithDirectionalEdgesInsetPriority() {
         assertLayout { view in
             view.layout {
