@@ -9,12 +9,18 @@
 
 import UIKit
 
+public typealias CanonicalInsets = UIEdgeInsets
+
 extension UIEdgeInsets {
 
     internal var edgeType: CanonicalEdge.Type { CanonicalEdge.self }
 
     internal init(_ inset: CGFloat) {
         self.init(top: inset, left: inset, bottom: inset, right: inset)
+    }
+
+    public static func canonical(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> Self {
+        UIEdgeInsets(top: top, left: left, bottom: bottom, right: right)
     }
 
     internal func constant(for edge: CanonicalEdge) -> CGFloat {
