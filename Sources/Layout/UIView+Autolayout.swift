@@ -76,7 +76,7 @@ extension UIView {
 
     public func constrain(
         to superview: UIView,
-        directionalEdgeInsets: NSDirectionalEdgeInsets = .zero
+        directionalEdgeInsets: DirectionalInsets = .zero
     ) {
         translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -161,7 +161,7 @@ extension UIView {
     }
 
     public func edgeConstraints(
-        insetBy insets: NSDirectionalEdgeInsets = .zero
+        insetBy insets: DirectionalInsets = .zero
     ) -> [NSLayoutConstraint] {
         [
             constraint(toSuperview: .top, constant: insets.top),
@@ -172,7 +172,7 @@ extension UIView {
     }
 
     public func edgeConstraints(
-        insetBy insets: UIEdgeInsets
+        insetBy insets: CanonicalInsets
     ) -> [NSLayoutConstraint] {
         [
             constraint(toSuperview: .top, constant: insets.top),

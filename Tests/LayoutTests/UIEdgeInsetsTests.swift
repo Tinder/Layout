@@ -26,10 +26,18 @@ final class UIEdgeInsetsTests: XCTestCase {
 
         // THEN
 
-        expect(insets.top) == inset
-        expect(insets.left) == inset
-        expect(insets.bottom) == inset
-        expect(insets.right) == inset
+        expect(insets) == UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    }
+
+    func testCanonicalFactory() {
+
+        // GIVEN
+
+        let insets: UIEdgeInsets = .canonical(top: 1, left: 2, bottom: 3, right: 4)
+
+        // THEN
+
+        expect(insets) == UIEdgeInsets(top: 1, left: 2, bottom: 3, right: 4)
     }
 
     func testConstantForEdge() {

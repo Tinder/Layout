@@ -9,12 +9,18 @@
 
 import UIKit
 
+public typealias DirectionalInsets = NSDirectionalEdgeInsets
+
 extension NSDirectionalEdgeInsets {
 
     internal var edgeType: DirectionalEdge.Type { DirectionalEdge.self }
 
     internal init(_ inset: CGFloat) {
         self.init(top: inset, leading: inset, bottom: inset, trailing: inset)
+    }
+
+    public static func directional(top: CGFloat, leading: CGFloat, bottom: CGFloat, trailing: CGFloat) -> Self {
+        NSDirectionalEdgeInsets(top: top, leading: leading, bottom: bottom, trailing: trailing)
     }
 
     internal func constant(for edge: DirectionalEdge) -> CGFloat {

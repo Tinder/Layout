@@ -311,7 +311,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     public func constrain(
         _ view1: UIView,
         to view2: UIView,
-        insets: NSDirectionalEdgeInsets
+        insets: DirectionalInsets
     ) -> Layout {
         self
             .constrain(view1.leading, to: view2.leading, constant: insets.leading)
@@ -330,7 +330,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     public func constrain(
         _ view1: UIView,
         to view2: UIView,
-        insets: UIEdgeInsets = .zero
+        insets: CanonicalInsets = .zero
     ) -> Layout {
         self
             .constrain(view1.left, to: view2.left, constant: insets.left)
