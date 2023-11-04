@@ -471,6 +471,25 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testToEdgesWithTopLeftBottomRightPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Edges with Top, Left, Bottom, Right and Default Priority
+
+                pinkView
+                    .toEdges(top: 0, left: 0, bottom: 0, right: 0, priority: .high)
+                    .toEdges(top: 10, left: 20, bottom: 10, right: 20)
+
+                // To Edges with Top, Left, Bottom, Right and Priority
+
+                blueView
+                    .toEdges(top: 30, left: 30, bottom: 30, right: 30, priority: .low)
+                    .toEdges(top: 50, left: 50, bottom: 50, right: 50, priority: .high)
+            }
+        }
+    }
+
     func testToEdgesWithDirectionalEdgesInsetPriority() {
         assertLayout { view in
             view.layout {
@@ -605,6 +624,25 @@ final class LayoutItemTests: XCTestCase {
                 blueView
                     .toMargins(top: 10, leading: 20, bottom: 30, trailing: 40, priority: .low)
                     .toMargins(top: 50, leading: 40, bottom: 30, trailing: 20, priority: .high)
+            }
+        }
+    }
+
+    func testToMarginsWithTopLeftBottomRightPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Margins with Top, Left, Bottom, Right, and Default Priority
+
+                pinkView
+                    .toMargins(top: 10, left: 20, bottom: 30, right: 40, priority: .high)
+                    .toMargins(top: 40, left: 30, bottom: 20, right: 10)
+
+                // To Margins with Top, Left, Bottom, Right, and Priority
+
+                blueView
+                    .toMargins(top: 10, left: 20, bottom: 30, right: 40, priority: .low)
+                    .toMargins(top: 50, left: 40, bottom: 30, right: 20, priority: .high)
             }
         }
     }
@@ -761,6 +799,25 @@ final class LayoutItemTests: XCTestCase {
                 blueView
                     .toSafeArea(top: 10, leading: 20, bottom: 30, trailing: 40, priority: .low)
                     .toSafeArea(top: 50, leading: 40, bottom: 30, trailing: 20, priority: .high)
+            }
+        }
+    }
+
+    func testToSafeAreaWithTopLeftBottomRightPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // To Safe Area with Top, Left, Bottom, Right, and Default Priority
+
+                pinkView
+                    .toSafeArea(top: 10, left: 20, bottom: 30, right: 40, priority: .high)
+                    .toSafeArea(top: 40, left: 30, bottom: 20, right: 10)
+
+                // To Safe Area with Top, Left, Bottom, Right, and Priority
+
+                blueView
+                    .toSafeArea(top: 10, left: 20, bottom: 30, right: 40, priority: .low)
+                    .toSafeArea(top: 50, left: 40, bottom: 30, right: 20, priority: .high)
             }
         }
     }
