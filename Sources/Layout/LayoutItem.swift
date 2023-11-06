@@ -729,19 +729,3 @@ extension LayoutItem {
         constraint(to: edge, of: boundary, insets: NSDirectionalEdgeInsets(inset), priority: priority)
     }
 }
-
-extension ViewLayoutItem {
-
-    public var left: NSLayoutXAxisAnchor { layoutItemView.left }
-    public var centerX: NSLayoutXAxisAnchor { layoutItemView.centerX }
-    public var right: NSLayoutXAxisAnchor { layoutItemView.right }
-    public var leading: NSLayoutXAxisAnchor { layoutItemView.leading }
-    public var trailing: NSLayoutXAxisAnchor { layoutItemView.trailing }
-    public var top: NSLayoutYAxisAnchor { layoutItemView.top }
-    public var centerY: NSLayoutYAxisAnchor { layoutItemView.centerY }
-    public var firstBaseline: NSLayoutYAxisAnchor { layoutItemView.firstBaseline }
-    public var lastBaseline: NSLayoutYAxisAnchor { layoutItemView.lastBaseline }
-    public var bottom: NSLayoutYAxisAnchor { layoutItemView.bottom }
-    public var width: NSLayoutDimension { layoutItemView.width }
-    public var height: NSLayoutDimension { layoutItemView.height }
-}
