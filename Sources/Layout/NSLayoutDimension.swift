@@ -12,6 +12,7 @@ import UIKit
 extension NSLayoutDimension {
 
     // swiftlint:disable function_default_parameter_at_end
+
     public func constraint(
         is relation: NSLayoutConstraint.Relation = .equal,
         to anchor: NSLayoutDimension,
