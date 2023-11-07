@@ -353,29 +353,35 @@ final class LayoutTests: XCTestCase {
                 yellowView
             }
 
-            // To Attribute With Constant
+            // Constrain View Attribute To Target Attribute of Target View With Constant, Default Relation and
+            // Multiplier
 
             layout.constrain(pinkView, .bottom, to: .top, of: yellowView, constant: -12)
 
-            // To Attribute With Greater Than Or Equal Relation
+            // Constrain To View Attribute To Target Attribute of Target View With Greater Than Or Equal Relation and
+            // Default Multiplier
 
             layout.constrain(pinkView, .top, to: .top, of: view, constant: 20)
             layout.constrain(pinkView, .top, is: .greaterThanOrEqual, to: .top, of: view, constant: 6)
 
-            // To Attribute With Less Than Or Equal Relation
+            // Constraint To View Attribute To Target Attribute of Target View With Less Than Or Equal Relation and
+            // Default Multiplier
 
             layout.constrain(yellowView, .bottom, is: .lessThanOrEqual, to: .bottom, of: view, constant: -10)
             layout.constrain(yellowView, .bottom, to: .bottom, of: view, constant: -20)
 
-            // To TargetAttribute (sans Attribute)
+            // Constrain View To Target Attribute of Target View With Constant, Default Attribute, Relation and
+            // Multiplier
 
             layout.constrain(pinkView, to: .leading, of: view, constant: 4)
 
-            // To TargetAttribute (sans Constant)
+            // Constrain View To Target Attribute of Target View With Default Attribute, Relation, Constant and
+            // Multiplier
 
             layout.constrain(yellowView, to: .leading, of: view)
 
-            // To Attribute With Multiplier
+            // Constrain To View Attribute With Relation, Target Attribute of Target View, Multiplier, and Default
+            // Constant
 
             layout.constrain(pinkView, .width, is: .equal, to: .width, of: view, multiplier: 0.75)
             layout.constrain(yellowView, .width, is: .equal, to: .width, of: view, multiplier: 0.5)
@@ -402,17 +408,22 @@ final class LayoutTests: XCTestCase {
                 yellowView
             }
 
-            // To Anchor
+            // Constrain Anchor to Target Anchor With Default Relation, Constant, and Priority
 
+            layout.constrain(pinkView.leading,
+                             is: .greaterThanOrEqual,
+                             to: view.leading,
+                             constant: 50,
+                             priority: .high)
             layout.constrain(pinkView.leading, to: view.leading)
 
-            // To Anchor with Constant
+            // Constrain Anchor To Target Anchor With Constant, Default Relation and Priority
 
             layout.constrain(yellowView.leading, to: view.leading, constant: 20)
             layout.constrain(pinkView.trailing, to: view.trailing, constant: -20)
             layout.constrain(yellowView.trailing, to: view.trailing, constant: -20)
 
-            // To Anchor with Constant and Priority
+            // Constrain Anchor To Target Anchor with Constant, Priority and Default Relation
 
             layout.constrain(
                 pinkView.top,
@@ -428,7 +439,7 @@ final class LayoutTests: XCTestCase {
                 priority: .high
             )
 
-            // To Anchor With Greater Than Or Equal Relation and Priority
+            // Constrain Anchor To Target Anchor With Greater Than Or Equal Relation, Constant and Priority
 
             layout.constrain(
                 pinkView.bottom,
@@ -452,7 +463,7 @@ final class LayoutTests: XCTestCase {
                 priority: .high
             )
 
-            // To Anchor With Less Than Or Equal Relation and Priority
+            // Constrain Anchor To Target Anchor With Less Than Or Equal Relation, Constant and Priority
 
             layout.constrain(
                 yellowView.bottom,
@@ -507,30 +518,38 @@ final class LayoutTests: XCTestCase {
                     .to(.bottom, constant: -10)
             }
 
-            // To Anchor
+            // Constrain Anchor To Target Anchor With Default Relation, Multiplier, Constant and Priority
 
+            layout.constrain(pinkView.height,
+                             is: .greaterThanOrEqual,
+                             to: yellowView.height,
+                             multiplier: 0.5,
+                             constant: 50,
+                             priority: .high)
             layout.constrain(pinkView.height, to: yellowView.height)
 
-            // To Anchor with Constant
+            // Constrain Anchor To Target Anchor With Constant, Default Relation, Multiplier and Priority
 
             layout.constrain(pinkView.width, to: view.width, constant: -150)
 
-            // To Anchor with Multiplier
+            // Constrain Anchor To Target Anchor With Multiplier, Default Relation, Constant and Priority
 
             layout.constrain(yellowView.width, to: view.width, multiplier: 0.33)
 
-            // To Anchor with Priority
+            // Constrain Anchor to Target Anchor With Priority, Default Relation, Multiplier and Constant
 
             layout.constrain(blueView.width, to: view.width, priority: .low)
             layout.constrain(blueView.width, to: yellowView.width, priority: .high)
 
-            // To Anchor with Greater Than or Equal Relationm Constant and Priority
+            // Constrain Anchor To Target Anchor with Greater Than Or Equal Relation, Default Multiplier, Constant and
+            // Priority
 
             layout.constrain(greenView.height, is: .greaterThanOrEqual, to: yellowView.height)
             layout.constrain(greenView.height, to: yellowView.height, constant: -50, priority: .low)
             layout.constrain(greenView.height, to: yellowView.height, constant: 50, priority: .high)
 
-            // To Anchor with Less Than or Equal Relation, Constant and Priority
+            // Constrain Anchor To Target Anchor With Less Than or Equal Relation, Default Multiplier, Constant and
+            // Priority
 
             layout.constrain(greenView.width, is: .lessThanOrEqual, to: yellowView.width)
             layout.constrain(greenView.width, to: yellowView.width, constant: 50, priority: .low)
@@ -559,22 +578,23 @@ final class LayoutTests: XCTestCase {
                     .to([.trailing, .bottom], constant: -20)
             }
 
-            // Anchor With Constant
+            // Constrain Anchor With Constant, Default Relation and Priority
 
+            layout.constrain(pinkView.height, is: .greaterThanOrEqual, to: 150, priority: .high)
             layout.constrain(pinkView.height, to: 100)
 
-            // Anchor with Greater Than Or Equal Relation, Constant and Priority
+            // Constrain Anchor With Greater Than Or Equal Relation, Constant and Default Priority
 
             layout.constrain(pinkView.width, is: .greaterThanOrEqual, to: 40)
             layout.constrain(pinkView.width, to: 20, priority: .low)
             layout.constrain(pinkView.width, to: 200, priority: .high)
 
-            // Anchor with Constant and Priority
+            // Constrain Anchor With Constant, Priority, and Default Relation
 
             layout.constrain(yellowView.height, to: 25, priority: .low)
             layout.constrain(yellowView.height, to: 100, priority: .high)
 
-            // Anchor with Less Than Or Equal Relation, Constant and Priority
+            // Constrain Anchor With Less Than Or Equal Relation, Constant and Priority
 
             layout.constrain(yellowView.width, is: .lessThanOrEqual, to: 250, priority: .high)
             layout.constrain(yellowView.width, to: 300, priority: .low)
@@ -589,24 +609,16 @@ final class LayoutTests: XCTestCase {
         // GIVEN
 
         let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
 
         // THEN
 
         assertLayout { view in
 
-            let layout: Layout = view.layout {
-                pinkView
-                yellowView
-            }
+            let layout: Layout = view.layout(pinkView)
 
-            // Pin to View
+            // Pin View1 To View2 with Insets
 
-            layout.constrain(pinkView, to: view)
-
-            // Pin to View with EdgeInsets
-
-            layout.constrain(yellowView,
+            layout.constrain(pinkView,
                              to: view,
                              insets: NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 40))
 
@@ -630,11 +642,11 @@ final class LayoutTests: XCTestCase {
                 yellowView
             }
 
-            // Pin to View
+            // Pin View1 To View2 With Default Insets
 
             layout.constrain(pinkView, to: view)
 
-            // Pin to View with EdgeInsets
+            // Pin View1 To View2 With Insets
 
             layout.constrain(yellowView,
                              to: view,
@@ -674,7 +686,13 @@ final class LayoutTests: XCTestCase {
                 yellowView
                     .to([.top, .trailing])
             }
+
+            // Equal Width Attribute
+
             .equal(.width, [pinkView, yellowView])
+
+            // Equal Height Attribute
+
             .equal(.height, [pinkView, yellowView])
         }
     }
@@ -747,11 +765,16 @@ final class LayoutTests: XCTestCase {
                     .size(width: 50, height: 50)
             }
 
-            // Horizontal With Views and Alignment
+            // Horizontal Views With Alignment, Default Spacing, Direction and Priority
 
+            layout.horizontal([pinkView, yellowView],
+                              spacing: 20,
+                              direction: .leftToRight,
+                              priority: .high,
+                              alignment: .centerY)
             layout.horizontal([pinkView, yellowView], alignment: .centerY)
 
-            // Spacing, Direction and Priority
+            // Horizontal Views With Spacing, Direction, Priority and Alignment
 
             layout.horizontal(
                 [blueView, greenView],
@@ -792,8 +815,14 @@ final class LayoutTests: XCTestCase {
                     .size(width: 100, height: 50, priority: .low)
             }
 
-            // Horizontal With Views and Alignment
+            // Horizontal Views With Flexible View, Alignment, Default Spacing, Direction and Priority
 
+            layout.horizontal([pinkView, yellowView],
+                              spacing: 20,
+                              direction: .leftToRight,
+                              priority: .high,
+                              alignment: .top,
+                              .bottom)
             layout.horizontal([pinkView, yellowView], alignment: .top, .bottom)
 
             return layout
@@ -826,13 +855,15 @@ final class LayoutTests: XCTestCase {
                     .size(width: 50, height: 50)
             }
 
-            // Vertical With Views and Alignment
+            // Vertical Views With Alignment, Default Spacing and Priority
 
+            layout.vertical([pinkView, yellowView], spacing: 20, priority: .high, alignment: .centerX)
             layout.vertical([pinkView, yellowView], alignment: .centerX)
 
-            // Spacing
+            // Vertical Views With Spacing, Alignment, and Priority
 
-            layout.vertical([blueView, greenView], spacing: 12, alignment: .centerX)
+            layout.vertical([blueView, greenView], spacing: 20, priority: .low, alignment: .centerX)
+            layout.vertical([blueView, greenView], spacing: 12, priority: .high, alignment: .centerX)
 
             return layout
         }
@@ -857,8 +888,9 @@ final class LayoutTests: XCTestCase {
                     .size(width: 50, height: 100, priority: .low)
             }
 
-            // Vertical With Views and Alignment
+            // Vertical Views With Flexible View, Alignment, Default Spacing and Priority
 
+            layout.vertical([pinkView, yellowView], spacing: 20, priority: .high, alignment: .leading, .trailing)
             layout.vertical([pinkView, yellowView], alignment: .leading, .trailing)
 
             return layout
@@ -879,6 +911,7 @@ final class LayoutTests: XCTestCase {
                     .size(width: 100, height: 100)
                     .to(.top)
             )
+            .center(pinkView, between: view.leading, and: view.leading, priority: .high)
             .center(pinkView, between: view.leading, and: view.trailing)
         }
     }
@@ -903,11 +936,12 @@ final class LayoutTests: XCTestCase {
                     .to(.trailing)
             }
 
-            // Center Between
+            // Center View Between Top Anchor and Bottom Anchor With Default Priority
 
+            layout.center(yellowView, between: view.top, and: view.centerY, priority: .high)
             layout.center(yellowView, between: view.top, and: view.bottom)
 
-            // With Priority
+            // Center View Between Top Anchor and Bottom Anchor With Priority
 
             layout.center(pinkView, between: yellowView.top, and: yellowView.bottom, priority: .low)
             layout.center(pinkView, between: view.top, and: view.bottom, priority: .high)
