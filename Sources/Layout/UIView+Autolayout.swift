@@ -76,14 +76,14 @@ extension UIView {
 
     public func constrain(
         to superview: UIView,
-        directionalEdgeInsets: DirectionalInsets = .zero
+        insets: DirectionalInsets = .zero
     ) {
         translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            leading.constraint(equalTo: superview.leading, constant: directionalEdgeInsets.leading),
-            trailing.constraint(equalTo: superview.trailing, constant: -directionalEdgeInsets.trailing),
-            top.constraint(equalTo: superview.top, constant: directionalEdgeInsets.top),
-            bottom.constraint(equalTo: superview.bottom, constant: -directionalEdgeInsets.bottom)
+            leading.constraint(equalTo: superview.leading, constant: insets.leading),
+            trailing.constraint(equalTo: superview.trailing, constant: -insets.trailing),
+            top.constraint(equalTo: superview.top, constant: insets.top),
+            bottom.constraint(equalTo: superview.bottom, constant: -insets.bottom)
         ])
     }
 

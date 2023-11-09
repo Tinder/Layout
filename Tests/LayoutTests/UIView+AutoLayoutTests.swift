@@ -76,7 +76,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         let view: UIView = .init()
         superview.addSubview(view)
         let insets: NSDirectionalEdgeInsets = .init(top: 1, leading: 2, bottom: 3, trailing: 4)
-        view.constrain(to: superview, directionalEdgeInsets: insets)
+        view.constrain(to: superview, insets: insets)
         let constraints: [NSLayoutConstraint] = superview.constraints
 
         // THEN
