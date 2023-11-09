@@ -739,10 +739,10 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testCenterBetweenTopAndBottom() {
-        assertLayout { view in
+        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
             view.layout(
                 pinkView
-                    .size(width: 200, height: 400)
+                    .size(width: 200, height: 100)
                     .to(.leading)
                     .center(between: view.safeAreaLayoutGuide.top, and: view.safeAreaLayoutGuide.bottom)
             )
@@ -750,10 +750,10 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testCenterBetweenLeadingAndTrailing() {
-        assertLayout { view in
+        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
             view.layout(
                 pinkView
-                    .size(width: 200, height: 400)
+                    .size(width: 200, height: 100)
                     .to(.top)
                     .center(between: view.safeAreaLayoutGuide.leading, and: view.safeAreaLayoutGuide.trailing)
             )
@@ -761,7 +761,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToSafeAreaWithDirectionalEdgeInsetsPriority() {
-        assertLayout { view in
+        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
             view.layout {
 
                 // To Safe Area With Insets and Default Priority
@@ -787,7 +787,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToSafeAreaWithCanonicalEdgeInsetsPriority() {
-        assertLayout { view in
+        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
             view.layout {
 
                 // To Safe Area With Insets and Default Priority
@@ -806,7 +806,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToSafeAreaWithDirectionalEdgesInsetPriority() {
-        assertLayout { view in
+        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
             view.layout {
 
                 // To Safe Area With Default Priority
@@ -825,7 +825,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToSafeAreaWithCanonicalEdgesInsetPriority() {
-        assertLayout { view in
+        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
             view.layout {
 
                 // To Safe Area With Default Edges, Inset and Priority

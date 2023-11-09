@@ -65,6 +65,14 @@ internal enum Device: CustomStringConvertible {
         ]
     }
 
+    internal static var modernTestDevices: [Self] {
+        [
+            .iPhoneX(.landscape),
+            .iPhone13(.landscape),
+            .iPhone13mini(.landscape)
+        ]
+    }
+
     internal var description: String {
         name
     }
