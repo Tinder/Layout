@@ -767,7 +767,7 @@ final class LayoutItemTests: XCTestCase {
                 // To Safe Area With Insets and Default Priority
 
                 pinkView
-                    .toSafeArea(insets: NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0),
+                    .toSafeArea(insets: NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5),
                                 priority: .high)
                     .toSafeArea(insets: NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 10, trailing: 15))
 
@@ -793,7 +793,7 @@ final class LayoutItemTests: XCTestCase {
                 // To Safe Area With Insets and Default Priority
 
                 pinkView
-                    .toSafeArea(insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), priority: .high)
+                    .toSafeArea(insets: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5), priority: .high)
                     .toSafeArea(insets: UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 15))
 
                 // To Safe Area With Insets and Priority
