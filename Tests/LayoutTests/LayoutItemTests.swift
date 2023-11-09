@@ -739,7 +739,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testCenterBetweenTopAndBottom() {
-        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
+        assertLayout(devices: Device.allTestDevices) { view in
             view.layout(
                 pinkView
                     .size(width: 200, height: 100)
@@ -750,7 +750,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testCenterBetweenLeadingAndTrailing() {
-        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
+        assertLayout(devices: Device.allTestDevices) { view in
             view.layout(
                 pinkView
                     .size(width: 200, height: 100)
@@ -761,7 +761,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToSafeAreaWithDirectionalEdgeInsetsPriority() {
-        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
+        assertLayout(devices: Device.allTestDevices) { view in
             view.layout {
 
                 // To Safe Area With Insets and Default Priority
@@ -787,7 +787,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToSafeAreaWithCanonicalEdgeInsetsPriority() {
-        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
+        assertLayout(devices: Device.allTestDevices) { view in
             view.layout {
 
                 // To Safe Area With Insets and Default Priority
@@ -806,7 +806,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToSafeAreaWithDirectionalEdgesInsetPriority() {
-        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
+        assertLayout(devices: Device.allTestDevices) { view in
             view.layout {
 
                 // To Safe Area With Default Priority
@@ -825,7 +825,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToSafeAreaWithCanonicalEdgesInsetPriority() {
-        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
+        assertLayout(devices: Device.allTestDevices) { view in
             view.layout {
 
                 // To Safe Area With Default Edges, Inset and Priority
