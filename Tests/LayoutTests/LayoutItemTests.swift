@@ -592,7 +592,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToMarginsWithDirectionalEdgeInsetsPriority() {
-        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
+        assertLayout(devices: Device.portraitTestDevices + Device.modernLandscapeTestDevices) { view in
             view.layout {
 
                 // To Margins With Default Priority
@@ -613,7 +613,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToMarginsWithCanonicalEdgeInsetsPriority() {
-        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
+        assertLayout(devices: Device.portraitTestDevices + Device.modernLandscapeTestDevices) { view in
             view.layout {
 
                 // To Margins With Default Priority
@@ -632,7 +632,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToMarginsWithDirectionalEdgesInsetPriority() {
-        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
+        assertLayout(devices: Device.portraitTestDevices + Device.modernLandscapeTestDevices) { view in
             view.layout {
 
                 // To Margins With Default Inset and Priority
@@ -656,7 +656,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToMarginsWithCanonicalEdgesInsetPriority() {
-        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
+        assertLayout(devices: Device.portraitTestDevices + Device.modernLandscapeTestDevices) { view in
             view.layout {
 
                 // To Margins With Default Inset and Priority
@@ -686,7 +686,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToSideMarginsWithInsetPriority() {
-        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
+        assertLayout(devices: Device.portraitTestDevices + Device.modernLandscapeTestDevices) { view in
             view.layout {
 
                 // To Side Margins With Default Inset and Priority
@@ -716,7 +716,7 @@ final class LayoutItemTests: XCTestCase {
     }
 
     func testToBottomMargin_andWithPriority() {
-        assertLayout(devices: Device.portraitTestDevices + Device.modernTestDevices) { view in
+        assertLayout(devices: Device.portraitTestDevices + Device.modernLandscapeTestDevices) { view in
             view.layout {
 
                 // To Bottom Margin Leading With Default Priority
