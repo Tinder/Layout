@@ -65,6 +65,9 @@ internal enum Device: CustomStringConvertible {
         ]
     }
 
+    // Primary purpose is to bypass an issue when snapshot testing margins on devices with a home button such as the
+    // iPhone 8/SE. Please see [here](https://github.com/pointfreeco/swift-snapshot-testing/issues/750)
+    // and [here](https://github.com/pointfreeco/swift-snapshot-testing/pull/757)
     internal static var modernLandscapeTestDevices: [Self] {
         [
             .iPhoneX(.landscape),
