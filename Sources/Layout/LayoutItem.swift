@@ -203,6 +203,95 @@ extension LayoutItem {
         to(axis.attribute, multiplier: multiplier, constant: offset, priority: priority)
     }
 
+    /// Vertically centers the view between two anchors.
+    ///
+    /// - Parameters:
+    ///   - between: the top layout anchor (1)
+    ///   - and: the bottom layout anchor (2)
+    /// - Example:
+    /// ```
+    /// view.layout(
+    ///     label
+    ///         .to(.centerX)
+    ///         .center(between: view.safeAreaLayoutGuide.top, and: siblingView.top),
+    ///     siblingView.center()
+    /// ).activate()
+    ///
+    /// +---------(1)---------+
+    /// |                     |
+    /// |        label        |
+    /// |                     |
+    /// |      +--(2)--+      |
+    /// |      |       |      |
+    /// |      |       |      |
+    /// |      |       |      |
+    /// |      +-------+      |
+    /// |                     |
+    /// |                     |
+    /// +---------------------+
+    /// ```
+    public func center(
+        between top: NSLayoutYAxisAnchor,
+        and bottom: NSLayoutYAxisAnchor
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let superview = layoutItem.layoutItemView.superview {
+                let guide: UILayoutGuide = {
+                    let guide: UILayoutGuide = .init()
+                    superview.addLayoutGuide(guide)
+                    return guide
+                }()
+                guide.top.constraint(to: top)
+                guide.bottom.constraint(to: bottom)
+                layoutItem.layoutItemView.centerY.constraint(to: guide.centerY)
+            }
+        }
+    }
+
+    /// Horizontally centers the view between two anchors.
+    ///
+    /// - Parameters:
+    ///   - between: the leading layout anchor (1)
+    ///   - and: the trailing layout anchor (2)
+    /// - Example:
+    /// ```
+    /// view.layout(
+    ///     label
+    ///         .to(.centerY)
+    ///         .center(between: siblingView.trailing, and: view.safeAreaLayoutGuide.trailing),
+    ///     siblingView.center().square(50)
+    /// ).activate()
+    ///
+    /// +------------------------------+
+    /// |                              |
+    /// |                              |
+    /// |           +------+           |
+    /// |           |      |           |
+    /// |           |     (1)  label  (2)
+    /// |           |      |           |
+    /// |           +------+           |
+    /// |                              |
+    /// |                              |
+    /// +------------------------------+
+    /// ```
+    public func center(
+        between leading: NSLayoutXAxisAnchor,
+        and trailing: NSLayoutXAxisAnchor
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let superview = layoutItem.layoutItemView.superview {
+                let guide: UILayoutGuide = {
+                    let guide: UILayoutGuide = .init()
+                    superview.addLayoutGuide(guide)
+                    return guide
+                }()
+                guide.leading.constraint(to: leading)
+                guide.trailing.constraint(to: trailing)
+                layoutItem.layoutItemView.centerX.constraint(to: guide.centerX)
+            }
+        }
+    }
+
     /// Constrains the `attribute` to the superview's corresponding `attribute`
     ///
     /// - Note:
@@ -474,95 +563,6 @@ extension LayoutItem {
                                 to: superview.bottom,
                                 constant: -minInset)
                     .withPriority(priority)
-            }
-        }
-    }
-
-    /// Vertically centers the view between two anchors.
-    ///
-    /// - Parameters:
-    ///   - between: the top layout anchor (1)
-    ///   - and: the bottom layout anchor (2)
-    /// - Example:
-    /// ```
-    /// view.layout(
-    ///     label
-    ///         .to(.centerX)
-    ///         .center(between: view.safeAreaLayoutGuide.top, and: siblingView.top),
-    ///     siblingView.center()
-    /// ).activate()
-    ///
-    /// +---------(1)---------+
-    /// |                     |
-    /// |        label        |
-    /// |                     |
-    /// |      +--(2)--+      |
-    /// |      |       |      |
-    /// |      |       |      |
-    /// |      |       |      |
-    /// |      +-------+      |
-    /// |                     |
-    /// |                     |
-    /// +---------------------+
-    /// ```
-    public func center(
-        between top: NSLayoutYAxisAnchor,
-        and bottom: NSLayoutYAxisAnchor
-    ) -> LayoutItem {
-        addingSuperviewConstraints { layoutItem in
-            if let superview = layoutItem.layoutItemView.superview {
-                let guide: UILayoutGuide = {
-                    let guide: UILayoutGuide = .init()
-                    superview.addLayoutGuide(guide)
-                    return guide
-                }()
-                guide.top.constraint(to: top)
-                guide.bottom.constraint(to: bottom)
-                layoutItem.layoutItemView.centerY.constraint(to: guide.centerY)
-            }
-        }
-    }
-
-    /// Horizontally centers the view between two anchors.
-    ///
-    /// - Parameters:
-    ///   - between: the leading layout anchor (1)
-    ///   - and: the trailing layout anchor (2)
-    /// - Example:
-    /// ```
-    /// view.layout(
-    ///     label
-    ///         .to(.centerY)
-    ///         .center(between: siblingView.trailing, and: view.safeAreaLayoutGuide.trailing),
-    ///     siblingView.center().square(50)
-    /// ).activate()
-    ///
-    /// +------------------------------+
-    /// |                              |
-    /// |                              |
-    /// |           +------+           |
-    /// |           |      |           |
-    /// |           |     (1)  label  (2)
-    /// |           |      |           |
-    /// |           +------+           |
-    /// |                              |
-    /// |                              |
-    /// +------------------------------+
-    /// ```
-    public func center(
-        between leading: NSLayoutXAxisAnchor,
-        and trailing: NSLayoutXAxisAnchor
-    ) -> LayoutItem {
-        addingSuperviewConstraints { layoutItem in
-            if let superview = layoutItem.layoutItemView.superview {
-                let guide: UILayoutGuide = {
-                    let guide: UILayoutGuide = .init()
-                    superview.addLayoutGuide(guide)
-                    return guide
-                }()
-                guide.leading.constraint(to: leading)
-                guide.trailing.constraint(to: trailing)
-                layoutItem.layoutItemView.centerX.constraint(to: guide.centerX)
             }
         }
     }

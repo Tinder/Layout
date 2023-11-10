@@ -303,6 +303,28 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testCenterBetweenTopAndBottom() {
+        assertLayout { view in
+            view.layout(
+                pinkView
+                    .size(width: 200, height: 400)
+                    .to(.leading)
+                    .center(between: view.safeAreaLayoutGuide.top, and: view.safeAreaLayoutGuide.bottom)
+            )
+        }
+    }
+
+    func testCenterBetweenLeadingAndTrailing() {
+        assertLayout { view in
+            view.layout(
+                pinkView
+                    .size(width: 200, height: 400)
+                    .to(.top)
+                    .center(between: view.safeAreaLayoutGuide.leading, and: view.safeAreaLayoutGuide.trailing)
+            )
+        }
+    }
+
     func testToAttribute_andWithConstant_andWithMultiplier_andWithPriority() {
         assertLayout { view in
             view.layout {
@@ -641,28 +663,6 @@ final class LayoutItemTests: XCTestCase {
                     .toBottomMargin(minInset: 50, priority: .low)
                     .toBottomMargin(minInset: 100, priority: .high)
             }
-        }
-    }
-
-    func testCenterBetweenTopAndBottom() {
-        assertLayout { view in
-            view.layout(
-                pinkView
-                    .size(width: 200, height: 400)
-                    .to(.leading)
-                    .center(between: view.safeAreaLayoutGuide.top, and: view.safeAreaLayoutGuide.bottom)
-            )
-        }
-    }
-
-    func testCenterBetweenLeadingAndTrailing() {
-        assertLayout { view in
-            view.layout(
-                pinkView
-                    .size(width: 200, height: 400)
-                    .to(.top)
-                    .center(between: view.safeAreaLayoutGuide.leading, and: view.safeAreaLayoutGuide.trailing)
-            )
         }
     }
 
