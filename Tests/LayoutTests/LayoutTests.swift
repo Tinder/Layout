@@ -404,6 +404,11 @@ final class LayoutTests: XCTestCase {
 
             // To Anchor
 
+            layout.constrain(pinkView.leading,
+                             is: .greaterThanOrEqual,
+                             to: view.leading,
+                             constant: 50,
+                             priority: .high)
             layout.constrain(pinkView.leading, to: view.leading)
 
             // To Anchor with Constant
@@ -491,6 +496,7 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
+        // swiftlint:disable:next closure_body_length
         assertLayout { view in
 
             let layout: Layout = view.layout {
@@ -509,6 +515,12 @@ final class LayoutTests: XCTestCase {
 
             // To Anchor
 
+            layout.constrain(pinkView.height,
+                             is: .greaterThanOrEqual,
+                             to: yellowView.height,
+                             multiplier: 0.5,
+                             constant: 50,
+                             priority: .high)
             layout.constrain(pinkView.height, to: yellowView.height)
 
             // To Anchor with Constant
@@ -722,6 +734,7 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
+        // swiftlint:disable:next closure_body_length
         assertLayout { view in
 
             let layout: Layout = view.layout {
@@ -739,6 +752,11 @@ final class LayoutTests: XCTestCase {
 
             // Horizontal With Views and Alignment
 
+            layout.horizontal([pinkView, yellowView],
+                              spacing: 20,
+                              direction: .leftToRight,
+                              priority: .high,
+                              alignment: .centerY)
             layout.horizontal([pinkView, yellowView], alignment: .centerY)
 
             // Spacing, Direction and Priority
@@ -784,6 +802,12 @@ final class LayoutTests: XCTestCase {
 
             // Horizontal With Views and Alignment
 
+            layout.horizontal([pinkView, yellowView],
+                              spacing: 20,
+                              direction: .leftToRight,
+                              priority: .high,
+                              alignment: .top,
+                              .bottom)
             layout.horizontal([pinkView, yellowView], alignment: .top, .bottom)
 
             return layout
@@ -818,11 +842,13 @@ final class LayoutTests: XCTestCase {
 
             // Vertical With Views and Alignment
 
+            layout.vertical([pinkView, yellowView], spacing: 20, priority: .high, alignment: .centerX)
             layout.vertical([pinkView, yellowView], alignment: .centerX)
 
             // Spacing
 
-            layout.vertical([blueView, greenView], spacing: 12, alignment: .centerX)
+            layout.vertical([blueView, greenView], spacing: 20, priority: .low, alignment: .centerX)
+            layout.vertical([blueView, greenView], spacing: 12, priority: .high, alignment: .centerX)
 
             return layout
         }
@@ -849,6 +875,7 @@ final class LayoutTests: XCTestCase {
 
             // Vertical With Views and Alignment
 
+            layout.vertical([pinkView, yellowView], spacing: 20, priority: .high, alignment: .leading, .trailing)
             layout.vertical([pinkView, yellowView], alignment: .leading, .trailing)
 
             return layout
@@ -869,6 +896,7 @@ final class LayoutTests: XCTestCase {
                     .size(width: 100, height: 100)
                     .to(.top)
             )
+            .center(pinkView, between: view.leading, and: view.leading, priority: .high)
             .center(pinkView, between: view.leading, and: view.trailing)
         }
     }
@@ -895,6 +923,7 @@ final class LayoutTests: XCTestCase {
 
             // Center Between
 
+            layout.center(yellowView, between: view.top, and: view.centerY, priority: .high)
             layout.center(yellowView, between: view.top, and: view.bottom)
 
             // With Priority
