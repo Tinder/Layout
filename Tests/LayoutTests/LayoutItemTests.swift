@@ -608,7 +608,7 @@ final class LayoutItemTests: XCTestCase {
         assertLayout { view in
             view.layout {
                 pinkView
-                    .toMargins(canonical: [.top, .left], inset: 50, priority: .high)
+                    .toMargins(canonical: CanonicalEdge.allCases, inset: 50, priority: .high)
                     .toMargins()
                 blueView
                     .toMargins(inset: 25)
