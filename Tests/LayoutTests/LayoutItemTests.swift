@@ -566,11 +566,10 @@ final class LayoutItemTests: XCTestCase {
         assertLayout { view in
             view.layout {
                 pinkView
+                    .toMargins(insets: NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10),
+                               priority: .high)
                     .toMargins(insets: NSDirectionalEdgeInsets.zero)
                 blueView
-                    .toMargins(insets: NSDirectionalEdgeInsets.zero, priority: .high)
-                    .toMargins(insets: NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 40, trailing: 80))
-                orangeView
                     .toMargins(insets: NSDirectionalEdgeInsets.zero, priority: .low)
                     .toMargins(insets: NSDirectionalEdgeInsets(top: 20, leading: 30, bottom: 50, trailing: 90),
                                priority: .high)
@@ -582,11 +581,9 @@ final class LayoutItemTests: XCTestCase {
         assertLayout { view in
             view.layout {
                 pinkView
-                    .toMargins(insets: UIEdgeInsets.zero)
-                blueView
                     .toMargins(insets: UIEdgeInsets.zero, priority: .high)
                     .toMargins(insets: UIEdgeInsets(top: 10, left: 20, bottom: 40, right: 80))
-                orangeView
+                blueView
                     .toMargins(insets: UIEdgeInsets.zero, priority: .low)
                     .toMargins(insets: UIEdgeInsets(top: 20, left: 30, bottom: 50, right: 90), priority: .high)
             }
@@ -611,6 +608,7 @@ final class LayoutItemTests: XCTestCase {
         assertLayout { view in
             view.layout {
                 pinkView
+                    .toMargins(canonical: [.top, .left], inset: 50, priority: .high)
                     .toMargins()
                 blueView
                     .toMargins(inset: 25)
@@ -618,7 +616,8 @@ final class LayoutItemTests: XCTestCase {
                     .toMargins(inset: 0, priority: .low)
                     .toMargins(inset: 50, priority: .high)
                 yellowView
-                    .toMargins(canonical: [.top, .left, .right, .bottom], inset: 75, priority: .required)
+                    .size(CGSize(width: 50, height: 50))
+                    .toMargins(canonical: [.top, .left], inset: 75)
             }
         }
     }
@@ -712,13 +711,11 @@ final class LayoutItemTests: XCTestCase {
         assertLayout { view in
             view.layout {
                 pinkView
+                    .toSafeArea(DirectionalEdge.allCases, inset: 50, priority: .high)
                     .toSafeArea(DirectionalEdge.allCases)
                 blueView
                     .toSafeArea(DirectionalEdge.allCases, inset: 0, priority: .low)
                     .toSafeArea(DirectionalEdge.allCases, inset: 25, priority: .high)
-                orangeView
-                    .toSafeArea(DirectionalEdge.allCases, inset: 25, priority: .high)
-                    .toSafeArea(DirectionalEdge.allCases, inset: 50)
             }
         }
     }
@@ -729,12 +726,9 @@ final class LayoutItemTests: XCTestCase {
                 pinkView
                     .toSafeArea()
                 blueView
-                    .toSafeArea(inset: 0, priority: .high)
-                    .toSafeArea(inset: 25)
-                orangeView
                     .toSafeArea(inset: 0, priority: .low)
                     .toSafeArea(inset: 50, priority: .high)
-                yellowView
+                orangeView
                     .toSafeArea(canonical: [.top, .left, .right, .bottom], inset: 75)
             }
         }
