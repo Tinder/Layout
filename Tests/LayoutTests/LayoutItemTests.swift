@@ -753,7 +753,7 @@ final class LayoutItemTests: XCTestCase {
                     .toSafeArea(inset: 0, priority: .low)
                     .toSafeArea(inset: 50, priority: .high)
                 orangeView
-                    .toSafeArea(canonical: [.top, .left, .right, .bottom], inset: 75)
+                    .toSafeArea(canonical: CanonicalEdge.allCases, inset: 75)
             }
         }
     }
