@@ -14,6 +14,10 @@ internal enum Device: CustomStringConvertible {
     case iPhoneX(Orientation)
     case iPhone13(Orientation)
     case iPhone13mini(Orientation)
+    case iPhone14(Orientation)
+    case iPhone14Plus(Orientation)
+    case iPhone14Pro(Orientation)
+    case iPhone14ProMax(Orientation)
 
     internal enum Orientation {
 
@@ -41,6 +45,22 @@ internal enum Device: CustomStringConvertible {
         [.iPhone13mini(.portrait), .iPhone13mini(.landscape)]
     }
 
+    internal static var iPhone14: [Self] {
+        [.iPhone14(.portrait), .iPhone14(.landscape)]
+    }
+
+    internal static var iPhone14Plus: [Self] {
+        [.iPhone14Plus(.portrait), .iPhone14Plus(.landscape)]
+    }
+
+    internal static var iPhone14Pro: [Self] {
+        [.iPhone14Pro(.portrait), .iPhone14Pro(.landscape)]
+    }
+
+    internal static var iPhone14ProMax: [Self] {
+        [.iPhone14ProMax(.portrait), .iPhone14ProMax(.landscape)]
+    }
+
     internal static var allTestDevices: [Self] {
         portraitTestDevices + landscapeTestDevices
     }
@@ -51,7 +71,11 @@ internal enum Device: CustomStringConvertible {
             .iPhoneSE(.portrait),
             .iPhoneX(.portrait),
             .iPhone13(.portrait),
-            .iPhone13mini(.portrait)
+            .iPhone13mini(.portrait),
+            .iPhone14(.portrait),
+            .iPhone14Plus(.portrait),
+            .iPhone14Pro(.portrait),
+            .iPhone14ProMax(.portrait)
         ]
     }
 
@@ -61,7 +85,11 @@ internal enum Device: CustomStringConvertible {
             .iPhoneSE(.landscape),
             .iPhoneX(.landscape),
             .iPhone13(.landscape),
-            .iPhone13mini(.landscape)
+            .iPhone13mini(.landscape),
+            .iPhone14(.landscape),
+            .iPhone14Plus(.landscape),
+            .iPhone14Pro(.landscape),
+            .iPhone14ProMax(.landscape)
         ]
     }
 
@@ -95,6 +123,14 @@ internal enum Device: CustomStringConvertible {
             return "iPhone 13 - \(orientation)"
         case let .iPhone13mini(orientation):
             return "iPhone 13 mini - \(orientation)"
+        case let .iPhone14(orientation):
+            return "iPhone 14 - \(orientation)"
+        case let .iPhone14Plus(orientation):
+            return "iPhone 14 Plus - \(orientation)"
+        case let .iPhone14Pro(orientation):
+            return "iPhone 14 Pro - \(orientation)"
+        case let .iPhone14ProMax(orientation):
+            return "iPhone 14 Pro Max - \(orientation)"
         }
     }
 }
