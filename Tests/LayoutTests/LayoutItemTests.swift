@@ -46,6 +46,7 @@ final class LayoutItemTests: XCTestCase {
             view.layout {
                 pinkView
                     .to([.top, .leading])
+                    .size(width: 150, height: 250, priority: .high)
                     .size(width: 100, height: 200)
                 yellowView
                     .to([.top, .trailing])
@@ -60,6 +61,7 @@ final class LayoutItemTests: XCTestCase {
             view.layout {
                 pinkView
                     .to([.top, .leading])
+                    .size(CGSize(width: 150, height: 250), priority: .high)
                     .size(CGSize(width: 100, height: 200))
                 yellowView
                     .to([.top, .trailing])
@@ -82,6 +84,7 @@ final class LayoutItemTests: XCTestCase {
                 pinkView
                     .to([.top, .leading])
                     .size(height: 100)
+                    .size(is: .greaterThanOrEqual, width: 100, priority: .high)
                     .size(width: 50)
 
                 // With High Priority
@@ -142,6 +145,7 @@ final class LayoutItemTests: XCTestCase {
                 pinkView
                     .to([.top, .leading])
                     .size(width: 50)
+                    .size(is: .greaterThanOrEqual, height: 150, priority: .high)
                     .size(height: 100)
 
                 // With Priority
@@ -209,6 +213,7 @@ final class LayoutItemTests: XCTestCase {
             view.layout {
                 pinkView
                     .to([.top, .leading])
+                    .square(200, priority: .high)
                     .square(100)
                 yellowView
                     .to([.top, .trailing])
@@ -224,6 +229,7 @@ final class LayoutItemTests: XCTestCase {
                 pinkView
                     .to([.top, .leading])
                     .size(height: 100)
+                    .aspectRatio(0.5, priority: .high)
                     .aspectRatio(0.75)
                 yellowView
                     .to([.top, .trailing])
@@ -242,6 +248,7 @@ final class LayoutItemTests: XCTestCase {
 
                 pinkView
                     .size(width: 50, height: 50)
+                    .center(offset: UIOffset(horizontal: 50, vertical: 50), priority: .high)
                     .center()
 
                 // With Custom Offset
@@ -269,6 +276,7 @@ final class LayoutItemTests: XCTestCase {
                 pinkView
                     .size(width: 100, height: 100)
                     .to(.leading)
+                    .center(.vertical, offset: 50, multiplier: 0.5, priority: .high)
                     .center(.vertical)
 
                 // Horizontal Axis
@@ -276,6 +284,7 @@ final class LayoutItemTests: XCTestCase {
                 yellowView
                     .size(width: 100, height: 100)
                     .to(.top)
+                    .center(.horizontal, offset: 50, multiplier: 0.5, priority: .high)
                     .center(.horizontal)
 
                 // With Offset
@@ -333,6 +342,8 @@ final class LayoutItemTests: XCTestCase {
 
                 pinkView
                     .size(width: 100, height: 100)
+                    .to(.top, is: .greaterThanOrEqual, multiplier: 0.5, constant: 50, priority: .high)
+                    .to(.leading, is: .greaterThanOrEqual, multiplier: 0.5, constant: 50, priority: .high)
                     .to(.top)
                     .to(.leading)
 
@@ -416,6 +427,7 @@ final class LayoutItemTests: XCTestCase {
 
                 pinkView
                     .size(width: 100, height: 100)
+                    .to([.bottom, .leading], constant: 50, priority: .high)
                     .to([.bottom, .leading])
 
                 // To Bottom Trailing with Constant
@@ -440,6 +452,8 @@ final class LayoutItemTests: XCTestCase {
 
                 // Insets
                 pinkView
+                    .toEdges(insets: NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0),
+                             priority: .high)
                     .toEdges(insets: NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 10, trailing: 15))
 
                 // Insets with Priority
@@ -463,6 +477,7 @@ final class LayoutItemTests: XCTestCase {
                 // To Edges with Insets
 
                 pinkView
+                    .toEdges(insets: UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 15), priority: .high)
                     .toEdges(insets: UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 15))
 
                 // To Edges with Insets and Priority
@@ -482,6 +497,7 @@ final class LayoutItemTests: XCTestCase {
 
                 pinkView
                     .size(height: 100)
+                    .toEdges([.top, .leading, .trailing], inset: 50, priority: .high)
                     .toEdges([.top, .leading, .trailing])
 
                 // To Bottom, Leading and Trailing with Inset
@@ -508,6 +524,7 @@ final class LayoutItemTests: XCTestCase {
                 // Defaults
 
                 pinkView
+                    .toEdges([.top, .leading], inset: 50, priority: .high)
                     .toEdges()
 
                 // To Top, Left and Right
@@ -542,6 +559,7 @@ final class LayoutItemTests: XCTestCase {
                 pinkView
                     .size(height: 100)
                     .to(.top)
+                    .toSideEdges(inset: 50, priority: .high)
                     .toSideEdges()
 
                 // To Side Edges with Inset
@@ -594,6 +612,7 @@ final class LayoutItemTests: XCTestCase {
         assertLayout { view in
             view.layout {
                 pinkView
+                    .toMargins([.top, .leading, .trailing, .bottom], inset: 50, priority: .high)
                     .toMargins([.top, .leading, .trailing, .bottom])
                 blueView
                     .toMargins([.top, .leading, .trailing, .bottom], inset: 25)
@@ -652,6 +671,7 @@ final class LayoutItemTests: XCTestCase {
                 pinkView
                     .size(width: 100, height: 100)
                     .to(.leading)
+                    .toBottomMargin(minInset: 200, priority: .high)
                     .toBottomMargin(minInset: 100)
 
                 // To Bottom Trailing with Priority
@@ -672,6 +692,8 @@ final class LayoutItemTests: XCTestCase {
                 // To Insets
 
                 pinkView
+                    .toSafeArea(insets: NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5),
+                                priority: .high)
                     .toSafeArea(insets: NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 10, trailing: 15))
 
                 // To Insets with Priority
@@ -696,6 +718,7 @@ final class LayoutItemTests: XCTestCase {
                 // To Insets
 
                 pinkView
+                    .toSafeArea(insets: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5), priority: .high)
                     .toSafeArea(insets: UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 15))
 
                 // To Insets with Priority
@@ -724,6 +747,7 @@ final class LayoutItemTests: XCTestCase {
         assertLayout { view in
             view.layout {
                 pinkView
+                    .toSafeArea(canonical: [.top, .left], inset: 50, priority: .high)
                     .toSafeArea()
                 blueView
                     .toSafeArea(inset: 0, priority: .low)

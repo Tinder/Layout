@@ -28,6 +28,28 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(view.translatesAutoresizingMaskIntoConstraints) == false
     }
 
+    func testConstrainingSize_withDefaults() {
+
+        // GIVEN
+
+        let frame: CGRect = .init(x: 0, y: 0, width: 10, height: 20)
+        let view: UIView = .init(frame: frame)
+
+        // THEN
+
+        expect(view.translatesAutoresizingMaskIntoConstraints) == true
+
+        // WHEN
+
+        view.constrainingSize()
+
+        // THEN
+
+        expect(view.translatesAutoresizingMaskIntoConstraints) == false
+        expect(view.constraints.first { $0.firstAttribute == .width }?.constant) == frame.width
+        expect(view.constraints.first { $0.firstAttribute == .height }?.constant) == frame.height
+    }
+
     func testConstrainingSize() {
 
         // GIVEN
@@ -40,6 +62,27 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(view.translatesAutoresizingMaskIntoConstraints) == false
         expect(view.constraints.first { $0.firstAttribute == .width }?.constant) == size.width
         expect(view.constraints.first { $0.firstAttribute == .height }?.constant) == size.height
+    }
+
+    func testConstrainingWidth_withDefaults() {
+
+        // GIVEN
+
+        let width: CGFloat = 10
+        let view: UIView = .init(frame: CGRect(x: 0, y: 0, width: width, height: 0))
+
+        // THEN
+
+        expect(view.translatesAutoresizingMaskIntoConstraints) == true
+
+        // WHEN
+
+        view.constrainingWidth()
+
+        // THEN
+
+        expect(view.translatesAutoresizingMaskIntoConstraints) == false
+        expect(view.constraints.first { $0.firstAttribute == .width }?.constant) == width
     }
 
     func testConstrainingWidth() {
@@ -55,6 +98,27 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(view.constraints.first { $0.firstAttribute == .width }?.constant) == width
     }
 
+    func testConstrainingHeight_withDefaults() {
+
+        // GIVEN
+
+        let height: CGFloat = 20
+        let view: UIView = .init(frame: CGRect(x: 0, y: 0, width: 0, height: height))
+
+        // THEN
+
+        expect(view.translatesAutoresizingMaskIntoConstraints) == true
+
+        // WHEN
+
+        view.constrainingHeight()
+
+        // THEN
+
+        expect(view.translatesAutoresizingMaskIntoConstraints) == false
+        expect(view.constraints.first { $0.firstAttribute == .height }?.constant) == height
+    }
+
     func testConstrainingHeight() {
 
         // GIVEN
@@ -66,6 +130,37 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         expect(view.translatesAutoresizingMaskIntoConstraints) == false
         expect(view.constraints.first { $0.firstAttribute == .height }?.constant) == height
+    }
+
+    func testConstrainToSuperviewWithDirectionalEdgeInsets_withDefaults() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+        superview.addSubview(view)
+
+        // THEN
+
+        expect(superview.constraints).to(beEmpty())
+
+        // WHEN
+
+        view.constrain(to: superview)
+
+        // THEN
+
+        let constraints: [NSLayoutConstraint] = superview.constraints
+
+        expect(superview.constraints.count) == 4
+        expect(constraints[0].firstAttribute) == .leading
+        expect(constraints[0].constant) == 0
+        expect(constraints[1].firstAttribute) == .trailing
+        expect(constraints[1].constant) == 0
+        expect(constraints[2].firstAttribute) == .top
+        expect(constraints[2].constant) == 0
+        expect(constraints[3].firstAttribute) == .bottom
+        expect(constraints[3].constant) == 0
     }
 
     func testConstrainToSuperviewWithDirectionalEdgeInsets() {
@@ -273,6 +368,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         let ratio: CGFloat = 0.5
         let view: UIView = .init()
+
+        // WHEN
+
         let constraint: NSLayoutConstraint = view.aspectConstraint(ratio)
 
         // THEN
@@ -281,6 +379,30 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraint.secondAttribute) == .height
         expect(constraint.relation) == .equal
         expect(constraint.multiplier) == ratio
+
+        // GIVEN
+
+        let superview2: UIView = .init()
+        let view2: UIView = .init()
+        superview2.addSubview(view2)
+
+        // WHEN
+
+        // Edge Constraints With Insets
+        let insets: DirectionalInsets = .init(top: 0, leading: 5, bottom: 10, trailing: 15)
+        let constraints2: [NSLayoutConstraint] = view2.edgeConstraints(insetBy: insets)
+
+        // THEN
+
+        expect(constraints2.count) == 4
+        expect(constraints2[0].firstAttribute) == .top
+        expect(constraints2[0].constant) == 0
+        expect(constraints2[1].firstAttribute) == .bottom
+        expect(constraints2[1].constant) == -10
+        expect(constraints2[2].firstAttribute) == .leading
+        expect(constraints2[2].constant) == 5
+        expect(constraints2[3].firstAttribute) == .trailing
+        expect(constraints2[3].constant) == -15
     }
 
     func testEdgeConstraints() {
@@ -348,28 +470,6 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[3].constant) == -insets.right
     }
 
-    func testEdgeConstraintsInsetByDirectionalInsets() {
-
-        // GIVEN
-
-        let superview: UIView = .init()
-        let view: UIView = .init()
-        superview.addSubview(view)
-        let insets: NSDirectionalEdgeInsets = .init(top: 1, leading: 2, bottom: 3, trailing: 4)
-        let constraints: [NSLayoutConstraint] = view.edgeConstraints(insetBy: insets)
-
-        // THEN
-
-        expect(constraints[0].firstAttribute) == .top
-        expect(constraints[0].constant) == insets.top
-        expect(constraints[1].firstAttribute) == .bottom
-        expect(constraints[1].constant) == -insets.bottom
-        expect(constraints[2].firstAttribute) == .leading
-        expect(constraints[2].constant) == insets.leading
-        expect(constraints[3].firstAttribute) == .trailing
-        expect(constraints[3].constant) == -insets.trailing
-    }
-
     func testCenterConstraints() {
 
         // GIVEN
@@ -377,6 +477,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
         let superview: UIView = .init()
         let view: UIView = .init()
         superview.addSubview(view)
+
+        // WHEN
+
         let constraints1: [NSLayoutConstraint] = view.centerConstraints()
 
         // THEN
@@ -389,6 +492,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // GIVEN
 
         let offset: UIOffset = .init(horizontal: 5, vertical: 10)
+
+        // WHEN
+
         let constraints2: [NSLayoutConstraint] = view.centerConstraints(offsetBy: offset)
 
         // THEN
