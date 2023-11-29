@@ -593,8 +593,8 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-
-            view.layout(pinkView)
+            view
+                .layout(pinkView)
                 .constrain(pinkView,
                            to: view,
                            insets: NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 40))
