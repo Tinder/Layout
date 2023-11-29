@@ -594,13 +594,10 @@ final class LayoutTests: XCTestCase {
 
         assertLayout { view in
 
-            let layout: Layout = view.layout(pinkView)
-
-            layout.constrain(pinkView,
-                             to: view,
-                             insets: NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 40))
-
-            return layout
+            view.layout(pinkView)
+                .constrain(pinkView,
+                           to: view,
+                           insets: NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 40))
         }
     }
 
