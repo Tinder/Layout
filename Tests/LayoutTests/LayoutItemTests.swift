@@ -635,7 +635,7 @@ final class LayoutItemTests: XCTestCase {
                     .toMargins(inset: 0, priority: .low)
                     .toMargins(inset: 50, priority: .high)
                 yellowView
-                    .size(CGSize(width: 50, height: 50))
+                    .size(width: 50, height: 50)
                     .toMargins(canonical: [.top, .left], inset: 75)
             }
         }
