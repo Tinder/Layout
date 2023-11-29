@@ -2,4 +2,4 @@
    | <View; name = Pink; frame = (x: 16, y: 44, width: 343, height: 734)>
    | <View; name = Blue; frame = (x: 41, y: 69, width: 293, height: 684)>
    | <View; name = Orange; frame = (x: 66, y: 94, width: 243, height: 634)>
-   | <View; name = Yellow; frame = (x: 91, y: 119, width: 193, height: 584)>
+   | <View; name = Yellow; frame = (x: 91, y: 119, width: 50, height: 50)>

@@ -589,28 +589,15 @@ final class LayoutTests: XCTestCase {
         // GIVEN
 
         let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
 
         // THEN
 
         assertLayout { view in
-
-            let layout: Layout = view.layout {
-                pinkView
-                yellowView
-            }
-
-            // Pin to View
-
-            layout.constrain(pinkView, to: view)
-
-            // Pin to View with EdgeInsets
-
-            layout.constrain(yellowView,
-                             to: view,
-                             insets: NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 40))
-
-            return layout
+            view
+                .layout(pinkView)
+                .constrain(pinkView,
+                           to: view,
+                           insets: NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 40))
         }
     }
 
