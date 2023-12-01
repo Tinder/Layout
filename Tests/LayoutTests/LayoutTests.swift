@@ -573,6 +573,7 @@ final class LayoutTests: XCTestCase {
 
             // Anchor With Constant
 
+            layout.constrain(pinkView.height, is: .greaterThanOrEqual, to: 150, priority: .high)
             layout.constrain(pinkView.height, to: 100)
 
             // Anchor with Greater Than Or Equal Relation, Constant and Priority
