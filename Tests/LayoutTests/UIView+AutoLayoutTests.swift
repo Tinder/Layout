@@ -388,7 +388,6 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // WHEN
 
-        // Edge Constraints With Insets
         let insets: DirectionalInsets = .init(top: 0, leading: 5, bottom: 10, trailing: 15)
         let constraints2: [NSLayoutConstraint] = view2.edgeConstraints(insetBy: insets)
 
