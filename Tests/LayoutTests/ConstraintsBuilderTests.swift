@@ -21,22 +21,14 @@ final class ConstraintsBuilderTests: XCTestCase {
 
         // THEN
 
-        // Build Expression With None and Constraint
-
         expect(ConstraintsBuilder.buildExpression(Optional<NSLayoutConstraint>.none)).to(beEmpty())
         expect(ConstraintsBuilder.buildExpression(constraint)) == [constraint]
-
-        // Build Expression With None and Constraint Array
 
         expect(ConstraintsBuilder.buildExpression(Optional<[NSLayoutConstraint]>.none)).to(beEmpty())
         expect(ConstraintsBuilder.buildExpression([constraint])) == [constraint]
 
-        // Build Block With No Input and Constraint Array
-
         expect(ConstraintsBuilder.buildBlock()).to(beEmpty())
         expect(ConstraintsBuilder.buildBlock([constraint])) == [constraint]
-
-        // Build Block With Constraint Arrays
 
         expect(ConstraintsBuilder.buildBlock([constraint], [constraint], [constraint])) == [
             constraint,
@@ -44,17 +36,11 @@ final class ConstraintsBuilderTests: XCTestCase {
             constraint
         ]
 
-        // Build Optional With Nil and Constraint Array
-
         expect(ConstraintsBuilder.buildOptional(nil)).to(beEmpty())
         expect(ConstraintsBuilder.buildOptional([constraint])) == [constraint]
 
-        // Build Either With First and Second Constraint Array
-
         expect(ConstraintsBuilder.buildEither(first: [constraint])) == [constraint]
         expect(ConstraintsBuilder.buildEither(second: [constraint])) == [constraint]
-
-        // Build Array With Array of Constraint Arrays
 
         expect(ConstraintsBuilder.buildArray([[constraint], [constraint], [constraint]])) == [
             constraint,
@@ -62,12 +48,7 @@ final class ConstraintsBuilderTests: XCTestCase {
             constraint
         ]
 
-        // Build Limited Availability With Constraint Array
-
         expect(ConstraintsBuilder.buildLimitedAvailability([constraint])) == [constraint]
-
-        // Build Final Result With Constraint Array
-
         expect(ConstraintsBuilder.buildFinalResult([constraint])) == [constraint]
     }
 }
