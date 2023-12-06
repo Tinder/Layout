@@ -65,6 +65,20 @@ internal enum Device: CustomStringConvertible {
         ]
     }
 
+    /// Used to avoid a bug causing invalid snapshots on devices with a home button.
+    ///
+    /// May be removed and replaced with `allTestDevices` once snapshot issue is fixed.
+    ///
+    /// See filed [issue](https://github.com/pointfreeco/swift-snapshot-testing/issues/750) and
+    /// [pull request](https://github.com/pointfreeco/swift-snapshot-testing/pull/757) for more information.
+    internal static var modernLandscapeTestDevices: [Self] {
+        [
+            .iPhoneX(.landscape),
+            .iPhone13(.landscape),
+            .iPhone13mini(.landscape)
+        ]
+    }
+
     internal var description: String {
         name
     }
