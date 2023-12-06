@@ -12,7 +12,7 @@ import Nimble
 import XCTest
 
 @MainActor
-final class LayoutAnchoringTests: XCTestCase {
+final class UIViewControllerTests: XCTestCase {
 
     func testViewControllerSafeAreaLayoutGuides() {
 
