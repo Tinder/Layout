@@ -14,11 +14,27 @@ import XCTest
 
 final class UIViewFramesTests: XCTestCase {
 
+    func testUsingFrames() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        // WHEN
+
+        _ = view.usingFrames()
+
+        // THEN
+
+        expect(view.translatesAutoresizingMaskIntoConstraints) == true
+    }
+
     func testDisablingIntrinsicSize() {
 
         // GIVEN
 
-        let view: UIView = givenView()
+        let view: UIView = .init()
 
         // THEN
 
@@ -37,92 +53,5 @@ final class UIViewFramesTests: XCTestCase {
         expect(view.contentHuggingPriority(for: .vertical)) == .disabled
         expect(view.contentCompressionResistancePriority(for: .horizontal)) == .disabled
         expect(view.contentCompressionResistancePriority(for: .vertical)) == .disabled
-    }
-
-    func testUsingFramesTopLeft() {
-
-        // GIVEN
-
-        let view: UIView = givenView()
-
-        // WHEN
-
-        _ = view.usingFrames(.topLeft)
-
-        // THEN
-
-        expect(view.autoresizingMask) == [.flexibleRightMargin, .flexibleBottomMargin]
-        expect(view.translatesAutoresizingMaskIntoConstraints) == true
-    }
-
-    func testUsingFramesTopRight() {
-
-        // GIVEN
-
-        let view: UIView = givenView()
-
-        // WHEN
-
-        _ = view.usingFrames(.topRight)
-
-        // THEN
-
-        expect(view.autoresizingMask) == [.flexibleLeftMargin, .flexibleBottomMargin]
-        expect(view.translatesAutoresizingMaskIntoConstraints) == true
-    }
-
-    func testUsingFramesBottomLeft() {
-
-        // GIVEN
-
-        let view: UIView = givenView()
-
-        // WHEN
-
-        _ = view.usingFrames(.bottomLeft)
-
-        // THEN
-
-        expect(view.autoresizingMask) == [.flexibleTopMargin, .flexibleRightMargin]
-        expect(view.translatesAutoresizingMaskIntoConstraints) == true
-    }
-
-    func testUsingFramesBottomRight() {
-
-        // GIVEN
-
-        let view: UIView = givenView()
-
-        // WHEN
-
-        _ = view.usingFrames(.bottomRight)
-
-        // THEN
-
-        expect(view.autoresizingMask) == [.flexibleTopMargin, .flexibleLeftMargin]
-        expect(view.translatesAutoresizingMaskIntoConstraints) == true
-    }
-
-    func testUsingFramesScaleWithSuperview() {
-
-        // GIVEN
-
-        let view: UIView = givenView()
-
-        // WHEN
-
-        _ = view.usingFrames(.scaleWithSuperview)
-
-        // THEN
-
-        expect(view.autoresizingMask) == [.flexibleWidth, .flexibleHeight]
-        expect(view.translatesAutoresizingMaskIntoConstraints) == true
-    }
-
-    private func givenView() -> UIView {
-        let view: UIView = .init()
-        view.autoresizingMask = []
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
     }
 }

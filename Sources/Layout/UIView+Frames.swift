@@ -25,26 +25,3 @@ extension UIView {
         return self
     }
 }
-
-extension UIView.AutoresizingMask {
-
-    public static var topLeft: Self {
-        [.flexibleRightMargin, .flexibleBottomMargin]
-    }
-
-    public static var topRight: Self {
-        [.flexibleLeftMargin, .flexibleBottomMargin]
-    }
-
-    public static var bottomLeft: Self {
-        [.flexibleTopMargin, .flexibleRightMargin]
-    }
-
-    public static var bottomRight: Self {
-        [.flexibleTopMargin, .flexibleLeftMargin]
-    }
-
-    public static var scaleWithSuperview: Self {
-        [.flexibleWidth, .flexibleHeight]
-    }
-}
