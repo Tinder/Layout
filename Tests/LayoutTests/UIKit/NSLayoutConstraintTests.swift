@@ -108,7 +108,7 @@ final class NSLayoutConstraintTests: XCTestCase {
         }
     }
 
-    func testRequiredPriority() {
+    func testRequire() {
 
         // GIVEN
 
