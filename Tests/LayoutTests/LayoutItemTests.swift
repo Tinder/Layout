@@ -594,7 +594,7 @@ final class LayoutItemTests: XCTestCase {
                     .toSideEdges(inset: 50, priority: .high)
                     .toSideEdges()
 
-                // To Side Edges with Inse
+                // To Side Edges with Inset
 
                 yellowView
                     .size(height: 100)
