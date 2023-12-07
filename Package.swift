@@ -45,6 +45,7 @@ let package = Package(
             ],
             exclude: [
                 "__Snapshots__",
+                "UIKit/__Snapshots__",
             ],
             plugins: [
                 .plugin(name: SwiftLint.plugin),
