@@ -18,7 +18,8 @@ final class UIViewFramesTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = givenView()
+        let view: UIView = .init()
+        view.translatesAutoresizingMaskIntoConstraints = false
 
         // WHEN
 
@@ -33,7 +34,7 @@ final class UIViewFramesTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = givenView()
+        let view: UIView = .init()
 
         // THEN
 
@@ -52,12 +53,5 @@ final class UIViewFramesTests: XCTestCase {
         expect(view.contentHuggingPriority(for: .vertical)) == .disabled
         expect(view.contentCompressionResistancePriority(for: .horizontal)) == .disabled
         expect(view.contentCompressionResistancePriority(for: .vertical)) == .disabled
-    }
-
-    private func givenView() -> UIView {
-        let view: UIView = .init()
-        view.autoresizingMask = []
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
     }
 }
