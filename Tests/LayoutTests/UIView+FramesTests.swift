@@ -20,6 +20,10 @@ final class UIViewFramesTests: XCTestCase {
 
         let view: UIView = givenView()
 
+        // THEN
+
+        expect(view.translatesAutoresizingMaskIntoConstraints) == false
+
         // WHEN
 
         _ = view.usingFrames()
@@ -56,7 +60,6 @@ final class UIViewFramesTests: XCTestCase {
 
     private func givenView() -> UIView {
         let view: UIView = .init()
-        view.autoresizingMask = []
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
