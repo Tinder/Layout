@@ -48,17 +48,16 @@ extension NSLayoutConstraint {
         return self
     }
 
-    public func withConstant(_ constant: CGFloat) -> NSLayoutConstraint {
-        self.constant = constant
-        return self
+    public func require() -> NSLayoutConstraint {
+        withPriority(.required)
     }
 
     public func withPriority(_ priority: UILayoutPriority) -> NSLayoutConstraint {
-        self.priority = priority
+        prioritize(priority)
         return self
     }
 
-    public func require() -> NSLayoutConstraint {
-        withPriority(.required)
+    public func prioritize(_ priority: UILayoutPriority) {
+        self.priority = priority
     }
 }

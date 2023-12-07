@@ -14,7 +14,7 @@ extension Array where Element == NSLayoutConstraint {
     @preconcurrency
     @MainActor
     @discardableResult
-    public func activate() -> [NSLayoutConstraint] {
+    public func activate() -> Self {
         NSLayoutConstraint.activate(self)
         return self
     }
@@ -22,16 +22,20 @@ extension Array where Element == NSLayoutConstraint {
     @preconcurrency
     @MainActor
     @discardableResult
-    public func deactivate() -> [NSLayoutConstraint] {
+    public func deactivate() -> Self {
         NSLayoutConstraint.deactivate(self)
         return self
     }
 
     @preconcurrency
     @MainActor
-    public func withPriority(
-        _ priority: UILayoutPriority
-    ) -> [NSLayoutConstraint] {
+    public func require() -> Self {
+        withPriority(.required)
+    }
+
+    @preconcurrency
+    @MainActor
+    public func withPriority(_ priority: UILayoutPriority) -> Self {
         prioritize(priority)
         return self
     }
@@ -39,6 +43,6 @@ extension Array where Element == NSLayoutConstraint {
     @preconcurrency
     @MainActor
     public func prioritize(_ priority: UILayoutPriority) {
-        forEach { $0.priority = priority }
+        forEach { $0.prioritize(priority) }
     }
 }
