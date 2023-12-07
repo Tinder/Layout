@@ -14,7 +14,7 @@ import XCTest
 
 extension XCTestCase {
 
-    internal func haveUnambiguousLayout() -> Predicate<UIView> {
+    internal func haveUnambiguousLayout() -> Nimble.Predicate<UIView> {
         Predicate { expression in
             guard let view: UIView = try expression.evaluate()
             else { return PredicateResult(status: .fail, message: .expectedTo("not be nil, got <nil>")) }
@@ -25,7 +25,7 @@ extension XCTestCase {
     }
 
     // swiftlint:disable:next cyclomatic_complexity
-    internal func match(_ expectedConstraint: NSLayoutConstraint) -> Predicate<NSLayoutConstraint> {
+    internal func match(_ expectedConstraint: NSLayoutConstraint) -> Nimble.Predicate<NSLayoutConstraint> {
         // swiftlint:disable:next closure_body_length
         Predicate { expression in
             guard let constraint: NSLayoutConstraint = try expression.evaluate()
