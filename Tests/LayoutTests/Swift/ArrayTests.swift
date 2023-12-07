@@ -65,6 +65,44 @@ final class ArrayTests: XCTestCase {
         expect(deactivatedConstraints) == constraints
     }
 
+    func testRequire() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let constraint1: NSLayoutConstraint = .init(
+            item: view,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 0
+        )
+        let constraint2: NSLayoutConstraint = .init(
+            item: view,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 0
+        )
+        constraint1.priority = .high
+        constraint2.priority = .high
+        let constraints: [NSLayoutConstraint] = [constraint1, constraint2]
+
+        // WHEN
+
+        let requiredConstraints: [NSLayoutConstraint] = constraints.require()
+
+        // THEN
+
+        expect(constraint1.priority) == .required
+        expect(constraint2.priority) == .required
+        expect(requiredConstraints) == constraints
+    }
+
     func testWithPriority() {
 
         // GIVEN
