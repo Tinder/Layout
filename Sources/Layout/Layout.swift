@@ -11,36 +11,10 @@
 
 import UIKit
 
-/// API for adding subviews and constraints to a view.
-///
-/// - Important:
-///     * Views are added to view hierarchy in reverse order. The last item in layout call will be at the front.
-///     * Must call `.activate()` for constraints to become active.
-///     * Activating/Deactivating an instance will only affect the constraints attached to that instance.
-///     * Deactivating the instance does not remove or hide views.
-/// - Note:
-///     * A view can have multiple Layout instances, useful for when a view has different states.
-///     * Preferred format for adding one view with one constraint
-///         ````
-///         view1.layout(view2.pin()).activate()
-///         ````
-///     * Preferred format for adding multiple views or constraints
-///         ````
-///         view1.layout(
-///             view2
-///               .to([.leading, .top, .trailing]),
-///             view3
-///               .pad()
-///               .to(.bottom)
-///         )
-///         .vertical([view2, view3])
-///         .activate()
-///         ````
 @preconcurrency
 @MainActor
 public final class Layout { // swiftlint:disable:this type_body_length
 
-    /// View of the Layout
     public weak var view: UIView?
 
     public let metrics: [String: Any]
@@ -86,9 +60,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         addItems(items)
     }
 
-    /// Adds constraints to Layout
-    ///
-    /// - Parameter constraints: constraints to add
     @discardableResult
     public func adding(
         @ConstraintsBuilder constraints: () -> [NSLayoutConstraint]
@@ -96,17 +67,11 @@ public final class Layout { // swiftlint:disable:this type_body_length
         adding(constraints())
     }
 
-    /// Adds constraints to Layout
-    ///
-    /// - Parameter constraints: constraints to add
     @discardableResult
     public func adding(_ constraints: NSLayoutConstraint...) -> Layout {
         adding(constraints)
     }
 
-    /// Adds constraints to Layout
-    ///
-    /// - Parameter constraints: constraints to add
     @discardableResult
     public func adding(_ constraints: [NSLayoutConstraint]) -> Layout {
         self.constraints += constraints
@@ -115,12 +80,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     // swiftlint:disable discouraged_optional_collection
 
-    /// Adds constraints using vertical vfl
-    ///
-    /// - Parameters:
-    ///   - format: vertical vfl
-    ///   - metrics: (optional) metrics for vfl
-    ///   - options: (optional) options
     @discardableResult
     public func vertical(
         _ format: String,
@@ -130,12 +89,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         vfl(axis: .vertical, format: format, metrics: metrics, options: options)
     }
 
-    /// Adds constraints using horizontal vfl
-    ///
-    /// - Parameters:
-    ///   - format: horizontal vfl
-    ///   - metrics: (optional) metrics for vfl
-    ///   - options: (optional) options
     @discardableResult
     public func horizontal(
         _ format: String,
@@ -169,16 +122,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     // swiftlint:disable function_default_parameter_at_end
 
-    /// Constrains two anchors to each other. Constrains the corresponding `targetAttribute` if `attribute` is nil
-    ///
-    /// - Parameters:
-    ///   - view: subview to constrain
-    ///   - attribute: (optional) attribute to constrain
-    ///   - relation: (optional) relationship between anchors
-    ///   - targetAttribute: attribute to constrain to
-    ///   - targetView: subview to constrain to
-    ///   - multiplier: (optional) multiplier
-    ///   - constant: (optional) constant
     @discardableResult
     public func constrain(
         _ view: UIView,
@@ -197,16 +140,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
                                constant: constant))
     }
 
-    /// Constrains two anchors to each other
-    ///
-    /// - Note:
-    ///     Equation: view1.attribute = multiplier × view2.attribute + constant
-    /// - Parameters:
-    ///   - anchor: anchor to constrain
-    ///   - relation: (optional) relationship between anchors
-    ///   - targetAnchor: anchor to constrain to
-    ///   - constant: (optional) constant
-    ///   - priority: (optional) priority of constraint
     @discardableResult
     public func constrain<T>(
         _ anchor: NSLayoutAnchor<T>,
@@ -233,15 +166,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return adding(constraint.withPriority(priority))
     }
 
-    /// Constrains two dimension attributes to each other
-    ///
-    /// - Parameters:
-    ///   - anchor: anchor to constrain
-    ///   - relation: (optional) relationship between dimensions
-    ///   - targetAnchor: anchor to constrain to
-    ///   - multiplier: (optional) multiplier
-    ///   - constant: (optional) constant
-    ///   - priority: (optional) priority of constraint
     @discardableResult
     public func constrain(
         _ anchor: NSLayoutDimension,
@@ -273,13 +197,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return adding(constraint.withPriority(priority))
     }
 
-    /// Constrains the width or height of a subview to a constant
-    ///
-    /// - Parameters:
-    ///   - anchor: dimension to constrain
-    ///   - relation: relationship to `constant`
-    ///   - constant: size of dimension
-    ///   - priority: (optional) priority of constraint
     @discardableResult
     public func constrain(
         _ anchor: NSLayoutDimension,
@@ -301,12 +218,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return adding(constraint.withPriority(priority))
     }
 
-    /// Constrains the edges of a subview to another
-    ///
-    /// - Parameters:
-    ///   - view1: subview to constrain
-    ///   - view2: subview to constrain
-    ///   - insets: (optional) insets of `view1`
     @discardableResult
     public func constrain(
         _ view1: UIView,
@@ -320,12 +231,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
             .constrain(view1.bottom, to: view2.bottom, constant: -insets.bottom)
     }
 
-    /// Constrains the edges of a subview to another
-    ///
-    /// - Parameters:
-    ///   - view1: subview to constrain
-    ///   - view2: subview to constrain
-    ///   - insets: (optional) insets of `view1`
     @discardableResult
     public func constrain(
         _ view1: UIView,
@@ -339,12 +244,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
             .constrain(view1.bottom, to: view2.bottom, constant: -insets.bottom)
     }
 
-    /// Constrains the edges of a subview to another
-    ///
-    /// - Parameters:
-    ///   - view1: subview to constrain
-    ///   - view2: subview to constrain
-    ///   - inset: inset of `view1`
     @discardableResult
     public func constrain(
         _ view1: UIView,
@@ -356,11 +255,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
                   insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset))
     }
 
-    /// Constrains the corresponding `attribute` of the `views` to each other
-    ///
-    /// - Parameters:
-    ///   - attribute: attribute to constrain
-    ///   - views: subviews to constrain
     @discardableResult
     public func equal(
         _ attribute: NSLayoutConstraint.Attribute,
@@ -369,9 +263,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         equal([attribute], views)
     }
 
-    /// Constrains the width and height of the `views` to each other
-    ///
-    /// - Parameter views: subviews to constrain
     @discardableResult
     public func equalSize(
         _ views: [UIView]
@@ -379,11 +270,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         equal([.height, .width], views)
     }
 
-    /// Constrains the corresponding `attributes` of the `views` to each other
-    ///
-    /// - Parameters:
-    ///   - attributes: attributes to constrain
-    ///   - views: subviews to constrain
     @discardableResult
     public func equal(
         _ attributes: [NSLayoutConstraint.Attribute],
@@ -398,16 +284,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return self
     }
 
-    /// Constrains each view's trailing/right to the leading/left of the following view.
-    ///
-    /// - Note:
-    ///   - the default `direction` is .leadingToTrailing
-    /// - Parameters:
-    ///   - views: subviews to constrain
-    ///   - spacing: (optional) spacing between `views`
-    ///   - direction: (optional) determines if the views change direction with respect to the language
-    ///   - priority: (optional) priority of the constraint, defaults to .required
-    ///   - alignment: Y﹘Axis attributes to align
     @discardableResult
     public func horizontal(
         _ views: [UIView],
@@ -443,12 +319,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return self
     }
 
-    /// Constrains each view's bottom to the top of the following view
-    ///
-    /// - Parameters:
-    ///   - views: subviews to constrain
-    ///   - spacing: spacing between views
-    ///   - alignment: X﹘Axis attributes to align
     @discardableResult
     public func vertical(
         _ views: [UIView],
@@ -476,46 +346,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     // swiftlint:enable function_default_parameter_at_end
 
-    /// Horizontally centers the view between two anchors.
-    ///
-    /// - Parameters:
-    ///   - view
-    ///   - between: the leading most attribute (1)
-    ///   - and: the trailing most attribute (2)
-    /// - Example:
-    /// ```
-    /// view.layout(
-    ///     label.to(.centerY),
-    ///     siblingView.square(50).center()
-    /// )
-    /// .center(label, between: siblingView.trailing, and: view.safeAreaLayoutGuide.trailing)
-    /// .activate()
-    ///
-    /// +-----------------------------------------+
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                +------+                 |
-    /// |                |      |                 |
-    /// |                |     (1)     label     (2)
-    /// |                |      |                 |
-    /// |                +------+                 |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// +-----------------------------------------+
-    /// ```
     @discardableResult
     public func center(
         _ view: UIView,
@@ -534,46 +364,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         ])
     }
 
-    /// Vertically centers the view between two anchors.
-    ///
-    /// - Parameters:
-    ///   - view
-    ///   - between: the top most attribute (1)
-    ///   - and: the bottom most attribute (2)
-    /// - Example:
-    /// ```
-    /// view.layout(
-    ///     label.to(.centerX),
-    ///     siblingView.square(50).center()
-    /// )
-    /// .center(label, between: view.safeAreaLayoutGuide.top, and: siblingView.top)
-    /// .activate()
-    ///
-    /// +------------------(1)--------------------+
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                 label                   |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                +-(2)--+                 |
-    /// |                |      |                 |
-    /// |                |      |                 |
-    /// |                |      |                 |
-    /// |                +------+                 |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// |                                         |
-    /// +-----------------------------------------+
-    /// ```
     @discardableResult
     public func center(
         _ view: UIView,
@@ -592,15 +382,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         ])
     }
 
-    /// Adds LayoutItems
-    ///
-    /// - Note:
-    ///     Constraints attached to the LayoutItem will be to the Layout's view
-    ///     ````
-    ///     let item = view1.pin()
-    ///     mainView.layout().addItems(item)
-    ///     ````
-    /// - Parameter items: LayoutItems to add
     @discardableResult
     public func addItems(
         _ items: LayoutItem...
@@ -608,15 +389,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         addItems(items)
     }
 
-    /// Adds LayoutItems
-    ///
-    /// - Note:
-    ///     Constraints attached to the LayoutItem will be to the Layout's view
-    ///     ````
-    ///     let items = [view1.pin(), view2.pad()]
-    ///     mainView.layout().addItems(items)
-    ///     ````
-    /// - Parameter items: LayoutItems to add
     @discardableResult
     public func addItems(
         _ items: [LayoutItem]
@@ -635,30 +407,24 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return self
     }
 
-    /// Assigns a `priority` to _ALL_ the constraints attached to the instance
-    ///
-    /// - Parameter priority: priority for constraints
     @discardableResult
     public func withPriority(_ priority: UILayoutPriority) -> Layout {
         constraints.prioritize(priority)
         return self
     }
 
-    /// Activates all constraints of instance
     @discardableResult
     public func activate() -> Layout {
         constraints.activate()
         return self
     }
 
-    /// Deactivates all constraints of instance
     @discardableResult
     public func deactivate() -> Layout {
         constraints.deactivate()
         return self
     }
 
-    /// Updates all constraints attached to the Layout's view
     public func update() {
         view?.setNeedsUpdateConstraints()
         view?.updateConstraintsIfNeeded()
