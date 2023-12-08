@@ -19,10 +19,7 @@ extension NSLayoutConstraint {
         metrics: [String: Any] = [:],
         options: NSLayoutConstraint.FormatOptions = []
     ) -> [NSLayoutConstraint] {
-        NSLayoutConstraint.constraints(withVisualFormat: format,
-                                       options: options,
-                                       metrics: metrics,
-                                       views: views)
+        constraints(withVisualFormat: format, options: options, metrics: metrics, views: views)
     }
 
     public static func constraints(
