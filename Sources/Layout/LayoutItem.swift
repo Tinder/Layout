@@ -13,22 +13,12 @@ import UIKit
 
 public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
 
-/// Items to be used with the `Layout` API
-///
-/// - Note:
-///     Constraints from LayoutItem methods cannot be activated until the LayoutItem is attached to a `.layout()` call
-///     ````
-///     let item = view1.pin()
-///     mainView.layout(item).activate()
-///     ````
 @preconcurrency
 @MainActor
 public protocol LayoutItem: AnyObject, LayoutBoundary, LayoutCenter, LayoutSize, LayoutBaseline {
 
-    /// View of the LayoutItem
     var layoutItemView: UIView { get }
 
-    /// Constraints to the superview
     var superviewConstraints: SuperviewConstraints { get }
 }
 
@@ -57,9 +47,6 @@ extension LayoutItem {
         return superview.safeAreaLayoutGuide
     }
 
-    /// Adds an identifier
-    ///
-    /// - Parameter identifier: identifier
     public func id(_ identifier: String) -> Self {
         self.identifier = identifier
         return self
@@ -73,12 +60,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the width and height
-    ///
-    /// - Parameters:
-    ///   - width: width constraint
-    ///   - height: height constraint
-    ///   - priority: (optional) priority of constraint
     public func size(
         width: CGFloat,
         height: CGFloat,
@@ -90,11 +71,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the size
-    ///
-    /// - Parameters:
-    ///   - size: size constraint
-    ///   - priority: (optional) priority of constraint
     public func size(
         _ size: CGSize,
         priority: UILayoutPriority = .required
@@ -104,12 +80,6 @@ extension LayoutItem {
 
     // swiftlint:disable function_default_parameter_at_end
 
-    /// Constrains the width
-    ///
-    /// - Parameters:
-    ///   - relation: (optional, default `.equal`) relationship (=, ≤, ≥)
-    ///   - width: width constraint
-    ///   - priority: (optional) priority of constraint
     public func size(
         is relation: NSLayoutConstraint.Relation = .equal,
         width: CGFloat,
@@ -120,12 +90,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the height
-    ///
-    /// - Parameters:
-    ///   - relation: (optional, default `.equal`) relationship (=, ≤, ≥)
-    ///   - height: height constraint
-    ///   - priority: (optional) priority of constraint
     public func size(
         is relation: NSLayoutConstraint.Relation = .equal,
         height: CGFloat,
@@ -138,16 +102,10 @@ extension LayoutItem {
 
     // swiftlint:enable function_default_parameter_at_end
 
-    /// Constrains the width to the height
     public func square() -> LayoutItem {
         aspectRatio(1)
     }
 
-    /// Constrains the width and height to the same value
-    ///
-    /// - Parameters:
-    ///   - length: width and height constraint
-    ///   - priority: (optional) priority of constraint
     public func square(
         _ length: CGFloat,
         priority: UILayoutPriority = .required
@@ -158,11 +116,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the width to the height by a `ratio`
-    ///
-    /// - Parameters:
-    ///   - ratio: ratio constraint, width:height
-    ///   - priority: (optional) priority of constraint
     public func aspectRatio(
         _ ratio: CGFloat,
         priority: UILayoutPriority = .required
@@ -174,11 +127,6 @@ extension LayoutItem {
         }
     }
 
-    /// Centers the view in the superview with an `offset`
-    ///
-    /// - Parameters:
-    ///   - offset: (optional) offset from superview
-    ///   - priority: (optional) priority of constraint
     public func center(
         offset: UIOffset = .zero,
         priority: UILayoutPriority = .required
@@ -188,12 +136,6 @@ extension LayoutItem {
         }
     }
 
-    /// Centers the view on `axis` of the superview with an `offset`
-    ///
-    /// - Parameters:
-    ///   - axis: axis to center view on
-    ///   - offset: (optional) offset from superview
-    ///   - priority: (optional) priority of constraint
     public func center(
         _ axis: NSLayoutConstraint.Axis,
         offset: CGFloat = 0,
@@ -203,33 +145,6 @@ extension LayoutItem {
         to(axis.attribute, multiplier: multiplier, constant: offset, priority: priority)
     }
 
-    /// Vertically centers the view between two anchors.
-    ///
-    /// - Parameters:
-    ///   - between: the top layout anchor (1)
-    ///   - and: the bottom layout anchor (2)
-    /// - Example:
-    /// ```
-    /// view.layout(
-    ///     label
-    ///         .to(.centerX)
-    ///         .center(between: view.safeAreaLayoutGuide.top, and: siblingView.top),
-    ///     siblingView.center()
-    /// ).activate()
-    ///
-    /// +---------(1)---------+
-    /// |                     |
-    /// |        label        |
-    /// |                     |
-    /// |      +--(2)--+      |
-    /// |      |       |      |
-    /// |      |       |      |
-    /// |      |       |      |
-    /// |      +-------+      |
-    /// |                     |
-    /// |                     |
-    /// +---------------------+
-    /// ```
     public func center(
         between top: NSLayoutYAxisAnchor,
         and bottom: NSLayoutYAxisAnchor
@@ -248,32 +163,6 @@ extension LayoutItem {
         }
     }
 
-    /// Horizontally centers the view between two anchors.
-    ///
-    /// - Parameters:
-    ///   - between: the leading layout anchor (1)
-    ///   - and: the trailing layout anchor (2)
-    /// - Example:
-    /// ```
-    /// view.layout(
-    ///     label
-    ///         .to(.centerY)
-    ///         .center(between: siblingView.trailing, and: view.safeAreaLayoutGuide.trailing),
-    ///     siblingView.center().square(50)
-    /// ).activate()
-    ///
-    /// +------------------------------+
-    /// |                              |
-    /// |                              |
-    /// |           +------+           |
-    /// |           |      |           |
-    /// |           |     (1)  label  (2)
-    /// |           |      |           |
-    /// |           +------+           |
-    /// |                              |
-    /// |                              |
-    /// +------------------------------+
-    /// ```
     public func center(
         between leading: NSLayoutXAxisAnchor,
         and trailing: NSLayoutXAxisAnchor
@@ -292,16 +181,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the `attribute` to the superview's corresponding `attribute`
-    ///
-    /// - Note:
-    ///     Equation: view.attribute = multiplier × superview.attribute + constant
-    /// - Parameters:
-    ///   - attribute: attribute to constrain
-    ///   - relation: (optional) relationship (=, ≤, ≥)
-    ///   - multiplier: (optional) multiplier
-    ///   - constant: (optional) constant
-    ///   - priority: (optional) priority of constraint
     public func to(
         _ attribute: NSLayoutConstraint.Attribute,
         is relation: NSLayoutConstraint.Relation = .equal,
@@ -320,14 +199,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the `attributes` to the superview's corresponding `attributes`
-    ///
-    /// - Note:
-    ///     Equation: view.attribute = superview.attribute + constant
-    /// - Parameters:
-    ///   - attributes: attributes to constrain
-    ///   - constant: (optional) constant
-    ///   - priority: (optional) priority of constraint
     public func to(
         _ attributes: [NSLayoutConstraint.Attribute],
         constant: CGFloat = 0,
@@ -343,13 +214,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's directional edges to the superview's edges with insets.
-    ///
-    /// - Parameters:
-    ///   - insets: The directional edge insets
-    ///   - priority: The priority of the constraints
-    ///
-    /// - Returns: The LayoutItem
     public func toEdges(
         insets: DirectionalInsets,
         priority: UILayoutPriority = .required
@@ -363,13 +227,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's canonical edges to the superview's edges with insets.
-    ///
-    /// - Parameters:
-    ///   - insets: The canonical edge insets
-    ///   - priority: The priority of the constraints
-    ///
-    /// - Returns: The LayoutItem
     public func toEdges(
         insets: CanonicalInsets,
         priority: UILayoutPriority = .required
@@ -383,14 +240,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's directional edges to the superview's edges with an inset.
-    ///
-    /// - Parameters:
-    ///   - edges: The edges to constrain
-    ///   - inset: The inset distance
-    ///   - priority: The priority of the constraint(s)
-    ///
-    /// - Returns: The LayoutItem
     public func toEdges(
         _ edges: [DirectionalEdge],
         inset: CGFloat = 0,
@@ -405,14 +254,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's canonical edges to the superview's edges with an inset.
-    ///
-    /// - Parameters:
-    ///   - edges: The edges to constrain
-    ///   - inset: The inset distance
-    ///   - priority: The priority of the constraint(s)
-    ///
-    /// - Returns: The LayoutItem
     public func toEdges(
         canonical edges: [CanonicalEdge] = CanonicalEdge.allCases,
         inset: CGFloat = 0,
@@ -427,13 +268,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's leading and trailing edges to the superview's edges with an inset.
-    ///
-    /// - Parameters:
-    ///   - inset: The inset distance
-    ///   - priority: The priority of the constraints
-    ///
-    /// - Returns: The LayoutItem
     public func toSideEdges(
         inset: CGFloat = 0,
         priority: UILayoutPriority = .required
@@ -441,13 +275,6 @@ extension LayoutItem {
         toEdges(canonical: [.left, .right], inset: inset, priority: priority)
     }
 
-    /// Constrains the view's directional edges to the superview's margins with insets.
-    ///
-    /// - Parameters:
-    ///   - insets: The directional insets
-    ///   - priority: The priority of constraints
-    ///
-    /// - Returns: The LayoutItem
     public func toMargins(
         insets: DirectionalInsets,
         priority: UILayoutPriority = .required
@@ -461,13 +288,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's canonical edges to the superview's margins with insets.
-    ///
-    /// - Parameters:
-    ///   - insets: The canonical insets
-    ///   - priority: The priority of the constraints
-    ///
-    /// - Returns: The LayoutItem
     public func toMargins(
         insets: CanonicalInsets,
         priority: UILayoutPriority = .required
@@ -481,14 +301,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's directional edges to the superview's margins with an inset.
-    ///
-    /// - Parameters:
-    ///   - edges: The edges to constrain
-    ///   - inset: The inset distance
-    ///   - priority: The priority of the constraint(s)
-    ///
-    /// - Returns: The LayoutItem
     public func toMargins(
         _ edges: [DirectionalEdge],
         inset: CGFloat = 0,
@@ -503,14 +315,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's canonical edges to the superview's margins with an inset.
-    ///
-    /// - Parameters:
-    ///   - edges: The edges to constrain
-    ///   - inset: The inset distance
-    ///   - priority: The priority of the constraint(s)
-    ///
-    /// - Returns: The LayoutItem
     public func toMargins(
         canonical edges: [CanonicalEdge] = CanonicalEdge.allCases,
         inset: CGFloat = 0,
@@ -525,11 +329,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's side edges to the superview's margins with an inset.
-    ///
-    /// - Parameters:
-    ///   - inset: (optional) The inset distance.
-    ///   - priority: (optional) The priority of constraints.
     public func toSideMargins(
         inset: CGFloat = 0,
         priority: UILayoutPriority = .required
@@ -537,15 +336,6 @@ extension LayoutItem {
         toMargins(canonical: [.left, .right], inset: inset, priority: priority)
     }
 
-    /// Constrains the `bottom` to the bottom margin with a minimum bottom inset
-    /// Useful for bottom-aligned elements on iPhoneX family devices that require
-    /// an additional bottom margin on non-iPhoneX devices.
-    ///
-    /// - Parameters:
-    ///   - minInset: minimum bottom inset on non-iPhoneX devices. A positive
-    ///     minInset will set your view's bottom above the superview's bottom visually.
-    ///     A negative minInset will do the opposite.
-    ///   - priority: (optional) priority of constraint
     public func toBottomMargin(
         minInset: CGFloat,
         priority: UILayoutPriority = .required
@@ -567,13 +357,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's directional edges to the superview's safe area with insets.
-    ///
-    /// - Parameters:
-    ///   - insets: The directional insets
-    ///   - priority: The priority of the constraints
-    ///
-    /// - Returns: The LayoutItem
     public func toSafeArea(
         insets: DirectionalInsets,
         priority: UILayoutPriority = .required
@@ -587,13 +370,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's canonical edges to the superview's safe area with insets.
-    ///
-    /// - Parameters:
-    ///   - insets: The canonical insets
-    ///   - priority: The priority of the constraints
-    ///
-    /// - Returns: The LayoutItem
     public func toSafeArea(
         insets: CanonicalInsets,
         priority: UILayoutPriority = .required
@@ -607,14 +383,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's directional edges to the superview's safe area with an inset.
-    ///
-    /// - Parameters:
-    ///   - edges: The edges to constrain
-    ///   - inset: The inset distance
-    ///   - priority: The priority of the constraint(s)
-    ///
-    /// - Returns: The LayoutItem
     public func toSafeArea(
         _ edges: [DirectionalEdge],
         inset: CGFloat = 0,
@@ -629,14 +397,6 @@ extension LayoutItem {
         }
     }
 
-    /// Constrains the view's canonical edges to the superview's safe area with an inset.
-    ///
-    /// - Parameters:
-    ///   - edges: The edges to constrain
-    ///   - inset: The inset distance
-    ///   - priority: The priority of the constraint(s)
-    ///
-    /// - Returns: The LayoutItem
     public func toSafeArea(
         canonical edges: [CanonicalEdge] = CanonicalEdge.allCases,
         inset: CGFloat = 0,
