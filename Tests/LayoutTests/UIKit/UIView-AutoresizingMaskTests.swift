@@ -10,7 +10,7 @@
 
 import Foundation
 
-@testable import Layout
+import Layout
 import Nimble
 import XCTest
 
