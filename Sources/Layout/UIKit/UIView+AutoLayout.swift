@@ -74,19 +74,6 @@ extension UIView {
                            constant: constant)
     }
 
-    public func constrain(
-        to superview: UIView,
-        insets: DirectionalInsets = .zero
-    ) {
-        translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            leading.constraint(equalTo: superview.leading, constant: insets.leading),
-            trailing.constraint(equalTo: superview.trailing, constant: -insets.trailing),
-            top.constraint(equalTo: superview.top, constant: insets.top),
-            bottom.constraint(equalTo: superview.bottom, constant: -insets.bottom)
-        ])
-    }
-
     public func constraints(
         is relation: NSLayoutConstraint.Relation = .equal,
         toSuperview attributes: [NSLayoutConstraint.Attribute],

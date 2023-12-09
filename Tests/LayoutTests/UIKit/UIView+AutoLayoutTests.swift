@@ -132,60 +132,6 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(view.constraints.first { $0.firstAttribute == .height }?.constant) == height
     }
 
-    func testConstrainToSuperviewWithDirectionalEdgeInsets_withDefaults() {
-
-        // GIVEN
-
-        let superview: UIView = .init()
-        let view: UIView = .init()
-        superview.addSubview(view)
-
-        // THEN
-
-        expect(superview.constraints).to(beEmpty())
-
-        // WHEN
-
-        view.constrain(to: superview)
-
-        // THEN
-
-        let constraints: [NSLayoutConstraint] = superview.constraints
-
-        expect(superview.constraints.count) == 4
-        expect(constraints[0].firstAttribute) == .leading
-        expect(constraints[0].constant) == 0
-        expect(constraints[1].firstAttribute) == .trailing
-        expect(constraints[1].constant) == 0
-        expect(constraints[2].firstAttribute) == .top
-        expect(constraints[2].constant) == 0
-        expect(constraints[3].firstAttribute) == .bottom
-        expect(constraints[3].constant) == 0
-    }
-
-    func testConstrainToSuperviewWithDirectionalEdgeInsets() {
-
-        // GIVEN
-
-        let superview: UIView = .init()
-        let view: UIView = .init()
-        superview.addSubview(view)
-        let insets: NSDirectionalEdgeInsets = .init(top: 1, leading: 2, bottom: 3, trailing: 4)
-        view.constrain(to: superview, insets: insets)
-        let constraints: [NSLayoutConstraint] = superview.constraints
-
-        // THEN
-
-        expect(constraints[0].firstAttribute) == .leading
-        expect(constraints[0].constant) == insets.leading
-        expect(constraints[1].firstAttribute) == .trailing
-        expect(constraints[1].constant) == -insets.trailing
-        expect(constraints[2].firstAttribute) == .top
-        expect(constraints[2].constant) == insets.top
-        expect(constraints[3].firstAttribute) == .bottom
-        expect(constraints[3].constant) == -insets.bottom
-    }
-
     func testConstraintToSuperview() {
 
         // GIVEN
