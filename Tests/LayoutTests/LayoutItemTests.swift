@@ -34,11 +34,12 @@ final class LayoutItemTests: XCTestCase {
 
         // WHEN
 
-        _ = view.id("identifier2")
+        let identifiedView: UIView = view.id("identifier2")
 
         // THEN
 
         expect(view.identifier) == "identifier2"
+        expect(identifiedView) === view
     }
 
     func testSizeWidthAndHeight_andWithPriority() {
