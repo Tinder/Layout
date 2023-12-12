@@ -17,4 +17,4 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v3
     - name: Build
-      run: bazelisk build --apple_platform_type=ios --cpu=ios_x86_64 //:Layout
+      run: bazelisk build --noenable_bzlmod //:all

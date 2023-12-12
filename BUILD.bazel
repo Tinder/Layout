@@ -1,8 +1,16 @@
+load("@build_bazel_rules_apple//apple:ios.bzl", "ios_build_test")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+ios_build_test(
+    name = "Layout-iOS",
+    minimum_os_version = "13.0",
+    targets = [":Layout"],
+)
 
 swift_library(
     name = "Layout",
-    module_name = "Layout",
-    srcs = glob(["Sources/Layout/**/*.swift"], allow_empty = False),
+    srcs = glob(["Sources/Layout/**/*.swift"]),
+    copts = ["-strict-concurrency=complete"],
     visibility = ["//visibility:public"],
+    tags = ["manual"],
 )
