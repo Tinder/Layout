@@ -235,7 +235,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     public func constrain(
         _ view1: UIView,
         to view2: UIView,
-        insets: CanonicalInsets = .zero
+        insets: CanonicalInsets
     ) -> Layout {
         self
             .constrain(view1.left, to: view2.left, constant: insets.left)
@@ -248,7 +248,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     public func constrain(
         _ view1: UIView,
         to view2: UIView,
-        inset: CGFloat
+        inset: CGFloat = 0
     ) -> Layout {
         constrain(view1,
                   to: view2,
@@ -408,12 +408,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
     }
 
     @discardableResult
-    public func withPriority(_ priority: UILayoutPriority) -> Layout {
-        constraints.prioritize(priority)
-        return self
-    }
-
-    @discardableResult
     public func activate() -> Layout {
         constraints.activate()
         return self
@@ -423,6 +417,19 @@ public final class Layout { // swiftlint:disable:this type_body_length
     public func deactivate() -> Layout {
         constraints.deactivate()
         return self
+    }
+
+    public func require() -> Layout {
+        withPriority(.required)
+    }
+
+    public func withPriority(_ priority: UILayoutPriority) -> Layout {
+        constraints.prioritize(priority)
+        return self
+    }
+
+    public func prioritize(_ priority: UILayoutPriority) {
+        constraints.forEach { $0.prioritize(priority) }
     }
 
     public func update() {
