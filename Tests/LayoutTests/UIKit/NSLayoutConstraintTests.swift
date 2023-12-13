@@ -115,17 +115,14 @@ final class NSLayoutConstraintTests: XCTestCase {
         let constraint: NSLayoutConstraint = .init()
         constraint.priority = .high
 
-        // THEN
-
-        expect(constraint.priority) == .high
-
         // WHEN
 
-        _ = constraint.require()
+        let requiredConstraint: NSLayoutConstraint = constraint.require()
 
         // THEN
 
         expect(constraint.priority) == .required
+        expect(requiredConstraint) === constraint
     }
 
     func testWithPriority() {
@@ -140,11 +137,12 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // WHEN
 
-        _ = constraint.withPriority(.high)
+        let highPriorityConstraint: NSLayoutConstraint = constraint.withPriority(.high)
 
         // THEN
 
         expect(constraint.priority) == .high
+        expect(highPriorityConstraint) === constraint
     }
 
     func testPrioritize() {

@@ -23,11 +23,12 @@ final class UIViewFramesTests: XCTestCase {
 
         // WHEN
 
-        _ = view.usingFrames()
+        let framedView: UIView = view.usingFrames()
 
         // THEN
 
         expect(view.translatesAutoresizingMaskIntoConstraints) == true
+        expect(framedView) === view
     }
 
     func testDisablingIntrinsicSize() {
@@ -45,7 +46,7 @@ final class UIViewFramesTests: XCTestCase {
 
         // WHEN
 
-        _ = view.disablingIntrinsicSize()
+        let viewWithoutIntrinsicSize: UIView = view.disablingIntrinsicSize()
 
         // THEN
 
@@ -53,5 +54,6 @@ final class UIViewFramesTests: XCTestCase {
         expect(view.contentHuggingPriority(for: .vertical)) == .disabled
         expect(view.contentCompressionResistancePriority(for: .horizontal)) == .disabled
         expect(view.contentCompressionResistancePriority(for: .vertical)) == .disabled
+        expect(viewWithoutIntrinsicSize) === view
     }
 }
