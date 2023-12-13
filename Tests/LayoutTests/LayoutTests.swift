@@ -1073,13 +1073,19 @@ final class LayoutTests: XCTestCase {
             multiplier: 1,
             constant: 100
         )
-        heightConstraint.priority = .high
-        heightConstraint.priority = .high
         let layout: Layout = .init(view, subview)
 
         // WHEN
 
+        heightConstraint.priority = .high
+        widthConstraint.priority = .high
+
         layout.adding(heightConstraint, widthConstraint)
+
+        // THEN
+
+        expect(layout.constraints[0].priority) == UILayoutPriority.high
+        expect(layout.constraints[1].priority) == UILayoutPriority.high
 
         // WHEN
 
