@@ -67,7 +67,9 @@ internal struct SwiftLintPlugin: BuildToolPlugin {
         target: Target
     ) throws -> [String: String] {
 
-        let workingDirectory: Path = try target.directory.resolveWorkingDirectory(in: context.package.directory)
+        let workingDirectory: Path = try target
+            .directory
+            .resolveWorkingDirectory(in: context.package.directory)
 
         return ["BUILD_WORKSPACE_DIRECTORY": "\(workingDirectory)"]
     }
@@ -81,9 +83,12 @@ internal struct SwiftLintPlugin: BuildToolPlugin {
 
         print("Environment:", environment)
 
+        guard !swiftFiles.isEmpty
+        else { return [] }
+
         let arguments: [String] = ["lint", "--quiet", "--force-exclude", "--cache-path", "\(path)"]
 
-        return swiftFiles.isEmpty ? [] : [
+        return [
             .prebuildCommand(
                 displayName: "SwiftLint",
                 executable: executable.path,

@@ -11,7 +11,7 @@ only_rules:
 - anonymous_argument_in_multiline_closure
 - anyobject_protocol
 - array_init
-- attributes
+# - attributes
 - balanced_xctest_lifecycle
 - blanket_disable_command
 - block_based_kvo
@@ -129,6 +129,7 @@ only_rules:
 - no_grouping_extension
 # - no_magic_numbers
 - no_space_in_method_call
+- non_overridable_class_declaration
 - notification_center_detachment
 - ns_number_init_as_function_reference
 - nslocalizedstring_key
@@ -154,6 +155,7 @@ only_rules:
 - private_outlet
 - private_over_fileprivate
 - private_subject
+- private_swiftui_state
 - private_unit_test
 - prohibited_interface_builder
 - prohibited_super_call
@@ -209,6 +211,7 @@ only_rules:
 - unavailable_function
 - unhandled_throwing_task
 - unneeded_break_in_switch
+# - unneeded_override
 - unneeded_parentheses_in_closure_argument
 - unneeded_synthesized_initializer
 - unowned_variable_capture
