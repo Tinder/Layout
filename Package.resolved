@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mattgallagher/CwlPreconditionTesting.git",
       "state" : {
-        "revision" : "a23ded2c91df9156628a6996ab4f347526f17b6b",
-        "version" : "2.1.2"
+        "revision" : "dc9af4781f2afdd1e68e90f80b8603be73ea7abc",
+        "version" : "2.2.0"
       }
     },
     {
@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Quick/Nimble.git",
       "state" : {
-        "revision" : "f552a16f434eef1f18b62985172489f41d37a18e",
-        "version" : "12.2.0"
+        "revision" : "d616f15123bfb36db1b1075153f73cf40605b39d",
+        "version" : "13.0.0"
       }
     },
     {
@@ -32,8 +32,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-snapshot-testing.git",
       "state" : {
-        "revision" : "dc46eeb3928a75390651fac6c1ef7f93ad59a73b",
-        "version" : "1.11.1"
+        "revision" : "59b663f68e69f27a87b45de48cb63264b8194605",
+        "version" : "1.15.1"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-syntax.git",
+      "state" : {
+        "revision" : "6ad4ea24b01559dde0773e3d091f1b9e36175036",
+        "version" : "509.0.2"
       }
     }
   ],
