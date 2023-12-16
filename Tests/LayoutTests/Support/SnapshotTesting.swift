@@ -36,13 +36,13 @@ extension XCTestCase {
             let view: UIView = viewController.view
             view.backgroundColor = .white
             layout(view).activate()
-            assertSnapshot(matching: viewController,
+            assertSnapshot(of: viewController,
                            as: .image(on: device.config),
                            named: device.name,
                            file: file,
                            testName: testName,
                            line: line)
-            assertSnapshot(matching: viewController,
+            assertSnapshot(of: viewController,
                            as: .recursiveDescription(on: device.config),
                            named: device.name,
                            file: file,
