@@ -277,6 +277,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // THEN
 
+        expect(sizeConstraints1.count) == 2
         expect(sizeConstraints1[0].firstAttribute) == .width
         expect(sizeConstraints1[0].constant) == 0
         expect(sizeConstraints1[1].firstAttribute) == .height
@@ -288,6 +289,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // THEN
 
+        expect(sizeConstraints2.count) == 2
         expect(sizeConstraints2[0].firstAttribute) == .width
         expect(sizeConstraints2[0].constant) == 10
         expect(sizeConstraints2[1].firstAttribute) == .height
@@ -338,6 +340,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // THEN
 
+        expect(constraints.count) == 4
         expect(constraints[0].firstAttribute) == .top
         expect(constraints[0].constant) == 0
         expect(constraints[1].firstAttribute) == .bottom
@@ -360,6 +363,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // THEN
 
+        expect(constraints.count) == 4
         expect(constraints[0].firstAttribute) == .top
         expect(constraints[0].constant) == inset
         expect(constraints[1].firstAttribute) == .bottom
@@ -382,6 +386,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // THEN
 
+        expect(constraints.count) == 4
         expect(constraints[0].firstAttribute) == .top
         expect(constraints[0].constant) == insets.top
         expect(constraints[1].firstAttribute) == .bottom
@@ -404,6 +409,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // THEN
 
+        expect(constraints.count) == 4
         expect(constraints[0].firstAttribute) == .top
         expect(constraints[0].constant) == insets.top
         expect(constraints[1].firstAttribute) == .bottom
@@ -428,6 +434,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // THEN
 
+        expect(constraints1.count) == 2
         expect(constraints1[0].firstAttribute) == .centerX
         expect(constraints1[0].constant) == 0
         expect(constraints1[1].firstAttribute) == .centerY
@@ -443,6 +450,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // THEN
 
+        expect(constraints2.count) == 2
         expect(constraints2[0].firstAttribute) == .centerX
         expect(constraints2[0].constant) == offset.horizontal
         expect(constraints2[1].firstAttribute) == .centerY

@@ -1042,6 +1042,7 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
+        expect(layout.constraints.count) == 2
         expect(layout.constraints[0].isActive) == false
         expect(layout.constraints[1].isActive) == false
 
@@ -1099,6 +1100,7 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
+        expect(layout.constraints.count) == 2
         expect(layout.constraints[0].priority) == UILayoutPriority.high
         expect(layout.constraints[1].priority) == UILayoutPriority.high
 
@@ -1145,6 +1147,7 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
+        expect(layout.constraints.count) == 2
         expect(layout.constraints[0].priority) == UILayoutPriority.required
         expect(layout.constraints[1].priority) == UILayoutPriority.required
 
@@ -1191,6 +1194,7 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
+        expect(layout.constraints.count) == 2
         expect(layout.constraints[0].priority) == UILayoutPriority.required
         expect(layout.constraints[1].priority) == UILayoutPriority.required
 
