@@ -48,6 +48,9 @@ final class ViewLayoutItemTests: XCTestCase {
         // GIVEN
 
         let view: UIView = .init()
+
+        // WHEN
+
         let boundary: LayoutBoundary = ViewLayoutItem(layoutItemView: view) { _ in [] }
 
         // THEN
@@ -65,6 +68,9 @@ final class ViewLayoutItemTests: XCTestCase {
         // GIVEN
 
         let view: UIView = .init()
+
+        // WHEN
+
         let center: LayoutCenter = ViewLayoutItem(layoutItemView: view) { _ in [] }
 
         // THEN
@@ -78,6 +84,9 @@ final class ViewLayoutItemTests: XCTestCase {
         // GIVEN
 
         let view: UIView = .init()
+
+        // WHEN
+
         let size: LayoutSize = ViewLayoutItem(layoutItemView: view) { _ in [] }
 
         // THEN
@@ -91,6 +100,9 @@ final class ViewLayoutItemTests: XCTestCase {
         // GIVEN
 
         let view: UIView = .init()
+
+        // WHEN
+
         let baseline: LayoutBaseline = ViewLayoutItem(layoutItemView: view) { _ in [] }
 
         // THEN

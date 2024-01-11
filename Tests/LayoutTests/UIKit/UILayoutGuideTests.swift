@@ -19,6 +19,9 @@ final class UILayoutGuideTests: XCTestCase {
         // GIVEN
 
         let guide: UILayoutGuide = .init()
+
+        // WHEN
+
         let boundary: LayoutBoundary = guide
 
         // THEN
@@ -36,6 +39,9 @@ final class UILayoutGuideTests: XCTestCase {
         // GIVEN
 
         let guide: UILayoutGuide = .init()
+
+        // WHEN
+
         let center: LayoutCenter = guide
 
         // THEN
@@ -49,6 +55,9 @@ final class UILayoutGuideTests: XCTestCase {
         // GIVEN
 
         let guide: UILayoutGuide = .init()
+
+        // WHEN
+
         let size: LayoutSize = guide
 
         // THEN

@@ -22,6 +22,9 @@ final class UIViewLayoutTests: XCTestCase {
 
         let view: UIView = .init()
         let metrics: [String: Any] = ["gap": 100]
+
+        // WHEN
+
         let layout: Layout = view.layout(metrics: metrics)
 
         // THEN
@@ -40,6 +43,9 @@ final class UIViewLayoutTests: XCTestCase {
         let subview: UIView = .init()
         let metrics: [String: Any] = ["gap": 100]
         let identifier: String = UUID().uuidString
+
+        // WHEN
+
         let layout: Layout = view.layout(metrics: metrics, subview.id(identifier))
 
         // THEN
@@ -61,6 +67,9 @@ final class UIViewLayoutTests: XCTestCase {
         let metrics: [String: Any] = ["gap": 100]
         let identifier1: String = UUID().uuidString
         let identifier2: String = UUID().uuidString
+
+        // WHEN
+
         let layout: Layout = view.layout(metrics: metrics) {
             subview1.id(identifier1)
             subview2.id(identifier2)

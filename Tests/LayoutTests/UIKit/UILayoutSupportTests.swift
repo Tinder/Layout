@@ -16,8 +16,6 @@ final class UILayoutSupportTests: XCTestCase {
 
     func testAnchors() {
 
-        // GIVEN
-
         final class LayoutSupportMock: NSObject, UILayoutSupport {
 
             var topAnchor: NSLayoutYAxisAnchor { view.top }
@@ -33,7 +31,12 @@ final class UILayoutSupportTests: XCTestCase {
             }
         }
 
+        // GIVEN
+
         let view: UIView = .init()
+
+        // WHEN
+
         let layoutSupport: UILayoutSupport = LayoutSupportMock(view: view)
 
         // THEN
