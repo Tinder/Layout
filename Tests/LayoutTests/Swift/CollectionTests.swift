@@ -39,6 +39,7 @@ final class CollectionTests: XCTestCase {
             constant: 100
         )
         let layout1: Layout = .init(view1, subview1)
+
         let view2: UIView = .init()
         let subview2: UIView = .init()
         let heightConstraint2: NSLayoutConstraint = .init(
@@ -60,6 +61,7 @@ final class CollectionTests: XCTestCase {
             constant: 100
         )
         let layout2: Layout = .init(view2, subview2)
+
         let layouts: [Layout] = [layout1, layout2]
 
         // WHEN
