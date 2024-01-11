@@ -55,7 +55,15 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // GIVEN
 
         let size: CGSize = .init(width: 10, height: 20)
-        let view: UIView = .init().constrainingSize(size)
+        let view: UIView = .init()
+
+        // THEN
+
+        expect(view.translatesAutoresizingMaskIntoConstraints) == true
+
+        // WHEN
+
+        view.constrainingSize(size)
 
         // THEN
 
@@ -90,7 +98,15 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // GIVEN
 
         let width: CGFloat = 10
-        let view: UIView = .init().constrainingWidth(width)
+        let view: UIView = .init()
+
+        // THEN
+
+        expect(view.translatesAutoresizingMaskIntoConstraints) == true
+
+        // WHEN
+
+        view.constrainingWidth(width)
 
         // THEN
 
@@ -124,7 +140,15 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // GIVEN
 
         let height: CGFloat = 20
-        let view: UIView = .init().constrainingHeight(height)
+        let view: UIView = .init()
+
+        // THEN
+
+        expect(view.translatesAutoresizingMaskIntoConstraints) == true
+
+        // WHEN
+
+        view.constrainingHeight(height)
 
         // THEN
 
@@ -139,6 +163,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
         let superview: UIView = .init()
         let view: UIView = .init()
         superview.addSubview(view)
+
+        // WHEN
+
         let constraints1: [NSLayoutConstraint] = view.constraints(toSuperview: [.top])
 
         // THEN
@@ -148,7 +175,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints1.first?.multiplier) == 1
         expect(constraints1.first?.constant) == 0
 
-        // GIVEN
+        // WHEN
 
         let constraints2: [NSLayoutConstraint] = view.constraints(
             is: .greaterThanOrEqual,
@@ -171,6 +198,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         let view: UIView = .init()
         let targetView: UIView = .init()
+
+        // WHEN
+
         let constraints1: [NSLayoutConstraint] = view.constraints(to: [.top], of: targetView)
 
         // THEN
@@ -180,7 +210,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints1.first?.multiplier) == 1
         expect(constraints1.first?.constant) == 0
 
-        // GIVEN
+        // WHEN
 
         let constraints2: [NSLayoutConstraint] = view.constraints(
             is: .greaterThanOrEqual,
@@ -214,6 +244,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         let relation2: NSLayoutConstraint.Relation = .greaterThanOrEqual
         let width2: CGFloat = 10
+
+        // WHEN
+
         let widthConstraint2: NSLayoutConstraint = view.widthConstraint(is: relation2, width2)
 
         // THEN
@@ -225,6 +258,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         let relation3: NSLayoutConstraint.Relation = .lessThanOrEqual
         let width3: CGFloat = 20
+
+        // WHEN
+
         let widthConstraint3: NSLayoutConstraint = view.widthConstraint(is: relation3, width3)
 
         // THEN
@@ -238,6 +274,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // GIVEN
 
         let view: UIView = .init()
+
+        // WHEN
+
         let heightConstraint1: NSLayoutConstraint = view.heightConstraint()
 
         // THEN
@@ -249,6 +288,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         let relation2: NSLayoutConstraint.Relation = .greaterThanOrEqual
         let height2: CGFloat = 10
+
+        // WHEN
+
         let heightConstraint2: NSLayoutConstraint = view.heightConstraint(is: relation2, height2)
 
         // THEN
@@ -260,6 +302,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         let relation3: NSLayoutConstraint.Relation = .lessThanOrEqual
         let height3: CGFloat = 20
+
+        // WHEN
+
         let heightConstraint3: NSLayoutConstraint = view.heightConstraint(is: relation3, height3)
 
         // THEN
@@ -273,6 +318,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // GIVEN
 
         let view: UIView = .init()
+
+        // WHEN
+
         let sizeConstraints1: [NSLayoutConstraint] = view.sizeConstraints()
 
         // THEN
@@ -282,7 +330,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(sizeConstraints1[1].firstAttribute) == .height
         expect(sizeConstraints1[1].constant) == 0
 
-        // GIVEN
+        // WHEN
 
         let sizeConstraints2: [NSLayoutConstraint] = view.sizeConstraints(.init(width: 10, height: 20))
 
@@ -299,6 +347,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // GIVEN
 
         let view: UIView = .init()
+
+        // WHEN
+
         let constraint: NSLayoutConstraint = view.squareConstraint()
 
         // THEN
@@ -334,6 +385,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
         let superview: UIView = .init()
         let view: UIView = .init()
         superview.addSubview(view)
+
+        // WHEN
+
         let constraints: [NSLayoutConstraint] = view.edgeConstraints()
 
         // THEN
@@ -356,6 +410,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
         let view: UIView = .init()
         superview.addSubview(view)
         let inset: CGFloat = 10
+
+        // WHEN
+
         let constraints: [NSLayoutConstraint] = view.edgeConstraints(inset: inset)
 
         // THEN
@@ -378,6 +435,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
         let view: UIView = .init()
         superview.addSubview(view)
         let insets: NSDirectionalEdgeInsets = .init(top: 1, leading: 2, bottom: 3, trailing: 4)
+
+        // WHEN
+
         let constraints: [NSLayoutConstraint] = view.edgeConstraints(insets: insets)
 
         // THEN
@@ -400,6 +460,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
         let view: UIView = .init()
         superview.addSubview(view)
         let insets: UIEdgeInsets = .init(top: 1, left: 2, bottom: 3, right: 4)
+
+        // WHEN
+
         let constraints: [NSLayoutConstraint] = view.edgeConstraints(insets: insets)
 
         // THEN
@@ -455,6 +518,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         let superview: UIView = .init()
         let view: UIView = .init()
+
+        // WHEN
+
         let constraints: [NSLayoutConstraint] = view.equalConstraints(for: .top, to: [superview])
 
         // THEN
