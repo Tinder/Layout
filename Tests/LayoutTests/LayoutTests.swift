@@ -610,19 +610,24 @@ final class LayoutTests: XCTestCase {
         // GIVEN
 
         let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
 
         // THEN
 
         assertLayout { view in
             view
-                .layout(pinkView)
-                .constrain(pinkView,
-                           to: view,
+                .layout {
+                    pinkView
+                        .toEdges(inset: 20)
+                    yellowView
+                }
+                .constrain(yellowView,
+                           to: pinkView,
                            insets: NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 40))
         }
     }
 
-    func testConstrain_andWithInsets() {
+    func testConstrain_andWithCanonicalInsets() {
 
         // GIVEN
 
@@ -632,23 +637,15 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-
-            let layout: Layout = view.layout {
-                pinkView
-                yellowView
-            }
-
-            // Pin View1 To View2 with Default Insets
-
-            layout.constrain(pinkView, to: view)
-
-            // Pin View1 To View2 with Insets
-
-            layout.constrain(yellowView,
-                             to: view,
-                             insets: UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40))
-
-            return layout
+            view
+                .layout {
+                    pinkView
+                        .toEdges(inset: 20)
+                    yellowView
+                }
+                .constrain(yellowView,
+                           to: pinkView,
+                           insets: UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40))
         }
     }
 
@@ -656,12 +653,30 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
+        let blueView: UIView = blueView
         let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
 
         // THEN
 
         assertLayout { view in
-            view.layout(pinkView).constrain(pinkView, to: view, inset: 20)
+
+            let layout: Layout = view.layout {
+                blueView
+                    .toEdges(inset: 20)
+                pinkView
+                yellowView
+            }
+
+            // Constrain with Default Inset
+
+            layout.constrain(pinkView, to: blueView)
+
+            // Constrain with Inset
+
+            layout.constrain(yellowView, to: blueView, inset: 20)
+
+            return layout
         }
     }
 
