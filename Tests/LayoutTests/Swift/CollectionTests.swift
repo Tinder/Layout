@@ -69,8 +69,11 @@ final class CollectionTests: XCTestCase {
 
         // THEN
 
+        expect(layout1.constraints.count) == 2
         expect(layout1.constraints[0].isActive) == false
         expect(layout1.constraints[1].isActive) == false
+
+        expect(layout2.constraints.count) == 2
         expect(layout2.constraints[0].isActive) == false
         expect(layout2.constraints[1].isActive) == false
 
@@ -80,8 +83,11 @@ final class CollectionTests: XCTestCase {
 
         // THEN
 
+        expect(layout1.constraints.count) == 2
         expect(layout1.constraints[0].isActive) == true
         expect(layout1.constraints[1].isActive) == true
+
+        expect(layout2.constraints.count) == 2
         expect(layout2.constraints[0].isActive) == true
         expect(layout2.constraints[1].isActive) == true
 
@@ -91,8 +97,11 @@ final class CollectionTests: XCTestCase {
 
         // THEN
 
+        expect(layout1.constraints.count) == 2
         expect(layout1.constraints[0].isActive) == false
         expect(layout1.constraints[1].isActive) == false
+
+        expect(layout2.constraints.count) == 2
         expect(layout2.constraints[0].isActive) == false
         expect(layout2.constraints[1].isActive) == false
     }
