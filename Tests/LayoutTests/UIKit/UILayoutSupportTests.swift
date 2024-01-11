@@ -14,22 +14,22 @@ import XCTest
 @MainActor
 final class UILayoutSupportTests: XCTestCase {
 
-    func testAnchors() {
+    private final class LayoutSupportMock: NSObject, UILayoutSupport {
 
-        final class LayoutSupportMock: NSObject, UILayoutSupport {
+        var topAnchor: NSLayoutYAxisAnchor { view.top }
+        var bottomAnchor: NSLayoutYAxisAnchor { view.bottom }
+        var heightAnchor: NSLayoutDimension { view.height }
 
-            var topAnchor: NSLayoutYAxisAnchor { view.top }
-            var bottomAnchor: NSLayoutYAxisAnchor { view.bottom }
-            var heightAnchor: NSLayoutDimension { view.height }
+        var length: CGFloat { fatalError("Not Used") }
 
-            var length: CGFloat { fatalError("Not Used") }
+        private let view: UIView
 
-            private let view: UIView
-
-            init(view: UIView) {
-                self.view = view
-            }
+        init(view: UIView) {
+            self.view = view
         }
+    }
+
+    func testAnchors() {
 
         // GIVEN
 
