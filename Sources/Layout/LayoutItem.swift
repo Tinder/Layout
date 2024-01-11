@@ -132,7 +132,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            layoutItem.layoutItemView.centerConstraints(offsetBy: offset).withPriority(priority)
+            layoutItem.layoutItemView.centerConstraints(offset: offset).withPriority(priority)
         }
     }
 

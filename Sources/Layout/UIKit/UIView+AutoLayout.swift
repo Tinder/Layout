@@ -142,13 +142,13 @@ extension UIView {
     }
 
     public func edgeConstraints(
-        insetBy value: CGFloat
+        inset: CGFloat = 0
     ) -> [NSLayoutConstraint] {
-        edgeConstraints(insetBy: UIEdgeInsets(top: value, left: value, bottom: value, right: value))
+        edgeConstraints(insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset))
     }
 
     public func edgeConstraints(
-        insetBy insets: DirectionalInsets = .zero
+        insets: DirectionalInsets
     ) -> [NSLayoutConstraint] {
         [
             constraint(toSuperview: .top, constant: insets.top),
@@ -159,7 +159,7 @@ extension UIView {
     }
 
     public func edgeConstraints(
-        insetBy insets: CanonicalInsets
+        insets: CanonicalInsets
     ) -> [NSLayoutConstraint] {
         [
             constraint(toSuperview: .top, constant: insets.top),
@@ -170,7 +170,7 @@ extension UIView {
     }
 
     public func centerConstraints(
-        offsetBy offset: UIOffset = .zero
+        offset: UIOffset = .zero
     ) -> [NSLayoutConstraint] {
         [
             constraint(toSuperview: .centerX, constant: offset.horizontal),
