@@ -38,10 +38,10 @@ override func viewDidLoad() {
     super.viewDidLoad()
     view.layout {
         label
-            .toSafeArea(.top)
+            .toSafeArea([.top])
             .center(.horizontal)
         imageView
-            .pad(20)
+            .toSideEdges(inset: 20)
             .size(height: 200)
             .center(.horizontal)
         button
