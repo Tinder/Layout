@@ -38,12 +38,11 @@ override func viewDidLoad() {
     super.viewDidLoad()
     view.layout {
         label
-            .toSafeArea(.top)
+            .toSafeArea([.top])
             .center(.horizontal)
         imageView
-            .pad(20)
+            .toSideEdges(inset: 20)
             .size(height: 200)
-            .center(.horizontal)
         button
             .center(.horizontal)
     }
@@ -69,7 +68,6 @@ override func viewDidLoad() {
         imageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
         imageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
         imageView.heightAnchor.constraint(equalToConstant: 200),
-        imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         imageView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 50),
         button.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 50)
