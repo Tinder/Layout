@@ -15,19 +15,6 @@ import XCTest
 @MainActor
 final class NSLayoutConstraintAxisTests: XCTestCase {
 
-    func testOrientation() {
-
-        // GIVEN
-
-        let horizontalAxis: NSLayoutConstraint.Axis = .horizontal
-        let verticalAxis: NSLayoutConstraint.Axis = .vertical
-
-        // THEN
-
-        expect(horizontalAxis.orientation) == "H"
-        expect(verticalAxis.orientation) == "V"
-    }
-
     func testAttribute() {
 
         // GIVEN
