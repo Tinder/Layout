@@ -14,7 +14,7 @@ import XCTest
 @MainActor
 final class LayoutExampleTests: XCTestCase {
 
-    func testLayoutWithSingleItem() {
+    func testLayoutDocumentationExample() {
 
         // GIVEN
 
@@ -27,7 +27,7 @@ final class LayoutExampleTests: XCTestCase {
         }
     }
 
-    func testLayoutWithBuilder() {
+    func testLayoutBuilderDocumentationExample() {
 
         // GIVEN
 
@@ -82,7 +82,6 @@ final class LayoutExampleTests: XCTestCase {
             imageView
                 .toSideEdges(inset: 20)
                 .size(height: 200)
-                .center(.horizontal)
             button
                 .center(.horizontal)
         }
@@ -94,7 +93,6 @@ final class LayoutExampleTests: XCTestCase {
             imageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             imageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
             imageView.heightAnchor.constraint(equalToConstant: 200),
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 50),
             button.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 50)
@@ -108,7 +106,7 @@ final class LayoutExampleTests: XCTestCase {
 
         assertLayout { container in
             container.addSubview(view)
-            NSLayoutConstraint.activate(view.usingConstraints().edgeConstraints())
+            view.usingConstraints().edgeConstraints().activate()
             return layout
         }
     }
