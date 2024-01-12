@@ -43,7 +43,6 @@ override func viewDidLoad() {
         imageView
             .toSideEdges(inset: 20)
             .size(height: 200)
-            .center(.horizontal)
         button
             .center(.horizontal)
     }
