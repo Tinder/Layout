@@ -12,17 +12,6 @@ import UIKit
 
 extension NSLayoutConstraint.Axis {
 
-    internal var orientation: String {
-        switch self {
-        case .horizontal:
-            return "H"
-        case .vertical:
-            return "V"
-        @unknown default:
-            return "H"
-        }
-    }
-
     internal var attribute: NSLayoutConstraint.Attribute {
         switch self {
         case .horizontal:

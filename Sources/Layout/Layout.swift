@@ -86,7 +86,10 @@ public final class Layout { // swiftlint:disable:this type_body_length
         metrics: [String: Any]? = nil,
         options: NSLayoutConstraint.FormatOptions = []
     ) -> Layout {
-        vfl(axis: .vertical, format: format, metrics: metrics, options: options)
+        adding(NSLayoutConstraint.constraints(format: "V:" + format,
+                                              views: items,
+                                              metrics: metrics ?? self.metrics,
+                                              options: options))
     }
 
     @discardableResult
@@ -95,24 +98,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
         metrics: [String: Any]? = nil,
         options: NSLayoutConstraint.FormatOptions = []
     ) -> Layout {
-        vfl(axis: .horizontal, format: format, metrics: metrics, options: options)
-    }
-
-    private func vfl(
-        axis: NSLayoutConstraint.Axis,
-        format: String,
-        metrics: [String: Any]? = nil,
-        options: NSLayoutConstraint.FormatOptions = []
-    ) -> Layout {
-        vfl(axis.orientation + ":" + format, metrics: metrics, options: options)
-    }
-
-    private func vfl(
-        _ format: String,
-        metrics: [String: Any]? = nil,
-        options: NSLayoutConstraint.FormatOptions = []
-    ) -> Layout {
-        adding(NSLayoutConstraint.constraints(format: format,
+        adding(NSLayoutConstraint.constraints(format: "H:" + format,
                                               views: items,
                                               metrics: metrics ?? self.metrics,
                                               options: options))
