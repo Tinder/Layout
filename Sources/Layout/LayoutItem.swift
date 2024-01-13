@@ -52,14 +52,6 @@ extension LayoutItem {
         return self
     }
 
-    private func addingSuperviewConstraints(
-        @ConstraintsBuilder constraints: @escaping SuperviewConstraints
-    ) -> LayoutItem {
-        ViewLayoutItem(layoutItemView: layoutItemView) { [superviewConstraints] layoutItem in
-            superviewConstraints(layoutItem) + constraints(layoutItem)
-        }
-    }
-
     public func size(
         width: CGFloat,
         height: CGFloat,
@@ -412,33 +404,12 @@ extension LayoutItem {
     }
 
     private func constraint(
-        to edge: CanonicalEdge,
+        to edge: DirectionalEdge,
         of boundary: LayoutBoundary,
-        insets: UIEdgeInsets,
+        inset: CGFloat,
         priority: UILayoutPriority
     ) -> NSLayoutConstraint {
-        switch edge {
-        case .top:
-            return layoutItemView
-                .top
-                .constraint(equalTo: boundary.top, constant: insets.constant(for: .top))
-                .withPriority(priority)
-        case .bottom:
-            return layoutItemView
-                .bottom
-                .constraint(equalTo: boundary.bottom, constant: insets.constant(for: .bottom))
-                .withPriority(priority)
-        case .left:
-            return layoutItemView
-                .left
-                .constraint(equalTo: boundary.left, constant: insets.constant(for: .left))
-                .withPriority(priority)
-        case .right:
-            return layoutItemView
-                .right
-                .constraint(equalTo: boundary.right, constant: insets.constant(for: .right))
-                .withPriority(priority)
-        }
+        constraint(to: edge, of: boundary, insets: NSDirectionalEdgeInsets(inset), priority: priority)
     }
 
     private func constraint(
@@ -481,11 +452,40 @@ extension LayoutItem {
     }
 
     private func constraint(
-        to edge: DirectionalEdge,
+        to edge: CanonicalEdge,
         of boundary: LayoutBoundary,
-        inset: CGFloat,
+        insets: UIEdgeInsets,
         priority: UILayoutPriority
     ) -> NSLayoutConstraint {
-        constraint(to: edge, of: boundary, insets: NSDirectionalEdgeInsets(inset), priority: priority)
+        switch edge {
+        case .top:
+            return layoutItemView
+                .top
+                .constraint(equalTo: boundary.top, constant: insets.constant(for: .top))
+                .withPriority(priority)
+        case .bottom:
+            return layoutItemView
+                .bottom
+                .constraint(equalTo: boundary.bottom, constant: insets.constant(for: .bottom))
+                .withPriority(priority)
+        case .left:
+            return layoutItemView
+                .left
+                .constraint(equalTo: boundary.left, constant: insets.constant(for: .left))
+                .withPriority(priority)
+        case .right:
+            return layoutItemView
+                .right
+                .constraint(equalTo: boundary.right, constant: insets.constant(for: .right))
+                .withPriority(priority)
+        }
+    }
+
+    private func addingSuperviewConstraints(
+        @ConstraintsBuilder constraints: @escaping SuperviewConstraints
+    ) -> LayoutItem {
+        ViewLayoutItem(layoutItemView: layoutItemView) { [superviewConstraints] layoutItem in
+            superviewConstraints(layoutItem) + constraints(layoutItem)
+        }
     }
 }
