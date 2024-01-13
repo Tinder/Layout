@@ -413,6 +413,15 @@ extension LayoutItem {
     }
 
     private func constraint(
+        to edge: CanonicalEdge,
+        of boundary: LayoutBoundary,
+        inset: CGFloat,
+        priority: UILayoutPriority
+    ) -> NSLayoutConstraint {
+        constraint(to: edge, of: boundary, insets: UIEdgeInsets(inset), priority: priority)
+    }
+
+    private func constraint(
         to edge: DirectionalEdge,
         of boundary: LayoutBoundary,
         insets: NSDirectionalEdgeInsets,
@@ -440,15 +449,6 @@ extension LayoutItem {
                 .constraint(equalTo: boundary.trailing, constant: insets.constant(for: .trailing))
                 .withPriority(priority)
         }
-    }
-
-    private func constraint(
-        to edge: CanonicalEdge,
-        of boundary: LayoutBoundary,
-        inset: CGFloat,
-        priority: UILayoutPriority
-    ) -> NSLayoutConstraint {
-        constraint(to: edge, of: boundary, insets: UIEdgeInsets(inset), priority: priority)
     }
 
     private func constraint(
