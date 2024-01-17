@@ -126,8 +126,8 @@ extension UIView {
         _ size: CGSize? = nil
     ) -> [NSLayoutConstraint] {
         [
-            width.constraint(size?.width ?? bounds.width),
-            height.constraint(size?.height ?? bounds.height)
+            width.constraint(constant: size?.width ?? bounds.width),
+            height.constraint(constant: size?.height ?? bounds.height)
         ]
     }
 
