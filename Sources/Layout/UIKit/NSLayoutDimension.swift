@@ -32,7 +32,7 @@ extension NSLayoutDimension {
 
     public func constraint(
         is relation: NSLayoutConstraint.Relation = .equal,
-        _ constant: CGFloat
+        constant: CGFloat
     ) -> NSLayoutConstraint {
         switch relation {
         case .equal:
