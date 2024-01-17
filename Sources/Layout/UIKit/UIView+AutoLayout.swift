@@ -110,14 +110,14 @@ extension UIView {
         is relation: NSLayoutConstraint.Relation = .equal,
         _ constant: CGFloat? = nil
     ) -> NSLayoutConstraint {
-        return width.constraint(is: relation, constant: constant ?? bounds.width)
+        width.constraint(is: relation, constant: constant ?? bounds.width)
     }
 
     public func heightConstraint(
         is relation: NSLayoutConstraint.Relation = .equal,
         _ constant: CGFloat? = nil
     ) -> NSLayoutConstraint {
-        return height.constraint(is: relation, constant: constant ?? bounds.height)
+        height.constraint(is: relation, constant: constant ?? bounds.height)
     }
 
     public func sizeConstraints(
