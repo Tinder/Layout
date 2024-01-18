@@ -965,8 +965,8 @@ final class LayoutTests: XCTestCase {
 
             // Center View Between Top Anchor and Bottom Anchor with Default Priority
 
-            layout.center(yellowView, between: view.top, and: view.centerY, priority: .high)
-            layout.center(yellowView, between: view.top, and: view.bottom)
+            layout.center(yellowView, between: view.top, and: view.bottom, priority: .high)
+            layout.center(yellowView, between: view.top, and: view.centerY)
 
             // Center View Between Top Anchor and Bottom Anchor with Priority
 
