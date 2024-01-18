@@ -236,9 +236,8 @@ public final class Layout { // swiftlint:disable:this type_body_length
         to targetView: UIView,
         inset: CGFloat = 0
     ) -> Layout {
-        constrain(view,
-                  to: targetView,
-                  insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset))
+        let insets: UIEdgeInsets = .init(top: inset, left: inset, bottom: inset, right: inset)
+        return constrain(view, to: targetView, insets: insets)
     }
 
     @discardableResult
