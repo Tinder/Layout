@@ -133,7 +133,7 @@ extension UIView {
         constraint(for: .width, to: .height, of: self)
     }
 
-    public func aspectConstraint(
+    public func aspectRatioConstraint(
         _ ratio: CGFloat
     ) -> NSLayoutConstraint {
         constraint(for: .width, to: .height, of: self, multiplier: ratio)

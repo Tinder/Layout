@@ -361,7 +361,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraint.relation) == .equal
     }
 
-    func testAspectConstraint() {
+    func testAspectRatioConstraint() {
 
         // GIVEN
 
@@ -370,7 +370,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // WHEN
 
-        let constraint: NSLayoutConstraint = view.aspectConstraint(ratio)
+        let constraint: NSLayoutConstraint = view.aspectRatioConstraint(ratio)
 
         // THEN
 
