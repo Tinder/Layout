@@ -923,7 +923,7 @@ final class LayoutTests: XCTestCase {
                     .size(width: 100, height: 100)
                     .to(.top)
             )
-            .center(pinkView, between: view.leading, and: view.leading, priority: .high)
+            .center(pinkView, between: view.leading, and: view.centerX, priority: .high)
             .center(pinkView, between: view.leading, and: view.trailing)
         }
     }
