@@ -206,38 +206,38 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     @discardableResult
     public func constrain(
-        _ view1: UIView,
-        to view2: UIView,
+        _ view: UIView,
+        to targetView: UIView,
         insets: DirectionalInsets
     ) -> Layout {
         self
-            .constrain(view1.leading, to: view2.leading, constant: insets.leading)
-            .constrain(view1.trailing, to: view2.trailing, constant: -insets.trailing)
-            .constrain(view1.top, to: view2.top, constant: insets.top)
-            .constrain(view1.bottom, to: view2.bottom, constant: -insets.bottom)
+            .constrain(view.leading, to: targetView.leading, constant: insets.leading)
+            .constrain(view.trailing, to: targetView.trailing, constant: -insets.trailing)
+            .constrain(view.top, to: targetView.top, constant: insets.top)
+            .constrain(view.bottom, to: targetView.bottom, constant: -insets.bottom)
     }
 
     @discardableResult
     public func constrain(
-        _ view1: UIView,
-        to view2: UIView,
+        _ view: UIView,
+        to targetView: UIView,
         insets: CanonicalInsets
     ) -> Layout {
         self
-            .constrain(view1.left, to: view2.left, constant: insets.left)
-            .constrain(view1.right, to: view2.right, constant: -insets.right)
-            .constrain(view1.top, to: view2.top, constant: insets.top)
-            .constrain(view1.bottom, to: view2.bottom, constant: -insets.bottom)
+            .constrain(view.left, to: targetView.left, constant: insets.left)
+            .constrain(view.right, to: targetView.right, constant: -insets.right)
+            .constrain(view.top, to: targetView.top, constant: insets.top)
+            .constrain(view.bottom, to: targetView.bottom, constant: -insets.bottom)
     }
 
     @discardableResult
     public func constrain(
-        _ view1: UIView,
-        to view2: UIView,
+        _ view: UIView,
+        to targetView: UIView,
         inset: CGFloat = 0
     ) -> Layout {
-        constrain(view1,
-                  to: view2,
+        constrain(view,
+                  to: targetView,
                   insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset))
     }
 
