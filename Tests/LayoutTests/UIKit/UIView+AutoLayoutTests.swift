@@ -247,7 +247,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // WHEN
 
-        let widthConstraint2: NSLayoutConstraint = view.widthConstraint(is: relation2, width2)
+        let widthConstraint2: NSLayoutConstraint = view.widthConstraint(is: relation2, constant: width2)
 
         // THEN
 
@@ -261,7 +261,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // WHEN
 
-        let widthConstraint3: NSLayoutConstraint = view.widthConstraint(is: relation3, width3)
+        let widthConstraint3: NSLayoutConstraint = view.widthConstraint(is: relation3, constant: width3)
 
         // THEN
 
@@ -291,7 +291,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // WHEN
 
-        let heightConstraint2: NSLayoutConstraint = view.heightConstraint(is: relation2, height2)
+        let heightConstraint2: NSLayoutConstraint = view.heightConstraint(is: relation2, constant: height2)
 
         // THEN
 
@@ -305,7 +305,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // WHEN
 
-        let heightConstraint3: NSLayoutConstraint = view.heightConstraint(is: relation3, height3)
+        let heightConstraint3: NSLayoutConstraint = view.heightConstraint(is: relation3, constant: height3)
 
         // THEN
 
