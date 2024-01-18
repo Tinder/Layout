@@ -335,8 +335,8 @@ public final class Layout { // swiftlint:disable:this type_body_length
     @discardableResult
     public func center(
         _ view: UIView,
-        between leading: NSLayoutAnchor<NSLayoutXAxisAnchor>,
-        and trailing: NSLayoutAnchor<NSLayoutXAxisAnchor>,
+        between leading: NSLayoutXAxisAnchor,
+        and trailing: NSLayoutXAxisAnchor,
         priority: UILayoutPriority = .required
     ) -> Layout {
         guard let layoutView: UIView = self.view
@@ -353,8 +353,8 @@ public final class Layout { // swiftlint:disable:this type_body_length
     @discardableResult
     public func center(
         _ view: UIView,
-        between top: NSLayoutAnchor<NSLayoutYAxisAnchor>,
-        and bottom: NSLayoutAnchor<NSLayoutYAxisAnchor>,
+        between top: NSLayoutYAxisAnchor,
+        and bottom: NSLayoutYAxisAnchor,
         priority: UILayoutPriority = .required
     ) -> Layout {
         guard let layoutView: UIView = self.view
