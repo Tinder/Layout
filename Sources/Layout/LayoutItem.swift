@@ -58,8 +58,8 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            layoutItem.layoutItemView.widthConstraint(width).withPriority(priority)
-            layoutItem.layoutItemView.heightConstraint(height).withPriority(priority)
+            layoutItem.layoutItemView.widthConstraint(constant: width).withPriority(priority)
+            layoutItem.layoutItemView.heightConstraint(constant: height).withPriority(priority)
         }
     }
 
@@ -78,7 +78,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            layoutItem.layoutItemView.widthConstraint(is: relation, constant).withPriority(priority)
+            layoutItem.layoutItemView.widthConstraint(is: relation, constant: constant).withPriority(priority)
         }
     }
 
@@ -88,7 +88,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            layoutItem.layoutItemView.heightConstraint(is: relation, constant).withPriority(priority)
+            layoutItem.layoutItemView.heightConstraint(is: relation, constant: constant).withPriority(priority)
         }
     }
 
@@ -103,8 +103,8 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            layoutItem.layoutItemView.widthConstraint(length).withPriority(priority)
-            layoutItem.layoutItemView.heightConstraint(length).withPriority(priority)
+            layoutItem.layoutItemView.widthConstraint(constant: length).withPriority(priority)
+            layoutItem.layoutItemView.heightConstraint(constant: length).withPriority(priority)
         }
     }
 

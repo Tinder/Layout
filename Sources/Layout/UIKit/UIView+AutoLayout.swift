@@ -26,13 +26,13 @@ extension UIView {
 
     @discardableResult
     public func constrainingWidth(_ width: CGFloat? = nil) -> Self {
-        widthConstraint(width).activate()
+        widthConstraint(constant: width).activate()
         return usingConstraints()
     }
 
     @discardableResult
     public func constrainingHeight(_ height: CGFloat? = nil) -> Self {
-        heightConstraint(height).activate()
+        heightConstraint(constant: height).activate()
         return usingConstraints()
     }
 
@@ -108,14 +108,14 @@ extension UIView {
 
     public func widthConstraint(
         is relation: NSLayoutConstraint.Relation = .equal,
-        _ constant: CGFloat? = nil
+        constant: CGFloat? = nil
     ) -> NSLayoutConstraint {
         width.constraint(is: relation, constant: constant ?? bounds.width)
     }
 
     public func heightConstraint(
         is relation: NSLayoutConstraint.Relation = .equal,
-        _ constant: CGFloat? = nil
+        constant: CGFloat? = nil
     ) -> NSLayoutConstraint {
         height.constraint(is: relation, constant: constant ?? bounds.height)
     }
