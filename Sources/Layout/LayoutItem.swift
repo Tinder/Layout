@@ -72,23 +72,23 @@ extension LayoutItem {
 
     // swiftlint:disable function_default_parameter_at_end
 
-    public func size(
+    public func width(
         is relation: NSLayoutConstraint.Relation = .equal,
-        width: CGFloat,
+        constant: CGFloat,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            layoutItem.layoutItemView.widthConstraint(is: relation, width).withPriority(priority)
+            layoutItem.layoutItemView.widthConstraint(is: relation, constant).withPriority(priority)
         }
     }
 
-    public func size(
+    public func height(
         is relation: NSLayoutConstraint.Relation = .equal,
-        height: CGFloat,
+        constant: CGFloat,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            layoutItem.layoutItemView.heightConstraint(is: relation, height).withPriority(priority)
+            layoutItem.layoutItemView.heightConstraint(is: relation, constant).withPriority(priority)
         }
     }
 
