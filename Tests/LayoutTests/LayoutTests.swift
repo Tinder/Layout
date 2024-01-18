@@ -914,17 +914,32 @@ final class LayoutTests: XCTestCase {
         // GIVEN
 
         let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
 
         // THEN
 
         assertLayout { view in
-            view.layout(
+
+            let layout: Layout = view.layout {
                 pinkView
                     .size(width: 100, height: 100)
                     .to(.top)
-            )
-            .center(pinkView, between: view.leading, and: view.centerX, priority: .high)
-            .center(pinkView, between: view.leading, and: view.trailing)
+                yellowView
+                    .size(width: 100, height: 100)
+                    .to(.bottom)
+            }
+
+            // Center View Between Leading Anchor and Trailing Anchor with Default Priority
+
+            layout.center(pinkView, between: view.leading, and: view.trailing, priority: .high)
+            layout.center(pinkView, between: view.leading, and: view.centerX)
+
+            // Center View Between Leading Anchor and Trailing Anchor with Priority
+
+            layout.center(yellowView, between: pinkView.leading, and: pinkView.trailing, priority: .low)
+            layout.center(yellowView, between: view.leading, and: view.trailing, priority: .high)
+
+            return layout
         }
     }
 
