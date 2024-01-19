@@ -63,6 +63,7 @@ final class LayoutItemTests: XCTestCase {
                     .size(width: 50, height: 50, priority: .low)
                     .size(width: 100, height: 200, priority: .high)
             }
+            .activate()
         }
     }
 
@@ -84,6 +85,7 @@ final class LayoutItemTests: XCTestCase {
                     .size(CGSize(width: 50, height: 50), priority: .low)
                     .size(CGSize(width: 100, height: 200), priority: .high)
             }
+            .activate()
         }
     }
 
@@ -145,6 +147,7 @@ final class LayoutItemTests: XCTestCase {
                     .width(constant: 40)
                     .width(is: .lessThanOrEqual, constant: 50)
             }
+            .activate()
         }
     }
 
@@ -206,6 +209,7 @@ final class LayoutItemTests: XCTestCase {
                     .height(constant: 90, priority: .high)
                     .height(is: .lessThanOrEqual, constant: 100)
             }
+            .activate()
         }
     }
 
@@ -229,6 +233,7 @@ final class LayoutItemTests: XCTestCase {
                     .height(constant: 100)
                     .square()
             }
+            .activate()
         }
     }
 
@@ -250,6 +255,7 @@ final class LayoutItemTests: XCTestCase {
                     .square(25, priority: .low)
                     .square(100, priority: .high)
             }
+            .activate()
         }
     }
 
@@ -273,6 +279,7 @@ final class LayoutItemTests: XCTestCase {
                     .aspectRatio(0.25, priority: .low)
                     .aspectRatio(0.75, priority: .high)
             }
+            .activate()
         }
     }
 
@@ -302,6 +309,7 @@ final class LayoutItemTests: XCTestCase {
                     .center(offset: UIOffset(horizontal: -25, vertical: -25), priority: .low)
                     .center(offset: UIOffset(horizontal: -50, vertical: -50), priority: .high)
             }
+            .activate()
         }
     }
 
@@ -347,6 +355,7 @@ final class LayoutItemTests: XCTestCase {
                     .center(.vertical, offset: -350, priority: .low)
                     .center(.vertical, offset: -100, priority: .high)
             }
+            .activate()
         }
     }
 
@@ -358,17 +367,20 @@ final class LayoutItemTests: XCTestCase {
                     .to(.top)
                     .center(between: view.safeAreaLayoutGuide.leading, and: view.safeAreaLayoutGuide.trailing)
             )
+            .activate()
         }
     }
 
     func testCenterBetweenTopAndBottom() {
         assertLayout(devices: Device.allTestDevices) { view in
-            view.layout(
-                pinkView
-                    .size(width: 200, height: 100)
-                    .to(.leading)
-                    .center(between: view.safeAreaLayoutGuide.top, and: view.safeAreaLayoutGuide.bottom)
-            )
+            view
+                .layout {
+                    pinkView
+                        .size(width: 200, height: 100)
+                        .to(.leading)
+                        .center(between: view.safeAreaLayoutGuide.top, and: view.safeAreaLayoutGuide.bottom)
+                }
+                .activate()
         }
     }
 
@@ -417,6 +429,7 @@ final class LayoutItemTests: XCTestCase {
                     .to(.trailing, constant: -100, priority: .low)
                     .to(.trailing, constant: -50, priority: .high)
             }
+            .activate()
         }
     }
 
@@ -456,6 +469,7 @@ final class LayoutItemTests: XCTestCase {
                     .to(.bottom, constant: -50, priority: .high)
                     .to(.trailing, constant: -50)
             }
+            .activate()
         }
     }
 
@@ -483,6 +497,7 @@ final class LayoutItemTests: XCTestCase {
                     .to([.top, .leading], constant: 25, priority: .low)
                     .to([.top, .leading], constant: 100, priority: .high)
             }
+            .activate()
         }
     }
 
@@ -511,6 +526,7 @@ final class LayoutItemTests: XCTestCase {
                         priority: .high
                     )
             }
+            .activate()
         }
     }
 
@@ -530,6 +546,7 @@ final class LayoutItemTests: XCTestCase {
                     .toEdges(insets: UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 15), priority: .low)
                     .toEdges(insets: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50), priority: .high)
             }
+            .activate()
         }
     }
 
@@ -558,6 +575,7 @@ final class LayoutItemTests: XCTestCase {
                     .toEdges([.leading, .trailing], inset: 25, priority: .low)
                     .toEdges([.leading, .trailing], inset: 50, priority: .high)
             }
+            .activate()
         }
     }
 
@@ -591,6 +609,7 @@ final class LayoutItemTests: XCTestCase {
                     .toEdges(canonical: [.left, .right], inset: 25, priority: .low)
                     .toEdges(canonical: [.left, .right], inset: 50, priority: .high)
             }
+            .activate()
         }
     }
 
@@ -621,6 +640,7 @@ final class LayoutItemTests: XCTestCase {
                     .toSideEdges(inset: 0, priority: .low)
                     .toSideEdges(inset: 50, priority: .high)
             }
+            .activate()
         }
     }
 
@@ -644,6 +664,7 @@ final class LayoutItemTests: XCTestCase {
                     .toMargins(insets: NSDirectionalEdgeInsets(top: 20, leading: 30, bottom: 50, trailing: 90),
                                priority: .high)
             }
+            .activate()
         }
     }
 
@@ -663,6 +684,7 @@ final class LayoutItemTests: XCTestCase {
                     .toMargins(insets: UIEdgeInsets.zero, priority: .low)
                     .toMargins(insets: UIEdgeInsets(top: 20, left: 30, bottom: 50, right: 90), priority: .high)
             }
+            .activate()
         }
     }
 
@@ -687,6 +709,7 @@ final class LayoutItemTests: XCTestCase {
                     .toMargins([.top, .leading, .trailing, .bottom], inset: 0, priority: .low)
                     .toMargins([.top, .leading, .trailing, .bottom], inset: 50, priority: .high)
             }
+            .activate()
         }
     }
 
@@ -717,6 +740,7 @@ final class LayoutItemTests: XCTestCase {
                     .size(width: 50, height: 50)
                     .toMargins(canonical: [.top, .left], inset: 75)
             }
+            .activate()
         }
     }
 
@@ -747,6 +771,7 @@ final class LayoutItemTests: XCTestCase {
                     .toSideMargins(inset: 20, priority: .low)
                     .toSideMargins(inset: 40, priority: .high)
             }
+            .activate()
         }
     }
 
@@ -775,6 +800,7 @@ final class LayoutItemTests: XCTestCase {
                         priority: .high
                     )
             }
+            .activate()
         }
     }
 
@@ -794,6 +820,7 @@ final class LayoutItemTests: XCTestCase {
                     .toSafeArea(insets: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5), priority: .low)
                     .toSafeArea(insets: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50), priority: .high)
             }
+            .activate()
         }
     }
 
@@ -813,6 +840,7 @@ final class LayoutItemTests: XCTestCase {
                     .toSafeArea(DirectionalEdge.allCases, inset: 0, priority: .low)
                     .toSafeArea(DirectionalEdge.allCases, inset: 25, priority: .high)
             }
+            .activate()
         }
     }
 
@@ -837,6 +865,7 @@ final class LayoutItemTests: XCTestCase {
                 orangeView
                     .toSafeArea(canonical: CanonicalEdge.allCases, inset: 75)
             }
+            .activate()
         }
     }
 }
