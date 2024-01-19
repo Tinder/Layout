@@ -11,18 +11,56 @@
 
 import UIKit
 
+/**
+ * A `Layout` is used to add subviews and constraints to a view. The `Layout` stores each subview with its
+ * constraints as a ``LayoutItem`` instance. [`UIView`](https://developer.apple.com/documentation/uikit/uiview)
+ * conformance to `LayoutItem` is provided automatically. A view can have multiple `Layout` instances as needed.
+ * A subview can exist in multiple `Layout` instances to, for example, represent exclusively-activated distinct states.
+ *
+ * For example, the following code creates a layout with a single item.
+ *
+ * ```swift
+ * view.layout(subview.toEdges()).activate()
+ * ```
+ *
+ * The following code demonstrates the preferred way of creating a layout with multiple items using result
+ * builder syntax.
+ *
+ * ```swift
+ * view
+ *     .layout {
+ *         subview1
+ *             .toSafeArea()
+ *         subview2
+ *             .square(32)
+ *             .center()
+ *     }
+ *     .activate()
+ * ```
+ *
+ * - Important: The ``Layout/activate()`` method must be called to activate the constraints of the layout.
+ *   Calling ``Layout/deactivate()`` does not hide or remove subviews.
+ */
 @preconcurrency
 @MainActor
 public final class Layout { // swiftlint:disable:this type_body_length
 
+    /// The parent view to which the layout will add subviews and superview constraints.
     public weak var view: UIView?
 
+    /// The default metrics for the Visual Format Language APIs.
     public let metrics: [String: Any]
 
+    /// The subviews of the layout that have an [`accessibilityIdentifier`](
+    /// https://developer.apple.com/documentation/uikit/uiaccessibilityidentification/1623132-accessibilityidentifier
+    /// ), which can be set by calling ``LayoutItem/id(_:)``.
+    ///
+    /// - Important: Only these subviews are made available to the Visual Format APIs.
     public private(set) var items: [String: LayoutItem] = [:]
 
     internal private(set) var constraints: [NSLayoutConstraint] = []
 
+    /// To create an empty `Layout`, use ``UIKit/UIView/layout(metrics:)`` instead.
     public convenience init(
         _ view: UIView,
         metrics: [String: Any] = [:]
@@ -32,6 +70,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     // swiftlint:disable function_default_parameter_at_end
 
+    /// To create a `Layout` with a ``LayoutItem`` instance, use ``UIKit/UIView/layout(metrics:_:)`` instead.
     public convenience init(
         _ view: UIView,
         metrics: [String: Any] = [:],
@@ -42,6 +81,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     // swiftlint:enable function_default_parameter_at_end
 
+    /// To create a `Layout` with a ``LayoutBuilder``, use ``UIKit/UIView/layout(metrics:items:)`` instead.
     public convenience init(
         _ view: UIView,
         metrics: [String: Any] = [:],
@@ -60,6 +100,11 @@ public final class Layout { // swiftlint:disable:this type_body_length
         addItems(items)
     }
 
+    /// Adds constraints provided by the given ``ConstraintsBuilder``.
+    ///
+    /// - Parameter constraints: The builder that creates the constraints to be added.
+    ///
+    /// - Returns: The layout instance with the added constraints.
     @discardableResult
     public func adding(
         @ConstraintsBuilder constraints: () -> [NSLayoutConstraint]
@@ -67,11 +112,21 @@ public final class Layout { // swiftlint:disable:this type_body_length
         adding(constraints())
     }
 
+    /// Adds constraints to the layout.
+    ///
+    /// - Parameter constraints: The constraints to be added.
+    ///
+    /// - Returns: The layout instance with the added constraints.
     @discardableResult
     public func adding(_ constraints: NSLayoutConstraint...) -> Layout {
         adding(constraints)
     }
 
+    /// Adds constraints to the layout.
+    ///
+    /// - Parameter constraints: The constraints to be added.
+    ///
+    /// - Returns: The layout instance with the added constraints.
     @discardableResult
     public func adding(_ constraints: [NSLayoutConstraint]) -> Layout {
         self.constraints += constraints
@@ -80,6 +135,18 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     // swiftlint:disable discouraged_optional_collection
 
+    /// Adds constraints to the layout described by a vertical visual format string.
+    ///
+    /// - Important: The orientation format for a vertical arrangement (`V:`) should be omitted since it is
+    ///   automatically prepended to the given format string.
+    ///
+    /// - Parameters:
+    ///   - format: The format describing the vertical constraints.
+    ///   - metrics: (Optional) A dictionary of constants to be used in the format. Uses the ``metrics`` of the layout
+    ///     by default.
+    ///   - options: (Optional) The format options indicating alignment and text spacing.
+    ///
+    /// - Returns: The layout instance with the added constraints.
     @discardableResult
     public func vertical(
         _ format: String,
@@ -92,6 +159,18 @@ public final class Layout { // swiftlint:disable:this type_body_length
                                               options: options))
     }
 
+    /// Adds constraints to the layout described by a horizontal visual format string.
+    ///
+    /// - Important: The orientation format for a horizontal arrangement (`H:`) should be omitted since it is
+    ///   automatically prepended to the given format string.
+    ///
+    /// - Parameters:
+    ///   - format: The format describing the horizontal constraints.
+    ///   - metrics: (Optional) A dictionary of constants to be used in the format. Uses the ``metrics`` of the layout
+    ///     by default.
+    ///   - options: (Optional) The format options indicating alignment, direction and text spacing.
+    ///
+    /// - Returns: The layout instance with the added constraints.
     @discardableResult
     public func horizontal(
         _ format: String,
@@ -108,6 +187,18 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     // swiftlint:disable function_default_parameter_at_end
 
+    /// Adds a constraint defining the relationship between the given attribute of the view and target view.
+    ///
+    /// - Parameters:
+    ///   - view: The view to constrain to the `targetView`.
+    ///   - attribute: The attribute of the `view`.
+    ///   - relation: The relationship between the view attribute and target view attribute.
+    ///   - targetAttribute: The attribute of the `targetView`.
+    ///   - targetView: The target view to which to constrain the `view`.
+    ///   - multiplier: The multiplier value.
+    ///   - constant: The constant value.
+    ///
+    /// - Returns: The layout instance with the added constraint.
     @discardableResult
     public func constrain(
         _ view: UIView,
@@ -126,6 +217,16 @@ public final class Layout { // swiftlint:disable:this type_body_length
                                constant: constant))
     }
 
+    /// Adds a constraint defining the relationship between the given anchors.
+    ///
+    /// - Parameters:
+    ///   - anchor: The anchor to constrain to the `targetAnchor`.
+    ///   - relation: The relationship between the anchors.
+    ///   - targetAnchor: The target anchor to which to constrain the `anchor`.
+    ///   - constant: The constant value.
+    ///   - priority: The priority of the constraint.
+    ///
+    /// - Returns: The layout instance with the added constraint.
     @discardableResult
     public func constrain<T>(
         _ anchor: NSLayoutAnchor<T>,
@@ -152,6 +253,17 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return adding(constraint.withPriority(priority))
     }
 
+    /// Adds a constraint defining the relationship between the given width or height anchors.
+    ///
+    /// - Parameters:
+    ///   - anchor: The dimension anchor to constrain to the `targetAnchor`.
+    ///   - relation: The relationship between the anchors.
+    ///   - targetAnchor: The target dimension anchor to which to constrain the `anchor`.
+    ///   - multiplier: The multiplier value.
+    ///   - constant: The constant value.
+    ///   - priority: The priority of the constraint.
+    ///
+    /// - Returns: The layout instance with the added constraint.
     @discardableResult
     public func constrain(
         _ anchor: NSLayoutDimension,
@@ -183,6 +295,15 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return adding(constraint.withPriority(priority))
     }
 
+    /// Adds a constraint defining the relationship between the given width or height anchor and constant value.
+    ///
+    /// - Parameters:
+    ///   - anchor: The dimension anchor to constrain to the constant value.
+    ///   - relation: The relationship between the anchor and constant value.
+    ///   - constant: The constant value.
+    ///   - priority: The priority of the constraint.
+    ///
+    /// - Returns: The layout instance with the added constraint.
     @discardableResult
     public func constrain(
         _ anchor: NSLayoutDimension,
@@ -204,6 +325,17 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return adding(constraint.withPriority(priority))
     }
 
+    /// Adds constraints aligning the edges of the given view and target view with directional insets
+    /// ([`NSDirectionalEdgeInsets`](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets)).
+    ///
+    /// - Note: The `view` will be inset from the `targetView`.
+    ///
+    /// - Parameters:
+    ///   - view: The view to constrain to the `targetView`.
+    ///   - targetView: The target view to which to constrain the `view`.
+    ///   - insets: The directional insets.
+    ///
+    /// - Returns: The layout instance with the added constraints.
     @discardableResult
     public func constrain(
         _ view: UIView,
@@ -217,6 +349,17 @@ public final class Layout { // swiftlint:disable:this type_body_length
             .constrain(view.bottom, to: targetView.bottom, constant: -insets.bottom)
     }
 
+    /// Adds constraints aligning the edges of the given view and target view with canonical insets
+    /// ([`UIEdgeInsets`](https://developer.apple.com/documentation/uikit/uiedgeinsets)).
+    ///
+    /// - Note: The `view` will be inset from the `targetView`.
+    ///
+    /// - Parameters:
+    ///   - view: The view to constrain to the `targetView`.
+    ///   - targetView: The target view to which to constrain the `view`.
+    ///   - insets: The canonical insets.
+    ///
+    /// - Returns: The layout instance with the added constraints.
     @discardableResult
     public func constrain(
         _ view: UIView,
@@ -230,6 +373,16 @@ public final class Layout { // swiftlint:disable:this type_body_length
             .constrain(view.bottom, to: targetView.bottom, constant: -insets.bottom)
     }
 
+    /// Adds constraints aligning the edges of the given view and target view with an inset.
+    ///
+    /// - Note: The `view` will be inset from the `targetView`.
+    ///
+    /// - Parameters:
+    ///   - view: The view to constrain to the `targetView`.
+    ///   - targetView: The target view to which to constrain the `view`.
+    ///   - inset: The inset value.
+    ///
+    /// - Returns: The layout instance with the added constraints.
     @discardableResult
     public func constrain(
         _ view: UIView,
@@ -240,6 +393,13 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return constrain(view, to: targetView, insets: insets)
     }
 
+    /// Adds constraints equating the attribute of the given views.
+    ///
+    /// - Parameters:
+    ///   - attribute: The attribute of the `views` to constrain.
+    ///   - views: The views to constrain.
+    ///
+    /// - Returns: The layout instance with the added constraints.
     @discardableResult
     public func equal(
         _ attribute: NSLayoutConstraint.Attribute,
@@ -248,6 +408,12 @@ public final class Layout { // swiftlint:disable:this type_body_length
         equal([attribute], views)
     }
 
+    /// Adds constraints equating the size of the given views.
+    ///
+    /// - Parameters:
+    ///   - views: The views to constrain.
+    ///
+    /// - Returns: The layout instance with the added constraints.
     @discardableResult
     public func equalSize(
         _ views: [UIView]
@@ -255,6 +421,13 @@ public final class Layout { // swiftlint:disable:this type_body_length
         equal([.height, .width], views)
     }
 
+    /// Adds constraints equating the attributes of the given views.
+    ///
+    /// - Parameters:
+    ///   - attributes: The attributes of the `views` to constrain.
+    ///   - views: The views to constrain.
+    ///
+    /// - Returns: The layout instance with the added constraints.
     @discardableResult
     public func equal(
         _ attributes: [NSLayoutConstraint.Attribute],
@@ -269,6 +442,19 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return self
     }
 
+    /// Adds constraints defining the relationship between each of the given views as a horizontal stack with desired
+    /// spacing, layout direction and vertical alignment.
+    ///
+    /// - Note: The views are spaced horizontally and aligned vertically.
+    ///
+    /// - Parameters:
+    ///   - views: The views to be spaced horizontally.
+    ///   - spacing: The amount of space between each view.
+    ///   - direction: The layout direction.
+    ///   - priority: The priority of the constraints.
+    ///   - alignment: The vertical alignment of the views.
+    ///
+    /// - Returns: The layout instance with the added constraints.
     @discardableResult
     public func horizontal(
         _ views: [UIView],
@@ -304,6 +490,18 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return self
     }
 
+    /// Adds constraints defining the relationship between each of the given views as a vertical stack with desired
+    /// spacing and horizontal alignment.
+    ///
+    /// - Note: The views are spaced vertically and aligned horizontally.
+    ///
+    /// - Parameters:
+    ///   - views: The views to be spaced vertically.
+    ///   - spacing: The amount of space between each view.
+    ///   - priority: The priority of the constraints.
+    ///   - alignment: The horizontal alignment of the views.
+    ///
+    /// - Returns: The layout instance with the added constraints.
     @discardableResult
     public func vertical(
         _ views: [UIView],
@@ -331,6 +529,49 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     // swiftlint:enable function_default_parameter_at_end
 
+    /// Adds constraints horizontally centering the given view between two anchors.
+    ///
+    /// The center of the view is horizontally aligned to the center of a layout guide where the leading and trailing
+    /// edges of the layout guide are aligned to the given anchors.
+    ///
+    /// Example:
+    ///
+    /// ```swift
+    /// view
+    ///     .layout {
+    ///         siblingView
+    ///             .size(width: 100, height: 100)
+    ///             .center()
+    ///         label
+    ///             .center(.vertical)
+    ///     }
+    ///     .center(label, between: siblingView.trailing, and: view.trailing)
+    ///     .activate()
+    /// ```
+    ///
+    /// ```
+    /// +-------------------------------+
+    /// |                               |
+    /// |                               |
+    /// |                               |
+    /// |           +-------+           |
+    /// |           |       |           |
+    /// |           |      (1)  label  (2)
+    /// |           |       |           |
+    /// |           +-------+           |
+    /// |                               |
+    /// |                               |
+    /// |                               |
+    /// +-------------------------------+
+    /// ```
+    ///
+    /// - Parameters:
+    ///   - view: The view to be horizontally centered.
+    ///   - leading: The anchor to which to align the leading edge of the centering guide. (1)
+    ///   - trailing: The anchor to which to align the trailing edge of the centering guide. (2)
+    ///   - priority: The priority of the constraints.
+    ///
+    /// - Returns: The layout instance with the added constraints.
     @discardableResult
     public func center(
         _ view: UIView,
@@ -349,6 +590,49 @@ public final class Layout { // swiftlint:disable:this type_body_length
         ])
     }
 
+    /// Adds constraints vertically centering the given view between two anchors.
+    ///
+    /// The center of the view is vertically aligned to the center of a layout guide where the top and bottom edges
+    /// of the layout guide are aligned to the given anchors.
+    ///
+    /// Example:
+    ///
+    /// ```swift
+    /// view
+    ///     .layout {
+    ///         siblingView
+    ///             .size(width: 100, height: 100)
+    ///             .center()
+    ///         label
+    ///             .center(.horizontal)
+    ///     }
+    ///     .center(label, between: siblingView.bottom, and: view.bottom)
+    ///     .activate()
+    /// ```
+    ///
+    /// ```
+    /// +-------------------------------+
+    /// |                               |
+    /// |                               |
+    /// |                               |
+    /// |           +-------+           |
+    /// |           |       |           |
+    /// |           |       |           |
+    /// |           |       |           |
+    /// |           +--(1)--+           |
+    /// |                               |
+    /// |             label             |
+    /// |                               |
+    /// +--------------(2)--------------+
+    /// ```
+    ///
+    /// - Parameters:
+    ///   - view: The view to be vertically centered.
+    ///   - top: The anchor to which to align the top edge of the centering guide. (1)
+    ///   - bottom: The anchor to which to align the bottom edge of the centering guide. (2)
+    ///   - priority: The priority of the constraints.
+    ///
+    /// - Returns: The layout instance with the added constraints.
     @discardableResult
     public func center(
         _ view: UIView,
@@ -367,6 +651,11 @@ public final class Layout { // swiftlint:disable:this type_body_length
         ])
     }
 
+    /// Adds items to the layout.
+    ///
+    /// - Parameter items: The items to be added as subviews.
+    ///
+    /// - Returns: The receiver with the added subviews.
     @discardableResult
     public func addItems(
         _ items: LayoutItem...
@@ -374,6 +663,11 @@ public final class Layout { // swiftlint:disable:this type_body_length
         addItems(items)
     }
 
+    /// Adds items to the layout.
+    ///
+    /// - Parameter items: The items to be added as subviews.
+    ///
+    /// - Returns: The receiver with the added subviews.
     @discardableResult
     public func addItems(
         _ items: [LayoutItem]
@@ -392,31 +686,57 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return self
     }
 
+    /// Activates the constraints of the layout.
+    ///
+    /// - Returns: The receiver with activated constraints.
     @discardableResult
     public func activate() -> Layout {
         constraints.activate()
         return self
     }
 
+    /// Deactivates the constraints of the layout.
+    ///
+    /// - Returns: The receiver with deactivated constraints.
     @discardableResult
     public func deactivate() -> Layout {
         constraints.deactivate()
         return self
     }
 
+    /// Sets the priority of the constraints of the layout to required.
+    ///
+    /// - Returns: The receiver with required constraints.
     public func require() -> Layout {
         withPriority(.required)
     }
 
+    /// Sets the priority of the constraints of the layout.
+    ///
+    /// - Parameter priority: The constraint priority.
+    ///
+    /// - Returns: The receiver with prioritized constraints.
     public func withPriority(_ priority: UILayoutPriority) -> Layout {
         constraints.prioritize(priority)
         return self
     }
 
+    /// Sets the priority of the constraints of the layout.
+    ///
+    /// - Parameter priority: The constraint priority.
     public func prioritize(_ priority: UILayoutPriority) {
         constraints.forEach { $0.prioritize(priority) }
     }
 
+    /// Updates the constraints of the ``view`` of the layout.
+    ///
+    /// This method is useful for animating constraints.
+    ///
+    /// - Note: Calls [`setNeedsUpdateConstraints()`](
+    ///   https://developer.apple.com/documentation/uikit/uiview/1622450-setneedsupdateconstraints
+    ///   ) and [`updateConstraintsIfNeeded()`](
+    ///   https://developer.apple.com/documentation/uikit/uiview/1622595-updateconstraintsifneeded
+    ///   ) on the ``view`` of the layout.
     public func update() {
         view?.setNeedsUpdateConstraints()
         view?.updateConstraintsIfNeeded()

@@ -11,10 +11,12 @@ import UIKit
 
 extension UIViewController {
 
+    /// The top safe area anchor of the `view` of the receiver.
     public var safeTop: NSLayoutYAxisAnchor {
         view.safeAreaLayoutGuide.top
     }
 
+    /// The bottom safe area anchor of the `view` of the receiver.
     public var safeBottom: NSLayoutYAxisAnchor {
         view.safeAreaLayoutGuide.bottom
     }

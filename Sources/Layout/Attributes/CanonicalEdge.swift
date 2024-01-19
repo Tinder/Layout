@@ -7,7 +7,22 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
+/**
+ * An enumeration of the edges of an alignment rectangle irrespective of the user interface layout direction.
+ *
+ * Use ``DirectionalEdge`` when the user interface layout direction should be taken into account.
+ */
 public enum CanonicalEdge: CaseIterable {
 
-    case top, bottom, left, right
+    /// The top edge of the alignment rectangle.
+    case top
+
+    /// The bottom edge of the alignment rectangle.
+    case bottom
+
+    /// The left edge of the alignment rectangle.
+    case left
+
+    /// The right edge of the alignment rectangle.
+    case right
 }

@@ -11,6 +11,9 @@ import UIKit
 
 extension Array where Element == NSLayoutConstraint {
 
+    /// Activates the constraints in the array.
+    ///
+    /// - Returns: The activated constraints.
     @preconcurrency
     @MainActor
     @discardableResult
@@ -19,6 +22,9 @@ extension Array where Element == NSLayoutConstraint {
         return self
     }
 
+    /// Deactivates the constraints in the array.
+    ///
+    /// - Returns: The deactivated constraints.
     @preconcurrency
     @MainActor
     @discardableResult
@@ -27,12 +33,20 @@ extension Array where Element == NSLayoutConstraint {
         return self
     }
 
+    /// Sets the priority of the constraints in the array to required.
+    ///
+    /// - Returns: The required constraints.
     @preconcurrency
     @MainActor
     public func require() -> Self {
         withPriority(.required)
     }
 
+    /// Sets the priority of the constraints in the array to the given priority.
+    ///
+    /// - Parameter priority: The constraint priority.
+    ///
+    /// - Returns: The prioritized constraints.
     @preconcurrency
     @MainActor
     public func withPriority(_ priority: UILayoutPriority) -> Self {
@@ -40,6 +54,9 @@ extension Array where Element == NSLayoutConstraint {
         return self
     }
 
+    /// Sets the priority of the constraints in the array to the given priority.
+    ///
+    /// - Parameter priority: The constraint priority.
     @preconcurrency
     @MainActor
     public func prioritize(_ priority: UILayoutPriority) {

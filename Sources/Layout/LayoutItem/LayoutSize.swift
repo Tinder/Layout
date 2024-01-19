@@ -9,10 +9,16 @@
 
 import UIKit
 
+/**
+ * The anchors representing the size of a ``LayoutItem``.
+ */
 @preconcurrency
 @MainActor
 public protocol LayoutSize {
 
+    /// The anchor representing the width of the layout item.
     var width: NSLayoutDimension { get }
+
+    /// The anchor representing the height of the layout item.
     var height: NSLayoutDimension { get }
 }
