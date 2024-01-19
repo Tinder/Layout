@@ -9,10 +9,16 @@
 
 import UIKit
 
+/**
+ * The anchors representing the center of a ``LayoutItem``.
+ */
 @preconcurrency
 @MainActor
 public protocol LayoutCenter {
 
+    /// The anchor representing the center along the x-axis of the layout item.
     var centerX: NSLayoutXAxisAnchor { get }
+
+    /// The anchor representing the center along the y-axis of the layout item.
     var centerY: NSLayoutYAxisAnchor { get }
 }

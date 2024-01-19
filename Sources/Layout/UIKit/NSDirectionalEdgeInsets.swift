@@ -9,6 +9,9 @@
 
 import UIKit
 
+/**
+ * Inset distances respecting the user interface layout direction.
+ */
 public typealias DirectionalInsets = NSDirectionalEdgeInsets
 
 extension NSDirectionalEdgeInsets {
@@ -19,6 +22,17 @@ extension NSDirectionalEdgeInsets {
         self.init(top: inset, leading: inset, bottom: inset, trailing: inset)
     }
 
+    /// A declarative factory method for initializing an [`NSDirectionalEdgeInsets`](
+    /// https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets
+    /// ) with the given inset values.
+    ///
+    /// - Parameters:
+    ///   - top: The top inset value.
+    ///   - leading: The leading inset value.
+    ///   - bottom: The bottom inset value.
+    ///   - trailing: The trailing inset value.
+    ///
+    /// - Returns: The `NSDirectionalEdgeInsets` instance.
     public static func directional(top: CGFloat, leading: CGFloat, bottom: CGFloat, trailing: CGFloat) -> Self {
         NSDirectionalEdgeInsets(top: top, leading: leading, bottom: bottom, trailing: trailing)
     }

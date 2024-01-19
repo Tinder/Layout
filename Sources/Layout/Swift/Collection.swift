@@ -9,12 +9,14 @@
 
 extension Collection where Element == Layout {
 
+    /// Activates the constraints of each ``Layout`` instance in the collection.
     @preconcurrency
     @MainActor
     public func activate() {
         forEach { $0.activate() }
     }
 
+    /// Deactivates the constraints of each ``Layout`` instance in the collection.
     @preconcurrency
     @MainActor
     public func deactivate() {
