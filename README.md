@@ -2,6 +2,8 @@
 &nbsp;
 [![Bazel](https://github.com/Tinder/Layout/actions/workflows/bazel.yml/badge.svg?event=push)](https://github.com/Tinder/Layout/actions/workflows/bazel.yml)
 &nbsp;
+[![Pages](https://github.com/Tinder/Layout/actions/workflows/pages.yml/badge.svg?event=push)](https://github.com/Tinder/Layout/actions/workflows/pages.yml)
+&nbsp;
 [![Artifactory](https://github.com/Tinder/Layout/actions/workflows/artifactory.yml/badge.svg?event=push)](https://github.com/Tinder/Layout/actions/workflows/artifactory.yml)
 
 # Layout
