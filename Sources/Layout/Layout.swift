@@ -584,7 +584,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     public func horizontal(
         _ views: [UIView],
         spacing: CGFloat = 0,
-        direction: HorizontalDirection = .leadingToTrailing,
+        direction: LayoutDirection = .leadingToTrailing,
         priority: UILayoutPriority = .required,
         alignment: YAxisAttribute...
     ) -> Layout {

@@ -10,7 +10,7 @@
 /**
  * An enumeration of either directional or canonical layout directions.
  */
-public enum HorizontalDirection {
+public enum LayoutDirection {
 
     /// The leading-to-trailing (directional) layout direction.
     case leadingToTrailing
