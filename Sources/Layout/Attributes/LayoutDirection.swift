@@ -7,7 +7,7 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
-public enum HorizontalDirection {
+public enum LayoutDirection {
 
     case leadingToTrailing
     case leftToRight

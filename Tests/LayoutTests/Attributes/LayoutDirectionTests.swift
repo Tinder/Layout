@@ -11,13 +11,13 @@
 import Nimble
 import XCTest
 
-final class HorizontalDirectionTests: XCTestCase {
+final class LayoutDirectionTests: XCTestCase {
 
     func testLeadingToTrailingAttributes() {
-        expect(HorizontalDirection.leadingToTrailing.attributes) == (.leading, .trailing)
+        expect(LayoutDirection.leadingToTrailing.attributes) == (.leading, .trailing)
     }
 
     func testLeftToRightAttributes() {
-        expect(HorizontalDirection.leftToRight.attributes) == (.left, .right)
+        expect(LayoutDirection.leftToRight.attributes) == (.left, .right)
     }
 }
