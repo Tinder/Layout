@@ -130,7 +130,7 @@ final class LayoutExampleTests: XCTestCase {
 
         let view: UIView = pinkView
         let subview1: UIView = orangeView
-        let subview2: UIImageView = UIImageView(image: .checkmark)
+        let subview2: UIImageView = .init(image: .checkmark)
 
         // Creating a layout with multiple items
 
