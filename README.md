@@ -8,11 +8,13 @@
 
 # Layout
 
-Tinder's UIKit Auto Layout API
+Declarative Auto Layout APIs for UIKit
 
 ## Overview
 
-Tinder’s Layout library was introduced into the Tinder iOS codebase in 2017 and has since been used to programmatically define the screens of the Tinder iOS app. Layout is a wrapper around the Apple provided Auto Layout SDK. Layout provides a less verbose syntax which aids in adoption and eases troubleshooting UI layout issues. Projects with large codebases, such as Tinder, use programmatic UI code instead of visual WYSIWYG editors (such as Xcode storyboards) to avoid unmanageable merge conflicts that occur in file formats such as XML (the serialized format of Xcode storyboards).
+Tinder’s Layout library was introduced into the Tinder iOS codebase in 2017 and has since been used to programmatically define the screens of the Tinder iOS app.
+
+Layout is a wrapper around the Apple provided Auto Layout SDK. Layout provides a less verbose syntax which aids in adoption and eases troubleshooting UI layout issues. Projects with large codebases use programmatic UI code instead of visual WYSIWYG editors (such as Xcode storyboards) to avoid unmanageable merge conflicts that occur in file formats such as XML (the serialized format of Xcode storyboards).
 
 Code written with Layout is declarative in nature such that it is easy to visualize the UI layout that the code represents. Layout does not limit the available Auto Layout capabilities in any way, which can readily be used along with the Layout API. In recent years, mobile platforms have seen the introduction of declarative UI frameworks such as SwiftUI and Jetpack Compose which realize significantly reduced learning curves. Layout takes a similar declarative approach but for the UIKit framework.
 
@@ -53,7 +55,7 @@ override func viewDidLoad() {
 }
 ```
 
-The above layout results in the following Auto Layout code.
+The code above is equivalent to the following Auto Layout code.
 
 ```swift
 override func viewDidLoad() {
