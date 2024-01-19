@@ -14,6 +14,72 @@ import XCTest
 @MainActor
 final class LayoutExampleTests: XCTestCase {
 
+    // MARK: - Readme
+
+    func testReadmeExample() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+
+        let label: UILabel = {
+            let label: UILabel = .init()
+            label.text = "Layout"
+            return label
+        }()
+
+        let imageView: UIImageView = {
+            let imageView: UIImageView = .init(image: .checkmark)
+            imageView.contentMode = .scaleAspectFit
+            return imageView
+        }()
+
+        let button: UIButton = {
+            let button: UIButton = .init(type: .system)
+            button.setTitle("Layout", for: .normal)
+            return button
+        }()
+
+        // WHEN
+
+        let layout: Layout = view.layout {
+            label
+                .toSafeArea([.top])
+                .center(.horizontal)
+            imageView
+                .toSideEdges(inset: 20)
+                .height(constant: 200)
+            button
+                .center(.horizontal)
+        }
+        .vertical([label, imageView, button], spacing: 50)
+
+        let constraints: [NSLayoutConstraint] = [
+            label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            imageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            imageView.heightAnchor.constraint(equalToConstant: 200),
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 50),
+            button.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 50)
+        ]
+
+        // THEN
+
+        for (index, constraint) in layout.constraints.enumerated() {
+            expect(constraint).to(match(constraints[index]))
+        }
+
+        assertLayout { container in
+            container.addSubview(view)
+            view.usingConstraints().edgeConstraints().activate()
+            layout.activate()
+        }
+    }
+
+    // MARK: - Layout
+
     func testLayoutDocumentationExample() {
 
         // GIVEN
@@ -105,6 +171,38 @@ final class LayoutExampleTests: XCTestCase {
         }
     }
 
+    // MARK: - LayoutItem
+
+    func testSingleLayoutItemDocumentationExample() {
+
+        // GIVEN
+
+        let subview: UIView = blueView
+
+        // THEN
+
+        assertLayout { view in
+            let item: LayoutItem = subview.toEdges()
+            view.layout(item).activate()
+        }
+    }
+
+    func testMultipleLayoutItemsDocumentationExample() {
+
+        // GIVEN
+
+        let subview1: UIView = orangeView
+        let subview2: UIImageView = .init(image: .checkmark)
+
+        // THEN
+
+        assertLayout { view in
+            let item1: LayoutItem = subview1.toEdges()
+            let item2: LayoutItem = subview2.square().center()
+            view.layout().addItems(item1, item2).activate()
+        }
+    }
+
     func testHorizontallyCenteringLayoutItemDocumentationExample() {
 
         // GIVEN
@@ -158,68 +256,6 @@ final class LayoutExampleTests: XCTestCase {
                         .center(between: siblingView.bottom, and: view.bottom)
                 }
                 .activate()
-        }
-    }
-
-    func testReadmeExample() {
-
-        // GIVEN
-
-        let view: UIView = .init()
-
-        let label: UILabel = {
-            let label: UILabel = .init()
-            label.text = "Layout"
-            return label
-        }()
-
-        let imageView: UIImageView = {
-            let imageView: UIImageView = .init(image: .checkmark)
-            imageView.contentMode = .scaleAspectFit
-            return imageView
-        }()
-
-        let button: UIButton = {
-            let button: UIButton = .init(type: .system)
-            button.setTitle("Layout", for: .normal)
-            return button
-        }()
-
-        // WHEN
-
-        let layout: Layout = view.layout {
-            label
-                .toSafeArea([.top])
-                .center(.horizontal)
-            imageView
-                .toSideEdges(inset: 20)
-                .height(constant: 200)
-            button
-                .center(.horizontal)
-        }
-        .vertical([label, imageView, button], spacing: 50)
-
-        let constraints: [NSLayoutConstraint] = [
-            label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            imageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            imageView.heightAnchor.constraint(equalToConstant: 200),
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 50),
-            button.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 50)
-        ]
-
-        // THEN
-
-        for (index, constraint) in layout.constraints.enumerated() {
-            expect(constraint).to(match(constraints[index]))
-        }
-
-        assertLayout { container in
-            container.addSubview(view)
-            view.usingConstraints().edgeConstraints().activate()
-            layout.activate()
         }
     }
 }
