@@ -388,19 +388,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     // MARK: - Equal
 
-    /// Adds constraints equating the size of the given views.
-    ///
-    /// - Parameters:
-    ///   - views: The views to constrain.
-    ///
-    /// - Returns: The layout instance with the added constraints.
-    @discardableResult
-    public func equalSize(
-        _ views: [UIView]
-    ) -> Layout {
-        equal([.height, .width], views)
-    }
-
     /// Adds constraints equating the attribute of the given views.
     ///
     /// - Parameters:
@@ -435,6 +422,19 @@ public final class Layout { // swiftlint:disable:this type_body_length
             adding(view.constraints(to: attributes, of: first))
         }
         return self
+    }
+
+    /// Adds constraints equating the size of the given views.
+    ///
+    /// - Parameters:
+    ///   - views: The views to constrain.
+    ///
+    /// - Returns: The layout instance with the added constraints.
+    @discardableResult
+    public func equalSize(
+        _ views: [UIView]
+    ) -> Layout {
+        equal([.height, .width], views)
     }
 
     // swiftlint:enable function_default_parameter_at_end
