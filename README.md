@@ -79,7 +79,7 @@ override func viewDidLoad() {
 
 ## Documentation
 
-Documentation is available in Xcode, accessed via the `Product > Build Documentation` menu item, or online at: https://tinder.github.io/Layout
+Documentation is viewable in Xcode by selecting `Build Documentation` from the `Product` menu, or online at: https://tinder.github.io/Layout
 
 ## Related Tools
 
