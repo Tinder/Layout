@@ -66,6 +66,8 @@ public protocol LayoutItem: AnyObject, LayoutBoundary, LayoutCenter, LayoutSize,
 
 extension LayoutItem {
 
+    // MARK: - Properties
+
     /// Gets or sets the [`accessibilityIdentifier`](
     /// https://developer.apple.com/documentation/uikit/uiaccessibilityidentification/1623132-accessibilityidentifier
     /// ) of the ``layoutItemView``, which can also be set by calling ``id(_:)``.
@@ -94,6 +96,8 @@ extension LayoutItem {
         return superview.safeAreaLayoutGuide
     }
 
+    // MARK: - Identifier
+
     /// Assigns the [`accessibilityIdentifier`](
     /// https://developer.apple.com/documentation/uikit/uiaccessibilityidentification/1623132-accessibilityidentifier
     /// ).
@@ -107,6 +111,8 @@ extension LayoutItem {
         self.identifier = identifier
         return self
     }
+
+    // MARK: - Size
 
     /// Adds constraints defining the size of the ``layoutItemView``.
     ///
@@ -179,6 +185,8 @@ extension LayoutItem {
         }
     }
 
+    // MARK: - Aspect Ratio
+
     // swiftlint:enable function_default_parameter_at_end
 
     /// Adds a constraint defining a square aspect ratio for the ``layoutItemView``.
@@ -223,6 +231,8 @@ extension LayoutItem {
         }
     }
 
+    // MARK: - Center
+
     /// Adds constraints aligning the center of the ``layoutItemView`` to the center of the superview with a
     /// given offset.
     ///
@@ -257,65 +267,6 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         to(axis.attribute, multiplier: multiplier, constant: offset, priority: priority)
-    }
-
-    /// Adds constraints vertically centering the ``layoutItemView`` between the given anchors.
-    ///
-    /// The center of the view is vertically aligned to the center of a layout guide where the top and bottom edges of
-    /// the layout guide are aligned to the given anchors.
-    ///
-    /// Example:
-    ///
-    /// ```swift
-    /// view
-    ///     .layout {
-    ///         siblingView
-    ///             .size(width: 100, height: 100)
-    ///             .center()
-    ///         label
-    ///             .center(.horizontal)
-    ///             .center(between: siblingView.bottom, and: view.bottom)
-    ///     }
-    ///     .activate()
-    /// ```
-    ///
-    /// ```
-    /// +-------------------------------+
-    /// |                               |
-    /// |                               |
-    /// |                               |
-    /// |           +-------+           |
-    /// |           |       |           |
-    /// |           |       |           |
-    /// |           |       |           |
-    /// |           +--(1)--+           |
-    /// |                               |
-    /// |             label             |
-    /// |                               |
-    /// +--------------(2)--------------+
-    /// ```
-    ///
-    /// - Parameters:
-    ///   - top: The anchor to which to align the top edge of the centering guide. (1)
-    ///   - bottom: The anchor to which to align the bottom edge of the centering guide. (2)
-    ///
-    /// - Returns: The layout item instance with the added constraints.
-    public func center(
-        between top: NSLayoutYAxisAnchor,
-        and bottom: NSLayoutYAxisAnchor
-    ) -> LayoutItem {
-        addingSuperviewConstraints { layoutItem in
-            if let superview = layoutItem.layoutItemView.superview {
-                let guide: UILayoutGuide = {
-                    let guide: UILayoutGuide = .init()
-                    superview.addLayoutGuide(guide)
-                    return guide
-                }()
-                guide.top.constraint(to: top)
-                guide.bottom.constraint(to: bottom)
-                layoutItem.layoutItemView.centerY.constraint(to: guide.centerY)
-            }
-        }
     }
 
     /// Adds constraints horizontally centering the ``layoutItemView`` between the given anchors.
@@ -377,6 +328,67 @@ extension LayoutItem {
         }
     }
 
+    /// Adds constraints vertically centering the ``layoutItemView`` between the given anchors.
+    ///
+    /// The center of the view is vertically aligned to the center of a layout guide where the top and bottom edges of
+    /// the layout guide are aligned to the given anchors.
+    ///
+    /// Example:
+    ///
+    /// ```swift
+    /// view
+    ///     .layout {
+    ///         siblingView
+    ///             .size(width: 100, height: 100)
+    ///             .center()
+    ///         label
+    ///             .center(.horizontal)
+    ///             .center(between: siblingView.bottom, and: view.bottom)
+    ///     }
+    ///     .activate()
+    /// ```
+    ///
+    /// ```
+    /// +-------------------------------+
+    /// |                               |
+    /// |                               |
+    /// |                               |
+    /// |           +-------+           |
+    /// |           |       |           |
+    /// |           |       |           |
+    /// |           |       |           |
+    /// |           +--(1)--+           |
+    /// |                               |
+    /// |             label             |
+    /// |                               |
+    /// +--------------(2)--------------+
+    /// ```
+    ///
+    /// - Parameters:
+    ///   - top: The anchor to which to align the top edge of the centering guide. (1)
+    ///   - bottom: The anchor to which to align the bottom edge of the centering guide. (2)
+    ///
+    /// - Returns: The layout item instance with the added constraints.
+    public func center(
+        between top: NSLayoutYAxisAnchor,
+        and bottom: NSLayoutYAxisAnchor
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            if let superview = layoutItem.layoutItemView.superview {
+                let guide: UILayoutGuide = {
+                    let guide: UILayoutGuide = .init()
+                    superview.addLayoutGuide(guide)
+                    return guide
+                }()
+                guide.top.constraint(to: top)
+                guide.bottom.constraint(to: bottom)
+                layoutItem.layoutItemView.centerY.constraint(to: guide.centerY)
+            }
+        }
+    }
+
+    // MARK: - Attributes
+
     /// Adds a constraint defining a relationship between the given attribute of the ``layoutItemView`` and superview.
     ///
     /// - Important: Providing a margin attribute defines a relationship between the corresponding non-margin
@@ -430,6 +442,8 @@ extension LayoutItem {
             }
         }
     }
+
+    // MARK: - Edges
 
     /// Adds constraints aligning the edges of the ``layoutItemView`` to the edges of the superview with
     /// directional insets ([`NSDirectionalEdgeInsets`](
@@ -535,6 +549,8 @@ extension LayoutItem {
     ) -> LayoutItem {
         toEdges(canonical: [.left, .right], inset: inset, priority: priority)
     }
+
+    // MARK: - Margins
 
     /// Adds constraints aligning the edges of the ``layoutItemView`` to the margins of the superview with
     /// directional insets ([`NSDirectionalEdgeInsets`](
@@ -662,6 +678,8 @@ extension LayoutItem {
         }
     }
 
+    // MARK: - Safe Area
+
     /// Adds constraints aligning the edges of the ``layoutItemView`` to the safe area of the superview with
     /// directional insets ([`NSDirectionalEdgeInsets`](
     /// https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets
@@ -751,6 +769,8 @@ extension LayoutItem {
             }
         }
     }
+
+    // MARK: - Private
 
     private func constraint(
         to edge: DirectionalEdge,

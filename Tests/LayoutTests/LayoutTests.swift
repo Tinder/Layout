@@ -14,6 +14,8 @@ import XCTest
 @MainActor
 final class LayoutTests: XCTestCase {
 
+    // MARK: - Initialization
+
     func testInitWithContainerView_andWithMetrics() {
 
         // GIVEN
@@ -143,6 +145,58 @@ final class LayoutTests: XCTestCase {
         expect(layout.items["subview2"]) === subview2
     }
 
+    // MARK: - Adding Items
+
+    func testAddItemsWithVariadic() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let layout: Layout = .init(view)
+        let view1: UIView = .init()
+        let view2: UIView = .init()
+
+        // THEN
+
+        expect(layout.items.isEmpty) == true
+
+        // WHEN
+
+        layout.addItems(view1.id("view1"), view2.id("view2"))
+
+        // THEN
+
+        expect(layout.items.count) == 2
+        expect(layout.items["view1"]) === view1
+        expect(layout.items["view2"]) === view2
+    }
+
+    func testAddItemsWithArray() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let layout: Layout = .init(view)
+        let view1: UIView = .init()
+        let view2: UIView = .init()
+
+        // THEN
+
+        expect(layout.items.isEmpty) == true
+
+        // WHEN
+
+        layout.addItems([view1.id("view1"), view2.id("view2")])
+
+        // THEN
+
+        expect(layout.items.count) == 2
+        expect(layout.items["view1"]) === view1
+        expect(layout.items["view2"]) === view2
+    }
+
+    // MARK: - Adding Constraints
+
     func testAddingConstraintsWithBuilder() {
 
         // GIVEN
@@ -208,133 +262,7 @@ final class LayoutTests: XCTestCase {
         expect(layout.constraints.first) === constraint
     }
 
-    func testVerticalWithFormat() {
-
-        // GIVEN
-
-        let view: UIView = .init()
-        let subview: UIView = .init()
-        let layout: Layout = .init(view)
-        let format: String = "|-[subview]-|"
-
-        // WHEN
-
-        layout
-            .addItems(subview.id("subview"))
-            .vertical(format)
-
-        // THEN
-
-        expect(layout.constraints.count) == 2
-        let expected: [NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "V:\(format)",
-                                                                            metrics: nil,
-                                                                            views: ["subview": subview])
-        for (index, constraint) in layout.constraints.enumerated() {
-            expect(constraint).to(match(expected[index]))
-        }
-    }
-
-    func testVerticalWithFormat_andMetricsAndOptions() {
-
-        // GIVEN
-
-        let view: UIView = .init()
-        let subview1: UIView = .init()
-        let subview2: UIView = .init()
-        let layout: Layout = .init(view)
-        let format: String = "|-topMargin-[subview1(height)]-[subview2(height)]"
-        let metrics: [String: Any] = [
-            "topMargin": 25,
-            "height": 275
-        ]
-        let views: [String: UIView] = [
-            "subview1": subview1,
-            "subview2": subview2
-        ]
-
-        // WHEN
-
-        layout
-            .addItems(subview1.id("subview1"), subview2.id("subview2"))
-            .vertical(format, metrics: metrics, options: .alignAllCenterX)
-
-        // THEN
-
-        let expected: [NSLayoutConstraint] = NSLayoutConstraint.constraints(
-            withVisualFormat: "V:\(format)",
-            options: .alignAllCenterX,
-            metrics: metrics,
-            views: views
-        )
-        expect(layout.constraints.count) == expected.count
-        for (index, constraint) in layout.constraints.enumerated() {
-            expect(constraint).to(match(expected[index]))
-        }
-    }
-
-    func testHorizontalWithFormat() {
-
-        // GIVEN
-
-        let view: UIView = .init()
-        let subview: UIView = .init()
-        let layout: Layout = .init(view)
-        let format: String = "|-[subview]-|"
-
-        // WHEN
-
-        layout
-            .addItems(subview.id("subview"))
-            .horizontal(format)
-
-        // THEN
-
-        expect(layout.constraints.count) == 2
-        let expected: [NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "H:\(format)",
-                                                                            metrics: nil,
-                                                                            views: ["subview": subview])
-        for (index, constraint) in layout.constraints.enumerated() {
-            expect(constraint).to(match(expected[index]))
-        }
-    }
-
-    func testHorizontalWithFormat_andMetricsAndOptions() {
-
-        // GIVEN
-
-        let view: UIView = .init()
-        let subview1: UIView = .init()
-        let subview2: UIView = .init()
-        let layout: Layout = .init(view)
-        let format: String = "|-leftMargin-[subview1(width)]-[subview2(width)]"
-        let metrics: [String: Any] = [
-            "leftMargin": 25,
-            "width": 275
-        ]
-        let views: [String: UIView] = [
-            "subview1": subview1,
-            "subview2": subview2
-        ]
-
-        // WHEN
-
-        layout
-            .addItems(subview1.id("subview1"), subview2.id("subview2"))
-            .horizontal(format, metrics: metrics, options: .alignAllCenterY)
-
-        // THEN
-
-        let expected: [NSLayoutConstraint] = NSLayoutConstraint.constraints(
-            withVisualFormat: "H:\(format)",
-            options: .alignAllCenterY,
-            metrics: metrics,
-            views: views
-        )
-        expect(layout.constraints.count) == expected.count
-        for (index, constraint) in layout.constraints.enumerated() {
-            expect(constraint).to(match(expected[index]))
-        }
-    }
+    // MARK: - Constrain
 
     func testConstrainToAttribute_andWithRelation_andWithConstant() {
 
@@ -680,6 +608,29 @@ final class LayoutTests: XCTestCase {
         }
     }
 
+    // MARK: - Equal
+
+    func testEqualSize() {
+
+        // GIVEN
+
+        let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
+
+        // THEN
+
+        assertLayout { view in
+            view.layout {
+                pinkView
+                    .size(width: 50, height: 50)
+                    .to([.top, .leading])
+                yellowView
+                    .to([.top, .trailing])
+            }
+            .equalSize([pinkView, yellowView])
+        }
+    }
+
     func testEqualAttributeWithViews() {
 
         // GIVEN
@@ -708,27 +659,6 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testEqualSize() {
-
-        // GIVEN
-
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
-
-        // THEN
-
-        assertLayout { view in
-            view.layout {
-                pinkView
-                    .size(width: 50, height: 50)
-                    .to([.top, .leading])
-                yellowView
-                    .to([.top, .trailing])
-            }
-            .equalSize([pinkView, yellowView])
-        }
-    }
-
     func testEqualAttributesWithViews() {
 
         // GIVEN
@@ -749,6 +679,78 @@ final class LayoutTests: XCTestCase {
             .equal([.height, .width], [pinkView, yellowView])
         }
     }
+
+    // MARK: - Center
+
+    func testCenterViewBetween() {
+
+        // GIVEN
+
+        let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
+
+        // THEN
+
+        assertLayout { view in
+
+            let layout: Layout = view.layout {
+                pinkView
+                    .size(width: 100, height: 100)
+                    .to(.top)
+                yellowView
+                    .size(width: 100, height: 100)
+                    .to(.bottom)
+            }
+
+            // Center View Between Leading Anchor and Trailing Anchor with Default Priority
+
+            layout.center(pinkView, between: view.leading, and: view.trailing, priority: .high)
+            layout.center(pinkView, between: view.leading, and: view.centerX)
+
+            // Center View Between Leading Anchor and Trailing Anchor with Priority
+
+            layout.center(yellowView, between: pinkView.leading, and: pinkView.trailing, priority: .low)
+            layout.center(yellowView, between: view.leading, and: view.trailing, priority: .high)
+
+            return layout
+        }
+    }
+
+    func testCenterViewBetween_andWithPriority() {
+
+        // GIVEN
+
+        let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
+
+        // THEN
+
+        assertLayout { view in
+
+            let layout: Layout = view.layout {
+                pinkView
+                    .size(width: 100, height: 100)
+                    .to(.leading)
+                yellowView
+                    .size(width: 100, height: 100)
+                    .to(.trailing)
+            }
+
+            // Center View Between Top Anchor and Bottom Anchor with Default Priority
+
+            layout.center(yellowView, between: view.top, and: view.bottom, priority: .high)
+            layout.center(yellowView, between: view.top, and: view.centerY)
+
+            // Center View Between Top Anchor and Bottom Anchor with Priority
+
+            layout.center(pinkView, between: yellowView.top, and: yellowView.bottom, priority: .low)
+            layout.center(pinkView, between: view.top, and: view.bottom, priority: .high)
+
+            return layout
+        }
+    }
+
+    // MARK: - Stack
 
     func testHorizontalViewsWithAlignment_andWithSpacingAndDirectionAndPriority() {
 
@@ -909,121 +911,137 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testCenterViewBetween() {
+    // MARK: - Visual Format Language
 
-        // GIVEN
-
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
-
-        // THEN
-
-        assertLayout { view in
-
-            let layout: Layout = view.layout {
-                pinkView
-                    .size(width: 100, height: 100)
-                    .to(.top)
-                yellowView
-                    .size(width: 100, height: 100)
-                    .to(.bottom)
-            }
-
-            // Center View Between Leading Anchor and Trailing Anchor with Default Priority
-
-            layout.center(pinkView, between: view.leading, and: view.trailing, priority: .high)
-            layout.center(pinkView, between: view.leading, and: view.centerX)
-
-            // Center View Between Leading Anchor and Trailing Anchor with Priority
-
-            layout.center(yellowView, between: pinkView.leading, and: pinkView.trailing, priority: .low)
-            layout.center(yellowView, between: view.leading, and: view.trailing, priority: .high)
-
-            return layout
-        }
-    }
-
-    func testCenterViewBetween_andWithPriority() {
-
-        // GIVEN
-
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
-
-        // THEN
-
-        assertLayout { view in
-
-            let layout: Layout = view.layout {
-                pinkView
-                    .size(width: 100, height: 100)
-                    .to(.leading)
-                yellowView
-                    .size(width: 100, height: 100)
-                    .to(.trailing)
-            }
-
-            // Center View Between Top Anchor and Bottom Anchor with Default Priority
-
-            layout.center(yellowView, between: view.top, and: view.bottom, priority: .high)
-            layout.center(yellowView, between: view.top, and: view.centerY)
-
-            // Center View Between Top Anchor and Bottom Anchor with Priority
-
-            layout.center(pinkView, between: yellowView.top, and: yellowView.bottom, priority: .low)
-            layout.center(pinkView, between: view.top, and: view.bottom, priority: .high)
-
-            return layout
-        }
-    }
-
-    func testAddItemsWithVariadic() {
+    func testHorizontalWithFormat() {
 
         // GIVEN
 
         let view: UIView = .init()
+        let subview: UIView = .init()
         let layout: Layout = .init(view)
-        let view1: UIView = .init()
-        let view2: UIView = .init()
-
-        // THEN
-
-        expect(layout.items.isEmpty) == true
+        let format: String = "|-[subview]-|"
 
         // WHEN
 
-        layout.addItems(view1.id("view1"), view2.id("view2"))
+        layout
+            .addItems(subview.id("subview"))
+            .horizontal(format)
 
         // THEN
 
-        expect(layout.items.count) == 2
-        expect(layout.items["view1"]) === view1
-        expect(layout.items["view2"]) === view2
+        expect(layout.constraints.count) == 2
+        let expected: [NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "H:\(format)",
+                                                                            metrics: nil,
+                                                                            views: ["subview": subview])
+        for (index, constraint) in layout.constraints.enumerated() {
+            expect(constraint).to(match(expected[index]))
+        }
     }
 
-    func testAddItemsWithArray() {
+    func testHorizontalWithFormat_andMetricsAndOptions() {
 
         // GIVEN
 
         let view: UIView = .init()
+        let subview1: UIView = .init()
+        let subview2: UIView = .init()
         let layout: Layout = .init(view)
-        let view1: UIView = .init()
-        let view2: UIView = .init()
-
-        // THEN
-
-        expect(layout.items.isEmpty) == true
+        let format: String = "|-leftMargin-[subview1(width)]-[subview2(width)]"
+        let metrics: [String: Any] = [
+            "leftMargin": 25,
+            "width": 275
+        ]
+        let views: [String: UIView] = [
+            "subview1": subview1,
+            "subview2": subview2
+        ]
 
         // WHEN
 
-        layout.addItems([view1.id("view1"), view2.id("view2")])
+        layout
+            .addItems(subview1.id("subview1"), subview2.id("subview2"))
+            .horizontal(format, metrics: metrics, options: .alignAllCenterY)
 
         // THEN
 
-        expect(layout.items.count) == 2
-        expect(layout.items["view1"]) === view1
-        expect(layout.items["view2"]) === view2
+        let expected: [NSLayoutConstraint] = NSLayoutConstraint.constraints(
+            withVisualFormat: "H:\(format)",
+            options: .alignAllCenterY,
+            metrics: metrics,
+            views: views
+        )
+        expect(layout.constraints.count) == expected.count
+        for (index, constraint) in layout.constraints.enumerated() {
+            expect(constraint).to(match(expected[index]))
+        }
     }
+
+    func testVerticalWithFormat() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let subview: UIView = .init()
+        let layout: Layout = .init(view)
+        let format: String = "|-[subview]-|"
+
+        // WHEN
+
+        layout
+            .addItems(subview.id("subview"))
+            .vertical(format)
+
+        // THEN
+
+        expect(layout.constraints.count) == 2
+        let expected: [NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "V:\(format)",
+                                                                            metrics: nil,
+                                                                            views: ["subview": subview])
+        for (index, constraint) in layout.constraints.enumerated() {
+            expect(constraint).to(match(expected[index]))
+        }
+    }
+
+    func testVerticalWithFormat_andMetricsAndOptions() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let subview1: UIView = .init()
+        let subview2: UIView = .init()
+        let layout: Layout = .init(view)
+        let format: String = "|-topMargin-[subview1(height)]-[subview2(height)]"
+        let metrics: [String: Any] = [
+            "topMargin": 25,
+            "height": 275
+        ]
+        let views: [String: UIView] = [
+            "subview1": subview1,
+            "subview2": subview2
+        ]
+
+        // WHEN
+
+        layout
+            .addItems(subview1.id("subview1"), subview2.id("subview2"))
+            .vertical(format, metrics: metrics, options: .alignAllCenterX)
+
+        // THEN
+
+        let expected: [NSLayoutConstraint] = NSLayoutConstraint.constraints(
+            withVisualFormat: "V:\(format)",
+            options: .alignAllCenterX,
+            metrics: metrics,
+            views: views
+        )
+        expect(layout.constraints.count) == expected.count
+        for (index, constraint) in layout.constraints.enumerated() {
+            expect(constraint).to(match(expected[index]))
+        }
+    }
+
+    // MARK: - Activation
 
     func testActivate_andDeactivate() {
 
@@ -1079,6 +1097,8 @@ final class LayoutTests: XCTestCase {
         expect(layout.constraints[0].isActive) == false
         expect(layout.constraints[1].isActive) == false
     }
+
+    // MARK: - Priority
 
     func testRequire() {
 
@@ -1222,6 +1242,8 @@ final class LayoutTests: XCTestCase {
         expect(layout.constraints[0].priority) == UILayoutPriority.high
         expect(layout.constraints[1].priority) == UILayoutPriority.high
     }
+
+    // MARK: - Update
 
     func testUpdate() {
 

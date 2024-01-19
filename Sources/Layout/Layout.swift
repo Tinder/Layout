@@ -45,6 +45,8 @@ import UIKit
 @MainActor
 public final class Layout { // swiftlint:disable:this type_body_length
 
+    // MARK: - Properties
+
     /// The parent view to which the layout will add subviews and superview constraints.
     public weak var view: UIView?
 
@@ -59,6 +61,8 @@ public final class Layout { // swiftlint:disable:this type_body_length
     public private(set) var items: [String: LayoutItem] = [:]
 
     internal private(set) var constraints: [NSLayoutConstraint] = []
+
+    // MARK: - Initialization
 
     /// To create an empty `Layout`, use ``UIKit/UIView/layout(metrics:)`` instead.
     public convenience init(
@@ -100,6 +104,45 @@ public final class Layout { // swiftlint:disable:this type_body_length
         addItems(items)
     }
 
+    // MARK: - Adding Items
+
+    /// Adds items to the layout.
+    ///
+    /// - Parameter items: The items to be added as subviews.
+    ///
+    /// - Returns: The receiver with the added subviews.
+    @discardableResult
+    public func addItems(
+        _ items: LayoutItem...
+    ) -> Layout {
+        addItems(items)
+    }
+
+    /// Adds items to the layout.
+    ///
+    /// - Parameter items: The items to be added as subviews.
+    ///
+    /// - Returns: The receiver with the added subviews.
+    @discardableResult
+    public func addItems(
+        _ items: [LayoutItem]
+    ) -> Layout {
+        items.forEach { item in
+            let subview: UIView = item.layoutItemView
+            subview.translatesAutoresizingMaskIntoConstraints = false
+            if subview.superview != view {
+                view?.addSubview(subview)
+            }
+            adding(item.superviewConstraints(item))
+            if let key: String = subview.identifier, !key.isEmpty {
+                self.items[key] = subview
+            }
+        }
+        return self
+    }
+
+    // MARK: - Adding Constraints
+
     /// Adds constraints provided by the given ``ConstraintsBuilder``.
     ///
     /// - Parameter constraints: The builder that creates the constraints to be added.
@@ -133,59 +176,9 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return self
     }
 
-    // swiftlint:disable discouraged_optional_collection
-
-    /// Adds constraints to the layout described by a vertical visual format string.
-    ///
-    /// - Important: The orientation format for a vertical arrangement (`V:`) should be omitted since it is
-    ///   automatically prepended to the given format string.
-    ///
-    /// - Parameters:
-    ///   - format: The format describing the vertical constraints.
-    ///   - metrics: (Optional) A dictionary of constants to be used in the format. Uses the ``metrics`` of the layout
-    ///     by default.
-    ///   - options: (Optional) The format options indicating alignment and text spacing.
-    ///
-    /// - Returns: The layout instance with the added constraints.
-    @discardableResult
-    public func vertical(
-        _ format: String,
-        metrics: [String: Any]? = nil,
-        options: NSLayoutConstraint.FormatOptions = []
-    ) -> Layout {
-        adding(NSLayoutConstraint.constraints(format: "V:" + format,
-                                              views: items,
-                                              metrics: metrics ?? self.metrics,
-                                              options: options))
-    }
-
-    /// Adds constraints to the layout described by a horizontal visual format string.
-    ///
-    /// - Important: The orientation format for a horizontal arrangement (`H:`) should be omitted since it is
-    ///   automatically prepended to the given format string.
-    ///
-    /// - Parameters:
-    ///   - format: The format describing the horizontal constraints.
-    ///   - metrics: (Optional) A dictionary of constants to be used in the format. Uses the ``metrics`` of the layout
-    ///     by default.
-    ///   - options: (Optional) The format options indicating alignment, direction and text spacing.
-    ///
-    /// - Returns: The layout instance with the added constraints.
-    @discardableResult
-    public func horizontal(
-        _ format: String,
-        metrics: [String: Any]? = nil,
-        options: NSLayoutConstraint.FormatOptions = []
-    ) -> Layout {
-        adding(NSLayoutConstraint.constraints(format: "H:" + format,
-                                              views: items,
-                                              metrics: metrics ?? self.metrics,
-                                              options: options))
-    }
-
-    // swiftlint:enable discouraged_optional_collection
-
     // swiftlint:disable function_default_parameter_at_end
+
+    // MARK: - Constrain
 
     /// Adds a constraint defining the relationship between the given attribute of the view and target view.
     ///
@@ -393,6 +386,21 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return constrain(view, to: targetView, insets: insets)
     }
 
+    // MARK: - Equal
+
+    /// Adds constraints equating the size of the given views.
+    ///
+    /// - Parameters:
+    ///   - views: The views to constrain.
+    ///
+    /// - Returns: The layout instance with the added constraints.
+    @discardableResult
+    public func equalSize(
+        _ views: [UIView]
+    ) -> Layout {
+        equal([.height, .width], views)
+    }
+
     /// Adds constraints equating the attribute of the given views.
     ///
     /// - Parameters:
@@ -406,19 +414,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         _ views: [UIView]
     ) -> Layout {
         equal([attribute], views)
-    }
-
-    /// Adds constraints equating the size of the given views.
-    ///
-    /// - Parameters:
-    ///   - views: The views to constrain.
-    ///
-    /// - Returns: The layout instance with the added constraints.
-    @discardableResult
-    public func equalSize(
-        _ views: [UIView]
-    ) -> Layout {
-        equal([.height, .width], views)
     }
 
     /// Adds constraints equating the attributes of the given views.
@@ -442,92 +437,9 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return self
     }
 
-    /// Adds constraints defining the relationship between each of the given views as a horizontal stack with desired
-    /// spacing, layout direction and vertical alignment.
-    ///
-    /// - Note: The views are spaced horizontally and aligned vertically.
-    ///
-    /// - Parameters:
-    ///   - views: The views to be spaced horizontally.
-    ///   - spacing: The amount of space between each view.
-    ///   - direction: The layout direction.
-    ///   - priority: The priority of the constraints.
-    ///   - alignment: The vertical alignment of the views.
-    ///
-    /// - Returns: The layout instance with the added constraints.
-    @discardableResult
-    public func horizontal(
-        _ views: [UIView],
-        spacing: CGFloat = 0,
-        direction: HorizontalDirection = .leadingToTrailing,
-        priority: UILayoutPriority = .required,
-        alignment: YAxisAttribute...
-    ) -> Layout {
-        guard views.count >= 2,
-              let first = views.first
-        else { return self }
-        switch direction {
-        case .leadingToTrailing:
-            var anchor: NSLayoutXAxisAnchor = first.trailing
-            for view in views.dropFirst() {
-                adding(view.leading.constraint(equalTo: anchor, constant: spacing).withPriority(priority))
-                anchor = view.trailing
-            }
-        case .leftToRight:
-            var anchor: NSLayoutXAxisAnchor = first.right
-            for view in views.dropFirst() {
-                adding(view.left.constraint(equalTo: anchor, constant: spacing).withPriority(priority))
-                anchor = view.right
-            }
-        }
-        for attribute: YAxisAttribute in alignment {
-            let firstAnchor: NSLayoutYAxisAnchor = first.anchor(for: attribute)
-            let constraints: [NSLayoutConstraint] = views
-                .dropFirst()
-                .map { $0.anchor(for: attribute).constraint(equalTo: firstAnchor) }
-            adding(constraints.withPriority(priority))
-        }
-        return self
-    }
-
-    /// Adds constraints defining the relationship between each of the given views as a vertical stack with desired
-    /// spacing and horizontal alignment.
-    ///
-    /// - Note: The views are spaced vertically and aligned horizontally.
-    ///
-    /// - Parameters:
-    ///   - views: The views to be spaced vertically.
-    ///   - spacing: The amount of space between each view.
-    ///   - priority: The priority of the constraints.
-    ///   - alignment: The horizontal alignment of the views.
-    ///
-    /// - Returns: The layout instance with the added constraints.
-    @discardableResult
-    public func vertical(
-        _ views: [UIView],
-        spacing: CGFloat = 0,
-        priority: UILayoutPriority = .required,
-        alignment: XAxisAttribute...
-    ) -> Layout {
-        guard views.count >= 2,
-              let first = views.first
-        else { return self }
-        var anchor: NSLayoutYAxisAnchor = first.bottom
-        for view in views.dropFirst() {
-            adding(view.top.constraint(equalTo: anchor, constant: spacing).withPriority(priority))
-            anchor = view.bottom
-        }
-        for attribute: XAxisAttribute in alignment {
-            let firstAnchor: NSLayoutXAxisAnchor = first.anchor(for: attribute)
-            let constraints: [NSLayoutConstraint] = views
-                .dropFirst()
-                .map { $0.anchor(for: attribute).constraint(equalTo: firstAnchor) }
-            adding(constraints.withPriority(priority))
-        }
-        return self
-    }
-
     // swiftlint:enable function_default_parameter_at_end
+
+    // MARK: - Center
 
     /// Adds constraints horizontally centering the given view between two anchors.
     ///
@@ -651,40 +563,152 @@ public final class Layout { // swiftlint:disable:this type_body_length
         ])
     }
 
-    /// Adds items to the layout.
-    ///
-    /// - Parameter items: The items to be added as subviews.
-    ///
-    /// - Returns: The receiver with the added subviews.
-    @discardableResult
-    public func addItems(
-        _ items: LayoutItem...
-    ) -> Layout {
-        addItems(items)
-    }
+    // swiftlint:disable function_default_parameter_at_end
 
-    /// Adds items to the layout.
+    // MARK: - Stack
+
+    /// Adds constraints defining the relationship between each of the given views as a horizontal stack with desired
+    /// spacing, layout direction and vertical alignment.
     ///
-    /// - Parameter items: The items to be added as subviews.
+    /// - Note: The views are spaced horizontally and aligned vertically.
     ///
-    /// - Returns: The receiver with the added subviews.
+    /// - Parameters:
+    ///   - views: The views to be spaced horizontally.
+    ///   - spacing: The amount of space between each view.
+    ///   - direction: The layout direction.
+    ///   - priority: The priority of the constraints.
+    ///   - alignment: The vertical alignment of the views.
+    ///
+    /// - Returns: The layout instance with the added constraints.
     @discardableResult
-    public func addItems(
-        _ items: [LayoutItem]
+    public func horizontal(
+        _ views: [UIView],
+        spacing: CGFloat = 0,
+        direction: HorizontalDirection = .leadingToTrailing,
+        priority: UILayoutPriority = .required,
+        alignment: YAxisAttribute...
     ) -> Layout {
-        items.forEach { item in
-            let subview: UIView = item.layoutItemView
-            subview.translatesAutoresizingMaskIntoConstraints = false
-            if subview.superview != view {
-                view?.addSubview(subview)
+        guard views.count >= 2,
+              let first = views.first
+        else { return self }
+        switch direction {
+        case .leadingToTrailing:
+            var anchor: NSLayoutXAxisAnchor = first.trailing
+            for view in views.dropFirst() {
+                adding(view.leading.constraint(equalTo: anchor, constant: spacing).withPriority(priority))
+                anchor = view.trailing
             }
-            adding(item.superviewConstraints(item))
-            if let key: String = subview.identifier, !key.isEmpty {
-                self.items[key] = subview
+        case .leftToRight:
+            var anchor: NSLayoutXAxisAnchor = first.right
+            for view in views.dropFirst() {
+                adding(view.left.constraint(equalTo: anchor, constant: spacing).withPriority(priority))
+                anchor = view.right
             }
+        }
+        for attribute: YAxisAttribute in alignment {
+            let firstAnchor: NSLayoutYAxisAnchor = first.anchor(for: attribute)
+            let constraints: [NSLayoutConstraint] = views
+                .dropFirst()
+                .map { $0.anchor(for: attribute).constraint(equalTo: firstAnchor) }
+            adding(constraints.withPriority(priority))
         }
         return self
     }
+
+    /// Adds constraints defining the relationship between each of the given views as a vertical stack with desired
+    /// spacing and horizontal alignment.
+    ///
+    /// - Note: The views are spaced vertically and aligned horizontally.
+    ///
+    /// - Parameters:
+    ///   - views: The views to be spaced vertically.
+    ///   - spacing: The amount of space between each view.
+    ///   - priority: The priority of the constraints.
+    ///   - alignment: The horizontal alignment of the views.
+    ///
+    /// - Returns: The layout instance with the added constraints.
+    @discardableResult
+    public func vertical(
+        _ views: [UIView],
+        spacing: CGFloat = 0,
+        priority: UILayoutPriority = .required,
+        alignment: XAxisAttribute...
+    ) -> Layout {
+        guard views.count >= 2,
+              let first = views.first
+        else { return self }
+        var anchor: NSLayoutYAxisAnchor = first.bottom
+        for view in views.dropFirst() {
+            adding(view.top.constraint(equalTo: anchor, constant: spacing).withPriority(priority))
+            anchor = view.bottom
+        }
+        for attribute: XAxisAttribute in alignment {
+            let firstAnchor: NSLayoutXAxisAnchor = first.anchor(for: attribute)
+            let constraints: [NSLayoutConstraint] = views
+                .dropFirst()
+                .map { $0.anchor(for: attribute).constraint(equalTo: firstAnchor) }
+            adding(constraints.withPriority(priority))
+        }
+        return self
+    }
+
+    // swiftlint:enable function_default_parameter_at_end
+
+    // swiftlint:disable discouraged_optional_collection
+
+    // MARK: - Visual Format Language
+
+    /// Adds constraints to the layout described by a horizontal visual format string.
+    ///
+    /// - Important: The orientation format for a horizontal arrangement (`H:`) should be omitted since it is
+    ///   automatically prepended to the given format string.
+    ///
+    /// - Parameters:
+    ///   - format: The format describing the horizontal constraints.
+    ///   - metrics: (Optional) A dictionary of constants to be used in the format. Uses the ``metrics`` of the layout
+    ///     by default.
+    ///   - options: (Optional) The format options indicating alignment, direction and text spacing.
+    ///
+    /// - Returns: The layout instance with the added constraints.
+    @discardableResult
+    public func horizontal(
+        _ format: String,
+        metrics: [String: Any]? = nil,
+        options: NSLayoutConstraint.FormatOptions = []
+    ) -> Layout {
+        adding(NSLayoutConstraint.constraints(format: "H:" + format,
+                                              views: items,
+                                              metrics: metrics ?? self.metrics,
+                                              options: options))
+    }
+
+    /// Adds constraints to the layout described by a vertical visual format string.
+    ///
+    /// - Important: The orientation format for a vertical arrangement (`V:`) should be omitted since it is
+    ///   automatically prepended to the given format string.
+    ///
+    /// - Parameters:
+    ///   - format: The format describing the vertical constraints.
+    ///   - metrics: (Optional) A dictionary of constants to be used in the format. Uses the ``metrics`` of the layout
+    ///     by default.
+    ///   - options: (Optional) The format options indicating alignment and text spacing.
+    ///
+    /// - Returns: The layout instance with the added constraints.
+    @discardableResult
+    public func vertical(
+        _ format: String,
+        metrics: [String: Any]? = nil,
+        options: NSLayoutConstraint.FormatOptions = []
+    ) -> Layout {
+        adding(NSLayoutConstraint.constraints(format: "V:" + format,
+                                              views: items,
+                                              metrics: metrics ?? self.metrics,
+                                              options: options))
+    }
+
+    // swiftlint:enable discouraged_optional_collection
+
+    // MARK: - Activation
 
     /// Activates the constraints of the layout.
     ///
@@ -703,6 +727,8 @@ public final class Layout { // swiftlint:disable:this type_body_length
         constraints.deactivate()
         return self
     }
+
+    // MARK: - Priority
 
     /// Sets the priority of the constraints of the layout to required.
     ///
@@ -727,6 +753,8 @@ public final class Layout { // swiftlint:disable:this type_body_length
     public func prioritize(_ priority: UILayoutPriority) {
         constraints.forEach { $0.prioritize(priority) }
     }
+
+    // MARK: - Update
 
     /// Updates the constraints of the ``view`` of the layout.
     ///
