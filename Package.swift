@@ -31,7 +31,10 @@ let package = Package(
         .target(
             name: "Layout",
             swiftSettings: [
-                .unsafeFlags(["-strict-concurrency=complete"]),
+                .unsafeFlags([
+                    "-strict-concurrency=complete",
+                    "-emit-extension-block-symbols"
+                ]),
             ],
             plugins: [
                 .plugin(name: SwiftLint.plugin),

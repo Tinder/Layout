@@ -13,6 +13,14 @@ extension NSLayoutDimension {
 
     // swiftlint:disable function_default_parameter_at_end
 
+    /// Creates a constraint from the receiver in relation to the given dimension anchor.
+    ///
+    /// - Parameters:
+    ///   - relation: The relationship between the receiver and the dimension anchor.
+    ///   - anchor: The anchor to which to constrain.
+    ///   - constant: The offset for the constraint.
+    ///
+    /// - Returns: The created constraint.
     public func constraint(
         is relation: NSLayoutConstraint.Relation = .equal,
         to anchor: NSLayoutDimension,
@@ -30,6 +38,13 @@ extension NSLayoutDimension {
         }
     }
 
+    /// Creates a constraint related to the given constant.
+    ///
+    /// - Parameters:
+    ///   - relation: The relationship to the constant value.
+    ///   - constant: The constant value.
+    ///
+    /// - Returns: The created constraint.
     public func constraint(
         is relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat

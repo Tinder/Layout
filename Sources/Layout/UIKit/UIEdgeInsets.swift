@@ -9,6 +9,9 @@
 
 import UIKit
 
+/**
+ * Inset distances irrespective of the user interface layout direction.
+ */
 public typealias CanonicalInsets = UIEdgeInsets
 
 extension UIEdgeInsets {
@@ -19,6 +22,17 @@ extension UIEdgeInsets {
         self.init(top: inset, left: inset, bottom: inset, right: inset)
     }
 
+    /// A declarative factory method for initializing a [`UIEdgeInsets`](
+    /// https://developer.apple.com/documentation/uikit/uiedgeinsets
+    /// ) with the given inset values.
+    ///
+    /// - Parameters:
+    ///   - top: The top inset value.
+    ///   - left: The left inset value.
+    ///   - bottom: The bottom inset value.
+    ///   - right: The right inset value.
+    ///
+    /// - Returns: The `UIEdgeInsets` instance.
     public static func canonical(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> Self {
         UIEdgeInsets(top: top, left: left, bottom: bottom, right: right)
     }

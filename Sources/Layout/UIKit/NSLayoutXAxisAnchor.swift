@@ -13,6 +13,14 @@ extension NSLayoutXAxisAnchor {
 
     // swiftlint:disable function_default_parameter_at_end
 
+    /// Creates a constraint from the receiver in relation to the given x-axis anchor.
+    ///
+    /// - Parameters:
+    ///   - relation: The relationship between the receiver and the x-axis anchor.
+    ///   - anchor: The anchor to which to constrain.
+    ///   - constant: The offset for the constraint.
+    ///
+    /// - Returns: The created constraint.
     public func constraint(
         is relation: NSLayoutConstraint.Relation = .equal,
         to anchor: NSLayoutXAxisAnchor,
