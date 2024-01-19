@@ -35,7 +35,7 @@ Code written with Layout is declarative in nature such that it is easy to visual
 
 ## Usage
 
-The following example demonstrates adding a label, an image view and a button as subviews to a view controller's view.
+The following example demonstrates adding a label, an image view and a button as subviews of a view controller's view.
 
 ```swift
 override func viewDidLoad() {
