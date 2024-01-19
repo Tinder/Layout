@@ -98,8 +98,6 @@ extension UIView {
         ]
     }
 
-    // swiftlint:enable function_default_parameter_at_end
-
     // MARK: - Aspect Ratio
 
     /// Creates a constraint defining the aspect ratio of the receiver to be square.
@@ -152,9 +150,9 @@ extension UIView {
         ]
     }
 
-    // MARK: - Attributes
-
     // swiftlint:disable function_default_parameter_at_end
+
+    // MARK: - Attributes
 
     /// Creates a constraint defining the relationship between the given attribute of the receiver and superview.
     ///
@@ -264,6 +262,7 @@ extension UIView {
         }
     }
 
+    // swiftlint:enable function_default_parameter_at_end
 
     // MARK: - Edges
 
