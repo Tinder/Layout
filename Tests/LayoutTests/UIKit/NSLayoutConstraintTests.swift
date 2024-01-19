@@ -14,41 +14,7 @@ import XCTest
 @MainActor
 final class NSLayoutConstraintTests: XCTestCase {
 
-    func testActivation() {
-
-        // GIVEN
-
-        let view: UIView = .init()
-        let constraint: NSLayoutConstraint = .init(
-            item: view,
-            attribute: .height,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1,
-            constant: 0
-        )
-
-        // THEN
-
-        expect(constraint.isActive) == false
-
-        // WHEN
-
-        constraint.activate()
-
-        // THEN
-
-        expect(constraint.isActive) == true
-
-        // WHEN
-
-        constraint.deactivate()
-
-        // THEN
-
-        expect(constraint.isActive) == false
-    }
+    // MARK: - Visual Format Language
 
     func testConstraintsWithVisualFormatLanguage() {
 
@@ -107,6 +73,46 @@ final class NSLayoutConstraintTests: XCTestCase {
                 .adding(constraints())
         }
     }
+
+    // MARK: - Activation
+
+    func testActivation() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let constraint: NSLayoutConstraint = .init(
+            item: view,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 0
+        )
+
+        // THEN
+
+        expect(constraint.isActive) == false
+
+        // WHEN
+
+        constraint.activate()
+
+        // THEN
+
+        expect(constraint.isActive) == true
+
+        // WHEN
+
+        constraint.deactivate()
+
+        // THEN
+
+        expect(constraint.isActive) == false
+    }
+
+    // MARK: - Priority
 
     func testRequire() {
 
