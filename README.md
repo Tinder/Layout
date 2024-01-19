@@ -35,7 +35,7 @@ Code written with Layout is declarative in nature such that it is easy to visual
 
 ## Usage
 
-The following example demonstrates adding a label, an image view and a button as subviews to a view of a view controller.
+The following example demonstrates adding a label, an image view and a button as subviews to a view controller's view.
 
 ```swift
 override func viewDidLoad() {
@@ -55,7 +55,7 @@ override func viewDidLoad() {
 }
 ```
 
-The above layout results in the following Auto Layout code.
+The code above is equivalent to the following Auto Layout code.
 
 ```swift
 override func viewDidLoad() {
