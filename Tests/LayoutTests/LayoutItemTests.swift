@@ -28,19 +28,19 @@ final class LayoutItemTests: XCTestCase {
 
         // WHEN
 
-        view.identifier = "identifier1"
+        view.identifier = "ga"
 
         // THEN
 
-        expect(view.identifier) == "identifier1"
+        expect(view.identifier) == "ga"
 
         // WHEN
 
-        let identifiedView: UIView = view.id("identifier2")
+        let identifiedView: UIView = view.id("ro")
 
         // THEN
 
-        expect(view.identifier) == "identifier2"
+        expect(view.identifier) == "ro"
         expect(identifiedView) === view
     }
 
