@@ -219,7 +219,7 @@ final class LayoutExampleTests: XCTestCase {
         assertLayout { container in
             container.addSubview(view)
             view.usingConstraints().edgeConstraints().activate()
-            return layout
+            layout.activate()
         }
     }
 }

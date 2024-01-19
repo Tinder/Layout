@@ -15,7 +15,7 @@ import XCTest
 
 final class UIViewAutoLayoutTests: XCTestCase {
 
-    // MARK: - Tests
+    // MARK: - Builder
 
     func testUsingConstraints() {
 
@@ -156,77 +156,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(view.constraints.first { $0.firstAttribute == .height }?.constant) == height
     }
 
-    func testConstraintForAttributeIsRelationToSuperviewMultiplierConstant() {
-
-        // GIVEN
-
-        let superview: UIView = .init()
-        let view: UIView = .init()
-        superview.addSubview(view)
-
-        // WHEN
-
-        let constraints1: [NSLayoutConstraint] = view.constraints(toSuperview: [.top])
-
-        // THEN
-
-        expect(constraints1.first?.firstAttribute) == .top
-        expect(constraints1.first?.relation) == .equal
-        expect(constraints1.first?.multiplier) == 1
-        expect(constraints1.first?.constant) == 0
-
-        // WHEN
-
-        let constraints2: [NSLayoutConstraint] = view.constraints(
-            is: .greaterThanOrEqual,
-            toSuperview: [.bottom],
-            multiplier: 2,
-            constant: 5
-        )
-
-        // THEN
-
-        expect(constraints2.first?.firstAttribute) == .bottom
-        expect(constraints2.first?.relation) == .greaterThanOrEqual
-        expect(constraints2.first?.multiplier) == 2
-        expect(constraints2.first?.constant) == 5
-    }
-
-    func testConstraintForAttributeIsRelationToTargetAttributeOfTargetViewMultiplierConstant() {
-
-        // GIVEN
-
-        let view: UIView = .init()
-        let targetView: UIView = .init()
-
-        // WHEN
-
-        let constraints1: [NSLayoutConstraint] = view.constraints(to: [.top], of: targetView)
-
-        // THEN
-
-        expect(constraints1.first?.firstAttribute) == .top
-        expect(constraints1.first?.relation) == .equal
-        expect(constraints1.first?.multiplier) == 1
-        expect(constraints1.first?.constant) == 0
-
-        // WHEN
-
-        let constraints2: [NSLayoutConstraint] = view.constraints(
-            is: .greaterThanOrEqual,
-            to: [.bottom],
-            of: targetView,
-            multiplier: 2,
-            constant: 5
-        )
-
-        // THEN
-
-        expect(constraints2.first?.firstAttribute) == .bottom
-        expect(constraints2.first?.relation) == .greaterThanOrEqual
-        expect(constraints2.first?.multiplier) == 2
-        expect(constraints2.first?.constant) == 5
-    }
+    // MARK: - Size
 
     func testWidthConstraintIsRelationConstant() {
 
@@ -344,6 +274,8 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(sizeConstraints2[1].constant) == 20
     }
 
+    // MARK: - Aspect Ratio
+
     func testSquareConstraint() {
 
         // GIVEN
@@ -379,6 +311,140 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraint.relation) == .equal
         expect(constraint.multiplier) == ratio
     }
+
+    // MARK: - Equal
+
+    func testEqualConstraintsForAttributeToViews() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+
+        // WHEN
+
+        let constraints: [NSLayoutConstraint] = view.equalConstraints(for: .top, to: [superview])
+
+        // THEN
+
+        expect(constraints.first?.firstAttribute) == .top
+        expect(constraints.first?.relation) == .equal
+    }
+
+    // MARK: - Center
+
+    func testCenterConstraintsOffset() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+        superview.addSubview(view)
+
+        // WHEN
+
+        let constraints1: [NSLayoutConstraint] = view.centerConstraints()
+
+        // THEN
+
+        expect(constraints1.count) == 2
+        expect(constraints1[0].firstAttribute) == .centerX
+        expect(constraints1[0].constant) == 0
+        expect(constraints1[1].firstAttribute) == .centerY
+        expect(constraints1[1].constant) == 0
+
+        // GIVEN
+
+        let offset: UIOffset = .init(horizontal: 5, vertical: 10)
+
+        // WHEN
+
+        let constraints2: [NSLayoutConstraint] = view.centerConstraints(offset: offset)
+
+        // THEN
+
+        expect(constraints2.count) == 2
+        expect(constraints2[0].firstAttribute) == .centerX
+        expect(constraints2[0].constant) == offset.horizontal
+        expect(constraints2[1].firstAttribute) == .centerY
+        expect(constraints2[1].constant) == offset.vertical
+    }
+
+    // MARK: - Attributes
+
+    func testConstraintForAttributeIsRelationToSuperviewMultiplierConstant() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+        superview.addSubview(view)
+
+        // WHEN
+
+        let constraints1: [NSLayoutConstraint] = view.constraints(toSuperview: [.top])
+
+        // THEN
+
+        expect(constraints1.first?.firstAttribute) == .top
+        expect(constraints1.first?.relation) == .equal
+        expect(constraints1.first?.multiplier) == 1
+        expect(constraints1.first?.constant) == 0
+
+        // WHEN
+
+        let constraints2: [NSLayoutConstraint] = view.constraints(
+            is: .greaterThanOrEqual,
+            toSuperview: [.bottom],
+            multiplier: 2,
+            constant: 5
+        )
+
+        // THEN
+
+        expect(constraints2.first?.firstAttribute) == .bottom
+        expect(constraints2.first?.relation) == .greaterThanOrEqual
+        expect(constraints2.first?.multiplier) == 2
+        expect(constraints2.first?.constant) == 5
+    }
+
+    func testConstraintForAttributeIsRelationToTargetAttributeOfTargetViewMultiplierConstant() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let targetView: UIView = .init()
+
+        // WHEN
+
+        let constraints1: [NSLayoutConstraint] = view.constraints(to: [.top], of: targetView)
+
+        // THEN
+
+        expect(constraints1.first?.firstAttribute) == .top
+        expect(constraints1.first?.relation) == .equal
+        expect(constraints1.first?.multiplier) == 1
+        expect(constraints1.first?.constant) == 0
+
+        // WHEN
+
+        let constraints2: [NSLayoutConstraint] = view.constraints(
+            is: .greaterThanOrEqual,
+            to: [.bottom],
+            of: targetView,
+            multiplier: 2,
+            constant: 5
+        )
+
+        // THEN
+
+        expect(constraints2.first?.firstAttribute) == .bottom
+        expect(constraints2.first?.relation) == .greaterThanOrEqual
+        expect(constraints2.first?.multiplier) == 2
+        expect(constraints2.first?.constant) == 5
+    }
+
+    // MARK: - Edges
 
     func testEdgeConstraintsInset() {
 
@@ -482,59 +548,5 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[2].constant) == insets.left
         expect(constraints[3].firstAttribute) == .right
         expect(constraints[3].constant) == -insets.right
-    }
-
-    func testCenterConstraintsOffset() {
-
-        // GIVEN
-
-        let superview: UIView = .init()
-        let view: UIView = .init()
-        superview.addSubview(view)
-
-        // WHEN
-
-        let constraints1: [NSLayoutConstraint] = view.centerConstraints()
-
-        // THEN
-
-        expect(constraints1.count) == 2
-        expect(constraints1[0].firstAttribute) == .centerX
-        expect(constraints1[0].constant) == 0
-        expect(constraints1[1].firstAttribute) == .centerY
-        expect(constraints1[1].constant) == 0
-
-        // GIVEN
-
-        let offset: UIOffset = .init(horizontal: 5, vertical: 10)
-
-        // WHEN
-
-        let constraints2: [NSLayoutConstraint] = view.centerConstraints(offset: offset)
-
-        // THEN
-
-        expect(constraints2.count) == 2
-        expect(constraints2[0].firstAttribute) == .centerX
-        expect(constraints2[0].constant) == offset.horizontal
-        expect(constraints2[1].firstAttribute) == .centerY
-        expect(constraints2[1].constant) == offset.vertical
-    }
-
-    func testEqualConstraintsForAttributeToViews() {
-
-        // GIVEN
-
-        let superview: UIView = .init()
-        let view: UIView = .init()
-
-        // WHEN
-
-        let constraints: [NSLayoutConstraint] = view.equalConstraints(for: .top, to: [superview])
-
-        // THEN
-
-        expect(constraints.first?.firstAttribute) == .top
-        expect(constraints.first?.relation) == .equal
     }
 }
