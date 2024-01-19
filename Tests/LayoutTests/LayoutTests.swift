@@ -552,6 +552,7 @@ final class LayoutTests: XCTestCase {
                 .constrain(yellowView,
                            to: pinkView,
                            insets: NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 40))
+                .activate()
         }
     }
 
@@ -574,6 +575,7 @@ final class LayoutTests: XCTestCase {
                 .constrain(yellowView,
                            to: pinkView,
                            insets: UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40))
+                .activate()
         }
     }
 
@@ -635,6 +637,7 @@ final class LayoutTests: XCTestCase {
             }
             .equal(.width, [pinkView, yellowView])
             .equal(.height, [pinkView, yellowView])
+            .activate()
         }
     }
 
@@ -656,6 +659,7 @@ final class LayoutTests: XCTestCase {
                     .to([.top, .trailing])
             }
             .equal([.height, .width], [pinkView, yellowView])
+            .activate()
         }
     }
 
@@ -677,6 +681,7 @@ final class LayoutTests: XCTestCase {
                     .to([.top, .trailing])
             }
             .equalSize([pinkView, yellowView])
+            .activate()
         }
     }
 

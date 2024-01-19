@@ -75,6 +75,7 @@ final class NSLayoutConstraintTests: XCTestCase {
             view
                 .layout(subview)
                 .adding(constraints())
+                .activate()
         }
     }
 
@@ -105,6 +106,7 @@ final class NSLayoutConstraintTests: XCTestCase {
             view
                 .layout(subview)
                 .adding(constraints())
+                .activate()
         }
     }
 
