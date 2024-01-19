@@ -14,7 +14,7 @@ import XCTest
 @MainActor
 final class NSLayoutConstraintTests: XCTestCase {
 
-    func testActivation() {
+    func testActivateAndDeactivate() {
 
         // GIVEN
 
@@ -50,7 +50,7 @@ final class NSLayoutConstraintTests: XCTestCase {
         expect(constraint.isActive) == false
     }
 
-    func testConstraintsWithVisualFormatLanguage() {
+    func testConstraintsFormatsViewsMetricsOptionsNoOption() {
 
         // GIVEN
 
@@ -78,7 +78,7 @@ final class NSLayoutConstraintTests: XCTestCase {
         }
     }
 
-    func testConstraintsWithVisualFormatLanguage_rightToLeft() {
+    func testConstraintsFormatsViewsMetricsOptionsRightToLeftFormatOption() {
 
         // GIVEN
 
@@ -145,7 +145,7 @@ final class NSLayoutConstraintTests: XCTestCase {
         expect(highPriorityConstraint) === constraint
     }
 
-    func testPrioritize() {
+    func testPrioritizeWithPriority() {
 
         // GIVEN
 

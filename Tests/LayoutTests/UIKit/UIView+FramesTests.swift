@@ -14,7 +14,7 @@ import XCTest
 
 final class UIViewFramesTests: XCTestCase {
 
-    func testUsingFrames() {
+    func testUsingFramesWithAutoresizingMask() {
 
         // GIVEN
 

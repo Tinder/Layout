@@ -29,7 +29,7 @@ final class UILayoutSupportTests: XCTestCase {
         }
     }
 
-    func testAnchors() {
+    func testTopBottomHeightAnchors() {
 
         // GIVEN
 

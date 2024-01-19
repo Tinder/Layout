@@ -13,7 +13,7 @@ import XCTest
 
 final class ViewLayoutItemTests: XCTestCase {
 
-    func testInitializer() {
+    func testInitLayoutItemViewSuperviewConstraints() {
 
         // GIVEN
 

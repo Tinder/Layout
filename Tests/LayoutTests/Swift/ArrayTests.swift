@@ -14,7 +14,7 @@ import XCTest
 @MainActor
 final class ArrayTests: XCTestCase {
 
-    func testActivation() {
+    func testActivateAndDeactivate() {
 
         // GIVEN
 
@@ -144,7 +144,7 @@ final class ArrayTests: XCTestCase {
         expect(highPriorityConstraints) == constraints
     }
 
-    func testPrioritize() {
+    func testPrioritizeWithPriority() {
 
         // GIVEN
 
