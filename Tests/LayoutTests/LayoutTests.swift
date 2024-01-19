@@ -16,7 +16,7 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Initialization
 
-    func testInitWithContainerView_andWithMetrics() {
+    func testInitWithViewMetrics() {
 
         // GIVEN
 
@@ -47,7 +47,7 @@ final class LayoutTests: XCTestCase {
         expect(layout2.metrics["height"] as? Int) == 100
     }
 
-    func testInitWithContainerViewAndWithLayoutItem_andWithMetrics() {
+    func testInitWithViewMetricsWithItem() {
 
         // GIVEN
 
@@ -88,7 +88,8 @@ final class LayoutTests: XCTestCase {
         expect(layoutTwo.items["subview2"]) === subview2
     }
 
-    func testInitWithContainerView_andWithMetrics_andWithLayoutItemBuilder() {
+    // TODO: Potential Convention? Include result builder tags in test-method names
+    func testInitWithViewMetricsLayoutBuilderItems() {
 
         // GIVEN
 
@@ -118,7 +119,7 @@ final class LayoutTests: XCTestCase {
         expect(layout2.items["subview2"]) === subview2
     }
 
-    func testInitWithContainerViewAndWithMetricsAndWithItems() {
+    func testInitWithViewMetricsItems() {
 
         // GIVEN
 
@@ -147,7 +148,7 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Adding Items
 
-    func testAddItemsWithVariadic() {
+    func testAddItemsVariadic() {
 
         // GIVEN
 
@@ -171,7 +172,7 @@ final class LayoutTests: XCTestCase {
         expect(layout.items["view2"]) === view2
     }
 
-    func testAddItemsWithArray() {
+    func testAddItems() {
 
         // GIVEN
 
@@ -197,7 +198,8 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Adding Constraints
 
-    func testAddingConstraintsWithBuilder() {
+    // TODO: Potential Convention? Include result builder tags in test-method names
+    func testAddingConstraintsBuilderConstraints() {
 
         // GIVEN
 
@@ -235,7 +237,8 @@ final class LayoutTests: XCTestCase {
         expect(layout.constraints) == [heightConstraint, widthConstraint]
     }
 
-    func testAddingConstraints() {
+    // TODO: Omitted 'With' despite _ before first param
+    func testAddingConstraintsVariadic() {
 
         // GIVEN
 
@@ -264,7 +267,8 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Constrain
 
-    func testConstrainToAttribute_andWithRelation_andWithConstant() {
+    // TODO: Omits 'With' prefix before two underscored params
+    func testConstrainViewAttributeIsRelationToTargetAttributeOfTargetViewMultiplierConstant() {
 
         // GIVEN
 
@@ -318,7 +322,8 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testConstrainToAnchor_andWithRelation_andWithConstant_andWithPriority() {
+    // TODO: Omits 'With' prefix before underscored param
+    func testConstrainAnchorIsRelationToTargetAnchorConstantPriority() {
 
         // GIVEN
 
@@ -419,7 +424,8 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testConstrainAnchorDimension_andWithRelation_andWithMultiplier_andWithConstant_andWithPriority() {
+    // TODO: Omits 'With' prefix before underscored param
+    func testConstrainAnchorIsRelationToTargetAnchorMultiplierConstantPriority() {
 
         // GIVEN
 
@@ -488,7 +494,8 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testConstrainAnchorDimension_andWithRelation_andWithPriority() {
+    // TODO: Omits 'With' prefix before underscored param
+    func testConstrainAnchorIsRelationToConstantPriority() {
 
         // GIVEN
 
@@ -533,7 +540,8 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testConstrain_andWithDirectionalInsets() {
+    // TODO: Omits 'With' prefix before underscored param
+    func testConstrainViewToTargetViewInsetsDirectional() {
 
         // GIVEN
 
@@ -555,7 +563,8 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testConstrain_andWithCanonicalInsets() {
+    // TODO: Omits 'With' prefix before underscored param
+    func testViewToTargetViewInsetsCanonical() {
 
         // GIVEN
 
@@ -577,7 +586,8 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testConstrainWithInset() {
+    // TODO: Omits 'With' prefix before underscored param
+    func testConstrainViewToTargetViewInset() {
 
         // GIVEN
 
@@ -610,6 +620,7 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Equal
 
+    // TODO: Omits 'With' prefix before underscored param
     func testEqualAttributeWithViews() {
 
         // GIVEN
@@ -638,6 +649,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
+    // TODO: Omits 'With' prefix before underscored param
     func testEqualAttributesWithViews() {
 
         // GIVEN
@@ -659,7 +671,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testEqualSize() {
+    func testEqualSizeWithViews() {
 
         // GIVEN
 
@@ -682,7 +694,8 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Center
 
-    func testCenterViewBetween() {
+    // TODO: Omits 'With' prefix before underscored param
+    func testCenterViewBetweenLeadingAndTrailingPriority() {
 
         // GIVEN
 
@@ -716,7 +729,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testCenterViewBetween_andWithPriority() {
+    func testCenterViewBetweenTopAndBottomPriority() {
 
         // GIVEN
 
@@ -752,7 +765,8 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Stack
 
-    func testHorizontalViewsWithAlignment_andWithSpacingAndDirectionAndPriority() {
+    // TODO: Omits 'With' prefix before underscored param
+    func testHorizontalViewsSpacingDirectionPriorityAlignment() {
 
         // GIVEN
 
@@ -810,7 +824,9 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testHorizontalWithAlignments() {
+    // TODO: Omits 'With' prefix before underscored param
+    // TODO: Prefix 'With' before scenario
+    func testHorizontalViewsSpacingDirectionPriorityAlignmentWithAlignments() {
 
         // GIVEN
 
@@ -843,7 +859,9 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testVerticalViewsWithAlignment_andWithSpacing() {
+    // TODO: Omits 'With' prefix before underscored param
+    // TODO: Prefix 'With' before scenario
+    func testVerticalViewsSpacingPriorityAlignment() {
 
         // GIVEN
 
@@ -883,7 +901,9 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testVerticalWithAlignments() {
+    // TODO: Omits 'With' prefix before underscored param
+    // TODO: Prefix 'With' before scenario
+    func testVerticalViewsSpacingPriorityAlignmentWithAlignments() {
 
         // GIVEN
 
@@ -913,7 +933,7 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Visual Format Language
 
-    func testHorizontalWithFormat() {
+    func testHorizontalWithFormatMetricsOptionsDefault() {
 
         // GIVEN
 
@@ -939,7 +959,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testHorizontalWithFormat_andMetricsAndOptions() {
+    func testHorizontalWithFormatMetricsOptions() {
 
         // GIVEN
 
@@ -977,7 +997,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testVerticalWithFormat() {
+    func testVerticalWithFormatMetricsOptionsDefault() {
 
         // GIVEN
 
@@ -1003,7 +1023,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testVerticalWithFormat_andMetricsAndOptions() {
+    func testVerticalWithFormat() {
 
         // GIVEN
 
@@ -1043,7 +1063,7 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Activation
 
-    func testActivate_andDeactivate() {
+    func testActivateAndDeactivate() {
 
         // GIVEN
 
@@ -1197,7 +1217,7 @@ final class LayoutTests: XCTestCase {
         expect(highPriorityLayout) === layout
     }
 
-    func testPrioritize() {
+    func testPrioritizeWithPriority() {
 
         // GIVEN
 
