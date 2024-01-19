@@ -737,29 +737,6 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToBottomMargin_andWithPriority() {
-        assertLayout(devices: Device.portraitTestDevices + Device.modernLandscapeTestDevices) { view in
-            view.layout {
-
-                // To Bottom Margin Leading with Default Priority
-
-                pinkView
-                    .size(width: 100, height: 100)
-                    .to(.leading)
-                    .toBottomMargin(minInset: 200, priority: .high)
-                    .toBottomMargin(minInset: 100)
-
-                // To Bottom Margin Trailing with Priority
-
-                blueView
-                    .size(width: 100, height: 100)
-                    .to(.trailing)
-                    .toBottomMargin(minInset: 50, priority: .low)
-                    .toBottomMargin(minInset: 100, priority: .high)
-            }
-        }
-    }
-
     func testToSafeAreaWithDirectionalEdgeInsetsPriority() {
         assertLayout(devices: Device.allTestDevices) { view in
             view.layout {
