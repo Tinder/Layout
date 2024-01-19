@@ -1,0 +1,3 @@
+<View; frame = (x: 0, y: 0, width: 320, height: 568)>
+   | <View; name = Pink; frame = (x: 110, y: 234, width: 100, height: 100)>
+   | <UILabel; frame = (239.333 274; 51.3333 20.3333); text = 'Layout'; userInteractionEnabled = NO; backgroundColor = UIExtendedGrayColorSpace 0 0; layer = <_UILabelLayer>>
