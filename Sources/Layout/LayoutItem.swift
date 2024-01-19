@@ -657,27 +657,6 @@ extension LayoutItem {
         toMargins(canonical: [.left, .right], inset: inset, priority: priority)
     }
 
-    public func toBottomMargin(
-        minInset: CGFloat,
-        priority: UILayoutPriority = .required
-    ) -> LayoutItem {
-        addingSuperviewConstraints { layoutItem in
-            if let superview: UIView = layoutItem.layoutItemView.superview {
-                layoutItem.layoutItemView
-                    .constraint(for: .bottom,
-                                to: .bottomMargin,
-                                of: superview)
-                    .withPriority(priority - min(1, priority.rawValue / 2))
-                layoutItem.layoutItemView
-                    .bottom
-                    .constraint(is: .lessThanOrEqual,
-                                to: superview.bottom,
-                                constant: -minInset)
-                    .withPriority(priority)
-            }
-        }
-    }
-
     // MARK: - Safe Area
 
     /// Adds constraints aligning the edges of the ``layoutItemView`` to the safe area of the superview with
