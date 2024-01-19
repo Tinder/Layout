@@ -14,6 +14,70 @@ import XCTest
 @MainActor
 final class NSLayoutConstraintTests: XCTestCase {
 
+    // MARK: - Visual Format Language
+
+    func testConstraintsWithVisualFormatLanguage() {
+
+        // GIVEN
+
+        let subview: UIView = pinkView
+        let formats: [String] = ["H:|-leftMargin-[subview(width)]", "V:|-topMargin-[subview(height)]"]
+        let views: [String: Any] = ["subview": subview]
+        let metrics: [String: Any] = [
+            "leftMargin": 10,
+            "width": 50,
+            "topMargin": 20,
+            "height": 100
+        ]
+        let constraints: () -> [NSLayoutConstraint] = {
+            NSLayoutConstraint.constraints(formats: formats,
+                                           views: views,
+                                           metrics: metrics)
+        }
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout(subview)
+                .adding(constraints())
+                .activate()
+        }
+    }
+
+    func testConstraintsWithVisualFormatLanguage_rightToLeft() {
+
+        // GIVEN
+
+        let subview: UIView = pinkView
+        let formats: [String] = ["H:|-leftMargin-[subview(width)]", "V:|-topMargin-[subview(height)]"]
+        let views: [String: Any] = ["subview": subview]
+        let metrics: [String: Any] = [
+            "leftMargin": 10,
+            "width": 50,
+            "topMargin": 20,
+            "height": 100
+        ]
+        let options: NSLayoutConstraint.FormatOptions = .directionRightToLeft
+        let constraints: () -> [NSLayoutConstraint] = {
+            NSLayoutConstraint.constraints(formats: formats,
+                                           views: views,
+                                           metrics: metrics,
+                                           options: options)
+        }
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout(subview)
+                .adding(constraints())
+                .activate()
+        }
+    }
+
+    // MARK: - Activation
+
     func testActivation() {
 
         // GIVEN
@@ -50,63 +114,7 @@ final class NSLayoutConstraintTests: XCTestCase {
         expect(constraint.isActive) == false
     }
 
-    func testConstraintsWithVisualFormatLanguage() {
-
-        // GIVEN
-
-        let subview: UIView = pinkView
-        let formats: [String] = ["H:|-leftMargin-[subview(width)]", "V:|-topMargin-[subview(height)]"]
-        let views: [String: Any] = ["subview": subview]
-        let metrics: [String: Any] = [
-            "leftMargin": 10,
-            "width": 50,
-            "topMargin": 20,
-            "height": 100
-        ]
-        let constraints: () -> [NSLayoutConstraint] = {
-            NSLayoutConstraint.constraints(formats: formats,
-                                           views: views,
-                                           metrics: metrics)
-        }
-
-        // THEN
-
-        assertLayout { view in
-            view
-                .layout(subview)
-                .adding(constraints())
-        }
-    }
-
-    func testConstraintsWithVisualFormatLanguage_rightToLeft() {
-
-        // GIVEN
-
-        let subview: UIView = pinkView
-        let formats: [String] = ["H:|-leftMargin-[subview(width)]", "V:|-topMargin-[subview(height)]"]
-        let views: [String: Any] = ["subview": subview]
-        let metrics: [String: Any] = [
-            "leftMargin": 10,
-            "width": 50,
-            "topMargin": 20,
-            "height": 100
-        ]
-        let options: NSLayoutConstraint.FormatOptions = .directionRightToLeft
-        let constraints: () -> [NSLayoutConstraint] = {
-            NSLayoutConstraint.constraints(formats: formats,
-                                           views: views,
-                                           metrics: metrics,
-                                           options: options)
-        }
-
-        // THEN
-
-        assertLayout { view in
-            view
-                .layout(subview)
-                .adding(constraints())
-        }
-    }
+    // MARK: - Priority
 
     func testRequire() {
 

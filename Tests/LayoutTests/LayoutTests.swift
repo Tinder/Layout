@@ -314,7 +314,7 @@ final class LayoutTests: XCTestCase {
             layout.constrain(pinkView, .width, is: .equal, to: .width, of: view, multiplier: 0.75)
             layout.constrain(yellowView, .width, is: .equal, to: .width, of: view, multiplier: 0.5)
 
-            return layout
+            layout.activate()
         }
     }
 
@@ -415,7 +415,7 @@ final class LayoutTests: XCTestCase {
                 priority: .high
             )
 
-            return layout
+            layout.activate()
         }
     }
 
@@ -484,7 +484,7 @@ final class LayoutTests: XCTestCase {
             layout.constrain(greenView.width, to: yellowView.width, constant: 50, priority: .low)
             layout.constrain(greenView.width, to: yellowView.width, constant: -50, priority: .high)
 
-            return layout
+            layout.activate()
         }
     }
 
@@ -529,7 +529,7 @@ final class LayoutTests: XCTestCase {
             layout.constrain(yellowView.width, to: 300, priority: .low)
             layout.constrain(yellowView.width, to: 200, priority: .high)
 
-            return layout
+            layout.activate()
         }
     }
 
@@ -552,6 +552,7 @@ final class LayoutTests: XCTestCase {
                 .constrain(yellowView,
                            to: pinkView,
                            insets: NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 40))
+                .activate()
         }
     }
 
@@ -574,6 +575,7 @@ final class LayoutTests: XCTestCase {
                 .constrain(yellowView,
                            to: pinkView,
                            insets: UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40))
+                .activate()
         }
     }
 
@@ -604,7 +606,7 @@ final class LayoutTests: XCTestCase {
 
             layout.constrain(yellowView, to: blueView, inset: 20)
 
-            return layout
+            layout.activate()
         }
     }
 
@@ -635,6 +637,7 @@ final class LayoutTests: XCTestCase {
             }
             .equal(.width, [pinkView, yellowView])
             .equal(.height, [pinkView, yellowView])
+            .activate()
         }
     }
 
@@ -656,6 +659,7 @@ final class LayoutTests: XCTestCase {
                     .to([.top, .trailing])
             }
             .equal([.height, .width], [pinkView, yellowView])
+            .activate()
         }
     }
 
@@ -677,6 +681,7 @@ final class LayoutTests: XCTestCase {
                     .to([.top, .trailing])
             }
             .equalSize([pinkView, yellowView])
+            .activate()
         }
     }
 
@@ -712,7 +717,7 @@ final class LayoutTests: XCTestCase {
             layout.center(yellowView, between: pinkView.leading, and: pinkView.trailing, priority: .low)
             layout.center(yellowView, between: view.leading, and: view.trailing, priority: .high)
 
-            return layout
+            layout.activate()
         }
     }
 
@@ -746,7 +751,7 @@ final class LayoutTests: XCTestCase {
             layout.center(pinkView, between: yellowView.top, and: yellowView.bottom, priority: .low)
             layout.center(pinkView, between: view.top, and: view.bottom, priority: .high)
 
-            return layout
+            layout.activate()
         }
     }
 
@@ -806,7 +811,7 @@ final class LayoutTests: XCTestCase {
                 alignment: .bottom
             )
 
-            return layout
+            layout.activate()
         }
     }
 
@@ -839,7 +844,7 @@ final class LayoutTests: XCTestCase {
                               .bottom)
             layout.horizontal([pinkView, yellowView], alignment: .top, .bottom)
 
-            return layout
+            layout.activate()
         }
     }
 
@@ -879,7 +884,7 @@ final class LayoutTests: XCTestCase {
             layout.vertical([blueView, greenView], spacing: 20, priority: .low, alignment: .centerX)
             layout.vertical([blueView, greenView], spacing: 12, priority: .high, alignment: .centerX)
 
-            return layout
+            layout.activate()
         }
     }
 
@@ -907,7 +912,7 @@ final class LayoutTests: XCTestCase {
             layout.vertical([pinkView, yellowView], spacing: 20, priority: .high, alignment: .leading, .trailing)
             layout.vertical([pinkView, yellowView], alignment: .leading, .trailing)
 
-            return layout
+            layout.activate()
         }
     }
 

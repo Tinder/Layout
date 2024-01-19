@@ -14,6 +14,8 @@ import XCTest
 @MainActor
 final class ArrayTests: XCTestCase {
 
+    // MARK: - Activation
+
     func testActivation() {
 
         // GIVEN
@@ -64,6 +66,8 @@ final class ArrayTests: XCTestCase {
         expect(constraint2.isActive) == false
         expect(deactivatedConstraints) == constraints
     }
+
+    // MARK: - Priority
 
     func testRequire() {
 

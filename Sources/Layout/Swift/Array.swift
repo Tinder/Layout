@@ -11,6 +11,8 @@ import UIKit
 
 extension Array where Element == NSLayoutConstraint {
 
+    // MARK: - Activation
+
     /// Activates the constraints in the array.
     ///
     /// - Returns: The activated constraints.
@@ -32,6 +34,8 @@ extension Array where Element == NSLayoutConstraint {
         NSLayoutConstraint.deactivate(self)
         return self
     }
+
+    // MARK: - Priority
 
     /// Sets the priority of the constraints in the array to required.
     ///

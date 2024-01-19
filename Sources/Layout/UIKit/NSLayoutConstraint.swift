@@ -11,7 +11,7 @@ import UIKit
 
 extension NSLayoutConstraint {
 
-    // MARK: - VFL Convenience APIs
+    // MARK: - Visual Format Language
 
     /// Creates constraints described by a visual format string.
     ///
@@ -49,7 +49,7 @@ extension NSLayoutConstraint {
         formats.flatMap { constraints(format: $0, views: views, metrics: metrics, options: options) }
     }
 
-    // MARK: - Mutators
+    // MARK: - Activation
 
     /// Activates the constraint.
     ///
@@ -68,6 +68,8 @@ extension NSLayoutConstraint {
         isActive = false
         return self
     }
+
+    // MARK: - Priority
 
     /// Sets the priority of the constraint to required.
     ///

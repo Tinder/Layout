@@ -29,13 +29,13 @@ extension XCTestCase {
         file: StaticString = #file,
         testName: String = #function,
         line: UInt = #line,
-        layout: (UIView) -> Layout
+        layout: (UIView) -> Void
     ) {
         for device: Device in devices {
             let viewController: ViewController = .init()
             let view: UIView = viewController.view
             view.backgroundColor = .white
-            layout(view).activate()
+            layout(view)
             assertSnapshot(of: viewController,
                            as: .image(on: device.config),
                            named: device.name,
