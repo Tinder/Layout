@@ -2,6 +2,8 @@
 &nbsp;
 [![Bazel](https://github.com/Tinder/Layout/actions/workflows/bazel.yml/badge.svg?event=push)](https://github.com/Tinder/Layout/actions/workflows/bazel.yml)
 &nbsp;
+[![Pages](https://github.com/Tinder/Layout/actions/workflows/pages.yml/badge.svg?event=push)](https://github.com/Tinder/Layout/actions/workflows/pages.yml)
+&nbsp;
 [![Artifactory](https://github.com/Tinder/Layout/actions/workflows/artifactory.yml/badge.svg?event=push)](https://github.com/Tinder/Layout/actions/workflows/artifactory.yml)
 
 # Layout
@@ -77,7 +79,7 @@ override func viewDidLoad() {
 
 ## Documentation
 
-Documentation is available in Xcode, accessed via the `Product > Build Documentation` menu item, or online at: https://tinder.github.io/Layout
+Documentation is viewable in Xcode by selecting `Build Documentation` from the `Product` menu, or online at: https://tinder.github.io/Layout
 
 ## Related Tools
 
