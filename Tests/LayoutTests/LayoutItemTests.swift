@@ -13,6 +13,7 @@ import XCTest
 
 @MainActor
 final class LayoutItemTests: XCTestCase {
+    // MARK: - Identifier
 
     func testIdentifier() {
 
@@ -41,6 +42,8 @@ final class LayoutItemTests: XCTestCase {
         expect(view.identifier) == "identifier2"
         expect(identifiedView) === view
     }
+
+    // MARK: - Size
 
     func testSizeWidthAndHeight_andWithPriority() {
         assertLayout { view in
@@ -206,6 +209,8 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    // MARK: - Aspect Ratio
+
     func testSquareWithWidth_andSquareWithHeight() {
         assertLayout { view in
             view.layout {
@@ -270,6 +275,8 @@ final class LayoutItemTests: XCTestCase {
             }
         }
     }
+
+    // MARK: - Center
 
     func testCenterWithDefaultUIOffset_andWithCustomUIOffset_andWithPriority() {
         assertLayout { view in
@@ -343,6 +350,17 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    func testCenterBetweenLeadingAndTrailing() {
+        assertLayout(devices: Device.allTestDevices) { view in
+            view.layout(
+                pinkView
+                    .size(width: 200, height: 100)
+                    .to(.top)
+                    .center(between: view.safeAreaLayoutGuide.leading, and: view.safeAreaLayoutGuide.trailing)
+            )
+        }
+    }
+
     func testCenterBetweenTopAndBottom() {
         assertLayout(devices: Device.allTestDevices) { view in
             view.layout(
@@ -354,16 +372,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testCenterBetweenLeadingAndTrailing() {
-        assertLayout(devices: Device.allTestDevices) { view in
-            view.layout(
-                pinkView
-                    .size(width: 200, height: 100)
-                    .to(.top)
-                    .center(between: view.safeAreaLayoutGuide.leading, and: view.safeAreaLayoutGuide.trailing)
-            )
-        }
-    }
+    // MARK: - Attributes
 
     func testToAttribute_andWithConstant_andWithMultiplier_andWithPriority() {
         assertLayout { view in
@@ -476,6 +485,8 @@ final class LayoutItemTests: XCTestCase {
             }
         }
     }
+
+    // MARK: - Edges
 
     func testToEdgesWithDirectionalInsetsPriority() {
         assertLayout { view in
@@ -613,6 +624,8 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    // MARK: - Margins
+
     func testToMarginsWithDirectionalEdgeInsetsPriority() {
         assertLayout(devices: Device.portraitTestDevices + Device.modernLandscapeTestDevices) { view in
             view.layout {
@@ -736,6 +749,8 @@ final class LayoutItemTests: XCTestCase {
             }
         }
     }
+
+    // MARK: - Safe Area
 
     func testToSafeAreaWithDirectionalEdgeInsetsPriority() {
         assertLayout(devices: Device.allTestDevices) { view in

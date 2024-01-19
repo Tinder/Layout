@@ -11,7 +11,12 @@ import UIKit
 
 extension UILayoutSupport {
 
+    /// The anchor representing the top edge of the layout guide.
     public var top: NSLayoutYAxisAnchor { topAnchor }
+
+    /// The anchor representing the bottom edge of the layout guide.
     public var bottom: NSLayoutYAxisAnchor { bottomAnchor }
+
+    /// The anchor representing the height of the layout guide.
     public var height: NSLayoutDimension { heightAnchor }
 }

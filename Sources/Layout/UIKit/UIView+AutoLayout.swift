@@ -13,23 +13,41 @@ extension UIView {
 
     // MARK: - Constraint Builders
 
+    /// Require the layout of the view be determined by adding constraints.
+    ///
+    /// - Returns: The view instance.
     public func usingConstraints() -> Self {
         translatesAutoresizingMaskIntoConstraints = false
         return self
     }
 
+    /// Constrains the receiver to the given size using constraints.
+    ///
+    /// - Parameter size: The desired size.
+    ///
+    /// - Returns: The view instance.
     @discardableResult
     public func constrainingSize(_ size: CGSize? = nil) -> Self {
         sizeConstraints(size).activate()
         return usingConstraints()
     }
 
+    /// Constrains the receiver to the given width using constraints.
+    ///
+    /// - Parameter width: The desired width.
+    ///
+    /// - Returns: The view instance.
     @discardableResult
     public func constrainingWidth(_ width: CGFloat? = nil) -> Self {
         widthConstraint(constant: width).activate()
         return usingConstraints()
     }
 
+    /// Constrains the receiver to the given height using constraints.
+    ///
+    /// - Parameter height: The desired height.
+    ///
+    /// - Returns: The view instance.
     @discardableResult
     public func constrainingHeight(_ height: CGFloat? = nil) -> Self {
         heightConstraint(constant: height).activate()
@@ -40,6 +58,18 @@ extension UIView {
 
     // swiftlint:disable function_default_parameter_at_end
 
+    /// Creates a constraint defining the relationship between the given attribute of the receiver and superview.
+    ///
+    /// The `superviewAttribute` will be used as the attribute of the receiver if `attribute` is not provided.
+    ///
+    /// - Parameters:
+    ///   - attribute: The attribute of the receiver.
+    ///   - relation: The relationship between the receiver attribute and superview attribute.
+    ///   - superviewAttribute: The attribute of the superview.
+    ///   - multiplier: The multiplier value.
+    ///   - constant: The constant value.
+    ///
+    /// - Returns: The created constraint.
     public func constraint(
         for attribute: NSLayoutConstraint.Attribute? = nil,
         is relation: NSLayoutConstraint.Relation = .equal,
@@ -57,6 +87,19 @@ extension UIView {
                                   constant: constant)
     }
 
+    /// Creates a constraint defining the relationship between the given attribute of the receiver and target view.
+    ///
+    /// The `targetAttribute` will be used as the attribute of the receiver if `attribute` is not provided.
+    ///
+    /// - Parameters:
+    ///   - attribute: The attribute of the receiver.
+    ///   - relation: The relationship between the receiver attribute and target view attribute.
+    ///   - targetAttribute: The attribute of the target view.
+    ///   - targetView: The target view.
+    ///   - multiplier: The multiplier value.
+    ///   - constant: The constant value.
+    ///
+    /// - Returns: The created constraint.
     public func constraint(
         for attribute: NSLayoutConstraint.Attribute? = nil,
         is relation: NSLayoutConstraint.Relation = .equal,
@@ -74,6 +117,15 @@ extension UIView {
                            constant: constant)
     }
 
+    /// Creates constraints defining the relationship between the receiver and the given superview attributes.
+    ///
+    /// - Parameters:
+    ///   - relation: The relationship between the receiver and superview attributes.
+    ///   - attributes: The attributes of the superview.
+    ///   - multiplier: The multiplier value.
+    ///   - constant: The constant value.
+    ///
+    /// - Returns: The created constraints.
     public func constraints(
         is relation: NSLayoutConstraint.Relation = .equal,
         toSuperview attributes: [NSLayoutConstraint.Attribute],
@@ -88,6 +140,16 @@ extension UIView {
         }
     }
 
+    /// Creates constraints defining the relationship between the given attributes of the receiver and target view.
+    ///
+    /// - Parameters:
+    ///   - relation: The relationship between the receiver and target view attributes.
+    ///   - attributes: The attributes of the target view.
+    ///   - targetView: The target view.
+    ///   - multiplier: The multiplier value.
+    ///   - constant: The constant value.
+    ///
+    /// - Returns: The created constraints.
     public func constraints(
         is relation: NSLayoutConstraint.Relation = .equal,
         to attributes: [NSLayoutConstraint.Attribute],
@@ -106,6 +168,13 @@ extension UIView {
 
     // swiftlint:enable function_default_parameter_at_end
 
+    /// Creates a constraint defining the width of the receiver.
+    ///
+    /// - Parameters:
+    ///   - relation: The relationship between the width and constant value.
+    ///   - constant: The constant width value. When `nil`, the width of the receiver is used.
+    ///
+    /// - Returns: The created constraint.
     public func widthConstraint(
         is relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat? = nil
@@ -113,6 +182,13 @@ extension UIView {
         width.constraint(is: relation, constant: constant ?? bounds.width)
     }
 
+    /// Creates a constraint defining the height of the receiver.
+    ///
+    /// - Parameters:
+    ///   - relation: The relationship between the height and constant value.
+    ///   - constant: The constant height value. When `nil`, the height of the receiver is used.
+    ///
+    /// - Returns: The created constraint.
     public func heightConstraint(
         is relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat? = nil
@@ -120,6 +196,11 @@ extension UIView {
         height.constraint(is: relation, constant: constant ?? bounds.height)
     }
 
+    /// Creates constraints defining the size of the receiver.
+    ///
+    /// - Parameter size: The constant size value. When `nil`, the size of the receiver is used.
+    ///
+    /// - Returns: The created constraints.
     public func sizeConstraints(
         _ size: CGSize? = nil
     ) -> [NSLayoutConstraint] {
@@ -129,22 +210,40 @@ extension UIView {
         ]
     }
 
+    /// Creates a constraint defining the aspect ratio of the receiver to be square.
+    ///
+    /// - Returns: The created constraint.
     public func squareConstraint() -> NSLayoutConstraint {
         constraint(for: .width, to: .height, of: self)
     }
 
+    /// Creates a constraint defining the aspect ratio of the receiver.
+    ///
+    /// - Parameter ratio: The aspect ratio.
+    ///
+    /// - Returns: The created constraint.
     public func aspectRatioConstraint(
         _ ratio: CGFloat
     ) -> NSLayoutConstraint {
         constraint(for: .width, to: .height, of: self, multiplier: ratio)
     }
 
+    /// Creates constraints to the edges of the superview of the receiver with an inset.
+    ///
+    /// - Parameter inset: The inset value.
+    ///
+    /// - Returns: The created constraints.
     public func edgeConstraints(
         inset: CGFloat = 0
     ) -> [NSLayoutConstraint] {
         edgeConstraints(insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset))
     }
 
+    /// Creates constraints to the directional edges of the superview of the receiver with insets.
+    ///
+    /// - Parameter insets: The directional insets.
+    ///
+    /// - Returns: The created constraints.
     public func edgeConstraints(
         insets: DirectionalInsets
     ) -> [NSLayoutConstraint] {
@@ -156,6 +255,11 @@ extension UIView {
         ]
     }
 
+    /// Creates constraints to the canonical edges of the superview of the receiver with insets.
+    ///
+    /// - Parameter insets: The canonical insets.
+    ///
+    /// - Returns: The created constraints.
     public func edgeConstraints(
         insets: CanonicalInsets
     ) -> [NSLayoutConstraint] {
@@ -167,6 +271,11 @@ extension UIView {
         ]
     }
 
+    /// Creates constraints to the center of the superview of the receiver with an offset.
+    ///
+    /// - Parameter offset: The offset amount.
+    ///
+    /// - Returns: The created constraints.
     public func centerConstraints(
         offset: UIOffset = .zero
     ) -> [NSLayoutConstraint] {
@@ -176,6 +285,13 @@ extension UIView {
         ]
     }
 
+    /// Creates constraints between the given attribute of the receiver and target views.
+    ///
+    /// - Parameters:
+    ///   - attribute: The attribute to constrain.
+    ///   - views: The views to constrain to the receiver.
+    ///
+    /// - Returns: The created constraints.
     public func equalConstraints(
         for attribute: NSLayoutConstraint.Attribute,
         to views: [UIView]

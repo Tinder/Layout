@@ -49,6 +49,118 @@ final class LayoutExampleTests: XCTestCase {
         }
     }
 
+    func testHorizontallyCenteringDocumentationExample() {
+
+        // GIVEN
+
+        let siblingView: UIView = pinkView
+
+        let label: UILabel = {
+            let label: UILabel = .init()
+            label.text = "Layout"
+            return label
+        }()
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout {
+                    siblingView
+                        .size(width: 100, height: 100)
+                        .center()
+                    label
+                        .center(.vertical)
+                }
+                .center(label, between: siblingView.trailing, and: view.trailing)
+                .activate()
+        }
+    }
+
+    func testVerticallyCenteringDocumentationExample() {
+
+        // GIVEN
+
+        let siblingView: UIView = pinkView
+
+        let label: UILabel = {
+            let label: UILabel = .init()
+            label.text = "Layout"
+            return label
+        }()
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout {
+                    siblingView
+                        .size(width: 100, height: 100)
+                        .center()
+                    label
+                        .center(.horizontal)
+                }
+                .center(label, between: siblingView.bottom, and: view.bottom)
+                .activate()
+        }
+    }
+
+    func testHorizontallyCenteringLayoutItemDocumentationExample() {
+
+        // GIVEN
+
+        let siblingView: UIView = pinkView
+
+        let label: UILabel = {
+            let label: UILabel = .init()
+            label.text = "Layout"
+            return label
+        }()
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout {
+                    siblingView
+                        .size(width: 100, height: 100)
+                        .center()
+                    label
+                        .center(.vertical)
+                        .center(between: siblingView.trailing, and: view.trailing)
+                }
+                .activate()
+        }
+    }
+
+    func testVerticallyCenteringLayoutItemDocumentationExample() {
+
+        // GIVEN
+
+        let siblingView: UIView = pinkView
+
+        let label: UILabel = {
+            let label: UILabel = .init()
+            label.text = "Layout"
+            return label
+        }()
+
+        // THEN
+
+        assertLayout { view in
+            view
+                .layout {
+                    siblingView
+                        .size(width: 100, height: 100)
+                        .center()
+                    label
+                        .center(.horizontal)
+                        .center(between: siblingView.bottom, and: view.bottom)
+                }
+                .activate()
+        }
+    }
+
     func testReadmeExample() {
 
         // GIVEN

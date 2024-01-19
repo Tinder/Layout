@@ -7,7 +7,23 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
+/**
+ * An enumeration of the x-axis attributes of an alignment rectangle.
+ */
 public enum XAxisAttribute {
 
-    case left, centerX, right, leading, trailing
+    /// The left edge of the alignment rectangle.
+    case left
+
+    /// The center along the x-axis of the alignment rectangle.
+    case centerX
+
+    /// The right edge of the alignment rectangle
+    case right
+
+    /// The leading edge of the alignment rectangle.
+    case leading
+
+    /// The trailing edge of the alignment rectangle.
+    case trailing
 }
