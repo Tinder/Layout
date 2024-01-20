@@ -16,7 +16,7 @@ final class NSLayoutConstraintTests: XCTestCase {
 
     // MARK: - Visual Format Language
 
-    func testConstraintsFormatsViewsMetricsOptionsNoOption() {
+    func testConstraintsFormatsViewsMetricsOptions() {
 
         // GIVEN
 
@@ -45,7 +45,7 @@ final class NSLayoutConstraintTests: XCTestCase {
         }
     }
 
-    func testConstraintsFormatsViewsMetricsOptionsRightToLeftFormatOption() {
+    func testConstraintsFormatsViewsMetricsOptions_givenRightToLeftFormatOption() {
 
         // GIVEN
 

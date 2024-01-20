@@ -29,7 +29,7 @@ final class UILayoutPriorityTests: XCTestCase {
         expect(UILayoutPriority(500) + 200) == UILayoutPriority(700)
     }
 
-    func testAddingOffsetToPriorityBeyondMaxPriority() {
+    func testAddingOffsetToPriority_beyondMaxPriority() {
         expect(UILayoutPriority(500) + 501) == UILayoutPriority(1_000)
     }
 
@@ -37,7 +37,7 @@ final class UILayoutPriorityTests: XCTestCase {
         expect(UILayoutPriority(500) - 200) == UILayoutPriority(300)
     }
 
-    func testSubtractingOffsetToPriorityBelowMinPriority() {
+    func testSubtractingOffsetToPriority_belowMinPriority() {
         expect(UILayoutPriority(500) - 501) == UILayoutPriority(0)
     }
 
@@ -56,7 +56,7 @@ final class UILayoutPriorityTests: XCTestCase {
         expect(priority) == UILayoutPriority(700)
     }
 
-    func testAddOffsetBeyondMax() {
+    func testAddOffset_beyondMax() {
 
         // GIVEN
 
@@ -86,7 +86,7 @@ final class UILayoutPriorityTests: XCTestCase {
         expect(priority) == UILayoutPriority(300)
     }
 
-    func testSubtractOffsetBelowMin() {
+    func testSubtractOffset_belowMin() {
 
         // GIVEN
 

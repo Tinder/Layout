@@ -68,7 +68,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testSizeWithCGSizePriority() {
+    func testSizeWithSizePriority() {
         assertLayout { view in
             view.layout {
 

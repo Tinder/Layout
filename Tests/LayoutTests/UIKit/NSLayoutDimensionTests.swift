@@ -14,7 +14,7 @@ import XCTest
 @MainActor
 final class NSLayoutDimensionTests: XCTestCase {
 
-    func testConstraintIsRelationToAnchorConstantDefaults() {
+    func testConstraintIsRelationToAnchorConstant_givenDefaults() {
 
         // GIVEN
 
@@ -56,7 +56,7 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
-    func testConstraintIsRelationToAnchorConstantGreaterThanOrEqualRelation() {
+    func testConstraintIsRelationToAnchorConstant_givenGreaterThanOrEqualRelation() {
 
         // GIVEN
 
@@ -77,7 +77,7 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
-    func testConstraintIsRelationToAnchorConstantLessThanOrEqualRelation() {
+    func testConstraintIsRelationToAnchorConstant_givenLessThanOrEqualRelation() {
 
         // GIVEN
 
@@ -98,7 +98,7 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
-    func testConstraintIsRelationConstantDefaults() {
+    func testConstraintIsRelationConstant_givenDefaults() {
 
         // GIVEN
 
@@ -118,7 +118,7 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
-    func testConstraintIsRelationConstantGreaterThanRelation() {
+    func testConstraintIsRelationConstant_givenGreaterThanRelation() {
 
         // GIVEN
 
@@ -138,7 +138,7 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
-    func testConstraintIsRelationConstantLessThanRelation() {
+    func testConstraintIsRelationConstant_givenLessThanRelation() {
 
         // GIVEN
 

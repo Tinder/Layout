@@ -28,7 +28,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(view.translatesAutoresizingMaskIntoConstraints) == false
     }
 
-    func testConstrainingSizeDefaults() {
+    func testConstrainingSize_givenDefaults() {
 
         // GIVEN
 
@@ -72,7 +72,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(view.constraints.first { $0.firstAttribute == .height }?.constant) == size.height
     }
 
-    func testConstrainingWidthDefaults() {
+    func testConstrainingWidth_givenDefaults() {
 
         // GIVEN
 
@@ -114,7 +114,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(view.constraints.first { $0.firstAttribute == .width }?.constant) == width
     }
 
-    func testConstrainingHeightDefaults() {
+    func testConstrainingHeight_givenDefaults() {
 
         // GIVEN
 
