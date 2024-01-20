@@ -47,7 +47,7 @@ extension NSLayoutDimension {
     /// - Returns: The created constraint.
     public func constraint(
         is relation: NSLayoutConstraint.Relation = .equal,
-        constant: CGFloat
+        to constant: CGFloat
     ) -> NSLayoutConstraint {
         switch relation {
         case .equal:
@@ -59,6 +59,17 @@ extension NSLayoutDimension {
         @unknown default:
             return constraint(equalToConstant: constant)
         }
+    }
+
+    /// Creates a constraint equal to the given constant.
+    ///
+    /// - Parameter constant: The constant value.
+    ///
+    /// - Returns: The created constraint.
+    public func constraint(
+        to constant: CGFloat
+    ) -> NSLayoutConstraint {
+        constraint(equalToConstant: constant)
     }
 
     // swiftlint:enable function_default_parameter_at_end

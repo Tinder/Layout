@@ -111,7 +111,7 @@ final class NSLayoutDimensionTests: XCTestCase {
 
         let constraint: NSLayoutConstraint = viewA
             .width
-            .constraint(constant: 50)
+            .constraint(to: 50)
 
         // THEN
 
@@ -131,7 +131,7 @@ final class NSLayoutDimensionTests: XCTestCase {
 
         let constraint: NSLayoutConstraint = viewA
             .width
-            .constraint(is: .greaterThanOrEqual, constant: 50)
+            .constraint(is: .greaterThanOrEqual, to: 50)
 
         // THEN
 
@@ -151,7 +151,7 @@ final class NSLayoutDimensionTests: XCTestCase {
 
         let constraint: NSLayoutConstraint = viewA
             .width
-            .constraint(is: .lessThanOrEqual, constant: 50)
+            .constraint(is: .lessThanOrEqual, to: 50)
 
         // THEN
 

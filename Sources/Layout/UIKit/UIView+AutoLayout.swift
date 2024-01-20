@@ -39,7 +39,7 @@ extension UIView {
     /// - Returns: The view instance.
     @discardableResult
     public func constrainingWidth(_ width: CGFloat? = nil) -> Self {
-        widthConstraint(constant: width).activate()
+        widthConstraint(width).activate()
         return usingConstraints()
     }
 
@@ -50,7 +50,7 @@ extension UIView {
     /// - Returns: The view instance.
     @discardableResult
     public func constrainingHeight(_ height: CGFloat? = nil) -> Self {
-        heightConstraint(constant: height).activate()
+        heightConstraint(height).activate()
         return usingConstraints()
     }
 
@@ -64,10 +64,21 @@ extension UIView {
     ///
     /// - Returns: The created constraint.
     public func widthConstraint(
-        is relation: NSLayoutConstraint.Relation = .equal,
-        constant: CGFloat? = nil
+        is relation: NSLayoutConstraint.Relation,
+        to constant: CGFloat? = nil
     ) -> NSLayoutConstraint {
-        width.constraint(is: relation, constant: constant ?? bounds.width)
+        width.constraint(is: relation, to: constant ?? bounds.width)
+    }
+
+    /// Creates a constraint defining the width of the receiver.
+    ///
+    /// - Parameter constant: The constant width value. When `nil`, the width of the receiver is used.
+    ///
+    /// - Returns: The created constraint.
+    public func widthConstraint(
+        _ constant: CGFloat? = nil
+    ) -> NSLayoutConstraint {
+        width.constraint(to: constant ?? bounds.width)
     }
 
     /// Creates a constraint defining the height of the receiver.
@@ -78,10 +89,21 @@ extension UIView {
     ///
     /// - Returns: The created constraint.
     public func heightConstraint(
-        is relation: NSLayoutConstraint.Relation = .equal,
-        constant: CGFloat? = nil
+        is relation: NSLayoutConstraint.Relation,
+        to constant: CGFloat? = nil
     ) -> NSLayoutConstraint {
-        height.constraint(is: relation, constant: constant ?? bounds.height)
+        height.constraint(is: relation, to: constant ?? bounds.height)
+    }
+
+    /// Creates a constraint defining the height of the receiver.
+    ///
+    /// - Parameter constant: The constant height value. When `nil`, the height of the receiver is used.
+    ///
+    /// - Returns: The created constraint.
+    public func heightConstraint(
+        _ constant: CGFloat? = nil
+    ) -> NSLayoutConstraint {
+        height.constraint(to: constant ?? bounds.height)
     }
 
     /// Creates constraints defining the size of the receiver.
@@ -93,8 +115,8 @@ extension UIView {
         _ size: CGSize? = nil
     ) -> [NSLayoutConstraint] {
         [
-            width.constraint(constant: size?.width ?? bounds.width),
-            height.constraint(constant: size?.height ?? bounds.height)
+            width.constraint(to: size?.width ?? bounds.width),
+            height.constraint(to: size?.height ?? bounds.height)
         ]
     }
 

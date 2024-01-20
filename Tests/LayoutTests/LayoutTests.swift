@@ -277,7 +277,7 @@ final class LayoutTests: XCTestCase {
 
             let layout: Layout = view.layout {
                 pinkView
-                    .height(constant: 100)
+                    .height(100)
                 yellowView
             }
 
@@ -332,7 +332,7 @@ final class LayoutTests: XCTestCase {
 
             let layout: Layout = view.layout {
                 pinkView
-                    .height(constant: 100)
+                    .height(100)
                 yellowView
             }
 
@@ -435,12 +435,12 @@ final class LayoutTests: XCTestCase {
 
             let layout: Layout = view.layout {
                 pinkView
-                    .height(constant: 100)
+                    .height(100)
                     .to([.top, .leading])
                 yellowView
                     .to([.bottom, .trailing])
                 blueView
-                    .height(constant: 100)
+                    .height(100)
                     .to([.centerY, .centerX])
                 greenView
                     .to(.leading, constant: 10)
