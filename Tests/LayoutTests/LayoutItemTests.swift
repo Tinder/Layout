@@ -16,7 +16,7 @@ final class LayoutItemTests: XCTestCase {
 
     // MARK: - Identifier
 
-    func testIdentifierAndIdWithIdentifier() {
+    func testIdentifierAndIDWithIdentifier() {
 
         // GIVEN
 
