@@ -35,8 +35,7 @@ final class NSLayoutYAxisAnchorTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
-    // TODO: Added 'with' before scenario
-    func testConstraintIsRelationToAnchorConstantWithConstant() {
+    func testConstraintIsRelationToAnchorConstant_givenConstant() {
 
         // GIVEN
 

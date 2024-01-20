@@ -387,7 +387,6 @@ final class LayoutItemTests: XCTestCase {
 
     // MARK: - Attributes
 
-    // TODO: Omitted 'with' for underscored first parameter
     func testToAttributeIsRelationMultiplierConstantPriority() {
         assertLayout { view in
             view.layout {
@@ -435,8 +434,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    // TODO: Prefix scenario with 'With'
-    func testToAttributeIsRelationMultiplierConstantPriorityWithRelations() {
+    func testToAttributeIsRelationMultiplierConstantPriority_givenRelation() {
         assertLayout { view in
             view.layout {
 
@@ -476,7 +474,6 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    // TODO: Omitted 'with' for underscored first parameter
     func testToAttributesConstantPriority() {
         assertLayout { view in
             view.layout {

@@ -471,8 +471,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[3].constant) == 0
     }
 
-    // TODO: Added prefix before scenario
-    func testEdgeConstraintsInsetWithInset() {
+    func testEdgeConstraintsInset_givenInset() {
 
         // GIVEN
 
