@@ -1,6 +1,6 @@
 # ``Layout``
 
-Declarative Auto Layout APIs for UIKit
+Declarative Auto Layout for UIKit
 
 Layout is a wrapper around the Apple provided Auto Layout SDK. Layout provides a less verbose syntax which aids in adoption and eases troubleshooting UI layout issues. Projects with large codebases use programmatic UI code instead of visual WYSIWYG editors (such as Xcode storyboards) to avoid unmanageable merge conflicts that occur in file formats such as XML (the serialized format of Xcode storyboards).
 

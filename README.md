@@ -8,7 +8,7 @@
 
 # Layout
 
-Declarative Auto Layout APIs for UIKit
+Declarative Auto Layout for UIKit
 
 ## Overview
 
