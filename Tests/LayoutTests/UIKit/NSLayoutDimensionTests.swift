@@ -111,7 +111,7 @@ final class NSLayoutDimensionTests: XCTestCase {
 
         let constraint: NSLayoutConstraint = viewA
             .width
-            .constraint(to: 50)
+            .constraint(50)
 
         // THEN
 

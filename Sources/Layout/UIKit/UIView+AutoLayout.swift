@@ -78,7 +78,7 @@ extension UIView {
     public func widthConstraint(
         _ constant: CGFloat? = nil
     ) -> NSLayoutConstraint {
-        width.constraint(to: constant ?? bounds.width)
+        width.constraint(constant ?? bounds.width)
     }
 
     /// Creates a constraint defining the height of the receiver.
@@ -103,7 +103,7 @@ extension UIView {
     public func heightConstraint(
         _ constant: CGFloat? = nil
     ) -> NSLayoutConstraint {
-        height.constraint(to: constant ?? bounds.height)
+        height.constraint(constant ?? bounds.height)
     }
 
     /// Creates constraints defining the size of the receiver.
@@ -115,8 +115,8 @@ extension UIView {
         _ size: CGSize? = nil
     ) -> [NSLayoutConstraint] {
         [
-            width.constraint(to: size?.width ?? bounds.width),
-            height.constraint(to: size?.height ?? bounds.height)
+            width.constraint(size?.width ?? bounds.width),
+            height.constraint(size?.height ?? bounds.height)
         ]
     }
 

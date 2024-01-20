@@ -46,7 +46,7 @@ extension NSLayoutDimension {
     ///
     /// - Returns: The created constraint.
     public func constraint(
-        is relation: NSLayoutConstraint.Relation = .equal,
+        is relation: NSLayoutConstraint.Relation,
         to constant: CGFloat
     ) -> NSLayoutConstraint {
         switch relation {
@@ -67,7 +67,7 @@ extension NSLayoutDimension {
     ///
     /// - Returns: The created constraint.
     public func constraint(
-        to constant: CGFloat
+        _ constant: CGFloat
     ) -> NSLayoutConstraint {
         constraint(equalToConstant: constant)
     }
