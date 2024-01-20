@@ -386,6 +386,8 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return constrain(view, to: targetView, insets: insets)
     }
 
+    // swiftlint:enable function_default_parameter_at_end
+
     // MARK: - Equal
 
     /// Adds constraints equating the attribute of the given views.
@@ -436,8 +438,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ) -> Layout {
         equal([.height, .width], views)
     }
-
-    // swiftlint:enable function_default_parameter_at_end
 
     // MARK: - Center
 
