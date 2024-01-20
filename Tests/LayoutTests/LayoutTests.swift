@@ -918,7 +918,7 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Visual Format Language
 
-    func testHorizontalWithFormatMetricsOptions_givenDefault() {
+    func testHorizontalWithFormatMetricsOptions_givenDefaults() {
 
         // GIVEN
 
@@ -944,7 +944,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testHorizontalWithFormatMetricsOptions() {
+    func testHorizontalWithFormatMetricsOptions_givenOption() {
 
         // GIVEN
 
@@ -982,7 +982,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testVerticalWithFormatMetricsOptions_givenDefault() {
+    func testVerticalWithFormatMetricsOptions_givenDefaults() {
 
         // GIVEN
 
@@ -1008,7 +1008,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testVerticalWithFormat() {
+    func testVerticalWithFormatMetricsOptions_givenOption() {
 
         // GIVEN
 
