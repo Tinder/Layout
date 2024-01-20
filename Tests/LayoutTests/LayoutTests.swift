@@ -556,7 +556,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testViewToTargetViewInsetsCanonical() {
+    func testConstrainViewToTargetViewInsetsCanonical() {
 
         // GIVEN
 
