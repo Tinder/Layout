@@ -27,15 +27,14 @@ import UIKit
  * builder syntax.
  *
  * ```swift
- * view
- *     .layout {
- *         subview1
- *             .toSafeArea()
- *         subview2
- *             .square(32)
- *             .center()
- *     }
- *     .activate()
+ * view.layout {
+ *     subview1
+ *         .toSafeArea()
+ *     subview2
+ *         .square(32)
+ *         .center()
+ * }
+ * .activate()
  * ```
  *
  * - Important: The ``Layout/activate()`` method must be called to activate the constraints of the layout.
@@ -449,16 +448,15 @@ public final class Layout { // swiftlint:disable:this type_body_length
     /// Example:
     ///
     /// ```swift
-    /// view
-    ///     .layout {
-    ///         siblingView
-    ///             .size(width: 100, height: 100)
-    ///             .center()
-    ///         label
-    ///             .center(.vertical)
-    ///     }
-    ///     .center(label, between: siblingView.trailing, and: view.trailing)
-    ///     .activate()
+    /// view.layout {
+    ///     siblingView
+    ///         .size(width: 100, height: 100)
+    ///         .center()
+    ///     label
+    ///         .center(.vertical)
+    /// }
+    /// .center(label, between: siblingView.trailing, and: view.trailing)
+    /// .activate()
     /// ```
     ///
     /// ```
@@ -510,16 +508,15 @@ public final class Layout { // swiftlint:disable:this type_body_length
     /// Example:
     ///
     /// ```swift
-    /// view
-    ///     .layout {
-    ///         siblingView
-    ///             .size(width: 100, height: 100)
-    ///             .center()
-    ///         label
-    ///             .center(.horizontal)
-    ///     }
-    ///     .center(label, between: siblingView.bottom, and: view.bottom)
-    ///     .activate()
+    /// view.layout {
+    ///     siblingView
+    ///         .size(width: 100, height: 100)
+    ///         .center()
+    ///     label
+    ///         .center(.horizontal)
+    /// }
+    /// .center(label, between: siblingView.bottom, and: view.bottom)
+    /// .activate()
     /// ```
     ///
     /// ```

@@ -103,15 +103,14 @@ final class LayoutExampleTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-            view
-                .layout {
-                    subview1
-                        .toSafeArea()
-                    subview2
-                        .square(32)
-                        .center()
-                }
-                .activate()
+            view.layout {
+                subview1
+                    .toSafeArea()
+                subview2
+                    .square(32)
+                    .center()
+            }
+            .activate()
         }
     }
 
@@ -130,16 +129,15 @@ final class LayoutExampleTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-            view
-                .layout {
-                    siblingView
-                        .size(width: 100, height: 100)
-                        .center()
-                    label
-                        .center(.vertical)
-                }
-                .center(label, between: siblingView.trailing, and: view.trailing)
-                .activate()
+            view.layout {
+                siblingView
+                    .size(width: 100, height: 100)
+                    .center()
+                label
+                    .center(.vertical)
+            }
+            .center(label, between: siblingView.trailing, and: view.trailing)
+            .activate()
         }
     }
 
@@ -158,16 +156,15 @@ final class LayoutExampleTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-            view
-                .layout {
-                    siblingView
-                        .size(width: 100, height: 100)
-                        .center()
-                    label
-                        .center(.horizontal)
-                }
-                .center(label, between: siblingView.bottom, and: view.bottom)
-                .activate()
+            view.layout {
+                siblingView
+                    .size(width: 100, height: 100)
+                    .center()
+                label
+                    .center(.horizontal)
+            }
+            .center(label, between: siblingView.bottom, and: view.bottom)
+            .activate()
         }
     }
 
@@ -218,16 +215,15 @@ final class LayoutExampleTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-            view
-                .layout {
-                    siblingView
-                        .size(width: 100, height: 100)
-                        .center()
-                    label
-                        .center(.vertical)
-                        .center(between: siblingView.trailing, and: view.trailing)
-                }
-                .activate()
+            view.layout {
+                siblingView
+                    .size(width: 100, height: 100)
+                    .center()
+                label
+                    .center(.vertical)
+                    .center(between: siblingView.trailing, and: view.trailing)
+            }
+            .activate()
         }
     }
 
@@ -246,16 +242,15 @@ final class LayoutExampleTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-            view
-                .layout {
-                    siblingView
-                        .size(width: 100, height: 100)
-                        .center()
-                    label
-                        .center(.horizontal)
-                        .center(between: siblingView.bottom, and: view.bottom)
-                }
-                .activate()
+            view.layout {
+                siblingView
+                    .size(width: 100, height: 100)
+                    .center()
+                label
+                    .center(.horizontal)
+                    .center(between: siblingView.bottom, and: view.bottom)
+            }
+            .activate()
         }
     }
 }
