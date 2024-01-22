@@ -16,7 +16,7 @@ import XCTest
 
 final class UIViewAutoresizingTests: XCTestCase {
 
-    func testTopLeftResizingMask() {
+    func testTopLeft() {
 
         // GIVEN
 
@@ -27,7 +27,7 @@ final class UIViewAutoresizingTests: XCTestCase {
         expect(topLeftResizingMask) == [.flexibleRightMargin, .flexibleBottomMargin]
     }
 
-    func testTopRightResizingMask() {
+    func testTopRight() {
 
         // GIVEN
 
@@ -38,7 +38,7 @@ final class UIViewAutoresizingTests: XCTestCase {
         expect(topRightResizingMask) == [.flexibleLeftMargin, .flexibleBottomMargin]
     }
 
-    func testBottomLeftResizingMask() {
+    func testBottomLeft() {
 
         // GIVEN
 
@@ -49,7 +49,7 @@ final class UIViewAutoresizingTests: XCTestCase {
         expect(bottomLeftResizingMask) == [.flexibleTopMargin, .flexibleRightMargin]
     }
 
-    func testBottomRightResizingMask() {
+    func testBottomRight() {
 
         // GIVEN
 
@@ -60,7 +60,7 @@ final class UIViewAutoresizingTests: XCTestCase {
         expect(bottomRightResizingMask) == [.flexibleTopMargin, .flexibleLeftMargin]
     }
 
-    func testScaleWithSuperviewResizingMask() {
+    func testScaleWithSuperview() {
 
         // GIVEN
 

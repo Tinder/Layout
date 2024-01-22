@@ -16,7 +16,7 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Initialization
 
-    func testInitWithContainerView_andWithMetrics() {
+    func testInitWithViewMetrics() {
 
         // GIVEN
 
@@ -47,7 +47,7 @@ final class LayoutTests: XCTestCase {
         expect(layout2.metrics["height"] as? Int) == 100
     }
 
-    func testInitWithContainerViewAndWithLayoutItem_andWithMetrics() {
+    func testInitWithViewMetricsWithItem() {
 
         // GIVEN
 
@@ -88,7 +88,7 @@ final class LayoutTests: XCTestCase {
         expect(layoutTwo.items["subview2"]) === subview2
     }
 
-    func testInitWithContainerView_andWithMetrics_andWithLayoutItemBuilder() {
+    func testInitWithViewMetricsLayoutBuilderItems() {
 
         // GIVEN
 
@@ -118,7 +118,7 @@ final class LayoutTests: XCTestCase {
         expect(layout2.items["subview2"]) === subview2
     }
 
-    func testInitWithContainerViewAndWithMetricsAndWithItems() {
+    func testInitWithViewMetricsItems() {
 
         // GIVEN
 
@@ -147,7 +147,7 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Adding Items
 
-    func testAddItemsWithVariadic() {
+    func testAddItemsVariadic() {
 
         // GIVEN
 
@@ -171,7 +171,7 @@ final class LayoutTests: XCTestCase {
         expect(layout.items["view2"]) === view2
     }
 
-    func testAddItemsWithArray() {
+    func testAddItems() {
 
         // GIVEN
 
@@ -197,7 +197,7 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Adding Constraints
 
-    func testAddingConstraintsWithBuilder() {
+    func testAddingConstraintsBuilderConstraints() {
 
         // GIVEN
 
@@ -264,7 +264,7 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Constrain
 
-    func testConstrainToAttribute_andWithRelation_andWithConstant() {
+    func testConstrainViewAttributeIsRelationToTargetAttributeOfTargetViewMultiplierConstant() {
 
         // GIVEN
 
@@ -318,7 +318,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testConstrainToAnchor_andWithRelation_andWithConstant_andWithPriority() {
+    func testConstrainAnchorIsRelationToTargetAnchorConstantPriority() {
 
         // GIVEN
 
@@ -419,7 +419,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testConstrainAnchorDimension_andWithRelation_andWithMultiplier_andWithConstant_andWithPriority() {
+    func testConstrainAnchorIsRelationToTargetAnchorMultiplierConstantPriority() {
 
         // GIVEN
 
@@ -488,7 +488,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testConstrainAnchorDimension_andWithRelation_andWithPriority() {
+    func testConstrainAnchorIsRelationToConstantPriority() {
 
         // GIVEN
 
@@ -533,7 +533,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testConstrain_andWithDirectionalInsets() {
+    func testConstrainViewToTargetViewInsetsDirectional() {
 
         // GIVEN
 
@@ -556,7 +556,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testConstrain_andWithCanonicalInsets() {
+    func testConstrainViewToTargetViewInsetsCanonical() {
 
         // GIVEN
 
@@ -579,7 +579,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testConstrainWithInset() {
+    func testConstrainViewToTargetViewInset() {
 
         // GIVEN
 
@@ -663,7 +663,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testEqualSize() {
+    func testEqualSizeWithViews() {
 
         // GIVEN
 
@@ -687,7 +687,7 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Center
 
-    func testCenterViewBetween() {
+    func testCenterViewBetweenLeadingAndTrailingPriority() {
 
         // GIVEN
 
@@ -721,7 +721,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testCenterViewBetween_andWithPriority() {
+    func testCenterViewBetweenTopAndBottomPriority() {
 
         // GIVEN
 
@@ -757,7 +757,7 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Stack
 
-    func testHorizontalViewsWithAlignment_andWithSpacingAndDirectionAndPriority() {
+    func testHorizontalViewsSpacingDirectionPriorityAlignment() {
 
         // GIVEN
 
@@ -815,7 +815,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testHorizontalWithAlignments() {
+    func testHorizontalViewsSpacingDirectionPriorityAlignment_givenAlignment() {
 
         // GIVEN
 
@@ -848,7 +848,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testVerticalViewsWithAlignment_andWithSpacing() {
+    func testVerticalViewsSpacingPriorityAlignment() {
 
         // GIVEN
 
@@ -888,7 +888,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testVerticalWithAlignments() {
+    func testVerticalViewsSpacingPriorityAlignment_givenAlignment() {
 
         // GIVEN
 
@@ -918,7 +918,7 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Visual Format Language
 
-    func testHorizontalWithFormat() {
+    func testHorizontalWithFormatMetricsOptions_givenDefaults() {
 
         // GIVEN
 
@@ -944,7 +944,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testHorizontalWithFormat_andMetricsAndOptions() {
+    func testHorizontalWithFormatMetricsOptions_givenOption() {
 
         // GIVEN
 
@@ -982,7 +982,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testVerticalWithFormat() {
+    func testVerticalWithFormatMetricsOptions_givenDefaults() {
 
         // GIVEN
 
@@ -1008,7 +1008,7 @@ final class LayoutTests: XCTestCase {
         }
     }
 
-    func testVerticalWithFormat_andMetricsAndOptions() {
+    func testVerticalWithFormatMetricsOptions_givenOption() {
 
         // GIVEN
 
@@ -1048,7 +1048,7 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Activation
 
-    func testActivate_andDeactivate() {
+    func testActivateAndDeactivate() {
 
         // GIVEN
 
@@ -1202,7 +1202,7 @@ final class LayoutTests: XCTestCase {
         expect(highPriorityLayout) === layout
     }
 
-    func testPrioritize() {
+    func testPrioritizeWithPriority() {
 
         // GIVEN
 

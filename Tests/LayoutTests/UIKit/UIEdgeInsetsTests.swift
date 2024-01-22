@@ -29,7 +29,7 @@ final class UIEdgeInsetsTests: XCTestCase {
         expect(insets) == UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
 
-    func testCanonicalFactory() {
+    func testCanonicalTopLeftBottomRight() {
 
         // GIVEN
 

@@ -16,7 +16,7 @@ final class LayoutItemTests: XCTestCase {
 
     // MARK: - Identifier
 
-    func testIdentifier() {
+    func testIdentifierAndIDWithIdentifier() {
 
         // GIVEN
 
@@ -46,7 +46,7 @@ final class LayoutItemTests: XCTestCase {
 
     // MARK: - Size
 
-    func testSizeWidthAndHeight_andWithPriority() {
+    func testSizeWidthHeightPriority() {
         assertLayout { view in
             view.layout {
 
@@ -68,7 +68,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testSizeWithCGSize_andWithPriority() {
+    func testSizeWithSizePriority() {
         assertLayout { view in
             view.layout {
 
@@ -90,7 +90,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testWidth_andWithConstraintRelation_andWithPriority() {
+    func testWidthIsRelationConstantPriority() {
 
         // swiftlint:disable:next closure_body_length
         assertLayout { view in
@@ -152,7 +152,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testSizeHeight_andWithConstraintRelation_andWithPriority() {
+    func testSizeHeightIsRelationConstantPriority() {
 
         // swiftlint:disable:next closure_body_length
         assertLayout { view in
@@ -216,7 +216,7 @@ final class LayoutItemTests: XCTestCase {
 
     // MARK: - Aspect Ratio
 
-    func testSquareWithWidth_andSquareWithHeight() {
+    func testSquare() {
         assertLayout { view in
             view.layout {
 
@@ -238,7 +238,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testSquareWithLength_andWithPriority() {
+    func testSquareWithLengthPriority() {
         assertLayout { view in
             view.layout {
 
@@ -260,7 +260,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testAspectRatio_andWithPriority() {
+    func testAspectRatioWithRatioPriority() {
         assertLayout { view in
             view.layout {
 
@@ -286,7 +286,7 @@ final class LayoutItemTests: XCTestCase {
 
     // MARK: - Center
 
-    func testCenterWithDefaultUIOffset_andWithCustomUIOffset_andWithPriority() {
+    func testCenterOffsetPriority() {
         assertLayout { view in
             view.layout {
 
@@ -314,7 +314,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testCenterWithAxis_andWithOffset_andWithMultiplier_andWithPriority() {
+    func testCenterWithAxisOffsetMultiplierPriority() {
         assertLayout { view in
             view.layout {
 
@@ -387,7 +387,7 @@ final class LayoutItemTests: XCTestCase {
 
     // MARK: - Attributes
 
-    func testToAttribute_andWithConstant_andWithMultiplier_andWithPriority() {
+    func testToAttributeIsRelationMultiplierConstantPriority() {
         assertLayout { view in
             view.layout {
 
@@ -434,7 +434,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToAttributeWithRelation() {
+    func testToAttributeIsRelationMultiplierConstantPriority_givenRelation() {
         assertLayout { view in
             view.layout {
 
@@ -474,7 +474,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToAttributes_andWithConstant_andWithPriority() {
+    func testToAttributesConstantPriority() {
         assertLayout { view in
             view.layout {
 
@@ -504,7 +504,7 @@ final class LayoutItemTests: XCTestCase {
 
     // MARK: - Edges
 
-    func testToEdgesWithDirectionalInsetsPriority() {
+    func testToEdgesInsetsPriorityDirectional() {
         assertLayout { view in
             view.layout {
 
@@ -531,7 +531,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToEdgesWithCanonicalInsetsPriority() {
+    func testToEdgesInsetsPriorityCanonical() {
         assertLayout { view in
             view.layout {
 
@@ -551,7 +551,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToEdgesWithDirectionalEdgesInsetPriority() {
+    func testToEdgesWithEdgesInsetPriorityDirectional() {
         assertLayout { view in
             view.layout {
 
@@ -580,7 +580,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToEdgesWithCanonicalEdgesInsetPriority() {
+    func testToEdgesCanonicalEdgesInsetPriority() {
         assertLayout { view in
             view.layout {
 
@@ -614,7 +614,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToSideEdgesWithInsetPriority() {
+    func testToSideEdgesInsetPriority() {
         assertLayout { view in
             view.layout {
 
@@ -647,7 +647,7 @@ final class LayoutItemTests: XCTestCase {
 
     // MARK: - Margins
 
-    func testToMarginsWithDirectionalEdgeInsetsPriority() {
+    func testToMarginsInsetsPriorityDirectional() {
         assertLayout(devices: Device.portraitTestDevices + Device.modernLandscapeTestDevices) { view in
             view.layout {
 
@@ -669,7 +669,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToMarginsWithCanonicalEdgeInsetsPriority() {
+    func testToMarginsInsetsPriorityCanonical() {
         assertLayout(devices: Device.portraitTestDevices + Device.modernLandscapeTestDevices) { view in
             view.layout {
 
@@ -689,7 +689,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToMarginsWithDirectionalEdgesInsetPriority() {
+    func testToMarginsWithEdgesInsetPriorityDirectional() {
         assertLayout(devices: Device.portraitTestDevices + Device.modernLandscapeTestDevices) { view in
             view.layout {
 
@@ -714,7 +714,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToMarginsWithCanonicalEdgesInsetPriority() {
+    func testToMarginsCanonicalEdgesInsetPriority() {
         assertLayout(devices: Device.portraitTestDevices + Device.modernLandscapeTestDevices) { view in
             view.layout {
 
@@ -745,7 +745,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToSideMarginsWithInsetPriority() {
+    func testToSideMarginsInsetPriority() {
         assertLayout(devices: Device.portraitTestDevices + Device.modernLandscapeTestDevices) { view in
             view.layout {
 
@@ -778,7 +778,7 @@ final class LayoutItemTests: XCTestCase {
 
     // MARK: - Safe Area
 
-    func testToSafeAreaWithDirectionalEdgeInsetsPriority() {
+    func testToSafeAreaInsetsPriorityDirectional() {
         assertLayout(devices: Device.allTestDevices) { view in
             view.layout {
 
@@ -805,7 +805,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToSafeAreaWithCanonicalEdgeInsetsPriority() {
+    func testToSafeAreaInsetsPriorityCanonical() {
         assertLayout(devices: Device.allTestDevices) { view in
             view.layout {
 
@@ -825,7 +825,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToSafeAreaWithDirectionalEdgesInsetPriority() {
+    func testToSafeAreaWithEdgesInsetPriorityDirectional() {
         assertLayout(devices: Device.allTestDevices) { view in
             view.layout {
 
@@ -845,7 +845,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testToSafeAreaWithCanonicalEdgesInsetPriority() {
+    func testToSafeAreaCanonicalEdgesInsetPriority() {
         assertLayout(devices: Device.allTestDevices) { view in
             view.layout {
 

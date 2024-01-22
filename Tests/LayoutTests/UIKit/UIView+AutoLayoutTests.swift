@@ -28,7 +28,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(view.translatesAutoresizingMaskIntoConstraints) == false
     }
 
-    func testConstrainingSize_withDefaults() {
+    func testConstrainingSize_givenDefaults() {
 
         // GIVEN
 
@@ -72,7 +72,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(view.constraints.first { $0.firstAttribute == .height }?.constant) == size.height
     }
 
-    func testConstrainingWidth_withDefaults() {
+    func testConstrainingWidth_givenDefaults() {
 
         // GIVEN
 
@@ -114,7 +114,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(view.constraints.first { $0.firstAttribute == .width }?.constant) == width
     }
 
-    func testConstrainingHeight_withDefaults() {
+    func testConstrainingHeight_givenDefaults() {
 
         // GIVEN
 
@@ -158,7 +158,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Size
 
-    func testWidthConstraint() {
+    func testWidthConstraintIsRelationConstant() {
 
         // GIVEN
 
@@ -199,7 +199,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(widthConstraint3.constant) == width3
     }
 
-    func testHeightConstraint() {
+    func testHeightConstraintIsRelationConstant() {
 
         // GIVEN
 
@@ -243,7 +243,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(heightConstraint3.constant) == height3
     }
 
-    func testSizeConstraints() {
+    func testSizeConstraintsWithSize() {
 
         // GIVEN
 
@@ -293,7 +293,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraint.relation) == .equal
     }
 
-    func testAspectRatioConstraint() {
+    func testAspectRatioConstraintWithRatio() {
 
         // GIVEN
 
@@ -314,7 +314,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Equal
 
-    func testEqualConstraints() {
+    func testEqualConstraintsForAttributeToViews() {
 
         // GIVEN
 
@@ -333,7 +333,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Center
 
-    func testCenterConstraints() {
+    func testCenterConstraintsOffset() {
 
         // GIVEN
 
@@ -372,7 +372,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Attributes
 
-    func testConstraintToSuperview() {
+    func testConstraintForAttributeIsRelationToSuperviewMultiplierConstant() {
 
         // GIVEN
 
@@ -408,7 +408,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints2.first?.constant) == 5
     }
 
-    func testConstraintToTargetView() {
+    func testConstraintForAttributeIsRelationToTargetAttributeOfTargetViewMultiplierConstant() {
 
         // GIVEN
 
@@ -446,7 +446,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Edges
 
-    func testEdgeConstraints() {
+    func testEdgeConstraintsInset() {
 
         // GIVEN
 
@@ -471,7 +471,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[3].constant) == 0
     }
 
-    func testEdgeConstraintsWithInset() {
+    func testEdgeConstraintsInset_givenInset() {
 
         // GIVEN
 
@@ -497,7 +497,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[3].constant) == -inset
     }
 
-    func testEdgeConstraintsWithDirectionalInsets() {
+    func testEdgeConstraintsInsetsDirectional() {
 
         // GIVEN
 
@@ -523,7 +523,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[3].constant) == -insets.trailing
     }
 
-    func testEdgeConstraintsWithCanonicalInsets() {
+    func testEdgeConstraintsInsetsCanonical() {
 
         // GIVEN
 

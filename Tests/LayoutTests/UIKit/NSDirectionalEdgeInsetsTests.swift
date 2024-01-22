@@ -28,7 +28,7 @@ final class NSDirectionalEdgeInsetsTests: XCTestCase {
         expect(insets) == NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
     }
 
-    func testDirectionalFactory() {
+    func testDirectionalTopLeadingBottomTrailing() {
 
         // GIVEN
 

@@ -14,7 +14,7 @@ import XCTest
 @MainActor
 final class UIViewControllerTests: XCTestCase {
 
-    func testViewControllerSafeAreaLayoutGuides() {
+    func testSafeTopAndSafeBottom() {
 
         // GIVEN
 

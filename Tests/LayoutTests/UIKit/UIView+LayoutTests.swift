@@ -16,7 +16,7 @@ import XCTest
 @MainActor
 final class UIViewLayoutTests: XCTestCase {
 
-    func testLayoutWithMetrics() {
+    func testLayoutMetrics() {
 
         // GIVEN
 
@@ -35,7 +35,7 @@ final class UIViewLayoutTests: XCTestCase {
         expect(layout.items.isEmpty) == true
     }
 
-    func testLayoutWithMetricsAndItem() {
+    func testLayoutMetricsWithItem() {
 
         // GIVEN
 
@@ -57,7 +57,7 @@ final class UIViewLayoutTests: XCTestCase {
         expect(layout.items[identifier] as? UIView) == subview
     }
 
-    func testLayoutWithMetricsAndItems() {
+    func testLayoutMetricsWithItems() {
 
         // GIVEN
 

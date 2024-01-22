@@ -14,7 +14,7 @@ import XCTest
 @MainActor
 final class CollectionTests: XCTestCase {
 
-    func testActivate_andDeactivate() {
+    func testActivateAndDeactivate() {
 
         // GIVEN
 

@@ -13,15 +13,15 @@ import XCTest
 
 final class UILayoutPriorityTests: XCTestCase {
 
-    func testDisabledPriority() {
+    func testDisabled() {
         expect(UILayoutPriority.disabled) == UILayoutPriority(0)
     }
 
-    func testLowPriority() {
+    func testLow() {
         expect(UILayoutPriority.low) == UILayoutPriority.defaultLow
     }
 
-    func testHighPriority() {
+    func testHigh() {
         expect(UILayoutPriority.high) == UILayoutPriority.defaultHigh
     }
 
