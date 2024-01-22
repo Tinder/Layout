@@ -23,7 +23,7 @@ final class ArrayTests: XCTestCase {
         let view: UIView = .init()
         let constraint1: NSLayoutConstraint = .init(
             item: view,
-            attribute: .height,
+            attribute: .width,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
@@ -32,7 +32,7 @@ final class ArrayTests: XCTestCase {
         )
         let constraint2: NSLayoutConstraint = .init(
             item: view,
-            attribute: .width,
+            attribute: .height,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
@@ -76,7 +76,7 @@ final class ArrayTests: XCTestCase {
         let view: UIView = .init()
         let constraint1: NSLayoutConstraint = .init(
             item: view,
-            attribute: .height,
+            attribute: .width,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
@@ -85,7 +85,7 @@ final class ArrayTests: XCTestCase {
         )
         let constraint2: NSLayoutConstraint = .init(
             item: view,
-            attribute: .width,
+            attribute: .height,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
@@ -114,7 +114,7 @@ final class ArrayTests: XCTestCase {
         let view: UIView = .init()
         let constraint1: NSLayoutConstraint = .init(
             item: view,
-            attribute: .height,
+            attribute: .width,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
@@ -123,7 +123,7 @@ final class ArrayTests: XCTestCase {
         )
         let constraint2: NSLayoutConstraint = .init(
             item: view,
-            attribute: .width,
+            attribute: .height,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
@@ -155,7 +155,7 @@ final class ArrayTests: XCTestCase {
         let view: UIView = .init()
         let constraint1: NSLayoutConstraint = .init(
             item: view,
-            attribute: .height,
+            attribute: .width,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
@@ -164,7 +164,7 @@ final class ArrayTests: XCTestCase {
         )
         let constraint2: NSLayoutConstraint = .init(
             item: view,
-            attribute: .width,
+            attribute: .height,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,

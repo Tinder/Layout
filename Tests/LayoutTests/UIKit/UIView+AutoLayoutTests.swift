@@ -511,13 +511,13 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(constraints.count) == 4
-        expect(constraints[0].firstAttribute) == .top
+        expect(constraints[0].firstAttribute) == .left
         expect(constraints[0].constant) == 0
-        expect(constraints[1].firstAttribute) == .bottom
+        expect(constraints[1].firstAttribute) == .right
         expect(constraints[1].constant) == 0
-        expect(constraints[2].firstAttribute) == .left
+        expect(constraints[2].firstAttribute) == .top
         expect(constraints[2].constant) == 0
-        expect(constraints[3].firstAttribute) == .right
+        expect(constraints[3].firstAttribute) == .bottom
         expect(constraints[3].constant) == 0
     }
 
@@ -537,13 +537,13 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(constraints.count) == 4
-        expect(constraints[0].firstAttribute) == .top
+        expect(constraints[0].firstAttribute) == .left
         expect(constraints[0].constant) == inset
-        expect(constraints[1].firstAttribute) == .bottom
+        expect(constraints[1].firstAttribute) == .right
         expect(constraints[1].constant) == -inset
-        expect(constraints[2].firstAttribute) == .left
+        expect(constraints[2].firstAttribute) == .top
         expect(constraints[2].constant) == inset
-        expect(constraints[3].firstAttribute) == .right
+        expect(constraints[3].firstAttribute) == .bottom
         expect(constraints[3].constant) == -inset
     }
 
@@ -563,14 +563,14 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(constraints.count) == 4
-        expect(constraints[0].firstAttribute) == .top
-        expect(constraints[0].constant) == insets.top
-        expect(constraints[1].firstAttribute) == .bottom
-        expect(constraints[1].constant) == -insets.bottom
-        expect(constraints[2].firstAttribute) == .leading
-        expect(constraints[2].constant) == insets.leading
-        expect(constraints[3].firstAttribute) == .trailing
-        expect(constraints[3].constant) == -insets.trailing
+        expect(constraints[0].firstAttribute) == .leading
+        expect(constraints[0].constant) == insets.leading
+        expect(constraints[1].firstAttribute) == .trailing
+        expect(constraints[1].constant) == -insets.trailing
+        expect(constraints[2].firstAttribute) == .top
+        expect(constraints[2].constant) == insets.top
+        expect(constraints[3].firstAttribute) == .bottom
+        expect(constraints[3].constant) == -insets.bottom
     }
 
     func testEdgeConstraintsInsetsCanonical() {
@@ -589,13 +589,13 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(constraints.count) == 4
-        expect(constraints[0].firstAttribute) == .top
-        expect(constraints[0].constant) == insets.top
-        expect(constraints[1].firstAttribute) == .bottom
-        expect(constraints[1].constant) == -insets.bottom
-        expect(constraints[2].firstAttribute) == .left
-        expect(constraints[2].constant) == insets.left
-        expect(constraints[3].firstAttribute) == .right
-        expect(constraints[3].constant) == -insets.right
+        expect(constraints[0].firstAttribute) == .left
+        expect(constraints[0].constant) == insets.left
+        expect(constraints[1].firstAttribute) == .right
+        expect(constraints[1].constant) == -insets.right
+        expect(constraints[2].firstAttribute) == .top
+        expect(constraints[2].constant) == insets.top
+        expect(constraints[3].firstAttribute) == .bottom
+        expect(constraints[3].constant) == -insets.bottom
     }
 }

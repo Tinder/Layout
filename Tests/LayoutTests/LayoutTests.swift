@@ -203,18 +203,18 @@ final class LayoutTests: XCTestCase {
 
         let view: UIView = .init()
         let subview: UIView = .init()
-        let heightConstraint: NSLayoutConstraint = .init(
+        let widthConstraint: NSLayoutConstraint = .init(
             item: subview,
-            attribute: .height,
+            attribute: .width,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
             constant: 100
         )
-        let widthConstraint: NSLayoutConstraint = .init(
+        let heightConstraint: NSLayoutConstraint = .init(
             item: subview,
-            attribute: .width,
+            attribute: .height,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
@@ -226,13 +226,13 @@ final class LayoutTests: XCTestCase {
         // WHEN
 
         layout.adding {
-            heightConstraint
             widthConstraint
+            heightConstraint
         }
 
         // THEN
 
-        expect(layout.constraints) == [heightConstraint, widthConstraint]
+        expect(layout.constraints) == [widthConstraint, heightConstraint]
     }
 
     func testAddingConstraints() {
@@ -1054,18 +1054,18 @@ final class LayoutTests: XCTestCase {
 
         let view: UIView = .init()
         let subview: UIView = .init()
-        let heightConstraint: NSLayoutConstraint = .init(
+        let widthConstraint: NSLayoutConstraint = .init(
             item: subview,
-            attribute: .height,
+            attribute: .width,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
             constant: 100
         )
-        let widthConstraint: NSLayoutConstraint = .init(
+        let heightConstraint: NSLayoutConstraint = .init(
             item: subview,
-            attribute: .width,
+            attribute: .height,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
@@ -1076,7 +1076,7 @@ final class LayoutTests: XCTestCase {
 
         // WHEN
 
-        layout.adding(heightConstraint, widthConstraint)
+        layout.adding(widthConstraint, heightConstraint)
 
         // THEN
 
@@ -1111,18 +1111,18 @@ final class LayoutTests: XCTestCase {
 
         let view: UIView = .init()
         let subview: UIView = .init()
-        let heightConstraint: NSLayoutConstraint = .init(
+        let widthConstraint: NSLayoutConstraint = .init(
             item: subview,
-            attribute: .height,
+            attribute: .width,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
             constant: 100
         )
-        let widthConstraint: NSLayoutConstraint = .init(
+        let heightConstraint: NSLayoutConstraint = .init(
             item: subview,
-            attribute: .width,
+            attribute: .height,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
@@ -1133,10 +1133,10 @@ final class LayoutTests: XCTestCase {
 
         // WHEN
 
-        heightConstraint.priority = .high
         widthConstraint.priority = .high
+        heightConstraint.priority = .high
 
-        layout.adding(heightConstraint, widthConstraint)
+        layout.adding(widthConstraint, heightConstraint)
 
         // THEN
 
@@ -1161,18 +1161,18 @@ final class LayoutTests: XCTestCase {
 
         let view: UIView = .init()
         let subview: UIView = .init()
-        let heightConstraint: NSLayoutConstraint = .init(
+        let widthConstraint: NSLayoutConstraint = .init(
             item: subview,
-            attribute: .height,
+            attribute: .width,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
             constant: 100
         )
-        let widthConstraint: NSLayoutConstraint = .init(
+        let heightConstraint: NSLayoutConstraint = .init(
             item: subview,
-            attribute: .width,
+            attribute: .height,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
@@ -1183,7 +1183,7 @@ final class LayoutTests: XCTestCase {
 
         // WHEN
 
-        layout.adding(heightConstraint, widthConstraint)
+        layout.adding(widthConstraint, heightConstraint)
 
         // THEN
 
@@ -1208,18 +1208,18 @@ final class LayoutTests: XCTestCase {
 
         let view: UIView = .init()
         let subview: UIView = .init()
-        let heightConstraint: NSLayoutConstraint = .init(
+        let widthConstraint: NSLayoutConstraint = .init(
             item: subview,
-            attribute: .height,
+            attribute: .width,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
             constant: 100
         )
-        let widthConstraint: NSLayoutConstraint = .init(
+        let heightConstraint: NSLayoutConstraint = .init(
             item: subview,
-            attribute: .width,
+            attribute: .height,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
@@ -1230,7 +1230,7 @@ final class LayoutTests: XCTestCase {
 
         // WHEN
 
-        layout.adding(heightConstraint, widthConstraint)
+        layout.adding(widthConstraint, heightConstraint)
 
         // THEN
 
