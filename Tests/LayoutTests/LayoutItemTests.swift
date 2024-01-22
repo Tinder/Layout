@@ -14,9 +14,9 @@ import XCTest
 @MainActor
 final class LayoutItemTests: XCTestCase {
 
-    // MARK: - Identifier
+    // MARK: - Properties
 
-    func testIdentifierAndIDWithIdentifier() {
+    func testIdentifier() {
 
         // GIVEN
 
@@ -33,6 +33,20 @@ final class LayoutItemTests: XCTestCase {
         // THEN
 
         expect(view.identifier) == "ga"
+        expect(view.accessibilityIdentifier) == "ga"
+    }
+
+    // MARK: - Identifier
+
+    func testIDWithIdentifier() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+
+        // THEN
+
+        expect(view.identifier) == nil
 
         // WHEN
 
@@ -40,7 +54,8 @@ final class LayoutItemTests: XCTestCase {
 
         // THEN
 
-        expect(view.identifier) == "ro"
+        expect(identifiedView.identifier) == "ro"
+        expect(identifiedView.accessibilityIdentifier) == "ro"
         expect(identifiedView) === view
     }
 
