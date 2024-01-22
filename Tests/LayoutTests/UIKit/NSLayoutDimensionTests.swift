@@ -98,7 +98,7 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
-    func testConstraintIsRelationConstant_givenDefaults() {
+    func testConstraintIsRelationToConstant_givenEqualRelation() {
 
         // GIVEN
 
@@ -111,7 +111,7 @@ final class NSLayoutDimensionTests: XCTestCase {
 
         let constraint: NSLayoutConstraint = viewA
             .width
-            .constraint(50)
+            .constraint(is: .equal, to: 50)
 
         // THEN
 
@@ -152,6 +152,26 @@ final class NSLayoutDimensionTests: XCTestCase {
         let constraint: NSLayoutConstraint = viewA
             .width
             .constraint(is: .lessThanOrEqual, to: 50)
+
+        // THEN
+
+        expect(constraint).to(match(expected))
+    }
+
+    func testConstraintWithConstant() {
+
+        // GIVEN
+
+        let viewA: UIView = .init()
+        let expected: NSLayoutConstraint = viewA
+            .width
+            .constraint(equalToConstant: 50)
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .width
+            .constraint(50)
 
         // THEN
 

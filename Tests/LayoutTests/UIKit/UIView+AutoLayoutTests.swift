@@ -158,12 +158,12 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Size
 
-    func testWidthConstraintIsRelationConstant() {
+    func testWidthConstraintIsRelationToConstant() {
 
         // GIVEN
 
         let view: UIView = .init()
-        let widthConstraint1: NSLayoutConstraint = view.widthConstraint()
+        let widthConstraint1: NSLayoutConstraint = view.widthConstraint(is: .equal)
 
         // THEN
 
@@ -199,7 +199,32 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(widthConstraint3.constant) == width3
     }
 
-    func testHeightConstraintIsRelationConstant() {
+    func testWidthConstraintWithConstant() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let widthConstraint1: NSLayoutConstraint = view.widthConstraint()
+
+        // THEN
+
+        expect(widthConstraint1.relation) == .equal
+        expect(widthConstraint1.constant) == 0
+
+        // GIVEN
+
+        let width2: CGFloat = 10
+
+        // WHEN
+
+        let widthConstraint2: NSLayoutConstraint = view.widthConstraint(width2)
+
+        // THEN
+
+        expect(widthConstraint2.constant) == width2
+    }
+
+    func testHeightConstraintIsRelationToConstant() {
 
         // GIVEN
 
@@ -207,7 +232,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // WHEN
 
-        let heightConstraint1: NSLayoutConstraint = view.heightConstraint()
+        let heightConstraint1: NSLayoutConstraint = view.heightConstraint(is: .equal)
 
         // THEN
 
@@ -241,6 +266,31 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         expect(heightConstraint3.relation) == relation3
         expect(heightConstraint3.constant) == height3
+    }
+
+    func testHeightConstraintWithConstant() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+        let heightConstraint1: NSLayoutConstraint = view.heightConstraint()
+
+        // THEN
+
+        expect(heightConstraint1.relation) == .equal
+        expect(heightConstraint1.constant) == 0
+
+        // GIVEN
+
+        let height2: CGFloat = 10
+
+        // WHEN
+
+        let heightConstraint2: NSLayoutConstraint = view.heightConstraint(height2)
+
+        // THEN
+
+        expect(heightConstraint2.constant) == height2
     }
 
     func testSizeConstraintsWithSize() {
