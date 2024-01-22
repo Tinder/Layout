@@ -17,11 +17,11 @@ public enum CanonicalEdge: CaseIterable {
     /// The top edge of the alignment rectangle.
     case top
 
-    /// The bottom edge of the alignment rectangle.
-    case bottom
-
     /// The left edge of the alignment rectangle.
     case left
+
+    /// The bottom edge of the alignment rectangle.
+    case bottom
 
     /// The right edge of the alignment rectangle.
     case right

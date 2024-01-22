@@ -435,7 +435,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     public func equalSize(
         _ views: [UIView]
     ) -> Layout {
-        equal([.height, .width], views)
+        equal([.width, .height], views)
     }
 
     // MARK: - Center

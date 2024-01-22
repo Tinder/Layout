@@ -15,6 +15,9 @@ public enum YAxisAttribute {
     /// The top edge of the alignment rectangle.
     case top
 
+    /// The bottom edge of the alignment rectangle.
+    case bottom
+
     /// The center along the y-axis of the alignment rectangle.
     case centerY
 
@@ -23,7 +26,4 @@ public enum YAxisAttribute {
 
     /// The last baseline.
     case lastBaseline
-
-    /// The bottom edge of the alignment rectangle.
-    case bottom
 }

@@ -14,6 +14,6 @@ import XCTest
 final class CanonicalEdgeTests: XCTestCase {
 
     func testCanonicalEdgeAllCases() {
-        expect(CanonicalEdge.allCases) == [.top, .bottom, .left, .right]
+        expect(CanonicalEdge.allCases) == [.top, .left, .bottom, .right]
     }
 }

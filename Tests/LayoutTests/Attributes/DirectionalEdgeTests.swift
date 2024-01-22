@@ -14,6 +14,6 @@ import XCTest
 final class DirectionalEdgeTests: XCTestCase {
 
     func testDirectionalEdgeAllCases() {
-        expect(DirectionalEdge.allCases) == [.top, .bottom, .leading, .trailing]
+        expect(DirectionalEdge.allCases) == [.top, .leading, .bottom, .trailing]
     }
 }

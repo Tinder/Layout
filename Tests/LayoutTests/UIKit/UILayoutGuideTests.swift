@@ -26,12 +26,12 @@ final class UILayoutGuideTests: XCTestCase {
 
         // THEN
 
-        expect(boundary.top) == guide.topAnchor
-        expect(boundary.bottom) == guide.bottomAnchor
-        expect(boundary.left) == guide.leftAnchor
-        expect(boundary.right) == guide.rightAnchor
         expect(boundary.leading) == guide.leadingAnchor
         expect(boundary.trailing) == guide.trailingAnchor
+        expect(boundary.left) == guide.leftAnchor
+        expect(boundary.right) == guide.rightAnchor
+        expect(boundary.top) == guide.topAnchor
+        expect(boundary.bottom) == guide.bottomAnchor
     }
 
     func testLayoutCenter() {

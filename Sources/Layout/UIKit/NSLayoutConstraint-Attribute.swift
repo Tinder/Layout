@@ -14,6 +14,10 @@ extension NSLayoutConstraint.Attribute {
 
     internal var canonicalAttribute: NSLayoutConstraint.Attribute {
         switch self {
+        case .leadingMargin:
+            return .leading
+        case .trailingMargin:
+            return .trailing
         case .leftMargin:
             return .left
         case .rightMargin:
@@ -22,15 +26,11 @@ extension NSLayoutConstraint.Attribute {
             return .top
         case .bottomMargin:
             return .bottom
-        case .leadingMargin:
-            return .leading
-        case .trailingMargin:
-            return .trailing
         case .centerXWithinMargins:
             return .centerX
         case .centerYWithinMargins:
             return .centerY
-        case .left, .right, .top, .bottom, .leading, .trailing:
+        case .leading, .trailing, .left, .right, .top, .bottom:
             return self
         case .centerX, .centerY:
             return self

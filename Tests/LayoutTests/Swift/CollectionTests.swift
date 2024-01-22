@@ -20,18 +20,18 @@ final class CollectionTests: XCTestCase {
 
         let view1: UIView = .init()
         let subview1: UIView = .init()
-        let heightConstraint1: NSLayoutConstraint = .init(
+        let widthConstraint1: NSLayoutConstraint = .init(
             item: subview1,
-            attribute: .height,
+            attribute: .width,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
             constant: 100
         )
-        let widthConstraint1: NSLayoutConstraint = .init(
+        let heightConstraint1: NSLayoutConstraint = .init(
             item: subview1,
-            attribute: .width,
+            attribute: .height,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
@@ -42,18 +42,18 @@ final class CollectionTests: XCTestCase {
 
         let view2: UIView = .init()
         let subview2: UIView = .init()
-        let heightConstraint2: NSLayoutConstraint = .init(
-            item: subview2,
-            attribute: .height,
+        let widthConstraint2: NSLayoutConstraint = .init(
+            item: subview1,
+            attribute: .width,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
             constant: 100
         )
-        let widthConstraint2: NSLayoutConstraint = .init(
-            item: subview1,
-            attribute: .width,
+        let heightConstraint2: NSLayoutConstraint = .init(
+            item: subview2,
+            attribute: .height,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
@@ -66,8 +66,8 @@ final class CollectionTests: XCTestCase {
 
         // WHEN
 
-        layout1.adding(heightConstraint1, widthConstraint1)
-        layout2.adding(heightConstraint2, widthConstraint2)
+        layout1.adding(widthConstraint1, heightConstraint1)
+        layout2.adding(widthConstraint2, heightConstraint2)
 
         // THEN
 

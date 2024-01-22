@@ -55,12 +55,12 @@ final class ViewLayoutItemTests: XCTestCase {
 
         // THEN
 
-        expect(boundary.top) == view.top
-        expect(boundary.bottom) == view.bottom
-        expect(boundary.left) == view.left
-        expect(boundary.right) == view.right
         expect(boundary.leading) == view.leading
         expect(boundary.trailing) == view.trailing
+        expect(boundary.left) == view.left
+        expect(boundary.right) == view.right
+        expect(boundary.top) == view.top
+        expect(boundary.bottom) == view.bottom
     }
 
     func testLayoutCenter() {

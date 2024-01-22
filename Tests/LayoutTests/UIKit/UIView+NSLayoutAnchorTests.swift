@@ -23,10 +23,10 @@ final class UIViewNSLayoutAnchorTests: XCTestCase {
 
         // THEN
 
-        expect(view.anchor(for: .left)) == view.left
-        expect(view.anchor(for: .right)) == view.right
         expect(view.anchor(for: .leading)) == view.leading
         expect(view.anchor(for: .trailing)) == view.trailing
+        expect(view.anchor(for: .left)) == view.left
+        expect(view.anchor(for: .right)) == view.right
         expect(view.anchor(for: .centerX)) == view.centerX
     }
 
@@ -40,8 +40,8 @@ final class UIViewNSLayoutAnchorTests: XCTestCase {
 
         expect(view.anchor(for: .top)) == view.top
         expect(view.anchor(for: .bottom)) == view.bottom
+        expect(view.anchor(for: .centerY)) == view.centerY
         expect(view.anchor(for: .firstBaseline)) == view.firstBaseline
         expect(view.anchor(for: .lastBaseline)) == view.lastBaseline
-        expect(view.anchor(for: .centerY)) == view.centerY
     }
 }

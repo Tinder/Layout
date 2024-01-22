@@ -11,17 +11,7 @@ import UIKit
 
 extension UIView: LayoutItem {
 
-    /// The anchor representing the top edge of the layout item.
-    public var top: NSLayoutYAxisAnchor { topAnchor }
-
-    /// The anchor representing the bottom edge of the layout item.
-    public var bottom: NSLayoutYAxisAnchor { bottomAnchor }
-
-    /// The anchor representing the left edge of the layout item.
-    public var left: NSLayoutXAxisAnchor { leftAnchor }
-
-    /// The anchor representing the right edge of the layout item.
-    public var right: NSLayoutXAxisAnchor { rightAnchor }
+    // MARK: - LayoutBoundary
 
     /// The anchor representing the leading edge of the layout item.
     public var leading: NSLayoutXAxisAnchor { leadingAnchor }
@@ -29,11 +19,27 @@ extension UIView: LayoutItem {
     /// The anchor representing the trailing edge of the layout item.
     public var trailing: NSLayoutXAxisAnchor { trailingAnchor }
 
+    /// The anchor representing the left edge of the layout item.
+    public var left: NSLayoutXAxisAnchor { leftAnchor }
+
+    /// The anchor representing the right edge of the layout item.
+    public var right: NSLayoutXAxisAnchor { rightAnchor }
+
+    /// The anchor representing the top edge of the layout item.
+    public var top: NSLayoutYAxisAnchor { topAnchor }
+
+    /// The anchor representing the bottom edge of the layout item.
+    public var bottom: NSLayoutYAxisAnchor { bottomAnchor }
+
+    // MARK: - LayoutCenter
+
     /// The anchor representing the center along the x-axis of the layout item.
     public var centerX: NSLayoutXAxisAnchor { centerXAnchor }
 
     /// The anchor representing the center along the y-axis of the layout item.
     public var centerY: NSLayoutYAxisAnchor { centerYAnchor }
+
+    // MARK: - LayoutSize
 
     /// The anchor representing the width of the layout item.
     public var width: NSLayoutDimension { widthAnchor }
@@ -41,11 +47,15 @@ extension UIView: LayoutItem {
     /// The anchor representing the height of the layout item.
     public var height: NSLayoutDimension { heightAnchor }
 
+    // MARK: - LayoutBaseline
+
     /// The anchor representing the first baseline of the layout item.
     public var firstBaseline: NSLayoutYAxisAnchor { firstBaselineAnchor }
 
     /// The anchor representing the last baseline of the layout item.
     public var lastBaseline: NSLayoutYAxisAnchor { lastBaselineAnchor }
+
+    // MARK: - LayoutItem
 
     /// The view of the layout item.
     public var layoutItemView: UIView {

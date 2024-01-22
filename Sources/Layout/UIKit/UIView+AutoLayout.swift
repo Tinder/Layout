@@ -308,10 +308,10 @@ extension UIView {
         insets: DirectionalInsets
     ) -> [NSLayoutConstraint] {
         [
-            constraint(toSuperview: .top, constant: insets.top),
-            constraint(toSuperview: .bottom, constant: -insets.bottom),
             constraint(toSuperview: .leading, constant: insets.leading),
-            constraint(toSuperview: .trailing, constant: -insets.trailing)
+            constraint(toSuperview: .trailing, constant: -insets.trailing),
+            constraint(toSuperview: .top, constant: insets.top),
+            constraint(toSuperview: .bottom, constant: -insets.bottom)
         ]
     }
 
@@ -324,10 +324,10 @@ extension UIView {
         insets: CanonicalInsets
     ) -> [NSLayoutConstraint] {
         [
-            constraint(toSuperview: .top, constant: insets.top),
-            constraint(toSuperview: .bottom, constant: -insets.bottom),
             constraint(toSuperview: .left, constant: insets.left),
-            constraint(toSuperview: .right, constant: -insets.right)
+            constraint(toSuperview: .right, constant: -insets.right),
+            constraint(toSuperview: .top, constant: insets.top),
+            constraint(toSuperview: .bottom, constant: -insets.bottom)
         ]
     }
 }

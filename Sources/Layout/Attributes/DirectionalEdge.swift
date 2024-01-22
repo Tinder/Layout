@@ -17,11 +17,11 @@ public enum DirectionalEdge: CaseIterable {
     /// The top edge of the alignment rectangle.
     case top
 
-    /// The bottom edge of the alignment rectangle.
-    case bottom
-
     /// The leading edge of the alignment rectangle.
     case leading
+
+    /// The bottom edge of the alignment rectangle.
+    case bottom
 
     /// The trailing edge of the alignment rectangle.
     case trailing

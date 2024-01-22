@@ -13,14 +13,14 @@ extension UIView {
 
     internal func anchor(for attribute: XAxisAttribute) -> NSLayoutXAxisAnchor {
         switch attribute {
-        case .left:
-            return left
-        case .right:
-            return right
         case .leading:
             return leading
         case .trailing:
             return trailing
+        case .left:
+            return left
+        case .right:
+            return right
         case .centerX:
             return centerX
         }
@@ -32,12 +32,12 @@ extension UIView {
             return top
         case .bottom:
             return bottom
+        case .centerY:
+            return centerY
         case .firstBaseline:
             return firstBaseline
         case .lastBaseline:
             return lastBaseline
-        case .centerY:
-            return centerY
         }
     }
 }
