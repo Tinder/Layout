@@ -67,8 +67,9 @@ final class LayoutExampleTests: XCTestCase {
 
         // THEN
 
-        for (index, constraint) in layout.constraints.enumerated() {
-            expect(constraint).to(match(constraints[index]))
+        expect(layout.constraints.count) == constraints.count
+        for (constraint, expected) in zip(layout.constraints, constraints) {
+            expect(constraint).to(match(expected))
         }
 
         assertLayout { container in

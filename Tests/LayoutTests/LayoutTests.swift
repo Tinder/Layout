@@ -977,8 +977,8 @@ final class LayoutTests: XCTestCase {
             views: views
         )
         expect(layout.constraints.count) == expected.count
-        for (index, constraint) in layout.constraints.enumerated() {
-            expect(constraint).to(match(expected[index]))
+        for (constraint, expected) in zip(layout.constraints, expected) {
+            expect(constraint).to(match(expected))
         }
     }
 
