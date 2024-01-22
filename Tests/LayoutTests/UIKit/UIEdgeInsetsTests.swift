@@ -14,6 +14,10 @@ import XCTest
 
 final class UIEdgeInsetsTests: XCTestCase {
 
+    func testEdgeType() {
+        expect(UIEdgeInsets().edgeType == CanonicalEdge.self) == true
+    }
+
     func testInitWithInset() {
 
         // GIVEN

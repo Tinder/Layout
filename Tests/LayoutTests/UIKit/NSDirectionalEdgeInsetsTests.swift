@@ -13,6 +13,10 @@ import XCTest
 
 final class NSDirectionalEdgeInsetsTests: XCTestCase {
 
+    func testEdgeType() {
+        expect(NSDirectionalEdgeInsets().edgeType == DirectionalEdge.self) == true
+    }
+
     func testInitWithInset() {
 
         // GIVEN
