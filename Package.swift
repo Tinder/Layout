@@ -30,12 +30,7 @@ let package = Package(
     targets: [
         .target(
             name: "Layout",
-            swiftSettings: [
-                .unsafeFlags([
-                    "-strict-concurrency=complete",
-                    "-emit-extension-block-symbols"
-                ]),
-            ],
+            swiftSettings: .swiftSettings,
             plugins: [
                 .plugin(name: SwiftLint.plugin),
             ]),
@@ -66,3 +61,15 @@ let package = Package(
             checksum: "963121d6babf2bf5fd66a21ac9297e86d855cbc9d28322790646b88dceca00f1"),
     ]
 )
+
+extension Array where Element == SwiftSetting {
+
+    static var swiftSettings: [SwiftSetting] {
+        if let value: String = Context.environment["SWIFT_STRICT_CONCURRENCY"] {
+            return [.unsafeFlags(["-strict-concurrency=\(value)"])]
+        } else if Context.environment["SWIFT_EMIT_EXTENSION_BLOCK_SYMBOLS"] != nil {
+            return [.unsafeFlags(["-emit-extension-block-symbols"])]
+        }
+        return []
+    }
+}
