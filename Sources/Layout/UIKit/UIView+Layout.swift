@@ -81,15 +81,14 @@ extension UIView {
     /// Example:
     ///
     /// ```swift
-    /// view
-    ///     .layout {
-    ///         subview1
-    ///             .toSafeArea()
-    ///         subview2
-    ///             .square(32)
-    ///             .center()
-    ///     }
-    ///     .activate()
+    /// view.layout {
+    ///     subview1
+    ///         .toSafeArea()
+    ///     subview2
+    ///         .square(32)
+    ///         .center()
+    /// }
+    /// .activate()
     /// ```
     ///
     /// - Note: Use this method to create a layout with multiple items and use ``layout(metrics:_:)`` for a single item.
