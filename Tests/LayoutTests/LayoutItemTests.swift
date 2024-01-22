@@ -90,7 +90,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testWidthIsRelationConstantPriority() {
+    func testWidthIsRelationToConstantPriority() {
 
         // swiftlint:disable:next closure_body_length
         assertLayout { view in
@@ -98,12 +98,72 @@ final class LayoutItemTests: XCTestCase {
             // swiftlint:disable:next closure_body_length
             view.layout {
 
-                // Size Width with Default Relation and Priority
+                // Size Width with Relation and Default Priority
 
                 pinkView
                     .to([.top, .leading])
                     .height(100)
                     .width(is: .greaterThanOrEqual, to: 100, priority: .high)
+                    .width(is: .equal, to: 50)
+
+                // Size Width with Priority
+
+                yellowView
+                    .to([.top, .trailing])
+                    .height(100)
+                    .width(1, priority: .low)
+                    .width(is: .equal, to: 50, priority: .high)
+
+                // Size Width with GreaterThanOrEqual Relation and Priority
+
+                blueView
+                    .to([.bottom, .leading])
+                    .height(100)
+                    .width(is: .equal, to: 40, priority: .high)
+                    .width(is: .greaterThanOrEqual, to: 50)
+
+                // Size Width with LessThanOrEqual Relation and Priority
+
+                greenView
+                    .to([.bottom, .trailing])
+                    .height(100)
+                    .width(is: .equal, to: 60, priority: .high)
+                    .width(is: .lessThanOrEqual, to: 50)
+
+                // Size Width with GreaterThanOrEqual Relation
+
+                redView
+                    .to(.centerY, constant: -50)
+                    .to(.centerX)
+                    .height(100)
+                    .width(is: .equal, to: 60)
+                    .width(is: .greaterThanOrEqual, to: 50)
+
+                // Size Width with LessThanOrEqual Relation
+
+                orangeView
+                    .to(.centerY, constant: 50)
+                    .to(.centerX)
+                    .height(100)
+                    .width(is: .equal, to: 40)
+                    .width(is: .lessThanOrEqual, to: 50)
+            }
+            .activate()
+        }
+    }
+
+    func testWidthWithConstantPriority() {
+
+        assertLayout { view in
+
+            view.layout {
+
+                // Size Width with Default Priority
+
+                pinkView
+                    .to([.top, .leading])
+                    .height(100)
+                    .width(100, priority: .high)
                     .width(50)
 
                 // Size Width with Priority
@@ -113,46 +173,12 @@ final class LayoutItemTests: XCTestCase {
                     .height(100)
                     .width(1, priority: .low)
                     .width(50, priority: .high)
-
-                // Size Width with GreaterThanOrEqual Relation and Priority
-
-                blueView
-                    .to([.bottom, .leading])
-                    .height(100)
-                    .width(40, priority: .high)
-                    .width(is: .greaterThanOrEqual, to: 50)
-
-                // Size Width with LessThanOrEqual Relation and Priority
-
-                greenView
-                    .to([.bottom, .trailing])
-                    .height(100)
-                    .width(60, priority: .high)
-                    .width(is: .lessThanOrEqual, to: 50)
-
-                // Size Width with GreaterThanOrEqual Relation
-
-                redView
-                    .to(.centerY, constant: -50)
-                    .to(.centerX)
-                    .height(100)
-                    .width(60)
-                    .width(is: .greaterThanOrEqual, to: 50)
-
-                // Size Width with LessThanOrEqual Relation
-
-                orangeView
-                    .to(.centerY, constant: 50)
-                    .to(.centerX)
-                    .height(100)
-                    .width(40)
-                    .width(is: .lessThanOrEqual, to: 50)
             }
             .activate()
         }
     }
 
-    func testSizeHeightIsRelationConstantPriority() {
+    func testHeightIsRelationToConstantPriority() {
 
         // swiftlint:disable:next closure_body_length
         assertLayout { view in
@@ -160,28 +186,28 @@ final class LayoutItemTests: XCTestCase {
             // swiftlint:disable:next closure_body_length
             view.layout {
 
-                // Size Height with Default Relation and Priority
+                // Size Height with Relation and Default Priority
 
                 pinkView
                     .to([.top, .leading])
                     .width(50)
                     .height(is: .greaterThanOrEqual, to: 150, priority: .high)
-                    .height(100)
+                    .height(is: .equal, to: 100)
 
-                // Size Height with Priority
+                // Size Height with Relation and Priority
 
                 yellowView
                     .to([.top, .trailing])
                     .width(50)
-                    .height(1, priority: .low)
-                    .height(100, priority: .high)
+                    .height(is: .equal, to: 1, priority: .low)
+                    .height(is: .equal, to: 100, priority: .high)
 
                 // Size Height with GreaterThanOrEqual Relation
 
                 blueView
                     .to([.bottom, .leading])
                     .width(50)
-                    .height(75, priority: .high)
+                    .height(is: .equal, to: 75, priority: .high)
                     .height(is: .greaterThanOrEqual, to: 100)
 
                 // Size Height with LessThanOrEqual Relation
@@ -189,7 +215,7 @@ final class LayoutItemTests: XCTestCase {
                 greenView
                     .to([.bottom, .trailing])
                     .width(50)
-                    .height(125, priority: .high)
+                    .height(is: .equal, to: 125, priority: .high)
                     .height(is: .lessThanOrEqual, to: 50)
 
                 // Size Height with GreaterThanOrEqual Relation and Priority
@@ -198,7 +224,7 @@ final class LayoutItemTests: XCTestCase {
                     .to([.centerY], constant: -50)
                     .to([.centerX])
                     .width(50)
-                    .height(110, priority: .high)
+                    .height(is: .equal, to: 110, priority: .high)
                     .height(is: .greaterThanOrEqual, to: 100)
 
                 // Size Height with LessThanOrEqual Relation and Priority
@@ -207,8 +233,34 @@ final class LayoutItemTests: XCTestCase {
                     .to([.centerY], constant: 50)
                     .to([.centerX])
                     .width(50)
-                    .height(90, priority: .high)
+                    .height(is: .equal, to: 90, priority: .high)
                     .height(is: .lessThanOrEqual, to: 100)
+            }
+            .activate()
+        }
+    }
+
+    func testHeightWithConstantPriority() {
+
+        assertLayout { view in
+
+            view.layout {
+
+                // Size Height with Default Priority
+
+                pinkView
+                    .to([.top, .leading])
+                    .width(100)
+                    .height(100, priority: .high)
+                    .height(50)
+
+                // Size Height with Priority
+
+                yellowView
+                    .to([.top, .trailing])
+                    .width(100)
+                    .height(1, priority: .low)
+                    .height(50, priority: .high)
             }
             .activate()
         }
