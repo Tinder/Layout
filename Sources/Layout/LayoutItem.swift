@@ -128,8 +128,8 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            layoutItem.layoutItemView.widthConstraint(constant: width).withPriority(priority)
-            layoutItem.layoutItemView.heightConstraint(constant: height).withPriority(priority)
+            layoutItem.layoutItemView.widthConstraint(width).withPriority(priority)
+            layoutItem.layoutItemView.heightConstraint(height).withPriority(priority)
         }
     }
 
@@ -147,8 +147,6 @@ extension LayoutItem {
         self.size(width: size.width, height: size.height, priority: priority)
     }
 
-    // swiftlint:disable function_default_parameter_at_end
-
     /// Adds a constraint defining the width of the ``layoutItemView``.
     ///
     /// - Parameters:
@@ -158,12 +156,28 @@ extension LayoutItem {
     ///
     /// - Returns: The layout item instance with the added constraint.
     public func width(
-        is relation: NSLayoutConstraint.Relation = .equal,
-        constant: CGFloat,
+        is relation: NSLayoutConstraint.Relation,
+        to constant: CGFloat,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            layoutItem.layoutItemView.widthConstraint(is: relation, constant: constant).withPriority(priority)
+            layoutItem.layoutItemView.widthConstraint(is: relation, to: constant).withPriority(priority)
+        }
+    }
+
+    /// Adds a constraint defining the width of the ``layoutItemView``.
+    ///
+    /// - Parameters:
+    ///   - constant: The constant value.
+    ///   - priority: The priority of the constraint.
+    ///
+    /// - Returns: The layout item instance with the added constraint.
+    public func width(
+        _ constant: CGFloat,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            layoutItem.layoutItemView.widthConstraint(constant).withPriority(priority)
         }
     }
 
@@ -176,18 +190,32 @@ extension LayoutItem {
     ///
     /// - Returns: The layout item instance with the added constraint.
     public func height(
-        is relation: NSLayoutConstraint.Relation = .equal,
-        constant: CGFloat,
+        is relation: NSLayoutConstraint.Relation,
+        to constant: CGFloat,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            layoutItem.layoutItemView.heightConstraint(is: relation, constant: constant).withPriority(priority)
+            layoutItem.layoutItemView.heightConstraint(is: relation, to: constant).withPriority(priority)
+        }
+    }
+
+    /// Adds a constraint defining the height of the ``layoutItemView``.
+    ///
+    /// - Parameters:
+    ///   - constant: The constant value.
+    ///   - priority: The priority of the constraint.
+    ///
+    /// - Returns: The layout item instance with the added constraint.
+    public func height(
+        _ constant: CGFloat,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            layoutItem.layoutItemView.heightConstraint(constant).withPriority(priority)
         }
     }
 
     // MARK: - Aspect Ratio
-
-    // swiftlint:enable function_default_parameter_at_end
 
     /// Adds a constraint defining a square aspect ratio for the ``layoutItemView``.
     ///
@@ -208,8 +236,8 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            layoutItem.layoutItemView.widthConstraint(constant: length).withPriority(priority)
-            layoutItem.layoutItemView.heightConstraint(constant: length).withPriority(priority)
+            layoutItem.layoutItemView.widthConstraint(length).withPriority(priority)
+            layoutItem.layoutItemView.heightConstraint(length).withPriority(priority)
         }
     }
 

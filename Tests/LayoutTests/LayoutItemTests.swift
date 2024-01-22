@@ -102,51 +102,51 @@ final class LayoutItemTests: XCTestCase {
 
                 pinkView
                     .to([.top, .leading])
-                    .height(constant: 100)
-                    .width(is: .greaterThanOrEqual, constant: 100, priority: .high)
-                    .width(constant: 50)
+                    .height(100)
+                    .width(is: .greaterThanOrEqual, to: 100, priority: .high)
+                    .width(50)
 
                 // Size Width with Priority
 
                 yellowView
                     .to([.top, .trailing])
-                    .height(constant: 100)
-                    .width(constant: 1, priority: .low)
-                    .width(constant: 50, priority: .high)
+                    .height(100)
+                    .width(1, priority: .low)
+                    .width(50, priority: .high)
 
                 // Size Width with GreaterThanOrEqual Relation and Priority
 
                 blueView
                     .to([.bottom, .leading])
-                    .height(constant: 100)
-                    .width(constant: 40, priority: .high)
-                    .width(is: .greaterThanOrEqual, constant: 50)
+                    .height(100)
+                    .width(40, priority: .high)
+                    .width(is: .greaterThanOrEqual, to: 50)
 
                 // Size Width with LessThanOrEqual Relation and Priority
 
                 greenView
                     .to([.bottom, .trailing])
-                    .height(constant: 100)
-                    .width(constant: 60, priority: .high)
-                    .width(is: .lessThanOrEqual, constant: 50)
+                    .height(100)
+                    .width(60, priority: .high)
+                    .width(is: .lessThanOrEqual, to: 50)
 
                 // Size Width with GreaterThanOrEqual Relation
 
                 redView
                     .to(.centerY, constant: -50)
                     .to(.centerX)
-                    .height(constant: 100)
-                    .width(constant: 60)
-                    .width(is: .greaterThanOrEqual, constant: 50)
+                    .height(100)
+                    .width(60)
+                    .width(is: .greaterThanOrEqual, to: 50)
 
                 // Size Width with LessThanOrEqual Relation
 
                 orangeView
                     .to(.centerY, constant: 50)
                     .to(.centerX)
-                    .height(constant: 100)
-                    .width(constant: 40)
-                    .width(is: .lessThanOrEqual, constant: 50)
+                    .height(100)
+                    .width(40)
+                    .width(is: .lessThanOrEqual, to: 50)
             }
             .activate()
         }
@@ -164,51 +164,51 @@ final class LayoutItemTests: XCTestCase {
 
                 pinkView
                     .to([.top, .leading])
-                    .width(constant: 50)
-                    .height(is: .greaterThanOrEqual, constant: 150, priority: .high)
-                    .height(constant: 100)
+                    .width(50)
+                    .height(is: .greaterThanOrEqual, to: 150, priority: .high)
+                    .height(100)
 
                 // Size Height with Priority
 
                 yellowView
                     .to([.top, .trailing])
-                    .width(constant: 50)
-                    .height(constant: 1, priority: .low)
-                    .height(constant: 100, priority: .high)
+                    .width(50)
+                    .height(1, priority: .low)
+                    .height(100, priority: .high)
 
                 // Size Height with GreaterThanOrEqual Relation
 
                 blueView
                     .to([.bottom, .leading])
-                    .width(constant: 50)
-                    .height(constant: 75, priority: .high)
-                    .height(is: .greaterThanOrEqual, constant: 100)
+                    .width(50)
+                    .height(75, priority: .high)
+                    .height(is: .greaterThanOrEqual, to: 100)
 
                 // Size Height with LessThanOrEqual Relation
 
                 greenView
                     .to([.bottom, .trailing])
-                    .width(constant: 50)
-                    .height(constant: 125, priority: .high)
-                    .height(is: .lessThanOrEqual, constant: 50)
+                    .width(50)
+                    .height(125, priority: .high)
+                    .height(is: .lessThanOrEqual, to: 50)
 
                 // Size Height with GreaterThanOrEqual Relation and Priority
 
                 redView
                     .to([.centerY], constant: -50)
                     .to([.centerX])
-                    .width(constant: 50)
-                    .height(constant: 110, priority: .high)
-                    .height(is: .greaterThanOrEqual, constant: 100)
+                    .width(50)
+                    .height(110, priority: .high)
+                    .height(is: .greaterThanOrEqual, to: 100)
 
                 // Size Height with LessThanOrEqual Relation and Priority
 
                 orangeView
                     .to([.centerY], constant: 50)
                     .to([.centerX])
-                    .width(constant: 50)
-                    .height(constant: 90, priority: .high)
-                    .height(is: .lessThanOrEqual, constant: 100)
+                    .width(50)
+                    .height(90, priority: .high)
+                    .height(is: .lessThanOrEqual, to: 100)
             }
             .activate()
         }
@@ -224,14 +224,14 @@ final class LayoutItemTests: XCTestCase {
 
                 pinkView
                     .to([.top, .leading])
-                    .width(constant: 100)
+                    .width(100)
                     .square()
 
                 // Square with Height
 
                 yellowView
                     .to([.top, .trailing])
-                    .height(constant: 100)
+                    .height(100)
                     .square()
             }
             .activate()
@@ -268,7 +268,7 @@ final class LayoutItemTests: XCTestCase {
 
                 pinkView
                     .to([.top, .leading])
-                    .height(constant: 100)
+                    .height(100)
                     .aspectRatio(0.5, priority: .high)
                     .aspectRatio(0.75)
 
@@ -276,7 +276,7 @@ final class LayoutItemTests: XCTestCase {
 
                 yellowView
                     .to([.top, .trailing])
-                    .height(constant: 100)
+                    .height(100)
                     .aspectRatio(0.25, priority: .low)
                     .aspectRatio(0.75, priority: .high)
             }
@@ -558,20 +558,20 @@ final class LayoutItemTests: XCTestCase {
                 // To Edges Top, Leading and Trailing with Default Priority
 
                 pinkView
-                    .height(constant: 100)
+                    .height(100)
                     .toEdges([.top, .leading, .trailing], inset: 50, priority: .high)
                     .toEdges([.top, .leading, .trailing])
 
                 // To Edges Bottom, Leading and Trailing with Inset
 
                 yellowView
-                    .height(constant: 100)
+                    .height(100)
                     .toEdges([.bottom, .leading, .trailing], inset: 25)
 
                 // To Edges Leading and Trailing with Vertical Center, Inset and Priority
 
                 blueView
-                    .height(constant: 100)
+                    .height(100)
                     .to(.centerY)
                     .toEdges([.leading, .trailing], inset: 25, priority: .low)
                     .toEdges([.leading, .trailing], inset: 50, priority: .high)
@@ -593,19 +593,19 @@ final class LayoutItemTests: XCTestCase {
                 // To Edges Top, Left and Right
 
                 yellowView
-                    .height(constant: 100)
+                    .height(100)
                     .toEdges(canonical: [.top, .left, .right])
 
                 // To Edges Bottom, Left and Right with Inset
 
                 blueView
-                    .height(constant: 100)
+                    .height(100)
                     .toEdges(canonical: [.bottom, .left, .right], inset: 25)
 
                 // To Edges Left and Right with Vertical Center, Inset and Priority
 
                 orangeView
-                    .height(constant: 100)
+                    .height(100)
                     .to(.centerY)
                     .toEdges(canonical: [.left, .right], inset: 25, priority: .low)
                     .toEdges(canonical: [.left, .right], inset: 50, priority: .high)
@@ -621,7 +621,7 @@ final class LayoutItemTests: XCTestCase {
                 // To Side Edges with Default Inset and Priority
 
                 pinkView
-                    .height(constant: 100)
+                    .height(100)
                     .to(.top)
                     .toSideEdges(inset: 50, priority: .high)
                     .toSideEdges()
@@ -629,14 +629,14 @@ final class LayoutItemTests: XCTestCase {
                 // To Side Edges with Inset
 
                 yellowView
-                    .height(constant: 100)
+                    .height(100)
                     .to(.centerY)
                     .toSideEdges(inset: 50)
 
                 // To Side Edges with Inset and Priority
 
                 blueView
-                    .height(constant: 100)
+                    .height(100)
                     .to(.bottom)
                     .toSideEdges(inset: 0, priority: .low)
                     .toSideEdges(inset: 50, priority: .high)
@@ -753,7 +753,7 @@ final class LayoutItemTests: XCTestCase {
 
                 pinkView
                     .to(.top)
-                    .height(constant: 100)
+                    .height(100)
                     .toSideMargins()
                     .toSideMargins(inset: 20, priority: .high)
 
@@ -761,14 +761,14 @@ final class LayoutItemTests: XCTestCase {
 
                 blueView
                     .center(.vertical)
-                    .height(constant: 100)
+                    .height(100)
                     .toSideMargins(inset: 20)
 
                 // To Side Margins with Inset and Priority
 
                 orangeView
                     .to(.bottom)
-                    .height(constant: 100)
+                    .height(100)
                     .toSideMargins(inset: 20, priority: .low)
                     .toSideMargins(inset: 40, priority: .high)
             }
