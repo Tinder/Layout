@@ -824,11 +824,11 @@ final class LayoutTests: XCTestCase {
         let siblingView: UIView = .init()
         let layout: Layout = superview!.layout().addItems(view, siblingView)
         let topAnchor: NSLayoutYAxisAnchor = siblingView.bottom
-        let bottomAcnhor: NSLayoutYAxisAnchor = superview!.bottom
+        let bottomAnchor: NSLayoutYAxisAnchor = superview!.bottom
 
         // THEN
 
-        expect(layout.center(view, between: topAnchor, and: bottomAcnhor)) === layout
+        expect(layout.center(view, between: topAnchor, and: bottomAnchor)) === layout
         expect(layout.constraints.count) == 3
 
         // WHEN
@@ -837,7 +837,7 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
-        expect(layout.center(view, between: topAnchor, and: bottomAcnhor)) === layout
+        expect(layout.center(view, between: topAnchor, and: bottomAnchor)) === layout
         expect(layout.constraints.count) == 3
     }
 
