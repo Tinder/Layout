@@ -764,11 +764,11 @@ final class LayoutTests: XCTestCase {
         let siblingView: UIView = .init()
         let layout: Layout = superview!.layout().addItems(view, siblingView)
         let leadingAnchor: NSLayoutXAxisAnchor = siblingView.trailing
-        let trailingAcnhor: NSLayoutXAxisAnchor = superview!.trailing
+        let trailingAnchor: NSLayoutXAxisAnchor = superview!.trailing
 
         // THEN
 
-        expect(layout.center(view, between: leadingAnchor, and: trailingAcnhor)) === layout
+        expect(layout.center(view, between: leadingAnchor, and: trailingAnchor)) === layout
         expect(layout.constraints.count) == 3
 
         // WHEN
@@ -777,7 +777,7 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
-        expect(layout.center(view, between: leadingAnchor, and: trailingAcnhor)) === layout
+        expect(layout.center(view, between: leadingAnchor, and: trailingAnchor)) === layout
         expect(layout.constraints.count) == 3
     }
 
