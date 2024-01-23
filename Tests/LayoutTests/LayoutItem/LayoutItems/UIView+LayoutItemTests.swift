@@ -34,7 +34,7 @@ final class UIViewLayoutItemTests: XCTestCase {
 
         // THEN
 
-        expect(view.superviewConstraints(UIView()) === []) == true
+        expect(view.superviewConstraints(UIView())).to(beEmpty())
     }
 
     func testLayoutBoundary() {
