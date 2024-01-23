@@ -46,7 +46,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     // MARK: - Properties
 
-    /// The parent view to which the layout will add subviews and superview constraints.
+    /// The parent view to which the layout will add subviews and constraints.
     public private(set) weak var view: UIView?
 
     /// The default metrics for the Visual Format Language APIs.
