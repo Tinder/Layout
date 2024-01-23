@@ -763,7 +763,9 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ///   https://developer.apple.com/documentation/uikit/uiview/1622595-updateconstraintsifneeded
     ///   ) on the ``view`` of the layout.
     public func update() {
-        view?.setNeedsUpdateConstraints()
-        view?.updateConstraintsIfNeeded()
+        guard let view: UIView
+        else { return }
+        view.setNeedsUpdateConstraints()
+        view.updateConstraintsIfNeeded()
     }
 }
