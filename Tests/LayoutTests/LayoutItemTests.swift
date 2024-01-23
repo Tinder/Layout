@@ -714,6 +714,27 @@ final class LayoutItemTests: XCTestCase {
 
     // MARK: - Margins
 
+    func testToMargins_throwsAssertion() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+        let item: LayoutItem = view.toMargins()
+
+        // THEN
+
+        expect(item.superviewConstraints(view)).to(throwAssertion())
+
+        // WHEN
+
+        superview.addSubview(view)
+
+        // THEN
+
+        expect(item.superviewConstraints(view).count) == 4
+    }
+
     func testToMarginsInsetsPriorityDirectional() {
         assertLayout(devices: Device.portraitTestDevices + Device.modernLandscapeTestDevices) { view in
             view.layout {
@@ -844,6 +865,27 @@ final class LayoutItemTests: XCTestCase {
     }
 
     // MARK: - Safe Area
+
+    func testToSafeArea_throwsAssertion() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+        let item: LayoutItem = view.toSafeArea()
+
+        // THEN
+
+        expect(item.superviewConstraints(view)).to(throwAssertion())
+
+        // WHEN
+
+        superview.addSubview(view)
+
+        // THEN
+
+        expect(item.superviewConstraints(view).count) == 4
+    }
 
     func testToSafeAreaInsetsPriorityDirectional() {
         assertLayout(devices: Device.allTestDevices) { view in

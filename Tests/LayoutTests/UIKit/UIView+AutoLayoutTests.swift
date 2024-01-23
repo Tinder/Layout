@@ -458,6 +458,26 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints2.first?.constant) == 5
     }
 
+    func testConstraintForAttributeIsRelationToSuperviewMultiplierConstant_givenNilSuperview() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+
+        // THEN
+
+        expect(view.constraints(toSuperview: [.top])).to(throwAssertion())
+
+        // WHEN
+
+        superview.addSubview(view)
+
+        // THEN
+
+        expect(view.constraints(toSuperview: [.top]).count) == 1
+    }
+
     func testConstraintForAttributeIsRelationToTargetAttributeOfTargetViewMultiplierConstant() {
 
         // GIVEN

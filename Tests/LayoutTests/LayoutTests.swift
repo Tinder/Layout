@@ -663,6 +663,40 @@ final class LayoutTests: XCTestCase {
         }
     }
 
+    func testEqualAttributesWithViews_givenEmptyArray() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view1: UIView = .init()
+        let view2: UIView = .init()
+        let layout: Layout = superview.layout().addItems(view1, view2)
+
+        // WHEN
+
+        layout.equal(.top, [])
+
+        // THEN
+
+        expect(layout.constraints).to(beEmpty())
+
+        // WHEN
+
+        layout.equal(.top, [view1])
+
+        // THEN
+
+        expect(layout.constraints).to(beEmpty())
+
+        // WHEN
+
+        layout.equal(.top, [view1, view2])
+
+        // THEN
+
+        expect(layout.constraints.count) == 1
+    }
+
     func testEqualSizeWithViews() {
 
         // GIVEN
@@ -721,6 +755,32 @@ final class LayoutTests: XCTestCase {
         }
     }
 
+    func testCenterViewBetweenLeadingAndTrailingPriority_givenNilSuperview() {
+
+        // GIVEN
+
+        var superview: UIView? = .init()
+        let view: UIView = .init()
+        let siblingView: UIView = .init()
+        let layout: Layout = superview!.layout().addItems(view, siblingView)
+        let leadingAnchor: NSLayoutXAxisAnchor = siblingView.trailing
+        let trailingAnchor: NSLayoutXAxisAnchor = superview!.trailing
+
+        // THEN
+
+        expect(layout.center(view, between: leadingAnchor, and: trailingAnchor)) === layout
+        expect(layout.constraints.count) == 3
+
+        // WHEN
+
+        superview = nil
+
+        // THEN
+
+        expect(layout.center(view, between: leadingAnchor, and: trailingAnchor)) === layout
+        expect(layout.constraints.count) == 3
+    }
+
     func testCenterViewBetweenTopAndBottomPriority() {
 
         // GIVEN
@@ -753,6 +813,32 @@ final class LayoutTests: XCTestCase {
 
             layout.activate()
         }
+    }
+
+    func testCenterViewBetweenTopAndBottomPriority_givenNilSuperview() {
+
+        // GIVEN
+
+        var superview: UIView? = .init()
+        let view: UIView = .init()
+        let siblingView: UIView = .init()
+        let layout: Layout = superview!.layout().addItems(view, siblingView)
+        let topAnchor: NSLayoutYAxisAnchor = siblingView.bottom
+        let bottomAnchor: NSLayoutYAxisAnchor = superview!.bottom
+
+        // THEN
+
+        expect(layout.center(view, between: topAnchor, and: bottomAnchor)) === layout
+        expect(layout.constraints.count) == 3
+
+        // WHEN
+
+        superview = nil
+
+        // THEN
+
+        expect(layout.center(view, between: topAnchor, and: bottomAnchor)) === layout
+        expect(layout.constraints.count) == 3
     }
 
     // MARK: - Stack
@@ -848,6 +934,40 @@ final class LayoutTests: XCTestCase {
         }
     }
 
+    func testHorizontalViewsSpacingDirectionPriorityAlignment_givenEmptyArray() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view1: UIView = .init()
+        let view2: UIView = .init()
+        let layout: Layout = superview.layout().addItems(view1, view2)
+
+        // WHEN
+
+        layout.horizontal([])
+
+        // THEN
+
+        expect(layout.constraints).to(beEmpty())
+
+        // WHEN
+
+        layout.horizontal([view1])
+
+        // THEN
+
+        expect(layout.constraints).to(beEmpty())
+
+        // WHEN
+
+        layout.horizontal([view1, view2])
+
+        // THEN
+
+        expect(layout.constraints.count) == 1
+    }
+
     func testVerticalViewsSpacingPriorityAlignment() {
 
         // GIVEN
@@ -914,6 +1034,40 @@ final class LayoutTests: XCTestCase {
 
             layout.activate()
         }
+    }
+
+    func testVerticalViewsSpacingPriorityAlignment_givenEmptyArray() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view1: UIView = .init()
+        let view2: UIView = .init()
+        let layout: Layout = superview.layout().addItems(view1, view2)
+
+        // WHEN
+
+        layout.vertical([])
+
+        // THEN
+
+        expect(layout.constraints).to(beEmpty())
+
+        // WHEN
+
+        layout.vertical([view1])
+
+        // THEN
+
+        expect(layout.constraints).to(beEmpty())
+
+        // WHEN
+
+        layout.vertical([view1, view2])
+
+        // THEN
+
+        expect(layout.constraints.count) == 1
     }
 
     // MARK: - Visual Format Language
