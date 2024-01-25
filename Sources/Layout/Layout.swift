@@ -17,14 +17,14 @@ import UIKit
  * conformance to `LayoutItem` is provided automatically. A view can have multiple `Layout` instances as needed.
  * A subview can exist in multiple `Layout` instances to, for example, represent exclusively-activated distinct states.
  *
- * For example, the following code creates a layout with a single item.
+ * The following code shows how to create and activate a layout with a single item:
  *
  * ```swift
  * view.layout(subview.toEdges()).activate()
  * ```
  *
- * The following code demonstrates the preferred way of creating a layout with multiple items using result
- * builder syntax.
+ * The following code demonstrates the preferred way of constructing and activating a layout with multiple items
+ * using result builder syntax:
  *
  * ```swift
  * view.layout {
@@ -36,6 +36,9 @@ import UIKit
  * }
  * .activate()
  * ```
+ *
+ * - Note: A ``LayoutItem`` extension is provided that defines the declarative methods used to create constraints for
+ *   the subviews within a layout.
  *
  * - Important: The ``Layout/activate()`` method must be called to activate the constraints of the layout.
  *   Calling ``Layout/deactivate()`` does not hide or remove subviews.
@@ -443,9 +446,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     /// Adds constraints horizontally centering the given view between two anchors.
     ///
     /// The center of the view is horizontally aligned to the center of a layout guide where the leading and trailing
-    /// edges of the layout guide are aligned to the given anchors.
-    ///
-    /// Example:
+    /// edges of the layout guide are aligned to the given anchors, as the following code demonstrates:
     ///
     /// ```swift
     /// view.layout {
@@ -503,9 +504,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     /// Adds constraints vertically centering the given view between two anchors.
     ///
     /// The center of the view is vertically aligned to the center of a layout guide where the top and bottom edges
-    /// of the layout guide are aligned to the given anchors.
-    ///
-    /// Example:
+    /// of the layout guide are aligned to the given anchors, as the following code demonstrates:
     ///
     /// ```swift
     /// view.layout {
