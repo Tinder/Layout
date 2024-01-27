@@ -103,14 +103,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         addItems(items)
     }
 
-    internal func foo() {
-        class Foo {}
-        let foo: Foo = .init()
-        DispatchQueue.global().async {
-            print(foo)
-        }
-    }
-
     // MARK: - Adding Items
 
     /// Adds items to the layout.
