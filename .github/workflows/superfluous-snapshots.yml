@@ -1,0 +1,34 @@
+name: Superfluous Snapshots
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_15.0.app/Contents/Developer
+  SWIFT_STRICT_CONCURRENCY: complete
+
+jobs:
+  swift:
+    name: Superfluous Snapshots
+    runs-on: macos-13
+    env:
+      SIMULATOR: iPhone 14
+    steps:
+    - name: Checkout source
+      uses: actions/checkout@v3
+    - name: Delete snapshots
+      run: make delete-snapshots
+    - name: Record snapshots
+      run: xcodebuild test -skipPackageUpdates -scheme "Layout" -destination "name=iPhone 14 Pro,OS=latest"
+    - name: Detect superfluous snapshots
+      run: |
+        if [ -z "$(git status --porcelain)" ]
+        then
+            echo "No superfluous snapshots detected."
+        else
+            echo "Superfluous snapshots detected."
+            exit 1
+        fi
