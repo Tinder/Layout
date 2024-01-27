@@ -306,7 +306,7 @@ extension LayoutItem {
     /// ```swift
     /// view.layout {
     ///     siblingView
-    ///         .size(width: 100, height: 100)
+    ///         .square(100)
     ///         .center()
     ///     label
     ///         .center(.vertical)
@@ -364,7 +364,7 @@ extension LayoutItem {
     /// ```swift
     /// view.layout {
     ///     siblingView
-    ///         .size(width: 100, height: 100)
+    ///         .square(100)
     ///         .center()
     ///     label
     ///         .center(.horizontal)
