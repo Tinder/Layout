@@ -21,10 +21,16 @@ jobs:
       uses: actions/checkout@v3
     - name: Delete snapshots
       run: make delete-snapshots
-    - name: Record snapshots
+    - name: Resolve swift package
+      run: swift package resolve
+    - name: Resolve package dependencies
+      run: xcodebuild -resolvePackageDependencies
+    - name: Build
+      run: xcodebuild build-for-testing -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
+    - name: Test
       run: |
         set +e
-        xcodebuild test -skipPackageUpdates -scheme "Layout" -destination "name=iPhone 14 Pro,OS=latest"
+        xcodebuild test-without-building -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
     - name: Detect superfluous snapshots
       run: |
         if [ -z "$(git status --porcelain)" ]
