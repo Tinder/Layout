@@ -28,9 +28,8 @@ jobs:
     - name: Build
       run: xcodebuild build-for-testing -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
     - name: Test
-      run: |
-        set +e
-        xcodebuild test-without-building -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
+      continue-on-error: true
+      run: xcodebuild test-without-building -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
     - name: Detect superfluous snapshots
       run: |
         if [ -z "$(git status --porcelain)" ]
