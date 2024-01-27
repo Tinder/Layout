@@ -17,15 +17,10 @@ import UIKit
 public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
 
 /**
- * Each subview and its constraints are stored as a `LayoutItem` instance within a ``Layout``.
+ * Each subview and its constraints are stored as a `LayoutItem` instance within a ``Layout``. A `LayoutItem` extension
+ * is provided that defines the declarative methods used to create constraints for the subviews within a layout.
  *
- * A `LayoutItem` extension is provided that defines the declarative methods used to create
- * [`NSLayoutConstraint`](https://developer.apple.com/documentation/uikit/nslayoutconstraint) instances for a `Layout`.
- *
- * - Important: [`UIView`](https://developer.apple.com/documentation/uikit/uiview) conformance to `LayoutItem` is
- *   provided automatically.
- *
- * A layout item must be added to a `Layout` in order to activate its constraints, for example:
+ * A layout item must be added to a `Layout` in order to activate its constraints, as the following code demonstrates:
  *
  * ```swift
  * // Creating a layout with a single item
@@ -38,8 +33,8 @@ public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
  * view.layout().addItems(item1, item2).activate()
  * ```
  *
- * The following code demonstrates the preferred way of creating a layout with multiple items using result
- * builder syntax.
+ * The following code demonstrates the preferred way of constructing and activating a layout with multiple items
+ * using result builder syntax:
  *
  * ```swift
  * view.layout {
@@ -51,6 +46,9 @@ public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
  * }
  * .activate()
  * ```
+ *
+ * - Important: [`UIView`](https://developer.apple.com/documentation/uikit/uiview) conformance to `LayoutItem` is
+ *   provided automatically.
  */
 @preconcurrency
 @MainActor
@@ -299,9 +297,7 @@ extension LayoutItem {
     /// Adds constraints horizontally centering the ``layoutItemView`` between the given anchors.
     ///
     /// The center of the view is horizontally aligned to the center of a layout guide where the leading and trailing
-    /// edges of the layout guide are aligned to the given anchors.
-    ///
-    /// Example:
+    /// edges of the layout guide are aligned to the given anchors, as the following code demonstrates:
     ///
     /// ```swift
     /// view.layout {
@@ -357,9 +353,7 @@ extension LayoutItem {
     /// Adds constraints vertically centering the ``layoutItemView`` between the given anchors.
     ///
     /// The center of the view is vertically aligned to the center of a layout guide where the top and bottom edges of
-    /// the layout guide are aligned to the given anchors.
-    ///
-    /// Example:
+    /// the layout guide are aligned to the given anchors, as the following code demonstrates:
     ///
     /// ```swift
     /// view.layout {

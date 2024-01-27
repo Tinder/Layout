@@ -44,7 +44,7 @@ extension UIView {
     /// A subview can exist in multiple `Layout` instances to, for example, represent exclusively-activated
     /// distinct states.
     ///
-    /// Example:
+    /// The following code shows how to create and activate a layout with a single item:
     ///
     /// ```swift
     /// view.layout(subview.toEdges()).activate()
@@ -78,7 +78,8 @@ extension UIView {
     /// A subview can exist in multiple `Layout` instances to, for example, represent exclusively-activated
     /// distinct states.
     ///
-    /// Example:
+    /// The following code demonstrates the preferred way of constructing and activating a layout with multiple items
+    /// using result builder syntax:
     ///
     /// ```swift
     /// view.layout {

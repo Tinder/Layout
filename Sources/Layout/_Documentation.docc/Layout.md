@@ -25,3 +25,5 @@ override func viewDidLoad() {
     .activate()
 }
 ```
+
+Methods for creating constraints exist on the ``Layout`` instance as well as the individual ``LayoutItem`` instances.
