@@ -45,6 +45,7 @@ jobs:
         build-for-testing
         -scheme "Layout"
         -destination "name=$SIMULATOR,OS=latest"
+        SWIFT_TREAT_WARNINGS_AS_ERRORS=true
     - name: Test
       run: >
         xcodebuild
