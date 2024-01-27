@@ -11,6 +11,7 @@
 import Nimble
 import XCTest
 
+@MainActor
 final class ViewLayoutItemTests: XCTestCase {
 
     func testInitLayoutItemViewSuperviewConstraints() {

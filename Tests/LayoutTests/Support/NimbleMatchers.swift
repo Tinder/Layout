@@ -14,6 +14,7 @@ import XCTest
 
 extension XCTestCase {
 
+    @MainActor
     internal func haveUnambiguousLayout() -> Matcher<UIView> {
         Matcher { expression in
             guard let view: UIView = try expression.evaluate()
@@ -24,7 +25,9 @@ extension XCTestCase {
         }
     }
 
-    // swiftlint:disable:next cyclomatic_complexity
+    // swiftlint:disable cyclomatic_complexity
+
+    @MainActor
     internal func match(_ expectedConstraint: NSLayoutConstraint) -> Matcher<NSLayoutConstraint> {
         // swiftlint:disable:next closure_body_length
         Matcher { expression in
@@ -138,6 +141,8 @@ extension XCTestCase {
             return MatcherResult(bool: true, message: .fail(""))
         }
     }
+
+    // swiftlint:enable cyclomatic_complexity
 }
 
 extension Optional {
