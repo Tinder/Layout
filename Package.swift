@@ -45,6 +45,7 @@ let package = Package(
                 "__Snapshots__",
                 "UIKit/__Snapshots__",
             ],
+            swiftSettings: .swiftSettings,
             plugins: [
                 .plugin(name: SwiftLint.plugin),
             ]),
