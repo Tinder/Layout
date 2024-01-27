@@ -22,7 +22,9 @@ jobs:
     - name: Delete snapshots
       run: make delete-snapshots
     - name: Record snapshots
-      run: xcodebuild test -skipPackageUpdates -scheme "Layout" -destination "name=iPhone 14 Pro,OS=latest"
+      run: |
+        set +e
+        xcodebuild test -skipPackageUpdates -scheme "Layout" -destination "name=iPhone 14 Pro,OS=latest"
     - name: Detect superfluous snapshots
       run: |
         if [ -z "$(git status --porcelain)" ]
