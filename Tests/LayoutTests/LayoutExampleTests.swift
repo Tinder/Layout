@@ -132,7 +132,7 @@ final class LayoutExampleTests: XCTestCase {
         assertLayout { view in
             view.layout {
                 siblingView
-                    .size(width: 100, height: 100)
+                    .square(100)
                     .center()
                 label
                     .center(.vertical)
@@ -159,7 +159,7 @@ final class LayoutExampleTests: XCTestCase {
         assertLayout { view in
             view.layout {
                 siblingView
-                    .size(width: 100, height: 100)
+                    .square(100)
                     .center()
                 label
                     .center(.horizontal)
@@ -218,7 +218,7 @@ final class LayoutExampleTests: XCTestCase {
         assertLayout { view in
             view.layout {
                 siblingView
-                    .size(width: 100, height: 100)
+                    .square(100)
                     .center()
                 label
                     .center(.vertical)
@@ -245,7 +245,7 @@ final class LayoutExampleTests: XCTestCase {
         assertLayout { view in
             view.layout {
                 siblingView
-                    .size(width: 100, height: 100)
+                    .square(100)
                     .center()
                 label
                     .center(.horizontal)
