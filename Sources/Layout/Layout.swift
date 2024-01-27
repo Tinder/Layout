@@ -450,7 +450,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     /// ```swift
     /// view.layout {
     ///     siblingView
-    ///         .size(width: 100, height: 100)
+    ///         .square(100)
     ///         .center()
     ///     label
     ///         .center(.vertical)
@@ -510,7 +510,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
     /// ```swift
     /// view.layout {
     ///     siblingView
-    ///         .size(width: 100, height: 100)
+    ///         .square(100)
     ///         .center()
     ///     label
     ///         .center(.horizontal)
