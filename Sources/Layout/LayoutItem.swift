@@ -97,7 +97,7 @@ extension LayoutItem {
 
     /// Assigns the [`accessibilityIdentifier`](
     /// https://developer.apple.com/documentation/uikit/uiaccessibilityidentification/1623132-accessibilityidentifier
-    /// ).
+    /// ) of the ``layoutItemView``.
     ///
     /// - Important: Only subviews with an `accessibilityIdentifier` are made available to the Visual Format APIs.
     ///
