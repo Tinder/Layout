@@ -40,6 +40,15 @@ jobs:
     - name: Resolve package dependencies
       run: xcodebuild -resolvePackageDependencies
     - name: Build
-      run: xcodebuild build-for-testing -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
+      run: >
+        xcodebuild
+        build-for-testing
+        -scheme "Layout"
+        -destination "name=$SIMULATOR,OS=latest"
+        SWIFT_TREAT_WARNINGS_AS_ERRORS=YES
     - name: Test
-      run: xcodebuild test-without-building -scheme "Layout" -destination "name=$SIMULATOR,OS=latest"
+      run: >
+        xcodebuild
+        test-without-building
+        -scheme "Layout"
+        -destination "name=$SIMULATOR,OS=latest"
