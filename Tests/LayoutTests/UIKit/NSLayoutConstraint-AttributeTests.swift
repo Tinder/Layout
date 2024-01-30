@@ -12,7 +12,6 @@
 import Nimble
 import XCTest
 
-@MainActor
 final class NSLayoutConstraintAttributeTests: XCTestCase {
 
     func testCanonicalAttribute() {
