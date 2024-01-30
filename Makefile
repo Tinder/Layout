@@ -65,6 +65,7 @@ site:
 		transform-for-static-hosting \
 		"$(ARCHIVE_PATH)/$(target).doccarchive" \
 		--output-path "$(prefix)/_site"
+	cp cheatsheet.html "$(prefix)/_site/cheatsheet.html"
 	cp docs.html "$(prefix)/_site/index.html"
 	cp docs.html "$(prefix)/_site/documentation/index.html"
 

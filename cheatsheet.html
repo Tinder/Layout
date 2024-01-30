@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Layout - Declarative Auto Layout for UIKit</title>
+        <style>
+            body { font-family: Sans-Serif; }
+            h3 { margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px solid #ccc; }
+            td { vertical-align: top; }
+            p { margin: 10px 0px 0px 0px; font-style: italic; }
+            pre { margin: 6px 0px 0px 0px; }
+        </style>
+    </head>
+    <body>
+        <div align="center">
+            <h1 align="center">Layout &ndash; Declarative Auto Layout for UIKit</h1>
+            <h2 align="center"><a href="https://github.com/Tinder/Layout">https://github.com/Tinder/Layout</a></h2>
+            <table>
+                <tr>
+                    <td>
+                        <h2>Layout Examples</h2>
+                        <h3>Single Subview</h3>
+                        <pre>view.layout(subview.toEdges()).activate()</pre>
+                        <h3>Multiple Subviews</h3>
+                        <pre>view.layout {
+    label
+        .toSafeArea([.top])
+        .center(.horizontal)
+    imageView
+        .toSideEdges(inset: 20)
+        .height(200)
+    button
+        .center(.horizontal)
+}
+.vertical([label, imageView, button],
+          spacing: 50)
+.activate()</pre>
+                        <h2>Layout Methods</h2>
+                        <h3>Constrain</h3>
+                        <pre>constrain(viewA, to: .top, of: viewB)</pre>
+                        <pre>constrain(viewA,
+          .top,
+          is: .greaterThanOrEqual,
+          to: .top,
+          of: viewB,
+          multiplier: 2,
+          constant: 100)</pre>
+                        <pre>constrain(viewA.top, to: viewB.top)</pre>
+                        <pre>constrain(viewA.top,
+          is: .greaterThanOrEqual,
+          to: viewB.top,
+          constant: 100,
+          priority: .high)</pre>
+                        <pre>constrain(viewA.width, to: viewB.width)</pre>
+                        <pre>constrain(viewA.width,
+          is: .greaterThanOrEqual,
+          to: viewB.width,
+          multiplier: 2,
+          constant: 100,
+          priority: .high)</pre>
+                        <pre>constrain(viewA.width, to: 100)</pre>
+                        <pre>constrain(viewA.width,
+          is: .greaterThanOrEqual,
+          to: 100,
+          priority: .high)</pre>
+                        <pre>constrain(viewA,
+          to: viewB,
+          insets: directional)</pre>
+                        <pre>constrain(viewA,
+          to: viewB,
+          insets: canonical)</pre>
+                        <pre>constrain(viewA, to: viewB, inset: 100)</pre>
+                        <h3>Equal</h3>
+                        <pre>equal(.top, views)</pre>
+                        <pre>equal([.top, .bottom], views)</pre>
+                        <pre>equalSize(views)</pre>
+                        <h3>Center</h3>
+                        <pre>center(viewA,
+       between: viewB.leading,
+       and: viewB.trailing)</pre>
+                        <pre>center(viewA,
+       between: viewB.leading,
+       and: viewB.trailing,
+       priority: .high)</pre>
+                        <pre>center(viewA,
+       between: viewB.top,
+       and: viewB.bottom)</pre>
+                        <pre>center(viewA,
+       between: viewB.top,
+       and: viewB.bottom,
+       priority: .high)</pre>
+                        <h3>Stack</h3>
+                        <pre>horizontal(views)</pre>
+                        <pre>horizontal(views,
+           spacing: 100,
+           direction: .leftToRight,
+           priority: .high,
+           alignment: .centerY)</pre>
+                        <pre>vertical(views)</pre>
+                        <pre>vertical(views,
+         spacing: 100,
+         priority: .high,
+         alignment: .centerX)</pre>
+                        <h3>Visual Format Language</h3>
+                        <p>The orientation format should be omitted since<br />it is automatically prepended.<p>
+                        <p>The <strong><code>metrics</code></strong> of the layout are used by default.</p>
+                        <pre>horizontal("[view]")</pre>
+                        <pre>horizontal("[view]",
+           metrics: [:],
+           options: formatOptions)</pre>
+                        <pre>vertical("[view]")</pre>
+                        <pre>vertical("[view]",
+         metrics: [:],
+         options: formatOptions)</pre>
+                        <h3>Activation</h3>
+                        <pre>activate()</pre>
+                        <pre>deactivate()</pre>
+                        <h3>Priority</h3>
+                        <pre>require()</pre>
+                        <pre>withPriority(.high)</pre>
+                        <pre>prioritize(.high)</pre>
+                        <h3>Update</h3>
+                        <p>This method is useful for animating constraints.</p>
+                        <pre>update()</pre>
+                    </td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>
+                        <h2>Layout Item Methods</h2>
+                        <h3>Size</h3>
+                        <pre>size(size)</pre>
+                        <pre>size(size, priority: .high)</pre>
+                        <pre>size(width: 200, height: 100)</pre>
+                        <pre>size(width: 200,
+     height: 100,
+     priority: .high)</pre>
+                        <pre>width(100)</pre>
+                        <pre>width(100, priority: .high)</pre>
+                        <pre>width(is: .lessThanOrEqual, to: 100)</pre>
+                        <pre>width(is: .lessThanOrEqual,
+      to: 100,
+      priority: .high)</pre>
+                        <pre>height(100)</pre>
+                        <pre>height(100, priority: .high)</pre>
+                        <pre>height(is: .lessThanOrEqual, to: 100)</pre>
+                        <pre>height(is: .lessThanOrEqual,
+       to: 100,
+       priority: .high)</pre>
+                        <h3>Square</h3>
+                        <pre>square(100)</pre>
+                        <pre>square(100, priority: .high)</pre>
+                        <pre>square() // square aspect ratio</pre>
+                        <h3>Aspect Ratio</h3>
+                        <pre>aspectRatio(0.5)</pre>
+                        <pre>aspectRatio(0.5, priority: .high)</pre>
+                        <h3>Center</h3>
+                        <pre>center()</pre>
+                        <pre>center(offset: offset, priority: .high)</pre>
+                        <pre>center(.horizontal)</pre>
+                        <pre>center(.horizontal,
+       offset: 100,
+       multiplier: 2,
+       priority: .high)</pre>
+                        <pre>center(.vertical)</pre>
+                        <pre>center(.vertical,
+       offset: 100,
+       multiplier: 2,
+       priority: .high)</pre>
+                        <pre>center(between: view.leading,
+       and: view.trailing)</pre>
+                        <pre>center(between: view.top,
+       and: view.bottom)</pre>
+                        <h3>Attributes</h3>
+                        <pre>to(.top)</pre>
+                        <pre>to(.top,
+   is: .lessThanOrEqual,
+   multiplier: 2,
+   constant: 100,
+   priority: .high)</pre>
+                        <pre>to([.top, .bottom])</pre>
+                        <pre>to([.top, .bottom],
+   constant: 100,
+   priority: .high)</pre>
+                        <h3>Edges</h3>
+                        <pre>toEdges()</pre>
+                        <pre>toEdges(inset: 100, priority: .high)</pre>
+                        <pre>toEdges(insets: directional)</pre>
+                        <pre>toEdges(insets: directional,
+        priority: .high)</pre>
+                        <pre>toEdges(insets: canonical)</pre>
+                        <pre>toEdges(insets: canonical,
+        priority: .high)</pre>
+                        <pre>toEdges([.leading, .trailing])</pre>
+                        <pre>toEdges([.leading, .trailing],
+        inset: 100,
+        priority: .high)</pre>
+                        <pre>toEdges(canonical: [.left, .right])</pre>
+                        <pre>toEdges(canonical: [.left, .right],
+        inset: 100,
+        priority: .high)</pre>
+                        <pre>toSideEdges()</pre>
+                        <pre>toSideEdges(inset: 100,
+            priority: .high)</pre>
+                        <h3>Margins</h3>
+                        <pre>toMargins()</pre>
+                        <pre>toMargins(inset: 100, priority: .high)</pre>
+                        <pre>toMargins(insets: directional)</pre>
+                        <pre>toMargins(insets: directional,
+          priority: .high)</pre>
+                        <pre>toMargins(insets: canonical)</pre>
+                        <pre>toMargins(insets: canonical,
+          priority: .high)</pre>
+                        <pre>toMargins([.leading, .trailing])</pre>
+                        <pre>toMargins([.leading, .trailing],
+          inset: 100,
+          priority: .high)</pre>
+                        <pre>toMargins(canonical: [.left, .right])</pre>
+                        <pre>toMargins(canonical: [.left, .right],
+          inset: 100,
+          priority: .high)</pre>
+                        <pre>toSideMargins()</pre>
+                        <pre>toSideMargins(inset: 100,
+              priority: .high)</pre>
+                        <h3>Safe Area</h3>
+                        <pre>toSafeArea()</pre>
+                        <pre>toSafeArea(inset: 100, priority: .high)</pre>
+                        <pre>toSafeArea(insets: directional)</pre>
+                        <pre>toSafeArea(insets: directional,
+            priority: .high)</pre>
+                        <pre>toSafeArea(insets: canonical)</pre>
+                        <pre>toSafeArea(insets: canonical,
+            priority: .high)</pre>
+                        <pre>toSafeArea([.leading, .trailing])</pre>
+                        <pre>toSafeArea([.leading, .trailing],
+           inset: 100,
+           priority: .high)</pre>
+                        <pre>toSafeArea(canonical: [.left, .right])</pre>
+                        <pre>toSafeArea(canonical: [.left, .right],
+           inset: 100,
+           priority: .high)</pre>
+                        <h3>Accessibility Identifier</h3>
+                        <p>Only views with an <strong><code>accessibilityIdentifier</code></strong> are<br />made available to the Visual Format APIs.</p>
+                        <pre>_ = identifier</pre>
+                        <pre>identifier = "identifier"</pre>
+                        <pre>id("identifier")</pre>
+                    </td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>
+                        <h2>View Methods</h2>
+                        <h3>Builder</h3>
+                        <pre>// Auto Layout //</pre>
+                        <pre>usingConstraints()</pre>
+                        <pre>// Size //</pre>
+                        <pre>constrainingSize()</pre>
+                        <pre>constrainingSize(size)</pre>
+                        <pre>// Width //</pre>
+                        <pre>constrainingWidth()</pre>
+                        <pre>constrainingWidth(100)</pre>
+                        <pre>// Height //</pre>
+                        <pre>constrainingHeight()</pre>
+                        <pre>constrainingHeight(100)</pre>
+                        <h3>Width</h3>
+                        <pre>widthConstraint(is: relation)</pre>
+                        <pre>widthConstraint(is: relation,
+                to: 100)</pre>
+                        <pre>widthConstraint()</pre>
+                        <pre>widthConstraint(100)</pre>
+                        <h3>Height</h3>
+                        <pre>heightConstraint(is: relation)</pre>
+                        <pre>heightConstraint(is: relation,
+                 to: 100)</pre>
+                        <pre>heightConstraint()</pre>
+                        <pre>heightConstraint(100)</pre>
+                        <h3>Size</h3>
+                        <pre>sizeConstraints()</pre>
+                        <pre>sizeConstraints(size)</pre>
+                        <h3>Square</h3>
+                        <pre>squareConstraint()</pre>
+                        <h3>Aspect Ratio</h3>
+                        <pre>aspectRatioConstraint(0.5)</pre>
+                        <h3>Equal</h3>
+                        <pre>equalConstraints(for: .top,
+                 to: [view])</pre>
+                        <h3>Center</h3>
+                        <pre>centerConstraints()</pre>
+                        <pre>centerConstraints(offset: offset)</pre>
+                        <h3>Attributes</h3>
+                        <pre>constraint(toSuperview: .top)</pre>
+                        <pre>constraint(for: .top,
+           is: relation,
+           toSuperview: .top,
+           multiplier: 2,
+           constant: 100)</pre>
+                        <pre>constraint(to: .top, of: view)</pre>
+                        <pre>constraint(for: .top,
+           is: relation,
+           to: .top,
+           of: view,
+           multiplier: 2,
+           constant: 100)</pre>
+                        <pre>constraints(toSuperview: [.top])</pre>
+                        <pre>constraints(is: relation,
+           toSuperview: [.top],
+           multiplier: 2,
+           constant: 100)</pre>
+                        <pre>constraints(to: [.top], of: view)</pre>
+                        <pre>constraints(is: relation,
+           to: [.top],
+           of: view,
+           multiplier: 2,
+           constant: 100)</pre>
+                        <pre> </pre>
+                        <pre>// Edge //</pre>
+                        <pre>edgeConstraints()</pre>
+                        <pre>edgeConstraints(inset: 100)</pre>
+                        <pre>edgeConstraints(insets: directional)</pre>
+                        <pre>edgeConstraints(insets: canonical)</pre>
+                        <h2>Auto Layout</h2>
+                        <h3>NSLayoutConstraint</h3>
+                        <pre>activate()</pre>
+                        <pre>deactivate()</pre>
+                        <pre>require()</pre>
+                        <pre>withPriority(.high)</pre>
+                        <pre>prioritize(.high)</pre>
+                        <h3>NSLayoutDimension</h3>
+                        <pre>constraint(to: view.width)</pre>
+                        <pre>constraint(is: .greaterThanOrEqual,
+           to: view.width,
+           constant: 100)</pre>
+                        <pre>constraint(is: .greaterThanOrEqual,
+           to: 100)</pre>
+                        <pre>constraint(100)</pre>
+                        <h3>NSLayoutXAxisAnchor</h3>
+                        <pre>constraint(to: view.leading)</pre>
+                        <pre>constraint(is: .greaterThanOrEqual,
+           to: view.leading,
+           constant: 100)</pre>
+                        <h3>NSLayoutYAxisAnchor</h3>
+                        <pre>constraint(to: view.top)</pre>
+                        <pre>constraint(is: .greaterThanOrEqual,
+           to: view.top,
+           constant: 100)</pre>
+                        <h3>Visual Format Language</h3>
+                        <p>These methods are static on <strong><code>NSLayoutConstraint</code></strong>.<p>
+                        <pre>constraints(format: "[view]",
+            views: ["view": view])</pre>
+                        <pre>constraints(format: "[view]",
+            views: ["view": view],
+            metrics: [:],
+            options: formatOptions)</pre>
+                        <pre>constraints(formats: ["[view]"],
+            views: ["view": view])</pre>
+                        <pre>constraints(formats: ["[view]"],
+            views: ["view": view],
+            metrics: [:],
+            options: formatOptions)</pre>
+                    </td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>
+                        <h2>Arguments</h2>
+                        <h3>Anchors</h3>
+                        <pre>leading</pre>
+                        <pre>trailing</pre>
+                        <pre>left</pre>
+                        <pre>right</pre>
+                        <pre>top</pre>
+                        <pre>bottom</pre>
+                        <pre>centerX</pre>
+                        <pre>centerY</pre>
+                        <pre>width</pre>
+                        <pre>height</pre>
+                        <pre>firstBaseline</pre>
+                        <pre>lastBaseline</pre>
+                        <h3>Insets</h3>
+                        <pre>directional(top: 100,
+            leading: 100,
+            bottom: 100,
+            trailing: 100)</pre>
+                        <pre>canonical(top: 100,
+          left: 100,
+          bottom: 100,
+          right: 100)</pre>
+                        <h3>Directional Edges</h3>
+                        <pre>top</pre>
+                        <pre>bottom</pre>
+                        <pre>leading</pre>
+                        <pre>trailing</pre>
+                        <h3>Canonical Edges</h3>
+                        <pre>top</pre>
+                        <pre>bottom</pre>
+                        <pre>left</pre>
+                        <pre>right</pre>
+                        <h3>Layout Direction</h3>
+                        <pre>leadingToTrailing</pre>
+                        <pre>leftToRight</pre>
+                        <h3>X-Axis Attributes</h3>
+                        <pre>leading</pre>
+                        <pre>trailing</pre>
+                        <pre>left</pre>
+                        <pre>right</pre>
+                        <pre>centerX</pre>
+                        <h3>Y-Axis Attributes</h3>
+                        <pre>top</pre>
+                        <pre>bottom</pre>
+                        <pre>centerY</pre>
+                        <pre>firstBaseline</pre>
+                        <pre>lastBaseline</pre>
+                        <h3>Layout Priority</h3>
+                        <pre>disabled</pre>
+                        <pre>low</pre>
+                        <pre>high</pre>
+                        <h2>View Controller</h2>
+                        <h3>Safe Area</h3>
+                        <pre>safeTop</pre>
+                        <pre>safeBottom</pre>
+                        <h3>Layout Guide</h3>
+                        <pre>top</pre>
+                        <pre>bottom</pre>
+                        <pre>height</pre>
+                        <h2>Collections</h2>
+                        <h3>[Layout]</h3>
+                        <pre>activate()</pre>
+                        <pre>deactivate()</pre>
+                        <h3>[NSLayoutConstraint]</h3>
+                        <pre>activate()</pre>
+                        <pre>deactivate()</pre>
+                        <pre>require()</pre>
+                        <pre>withPriority(.high)</pre>
+                        <pre>prioritize(.high)</pre>
+                        <h2>Frames</h2>
+                        <h3>View</h3>
+                        <pre>usingFrames()</pre>
+                        <pre>usingFrames(.scaleWithSuperview)</pre>
+                        <pre>disablingIntrinsicSize()</pre>
+                        <h3>Autoresizing Mask</h3>
+                        <pre>topLeft</pre>
+                        <pre>topRight</pre>
+                        <pre>bottomLeft</pre>
+                        <pre>bottomRight</pre>
+                        <pre>scaleWithSuperview</pre>
+                    </td>
+                </tr>
+            </table>
+            <p>&nbsp;</p>
+            <p align="center">Copyright &copy; 2024 Tinder (Match Group, LLC)</p>
+            <p>&nbsp;</p>
+        </div>
+    </body>
+</html>
