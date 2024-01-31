@@ -118,8 +118,8 @@
                         <pre>require()</pre>
                         <pre>withPriority(.high)</pre>
                         <pre>prioritize(.high)</pre>
-                        <h3>Update</h3>
-                        <p>This method is useful for animating constraints.</p>
+                        <h3>Animation</h3>
+                        <p>This method is useful when animating constraints.</p>
                         <pre>update()</pre>
                     </td>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -132,12 +132,14 @@
                         <pre>size(width: 200,
      height: 100,
      priority: .high)</pre>
+                        <h3>Width</h3>
                         <pre>width(100)</pre>
                         <pre>width(100, priority: .high)</pre>
                         <pre>width(is: .lessThanOrEqual, to: 100)</pre>
                         <pre>width(is: .lessThanOrEqual,
       to: 100,
       priority: .high)</pre>
+                        <h3>Height</h3>
                         <pre>height(100)</pre>
                         <pre>height(100, priority: .high)</pre>
                         <pre>height(is: .lessThanOrEqual, to: 100)</pre>
@@ -257,6 +259,9 @@
                         <pre>// Height //</pre>
                         <pre>constrainingHeight()</pre>
                         <pre>constrainingHeight(100)</pre>
+                        <h3>Size</h3>
+                        <pre>sizeConstraints()</pre>
+                        <pre>sizeConstraints(size)</pre>
                         <h3>Width</h3>
                         <pre>widthConstraint(is: relation)</pre>
                         <pre>widthConstraint(is: relation,
@@ -269,9 +274,6 @@
                  to: 100)</pre>
                         <pre>heightConstraint()</pre>
                         <pre>heightConstraint(100)</pre>
-                        <h3>Size</h3>
-                        <pre>sizeConstraints()</pre>
-                        <pre>sizeConstraints(size)</pre>
                         <h3>Square</h3>
                         <pre>squareConstraint()</pre>
                         <h3>Aspect Ratio</h3>
@@ -307,8 +309,7 @@
            of: view,
            multiplier: 2,
            constant: 100)</pre>
-                        <pre> </pre>
-                        <pre>// Edge //</pre>
+                        <h3>Edges</h3>
                         <pre>edgeConstraints()</pre>
                         <pre>edgeConstraints(inset: 100)</pre>
                         <pre>edgeConstraints(insets: directional)</pre>
@@ -439,9 +440,7 @@
                     </td>
                 </tr>
             </table>
-            <p>&nbsp;</p>
-            <p align="center">Copyright &copy; 2024 Tinder (Match Group, LLC)</p>
-            <p>&nbsp;</p>
+            <h4 align="center">Copyright &copy; 2024 Tinder (Match Group, LLC)</h4>
         </div>
     </body>
 </html>
