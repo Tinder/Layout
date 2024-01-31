@@ -212,14 +212,7 @@ extension LayoutItem {
         }
     }
 
-    // MARK: - Aspect Ratio
-
-    /// Adds a constraint defining a square aspect ratio for the ``layoutItemView``.
-    ///
-    /// - Returns: The layout item instance with the added constraint.
-    public func square() -> LayoutItem {
-        aspectRatio(1)
-    }
+    // MARK: - Square
 
     /// Adds constraints defining the width and height of the ``layoutItemView`` to be the given length.
     ///
@@ -237,6 +230,15 @@ extension LayoutItem {
             layoutItem.layoutItemView.heightConstraint(length).withPriority(priority)
         }
     }
+
+    /// Adds a constraint defining a square aspect ratio for the ``layoutItemView``.
+    ///
+    /// - Returns: The layout item instance with the added constraint.
+    public func square() -> LayoutItem {
+        aspectRatio(1)
+    }
+
+    // MARK: - Aspect Ratio
 
     /// Adds a constraint defining the ratio of the width to the height of the ``layoutItemView``.
     ///
