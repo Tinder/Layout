@@ -56,6 +56,22 @@ extension UIView {
 
     // MARK: - Size
 
+    /// Creates constraints defining the size of the receiver.
+    ///
+    /// - Parameter size: The constant size value. When `nil`, the size of the receiver is used.
+    ///
+    /// - Returns: The created constraints.
+    public func sizeConstraints(
+        _ size: CGSize? = nil
+    ) -> [NSLayoutConstraint] {
+        [
+            width.constraint(size?.width ?? bounds.width),
+            height.constraint(size?.height ?? bounds.height)
+        ]
+    }
+
+    // MARK: - Width
+
     /// Creates a constraint defining the width of the receiver.
     ///
     /// - Parameters:
@@ -80,6 +96,8 @@ extension UIView {
     ) -> NSLayoutConstraint {
         width.constraint(constant ?? bounds.width)
     }
+
+    // MARK: - Height
 
     /// Creates a constraint defining the height of the receiver.
     ///
@@ -106,21 +124,7 @@ extension UIView {
         height.constraint(constant ?? bounds.height)
     }
 
-    /// Creates constraints defining the size of the receiver.
-    ///
-    /// - Parameter size: The constant size value. When `nil`, the size of the receiver is used.
-    ///
-    /// - Returns: The created constraints.
-    public func sizeConstraints(
-        _ size: CGSize? = nil
-    ) -> [NSLayoutConstraint] {
-        [
-            width.constraint(size?.width ?? bounds.width),
-            height.constraint(size?.height ?? bounds.height)
-        ]
-    }
-
-    // MARK: - Aspect Ratio
+    // MARK: - Square
 
     /// Creates a constraint defining the aspect ratio of the receiver to be square.
     ///
@@ -128,6 +132,8 @@ extension UIView {
     public func squareConstraint() -> NSLayoutConstraint {
         constraint(for: .width, to: .height, of: self)
     }
+
+    // MARK: - Aspect Ratio
 
     /// Creates a constraint defining the aspect ratio of the receiver.
     ///

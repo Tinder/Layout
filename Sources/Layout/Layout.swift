@@ -750,7 +750,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
         constraints.forEach { $0.prioritize(priority) }
     }
 
-    // MARK: - Update
+    // MARK: - Animation
 
     /// Updates the constraints of the ``view`` of the layout.
     ///

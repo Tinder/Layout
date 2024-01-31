@@ -1402,7 +1402,7 @@ final class LayoutTests: XCTestCase {
         expect(layout.constraints[1].priority) == UILayoutPriority.high
     }
 
-    // MARK: - Update
+    // MARK: - Animation
 
     func testUpdate() {
 

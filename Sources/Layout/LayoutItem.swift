@@ -144,6 +144,8 @@ extension LayoutItem {
         self.size(width: size.width, height: size.height, priority: priority)
     }
 
+    // MARK: - Width
+
     /// Adds a constraint defining the width of the ``layoutItemView``.
     ///
     /// - Parameters:
@@ -177,6 +179,8 @@ extension LayoutItem {
             layoutItem.layoutItemView.widthConstraint(constant).withPriority(priority)
         }
     }
+
+    // MARK: - Height
 
     /// Adds a constraint defining the height of the ``layoutItemView``.
     ///
