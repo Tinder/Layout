@@ -105,6 +105,8 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
+    // MARK: - Width
+
     func testWidthIsRelationToConstantPriority() {
 
         // swiftlint:disable:next closure_body_length
@@ -192,6 +194,8 @@ final class LayoutItemTests: XCTestCase {
             .activate()
         }
     }
+
+    // MARK: - Height
 
     func testHeightIsRelationToConstantPriority() {
 
@@ -281,7 +285,29 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    // MARK: - Aspect Ratio
+    // MARK: - Square
+
+    func testSquareWithLengthPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // Square Length with Default Priority
+
+                pinkView
+                    .to([.top, .leading])
+                    .square(200, priority: .high)
+                    .square(100)
+
+                // Square Length with Priority
+
+                yellowView
+                    .to([.top, .trailing])
+                    .square(25, priority: .low)
+                    .square(100, priority: .high)
+            }
+            .activate()
+        }
+    }
 
     func testSquare() {
         assertLayout { view in
@@ -305,27 +331,7 @@ final class LayoutItemTests: XCTestCase {
         }
     }
 
-    func testSquareWithLengthPriority() {
-        assertLayout { view in
-            view.layout {
-
-                // Square Length with Default Priority
-
-                pinkView
-                    .to([.top, .leading])
-                    .square(200, priority: .high)
-                    .square(100)
-
-                // Square Length with Priority
-
-                yellowView
-                    .to([.top, .trailing])
-                    .square(25, priority: .low)
-                    .square(100, priority: .high)
-            }
-            .activate()
-        }
-    }
+    // MARK: - Aspect Ratio
 
     func testAspectRatioWithRatioPriority() {
         assertLayout { view in
