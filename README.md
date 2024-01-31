@@ -83,6 +83,8 @@ override func viewDidLoad() {
 
 Documentation is viewable in Xcode by selecting `Build Documentation` from the `Product` menu, or online at: https://tinder.github.io/Layout
 
+And a quick reference guide is available at: https://tinder.github.io/Layout/cheatsheet
+
 ## Related Tools
 
 Layout is an alternative solution to other open source Auto Layout libraries, such as:
