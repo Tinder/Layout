@@ -52,3 +52,14 @@ jobs:
         test-without-building
         -scheme "Layout"
         -destination "name=$SIMULATOR,OS=latest"
+    - name: Delete snapshots
+      run: make delete-snapshots
+    - name: Record snapshots
+      run: >
+        xcodebuild
+        test-without-building
+        -scheme "Layout"
+        -destination "name=$SIMULATOR,OS=latest"
+      continue-on-error: true
+    - name: Validate recorded snapshots
+      run: test -z "$(git status --porcelain)"
