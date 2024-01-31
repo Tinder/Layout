@@ -67,6 +67,8 @@ site:
 		--output-path "$(prefix)/_site"
 	cp docs.html "$(prefix)/_site/index.html"
 	cp docs.html "$(prefix)/_site/documentation/index.html"
+	mkdir -p "$(prefix)/_site/cheatsheet"
+	cp cheatsheet.html "$(prefix)/_site/cheatsheet/index.html"
 
 .PHONY: docs
 docs: target ?= Layout
