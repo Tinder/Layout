@@ -1,9 +1,3 @@
-#
-#  The SwiftLint recipes require the Swift Package Resources scripts to be installed.
-#
-#  https://github.com/TinderApp/Swift-Package-Resources#installation
-#
-
 .PHONY: open
 open: fix
 open:
@@ -24,7 +18,8 @@ fix:
 .PHONY: lint
 lint: format ?= emoji
 lint:
-	@swiftlint lint --strict --progress --reporter "$(format)"
+	@swift package plugin \
+		swiftlint lint --strict --progress --reporter "$(format)"
 
 .PHONY: analyze
 analyze: target ?= Layout
@@ -40,11 +35,8 @@ analyze:
 		-configuration "Debug" \
 		CODE_SIGNING_ALLOWED="NO" \
 		> "$$XCODEBUILD_LOG"; \
-	swiftlint analyze --strict --progress --reporter "$(format)" --compiler-log-path "$$XCODEBUILD_LOG"
-
-.PHONY: rules
-rules:
-	@swiftlint rules | lint-rules
+	swift package plugin \
+		swiftlint analyze --strict --progress --reporter "$(format)" --compiler-log-path "$$XCODEBUILD_LOG"
 
 .PHONY: delete-snapshots
 delete-snapshots:

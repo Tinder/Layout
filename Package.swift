@@ -50,6 +50,12 @@ let package = Package(
                 .plugin(name: SwiftLint.plugin),
             ]),
         .plugin(
+            name: "SwiftLintCommand",
+            capability: .command(intent: .custom(verb: "swiftlint", description: "SwiftLint Command Plugin")),
+            dependencies: [
+                .target(name: SwiftLint.binary)
+            ]),
+        .plugin(
             name: SwiftLint.plugin,
             capability: .buildTool(),
             dependencies: [
