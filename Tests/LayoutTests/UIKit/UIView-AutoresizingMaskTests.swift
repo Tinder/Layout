@@ -8,8 +8,6 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
-import Foundation
-
 import Layout
 import Nimble
 import XCTest

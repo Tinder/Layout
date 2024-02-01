@@ -8,7 +8,6 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
-import Layout
 import Nimble
 import SnapshotTesting
 import UIKit
