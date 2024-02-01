@@ -1,13 +1,8 @@
 # Contributing to Layout
 
-- [Dependencies](#dependencies)
 - [Open Package in Xcode](#open-package-in-xcode)
 - [Static Analysis](#static-analysis)
 - [Testing](#testing)
-
-## Dependencies
-
-Follow the [Swift Package Resources installation instructions](https://github.com/TinderApp/Swift-Package-Resources) to install tooling dependencies.
 
 ## Open Package in Xcode
 
@@ -21,12 +16,6 @@ make open
 
 > SwiftLint violations are visible in Xcode as well.
 
-Package dependencies must be resolved to download the SwiftLint binary.
-
-```
-swift package resolve
-```
-
 To run SwiftLint from the command line:
 
 ```
@@ -37,12 +26,6 @@ To run analysis rules:
 
 ```
 make analyze
-```
-
-To enable new rules whenever SwiftLint is upgraded to a new version:
-
-```
-make rules
 ```
 
 ## Testing
