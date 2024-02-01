@@ -13,13 +13,11 @@ import PackagePlugin
 @main
 internal struct SwiftLintCommand: CommandPlugin {
 
-    private let toolName: String = "swiftlint"
-
     internal func performCommand(
         context: PluginContext,
         arguments: [String]
     ) throws {
-        let tool: PluginContext.Tool = try context.tool(named: toolName)
+        let tool: PluginContext.Tool = try context.tool(named: "swiftlint")
         guard !arguments.contains("--cache-path")
         else { return Diagnostics.error("Setting Cache Path Not Allowed") }
         let process: Process = .init()
