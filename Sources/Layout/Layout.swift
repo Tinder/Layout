@@ -320,6 +320,26 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return adding(constraint.withPriority(priority))
     }
 
+    /// Adds constraints aligning the edges of the given view and target view with an inset.
+    ///
+    /// - Note: The `view` will be inset from the `targetView`.
+    ///
+    /// - Parameters:
+    ///   - view: The view to constrain to the `targetView`.
+    ///   - targetView: The target view to which to constrain the `view`.
+    ///   - inset: The inset value.
+    ///
+    /// - Returns: The layout instance with the added constraints.
+    @discardableResult
+    public func constrain(
+        _ view: UIView,
+        to targetView: UIView,
+        inset: CGFloat = 0
+    ) -> Layout {
+        let insets: UIEdgeInsets = .init(top: inset, left: inset, bottom: inset, right: inset)
+        return constrain(view, to: targetView, insets: insets)
+    }
+
     /// Adds constraints aligning the edges of the given view and target view with directional insets
     /// ([`NSDirectionalEdgeInsets`](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets)).
     ///
@@ -366,26 +386,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
             .constrain(view.right, to: targetView.right, constant: -insets.right)
             .constrain(view.top, to: targetView.top, constant: insets.top)
             .constrain(view.bottom, to: targetView.bottom, constant: -insets.bottom)
-    }
-
-    /// Adds constraints aligning the edges of the given view and target view with an inset.
-    ///
-    /// - Note: The `view` will be inset from the `targetView`.
-    ///
-    /// - Parameters:
-    ///   - view: The view to constrain to the `targetView`.
-    ///   - targetView: The target view to which to constrain the `view`.
-    ///   - inset: The inset value.
-    ///
-    /// - Returns: The layout instance with the added constraints.
-    @discardableResult
-    public func constrain(
-        _ view: UIView,
-        to targetView: UIView,
-        inset: CGFloat = 0
-    ) -> Layout {
-        let insets: UIEdgeInsets = .init(top: inset, left: inset, bottom: inset, right: inset)
-        return constrain(view, to: targetView, insets: insets)
     }
 
     // swiftlint:enable function_default_parameter_at_end
