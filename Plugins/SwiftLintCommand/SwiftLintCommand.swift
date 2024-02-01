@@ -23,7 +23,11 @@ internal struct SwiftLintCommand: CommandPlugin {
         let process: Process = .init()
         process.currentDirectoryURL = URL(fileURLWithPath: context.package.directory.string)
         process.executableURL = URL(fileURLWithPath: tool.path.string)
-        process.arguments = arguments + ["--cache-path", "\(context.pluginWorkDirectory.string)"]
+        if arguments.contains("analyze") {
+            process.arguments = arguments
+        } else {
+            process.arguments = arguments + ["--cache-path", "\(context.pluginWorkDirectory.string)"]
+        }
         try process.run()
         process.waitUntilExit()
         switch process.terminationReason {
