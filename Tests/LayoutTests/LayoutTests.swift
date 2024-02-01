@@ -533,6 +533,37 @@ final class LayoutTests: XCTestCase {
         }
     }
 
+    func testConstrainViewToTargetViewInset() {
+
+        // GIVEN
+
+        let blueView: UIView = blueView
+        let pinkView: UIView = pinkView
+        let yellowView: UIView = yellowView
+
+        // THEN
+
+        assertLayout { view in
+
+            let layout: Layout = view.layout {
+                blueView
+                    .toEdges(inset: 20)
+                pinkView
+                yellowView
+            }
+
+            // Constrain with Default Inset
+
+            layout.constrain(pinkView, to: blueView)
+
+            // Constrain with Inset
+
+            layout.constrain(yellowView, to: blueView, inset: 20)
+
+            layout.activate()
+        }
+    }
+
     func testConstrainViewToTargetViewInsetsDirectional() {
 
         // GIVEN
@@ -576,37 +607,6 @@ final class LayoutTests: XCTestCase {
                            to: pinkView,
                            insets: UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40))
                 .activate()
-        }
-    }
-
-    func testConstrainViewToTargetViewInset() {
-
-        // GIVEN
-
-        let blueView: UIView = blueView
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
-
-        // THEN
-
-        assertLayout { view in
-
-            let layout: Layout = view.layout {
-                blueView
-                    .toEdges(inset: 20)
-                pinkView
-                yellowView
-            }
-
-            // Constrain with Default Inset
-
-            layout.constrain(pinkView, to: blueView)
-
-            // Constrain with Inset
-
-            layout.constrain(yellowView, to: blueView, inset: 20)
-
-            layout.activate()
         }
     }
 
