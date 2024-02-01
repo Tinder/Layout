@@ -184,6 +184,8 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     /// Adds a constraint defining the relationship between the given attribute of the view and target view.
     ///
+    /// The `targetAttribute` will be used as the attribute of the `view` if `attribute` is not provided.
+    ///
     /// - Parameters:
     ///   - view: The view to constrain to the `targetView`.
     ///   - attribute: The attribute of the `view`.
