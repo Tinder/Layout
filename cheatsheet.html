@@ -39,6 +39,10 @@
                         <pre>constrain(viewA, to: .top, of: viewB)</pre>
                         <pre>constrain(viewA,
           .top,
+          to: .top,
+          of: viewB)</pre>
+                        <pre>constrain(viewA,
+          .top,
           is: .greaterThanOrEqual,
           to: .top,
           of: viewB,
@@ -101,7 +105,8 @@
          priority: .high,
          alignment: .centerX)</pre>
                         <h3>Visual Format Language</h3>
-                        <p>The orientation format should be omitted since<br />it is automatically prepended.<p>
+                        <p>Only views with an <strong><code>accessibilityIdentifier</code></strong><br /> are made available to the Visual Format APIs.</p>
+                        <p>The orientation format should be omitted<br />since it is automatically prepended.<p>
                         <p>The <strong><code>metrics</code></strong> of the layout are used by default.</p>
                         <pre>horizontal("[view]")</pre>
                         <pre>horizontal("[view]",
@@ -171,6 +176,7 @@
                         <pre>center(between: view.top,
        and: view.bottom)</pre>
                         <h3>Attributes</h3>
+                        <p>Constrains to superview attributes.<p>
                         <pre>to(.top)</pre>
                         <pre>to(.top,
    is: .lessThanOrEqual,
@@ -182,6 +188,7 @@
    constant: 100,
    priority: .high)</pre>
                         <h3>Edges</h3>
+                        <p>Constrains to superview edges.<p>
                         <pre>toEdges()</pre>
                         <pre>toEdges(inset: 100, priority: .high)</pre>
                         <pre>toEdges(insets: directional)</pre>
@@ -202,6 +209,7 @@
                         <pre>toSideEdges(inset: 100,
             priority: .high)</pre>
                         <h3>Margins</h3>
+                        <p>Constrains to superview margins guide.<p>
                         <pre>toMargins()</pre>
                         <pre>toMargins(inset: 100, priority: .high)</pre>
                         <pre>toMargins(insets: directional)</pre>
@@ -222,6 +230,7 @@
                         <pre>toSideMargins(inset: 100,
               priority: .high)</pre>
                         <h3>Safe Area</h3>
+                        <p>Constrains to superview safe area guide.<p>
                         <pre>toSafeArea()</pre>
                         <pre>toSafeArea(inset: 100, priority: .high)</pre>
                         <pre>toSafeArea(insets: directional)</pre>
@@ -239,7 +248,6 @@
            inset: 100,
            priority: .high)</pre>
                         <h3>Accessibility Identifier</h3>
-                        <p>Only views with an <strong><code>accessibilityIdentifier</code></strong> are<br />made available to the Visual Format APIs.</p>
                         <pre>_ = identifier</pre>
                         <pre>identifier = "identifier"</pre>
                         <pre>id("identifier")</pre>
@@ -287,29 +295,35 @@
                         <h3>Attributes</h3>
                         <pre>constraint(toSuperview: .top)</pre>
                         <pre>constraint(for: .top,
-           is: relation,
+           toSuperview: .top)</pre>
+                        <pre>constraint(for: .top,
+           is: .greaterThanOrEqual,
            toSuperview: .top,
            multiplier: 2,
            constant: 100)</pre>
                         <pre>constraint(to: .top, of: view)</pre>
                         <pre>constraint(for: .top,
-           is: relation,
+           to: .top,
+           of: view)</pre>
+                        <pre>constraint(for: .top,
+           is: .greaterThanOrEqual,
            to: .top,
            of: view,
            multiplier: 2,
            constant: 100)</pre>
                         <pre>constraints(toSuperview: [.top])</pre>
-                        <pre>constraints(is: relation,
+                        <pre>constraints(is: .greaterThanOrEqual,
            toSuperview: [.top],
            multiplier: 2,
            constant: 100)</pre>
                         <pre>constraints(to: [.top], of: view)</pre>
-                        <pre>constraints(is: relation,
+                        <pre>constraints(is: .greaterThanOrEqual,
            to: [.top],
            of: view,
            multiplier: 2,
            constant: 100)</pre>
                         <h3>Edges</h3>
+                        <p>Constrains to superview edges.<p>
                         <pre>edgeConstraints()</pre>
                         <pre>edgeConstraints(inset: 100)</pre>
                         <pre>edgeConstraints(insets: directional)</pre>
