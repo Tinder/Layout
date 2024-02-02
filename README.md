@@ -8,7 +8,7 @@
 
 # Layout
 
-Declarative Auto Layout for UIKit
+High Fidelity Auto Layout Result Builder Syntax for UIKit
 
 ## Overview
 
