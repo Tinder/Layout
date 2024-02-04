@@ -130,7 +130,7 @@ extension UIView {
     ///
     /// - Returns: The created constraint.
     public func squareConstraint() -> NSLayoutConstraint {
-        constraint(for: .width, to: .height, of: self)
+        aspectRatioConstraint(1)
     }
 
     // MARK: - Aspect Ratio
