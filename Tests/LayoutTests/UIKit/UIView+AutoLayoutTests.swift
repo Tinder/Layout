@@ -163,7 +163,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = .init()
+        let view: UIView = .init(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
 
         // WHEN
 
@@ -173,9 +173,9 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         expect(sizeConstraints1.count) == 2
         expect(sizeConstraints1[0].firstAttribute) == .width
-        expect(sizeConstraints1[0].constant) == 0
+        expect(sizeConstraints1[0].constant) == 10
         expect(sizeConstraints1[1].firstAttribute) == .height
-        expect(sizeConstraints1[1].constant) == 0
+        expect(sizeConstraints1[1].constant) == 20
 
         // WHEN
 
@@ -196,13 +196,16 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = .init()
+        let view: UIView = .init(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
+
+        // WHEN
+
         let widthConstraint1: NSLayoutConstraint = view.widthConstraint(is: .equal)
 
         // THEN
 
         expect(widthConstraint1.relation) == .equal
-        expect(widthConstraint1.constant) == 0
+        expect(widthConstraint1.constant) == 10
 
         // GIVEN
 
@@ -237,13 +240,16 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = .init()
+        let view: UIView = .init(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
+
+        // WHEN
+
         let widthConstraint1: NSLayoutConstraint = view.widthConstraint()
 
         // THEN
 
         expect(widthConstraint1.relation) == .equal
-        expect(widthConstraint1.constant) == 0
+        expect(widthConstraint1.constant) == 10
 
         // GIVEN
 
@@ -264,7 +270,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = .init()
+        let view: UIView = .init(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
 
         // WHEN
 
@@ -273,7 +279,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(heightConstraint1.relation) == .equal
-        expect(heightConstraint1.constant) == 0
+        expect(heightConstraint1.constant) == 20
 
         // GIVEN
 
@@ -308,13 +314,16 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = .init()
+        let view: UIView = .init(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
+
+        // WHEN
+
         let heightConstraint1: NSLayoutConstraint = view.heightConstraint()
 
         // THEN
 
         expect(heightConstraint1.relation) == .equal
-        expect(heightConstraint1.constant) == 0
+        expect(heightConstraint1.constant) == 20
 
         // GIVEN
 
