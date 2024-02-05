@@ -12,11 +12,11 @@ High Fidelity Auto Layout Result Builder Syntax for UIKit
 
 ## Overview
 
-Tinder’s Layout library was introduced into the Tinder iOS codebase in 2017 and has since been used to programmatically define the screens of the Tinder iOS app.
+Layout was introduced into the iOS codebase at Tinder in 2017 and has since been used to programmatically define the screens of the app.
 
-Layout is a wrapper around the Apple provided Auto Layout SDK. Layout provides a less verbose syntax which aids in adoption and eases troubleshooting UI layout issues. Projects with large codebases use programmatic UI code instead of visual WYSIWYG editors (such as Xcode storyboards) to avoid unmanageable merge conflicts that occur in file formats such as XML (the serialized format of Xcode storyboards).
+Layout is a wrapper around the Apple platform Auto Layout SDK and provides a less verbose DSL to aid in adoption and ease troubleshooting UI layout issues. Projects with large codebases use this type of programmatic UI code instead of visual WYSIWYG editors (such as Xcode storyboards) to avoid unmanageable merge conflicts that occur in file formats such as XML (the serialized format of Xcode storyboards).
 
-Code written with Layout is declarative in nature such that it is easy to visualize the UI layout that the code represents. Layout does not limit the available Auto Layout capabilities in any way, which can readily be used along with the Layout API. In recent years, mobile platforms have seen the introduction of declarative UI frameworks such as SwiftUI and Jetpack Compose which realize significantly reduced learning curves. Layout takes a similar declarative approach but for the UIKit framework.
+Code written with Layout leverages a high fidelity syntax, meaning it is easy to visualize the UI layout that the code represents. However, Layout does not limit the native Auto Layout capabilities in any way, which can readily be used along with the Layout API. In recent years, mobile platforms have seen the introduction of declarative UI frameworks such as SwiftUI and Jetpack Compose which realize significantly reduced learning curves. Layout also takes a declarative approach, in this case for the UIKit framework.
 
 ## Minimum Requirements
 
