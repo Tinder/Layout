@@ -47,8 +47,8 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(view.translatesAutoresizingMaskIntoConstraints) == false
-        expect(view.constraints.first { $0.firstAttribute == .width }?.constant) == frame.width
-        expect(view.constraints.first { $0.firstAttribute == .height }?.constant) == frame.height
+        expect(view.constraints[0].constant) == frame.width
+        expect(view.constraints[1].constant) == frame.height
     }
 
     func testConstrainingSize() {
@@ -69,8 +69,8 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(view.translatesAutoresizingMaskIntoConstraints) == false
-        expect(view.constraints.first { $0.firstAttribute == .width }?.constant) == size.width
-        expect(view.constraints.first { $0.firstAttribute == .height }?.constant) == size.height
+        expect(view.constraints[0].constant) == size.width
+        expect(view.constraints[1].constant) == size.height
     }
 
     func testConstrainingWidth_givenDefaults() {
@@ -91,7 +91,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(view.translatesAutoresizingMaskIntoConstraints) == false
-        expect(view.constraints.first { $0.firstAttribute == .width }?.constant) == width
+        expect(view.constraints[0].constant) == width
     }
 
     func testConstrainingWidth() {
@@ -112,7 +112,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(view.translatesAutoresizingMaskIntoConstraints) == false
-        expect(view.constraints.first { $0.firstAttribute == .width }?.constant) == width
+        expect(view.constraints[0].constant) == width
     }
 
     func testConstrainingHeight_givenDefaults() {
@@ -133,7 +133,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(view.translatesAutoresizingMaskIntoConstraints) == false
-        expect(view.constraints.first { $0.firstAttribute == .height }?.constant) == height
+        expect(view.constraints[0].constant) == height
     }
 
     func testConstrainingHeight() {
@@ -154,10 +154,43 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(view.translatesAutoresizingMaskIntoConstraints) == false
-        expect(view.constraints.first { $0.firstAttribute == .height }?.constant) == height
+        expect(view.constraints[0].constant) == height
     }
 
     // MARK: - Size
+
+    func testSizeConstraintsWithSize() {
+
+        // GIVEN
+
+        let view: UIView = .init(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
+
+        // WHEN
+
+        let sizeConstraints1: [NSLayoutConstraint] = view.sizeConstraints()
+
+        // THEN
+
+        expect(sizeConstraints1.count) == 2
+        expect(sizeConstraints1[0].firstAttribute) == .width
+        expect(sizeConstraints1[0].constant) == 10
+        expect(sizeConstraints1[1].firstAttribute) == .height
+        expect(sizeConstraints1[1].constant) == 20
+
+        // WHEN
+
+        let sizeConstraints2: [NSLayoutConstraint] = view.sizeConstraints(.init(width: 10, height: 20))
+
+        // THEN
+
+        expect(sizeConstraints2.count) == 2
+        expect(sizeConstraints2[0].firstAttribute) == .width
+        expect(sizeConstraints2[0].constant) == 10
+        expect(sizeConstraints2[1].firstAttribute) == .height
+        expect(sizeConstraints2[1].constant) == 20
+    }
+
+    // MARK: - Width
 
     func testWidthConstraintIsRelationToConstant() {
 
@@ -231,6 +264,8 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(widthConstraint2.constant) == width2
     }
 
+    // MARK: - Height
+
     func testHeightConstraintIsRelationToConstant() {
 
         // GIVEN
@@ -303,38 +338,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(heightConstraint2.constant) == height2
     }
 
-    func testSizeConstraintsWithSize() {
-
-        // GIVEN
-
-        let view: UIView = .init(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
-
-        // WHEN
-
-        let sizeConstraints1: [NSLayoutConstraint] = view.sizeConstraints()
-
-        // THEN
-
-        expect(sizeConstraints1.count) == 2
-        expect(sizeConstraints1[0].firstAttribute) == .width
-        expect(sizeConstraints1[0].constant) == 10
-        expect(sizeConstraints1[1].firstAttribute) == .height
-        expect(sizeConstraints1[1].constant) == 20
-
-        // WHEN
-
-        let sizeConstraints2: [NSLayoutConstraint] = view.sizeConstraints(.init(width: 10, height: 20))
-
-        // THEN
-
-        expect(sizeConstraints2.count) == 2
-        expect(sizeConstraints2[0].firstAttribute) == .width
-        expect(sizeConstraints2[0].constant) == 10
-        expect(sizeConstraints2[1].firstAttribute) == .height
-        expect(sizeConstraints2[1].constant) == 20
-    }
-
-    // MARK: - Aspect Ratio
+    // MARK: - Square
 
     func testSquareConstraint() {
 
@@ -352,6 +356,8 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraint.secondAttribute) == .height
         expect(constraint.relation) == .equal
     }
+
+    // MARK: - Aspect Ratio
 
     func testAspectRatioConstraintWithRatio() {
 

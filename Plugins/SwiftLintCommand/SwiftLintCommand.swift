@@ -35,6 +35,8 @@ internal struct SwiftLintCommand: CommandPlugin {
             break
         case .uncaughtSignal:
             return Diagnostics.error("Uncaught Signal")
+        @unknown default:
+            return Diagnostics.error("Unexpected Termination Reason")
         }
         guard process.terminationStatus == EXIT_SUCCESS
         else { return Diagnostics.error("Command Failed") }
