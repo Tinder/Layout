@@ -179,7 +179,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // WHEN
 
-        let sizeConstraints2: [NSLayoutConstraint] = view.sizeConstraints(.init(width: 10, height: 20))
+        let sizeConstraints2: [NSLayoutConstraint] = view.sizeConstraints(CGSize(width: 10, height: 20))
 
         // THEN
 
