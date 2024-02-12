@@ -19,8 +19,13 @@ jobs:
       run: brew install jfrog-cli
     - name: Checkout source
       uses: actions/checkout@v3
+    - name: Build documentation
+      run: |
+        make docs open="no" DERIVED_DATA_PATH="$(mktemp -d)"
+        mkdir Documentation
+        mv .build/documentation/archive/Layout.doccarchive Documentation
     - name: Archive
-      run: tar -czf "Layout-${GITHUB_REF_NAME}.tar.gz" Sources
+      run: tar -czf "Layout-${GITHUB_REF_NAME}.tar.gz" Sources Documentation
     - name: Upload
       run: >
         jf rt u
