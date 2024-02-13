@@ -28,15 +28,18 @@ extension XCTestCase {
     // swiftlint:disable cyclomatic_complexity
 
     @MainActor
-    internal func match(_ expectedConstraint: NSLayoutConstraint) -> Matcher<NSLayoutConstraint> {
+    internal func match(
+        _ expectedConstraint: NSLayoutConstraint,
+        isActive: Bool? = nil // swiftlint:disable:this discouraged_optional_boolean
+    ) -> Matcher<NSLayoutConstraint> {
         // swiftlint:disable:next closure_body_length
         Matcher { expression in
             guard let constraint: NSLayoutConstraint = try expression.evaluate()
             else { return MatcherResult(status: .fail, message: .expectedTo("not be nil, got <nil>")) }
-            guard constraint.isActive == expectedConstraint.isActive
+            guard constraint.isActive == isActive ?? expectedConstraint.isActive
             else {
                 let message: String = """
-                    match `isActive` <\(expectedConstraint.isActive)>, \
+                    match `isActive` <\(isActive ?? expectedConstraint.isActive)>, \
                     got <\(constraint.isActive)>
                     """
                 return MatcherResult(status: .fail, message: .expectedTo(message))
