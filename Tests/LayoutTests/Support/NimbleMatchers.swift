@@ -36,10 +36,11 @@ extension XCTestCase {
         Matcher { expression in
             guard let constraint: NSLayoutConstraint = try expression.evaluate()
             else { return MatcherResult(status: .fail, message: .expectedTo("not be nil, got <nil>")) }
-            guard constraint.isActive == isActive ?? expectedConstraint.isActive
+            let isActiveExpected: Bool = isActive ?? expectedConstraint.isActive
+            guard constraint.isActive == isActiveExpected
             else {
                 let message: String = """
-                    match `isActive` <\(isActive ?? expectedConstraint.isActive)>, \
+                    match `isActive` <\(isActiveExpected)>, \
                     got <\(constraint.isActive)>
                     """
                 return MatcherResult(status: .fail, message: .expectedTo(message))
