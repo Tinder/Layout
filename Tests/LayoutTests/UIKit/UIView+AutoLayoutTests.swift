@@ -102,7 +102,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = .init(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+        let view: UIView = .init(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
 
         // THEN
 
@@ -156,7 +156,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // GIVEN
 
-        let view: UIView = .init(frame: CGRect(x: 0, y: 0, width: 0, height: 20))
+        let view: UIView = .init(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
 
         // THEN
 
