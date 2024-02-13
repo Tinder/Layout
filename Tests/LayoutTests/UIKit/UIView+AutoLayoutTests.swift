@@ -599,12 +599,10 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // WHEN
 
-        let constraints2: [NSLayoutConstraint] = view.constraints(
-            is: .greaterThanOrEqual,
-            toSuperview: [.bottom, .right],
-            multiplier: 2,
-            constant: 5
-        )
+        let constraints2: [NSLayoutConstraint] = view.constraints(is: .greaterThanOrEqual,
+                                                                  toSuperview: [.bottom, .right],
+                                                                  multiplier: 2,
+                                                                  constant: 5)
 
         // THEN
 
@@ -676,13 +674,11 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
         // WHEN
 
-        let constraints2: [NSLayoutConstraint] = view.constraints(
-            is: .greaterThanOrEqual,
-            to: [.bottom, .right],
-            of: targetView,
-            multiplier: 2,
-            constant: 5
-        )
+        let constraints2: [NSLayoutConstraint] = view.constraints(is: .greaterThanOrEqual,
+                                                                  to: [.bottom, .right],
+                                                                  of: targetView,
+                                                                  multiplier: 2,
+                                                                  constant: 5)
 
         // THEN
 
