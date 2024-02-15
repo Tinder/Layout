@@ -56,6 +56,7 @@ site:
 	"$(DOCC_PATH)" process-archive \
 		transform-for-static-hosting \
 		"$(ARCHIVE_PATH)/$(target).doccarchive" \
+		--hosting-base-path "/$(target)" \
 		--output-path "$(prefix)/_site"
 	cp docs.html "$(prefix)/_site/index.html"
 	cp docs.html "$(prefix)/_site/documentation/index.html"
