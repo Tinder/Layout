@@ -306,9 +306,7 @@ extension UIView {
     }
 
     /// Creates constraints aligning the edges of the receiver to the edges of the superview with directional insets
-    /// ([`NSDirectionalEdgeInsets`](
-    /// https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets
-    /// )).
+    /// ([`NSDirectionalEdgeInsets`](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets)).
     ///
     /// - Parameter insets: The directional insets.
     ///
