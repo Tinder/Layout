@@ -433,6 +433,35 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Square
 
+    func testSquareConstraintsWithLength() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+
+        // WHEN
+
+        let squareConstraints: [NSLayoutConstraint] = view.squareConstraints(100)
+
+        // THEN
+
+        expect(squareConstraints.count) == 2
+        expect(squareConstraints[0]).to(match(NSLayoutConstraint(item: view,
+                                                                 attribute: .width,
+                                                                 relatedBy: .equal,
+                                                                 toItem: nil,
+                                                                 attribute: .notAnAttribute,
+                                                                 multiplier: 1,
+                                                                 constant: 100)))
+        expect(squareConstraints[1]).to(match(NSLayoutConstraint(item: view,
+                                                                 attribute: .height,
+                                                                 relatedBy: .equal,
+                                                                 toItem: nil,
+                                                                 attribute: .notAnAttribute,
+                                                                 multiplier: 1,
+                                                                 constant: 100)))
+    }
+
     func testSquareConstraint() {
 
         // GIVEN

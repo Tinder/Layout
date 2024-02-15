@@ -126,6 +126,16 @@ extension UIView {
 
     // MARK: - Square
 
+    /// Creates constraints defining the width and height of the receiver to be the given length.
+    ///
+    /// - Returns: The created constraints.
+    public func squareConstraints(_ length: CGFloat) -> [NSLayoutConstraint] {
+        [
+            widthConstraint(length),
+            heightConstraint(length)
+        ]
+    }
+
     /// Creates a constraint defining the aspect ratio of the receiver to be square.
     ///
     /// - Returns: The created constraint.
