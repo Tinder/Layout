@@ -304,7 +304,7 @@ extension UIView {
 
     // MARK: - Edges
 
-    /// Creates constraints to the edges of the superview of the receiver with an inset.
+    /// Creates constraints aligning the edges of the receiver to the edges of the superview with an inset.
     ///
     /// - Parameter inset: The inset value.
     ///
@@ -315,7 +315,8 @@ extension UIView {
         edgeConstraints(insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset))
     }
 
-    /// Creates constraints to the directional edges of the superview of the receiver with insets.
+    /// Creates constraints aligning the edges of the receiver to the edges of the superview with directional insets
+    /// ([`NSDirectionalEdgeInsets`](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets)).
     ///
     /// - Parameter insets: The directional insets.
     ///
@@ -331,7 +332,8 @@ extension UIView {
         ]
     }
 
-    /// Creates constraints to the canonical edges of the superview of the receiver with insets.
+    /// Creates constraints aligning the edges of the receiver to the edges of the superview with canonical insets
+    /// ([`UIEdgeInsets`](https://developer.apple.com/documentation/uikit/uiedgeinsets)).
     ///
     /// - Parameter insets: The canonical insets.
     ///
@@ -344,6 +346,21 @@ extension UIView {
             constraint(toSuperview: .right, constant: -insets.right),
             constraint(toSuperview: .top, constant: insets.top),
             constraint(toSuperview: .bottom, constant: -insets.bottom)
+        ]
+    }
+
+    /// Creates constraints aligning the left and right edges of the receiver to the corresponding edges of the
+    /// superview with an inset.
+    ///
+    /// - Parameter inset: The inset value.
+    ///
+    /// - Returns: The created constraints.
+    public func sideEdgeConstraints(
+        inset: CGFloat = 0
+    ) -> [NSLayoutConstraint] {
+        [
+            constraint(toSuperview: .left, constant: inset),
+            constraint(toSuperview: .right, constant: -inset)
         ]
     }
 }
