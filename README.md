@@ -21,7 +21,7 @@ Code written with Layout leverages a high fidelity syntax, meaning it is easy to
 ## Minimum Requirements
 
 - iOS `13.0`
-- Swift `5.8`
+- Swift `5.7`
 
 ## Installation
 
