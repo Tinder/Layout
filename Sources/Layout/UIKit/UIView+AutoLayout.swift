@@ -324,11 +324,14 @@ extension UIView {
     public func edgeConstraints(
         insets: DirectionalInsets
     ) -> [NSLayoutConstraint] {
-        [
-            constraint(toSuperview: .leading, constant: insets.leading),
-            constraint(toSuperview: .trailing, constant: -insets.trailing),
-            constraint(toSuperview: .top, constant: insets.top),
-            constraint(toSuperview: .bottom, constant: -insets.bottom)
+        assert(superview != nil, "edgeConstraints(insets:) requires superview")
+        guard let superview: UIView
+        else { return [] }
+        return [
+            leading.constraint(equalTo: superview.leading, constant: insets.leading),
+            trailing.constraint(equalTo: superview.trailing, constant: -insets.trailing),
+            top.constraint(equalTo: superview.top, constant: insets.top),
+            bottom.constraint(equalTo: superview.bottom, constant: -insets.bottom)
         ]
     }
 
@@ -341,11 +344,14 @@ extension UIView {
     public func edgeConstraints(
         insets: CanonicalInsets
     ) -> [NSLayoutConstraint] {
-        [
-            constraint(toSuperview: .left, constant: insets.left),
-            constraint(toSuperview: .right, constant: -insets.right),
-            constraint(toSuperview: .top, constant: insets.top),
-            constraint(toSuperview: .bottom, constant: -insets.bottom)
+        assert(superview != nil, "edgeConstraints(insets:) requires superview")
+        guard let superview: UIView
+        else { return [] }
+        return [
+            left.constraint(equalTo: superview.left, constant: insets.left),
+            right.constraint(equalTo: superview.right, constant: -insets.right),
+            top.constraint(equalTo: superview.top, constant: insets.top),
+            bottom.constraint(equalTo: superview.bottom, constant: -insets.bottom)
         ]
     }
 
@@ -358,9 +364,12 @@ extension UIView {
     public func sideEdgeConstraints(
         inset: CGFloat = 0
     ) -> [NSLayoutConstraint] {
-        [
-            constraint(toSuperview: .left, constant: inset),
-            constraint(toSuperview: .right, constant: -inset)
+        assert(superview != nil, "sideEdgeConstraints(inset:) requires superview")
+        guard let superview: UIView
+        else { return [] }
+        return [
+            left.constraint(equalTo: superview.left, constant: inset),
+            right.constraint(equalTo: superview.right, constant: -inset)
         ]
     }
 }

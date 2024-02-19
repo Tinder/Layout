@@ -745,34 +745,10 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(constraints.count) == 4
-        expect(constraints[0]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .left,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .left,
-                                                           multiplier: 1,
-                                                           constant: 0)))
-        expect(constraints[1]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .right,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .right,
-                                                           multiplier: 1,
-                                                           constant: 0)))
-        expect(constraints[2]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .top,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .top,
-                                                           multiplier: 1,
-                                                           constant: 0)))
-        expect(constraints[3]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .bottom,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .bottom,
-                                                           multiplier: 1,
-                                                           constant: 0)))
+        expect(constraints[0]).to(match(view.left.constraint(to: superview.left)))
+        expect(constraints[1]).to(match(view.right.constraint(to: superview.right)))
+        expect(constraints[2]).to(match(view.top.constraint(to: superview.top)))
+        expect(constraints[3]).to(match(view.bottom.constraint(to: superview.bottom)))
     }
 
     func testEdgeConstraintsInset_givenInset() {
@@ -791,34 +767,10 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(constraints.count) == 4
-        expect(constraints[0]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .left,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .left,
-                                                           multiplier: 1,
-                                                           constant: inset)))
-        expect(constraints[1]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .right,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .right,
-                                                           multiplier: 1,
-                                                           constant: -inset)))
-        expect(constraints[2]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .top,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .top,
-                                                           multiplier: 1,
-                                                           constant: inset)))
-        expect(constraints[3]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .bottom,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .bottom,
-                                                           multiplier: 1,
-                                                           constant: -inset)))
+        expect(constraints[0]).to(match(view.left.constraint(to: superview.left, constant: inset)))
+        expect(constraints[1]).to(match(view.right.constraint(to: superview.right, constant: -inset)))
+        expect(constraints[2]).to(match(view.top.constraint(to: superview.top, constant: inset)))
+        expect(constraints[3]).to(match(view.bottom.constraint(to: superview.bottom, constant: -inset)))
     }
 
     func testEdgeConstraintsInsetsDirectional() {
@@ -837,34 +789,10 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(constraints.count) == 4
-        expect(constraints[0]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .leading,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .leading,
-                                                           multiplier: 1,
-                                                           constant: insets.leading)))
-        expect(constraints[1]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .trailing,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .trailing,
-                                                           multiplier: 1,
-                                                           constant: -insets.trailing)))
-        expect(constraints[2]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .top,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .top,
-                                                           multiplier: 1,
-                                                           constant: insets.top)))
-        expect(constraints[3]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .bottom,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .bottom,
-                                                           multiplier: 1,
-                                                           constant: -insets.bottom)))
+        expect(constraints[0]).to(match(view.leading.constraint(to: superview.leading, constant: insets.leading)))
+        expect(constraints[1]).to(match(view.trailing.constraint(to: superview.trailing, constant: -insets.trailing)))
+        expect(constraints[2]).to(match(view.top.constraint(to: superview.top, constant: insets.top)))
+        expect(constraints[3]).to(match(view.bottom.constraint(to: superview.bottom, constant: -insets.bottom)))
     }
 
     func testEdgeConstraintsInsetsCanonical() {
@@ -883,34 +811,10 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(constraints.count) == 4
-        expect(constraints[0]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .left,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .left,
-                                                           multiplier: 1,
-                                                           constant: insets.left)))
-        expect(constraints[1]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .right,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .right,
-                                                           multiplier: 1,
-                                                           constant: -insets.right)))
-        expect(constraints[2]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .top,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .top,
-                                                           multiplier: 1,
-                                                           constant: insets.top)))
-        expect(constraints[3]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .bottom,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .bottom,
-                                                           multiplier: 1,
-                                                           constant: -insets.bottom)))
+        expect(constraints[0]).to(match(view.left.constraint(to: superview.left, constant: insets.left)))
+        expect(constraints[1]).to(match(view.right.constraint(to: superview.right, constant: -insets.right)))
+        expect(constraints[2]).to(match(view.top.constraint(to: superview.top, constant: insets.top)))
+        expect(constraints[3]).to(match(view.bottom.constraint(to: superview.bottom, constant: -insets.bottom)))
     }
 
     func testSideEdgeConstraintsInset() {
@@ -928,20 +832,8 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(constraints.count) == 2
-        expect(constraints[0]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .left,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .left,
-                                                           multiplier: 1,
-                                                           constant: 0)))
-        expect(constraints[1]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .right,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .right,
-                                                           multiplier: 1,
-                                                           constant: 0)))
+        expect(constraints[0]).to(match(view.left.constraint(to: superview.left)))
+        expect(constraints[1]).to(match(view.right.constraint(to: superview.right)))
     }
 
     func testSideEdgeConstraintsInset_givenInset() {
@@ -960,19 +852,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         // THEN
 
         expect(constraints.count) == 2
-        expect(constraints[0]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .left,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .left,
-                                                           multiplier: 1,
-                                                           constant: inset)))
-        expect(constraints[1]).to(match(NSLayoutConstraint(item: view,
-                                                           attribute: .right,
-                                                           relatedBy: .equal,
-                                                           toItem: superview,
-                                                           attribute: .right,
-                                                           multiplier: 1,
-                                                           constant: -inset)))
+        expect(constraints[0]).to(match(view.left.constraint(to: superview.left, constant: inset)))
+        expect(constraints[1]).to(match(view.right.constraint(to: superview.right, constant: -inset)))
     }
 }
