@@ -256,8 +256,8 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            layoutItem.layoutItemView.width
-                .constraint(equalTo: layoutItem.layoutItemView.height, multiplier: ratio)
+            layoutItem.layoutItemView
+                .constraint(for: .width, to: .height, of: layoutItem.layoutItemView, multiplier: ratio)
                 .withPriority(priority)
         }
     }
@@ -460,9 +460,10 @@ extension LayoutItem {
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
             for attribute: NSLayoutConstraint.Attribute in attributes {
-                layoutItem
-                    .layoutItemView
-                    .constraint(for: attribute.canonicalAttribute, toSuperview: attribute, constant: constant)
+                layoutItem.layoutItemView
+                    .constraint(for: attribute.canonicalAttribute,
+                                toSuperview: attribute,
+                                constant: constant)
                     .withPriority(priority)
             }
         }
