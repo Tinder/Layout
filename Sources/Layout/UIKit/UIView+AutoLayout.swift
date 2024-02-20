@@ -392,10 +392,10 @@ extension UIView {
         guard let superview: UIView
         else { return [] }
         return [
-            leading.constraint(equalTo: superview.margins.leading, constant: insets.leading),
-            trailing.constraint(equalTo: superview.margins.trailing, constant: -insets.trailing),
-            top.constraint(equalTo: superview.margins.top, constant: insets.top),
-            bottom.constraint(equalTo: superview.margins.bottom, constant: -insets.bottom)
+            leading.constraint(to: superview.margins.leading, constant: insets.leading),
+            trailing.constraint(to: superview.margins.trailing, constant: -insets.trailing),
+            top.constraint(to: superview.margins.top, constant: insets.top),
+            bottom.constraint(to: superview.margins.bottom, constant: -insets.bottom)
         ]
     }
 
@@ -412,10 +412,10 @@ extension UIView {
         guard let superview: UIView
         else { return [] }
         return [
-            left.constraint(equalTo: superview.margins.left, constant: insets.left),
-            right.constraint(equalTo: superview.margins.right, constant: -insets.right),
-            top.constraint(equalTo: superview.margins.top, constant: insets.top),
-            bottom.constraint(equalTo: superview.margins.bottom, constant: -insets.bottom)
+            left.constraint(to: superview.margins.left, constant: insets.left),
+            right.constraint(to: superview.margins.right, constant: -insets.right),
+            top.constraint(to: superview.margins.top, constant: insets.top),
+            bottom.constraint(to: superview.margins.bottom, constant: -insets.bottom)
         ]
     }
 
@@ -432,8 +432,8 @@ extension UIView {
         guard let superview: UIView
         else { return [] }
         return [
-            left.constraint(equalTo: superview.margins.left, constant: inset),
-            right.constraint(equalTo: superview.margins.right, constant: -inset)
+            left.constraint(to: superview.margins.left, constant: inset),
+            right.constraint(to: superview.margins.right, constant: -inset)
         ]
     }
 }
