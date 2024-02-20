@@ -804,22 +804,22 @@ extension LayoutItem {
         case .top:
             return layoutItemView
                 .top
-                .constraint(equalTo: boundary.top, constant: insets.constant(for: .top))
+                .constraint(to: boundary.top, constant: insets.constant(for: .top))
                 .withPriority(priority)
         case .leading:
             return layoutItemView
                 .leading
-                .constraint(equalTo: boundary.leading, constant: insets.constant(for: .leading))
+                .constraint(to: boundary.leading, constant: insets.constant(for: .leading))
                 .withPriority(priority)
         case .bottom:
             return layoutItemView
                 .bottom
-                .constraint(equalTo: boundary.bottom, constant: insets.constant(for: .bottom))
+                .constraint(to: boundary.bottom, constant: insets.constant(for: .bottom))
                 .withPriority(priority)
         case .trailing:
             return layoutItemView
                 .trailing
-                .constraint(equalTo: boundary.trailing, constant: insets.constant(for: .trailing))
+                .constraint(to: boundary.trailing, constant: insets.constant(for: .trailing))
                 .withPriority(priority)
         }
     }
@@ -834,22 +834,22 @@ extension LayoutItem {
         case .top:
             return layoutItemView
                 .top
-                .constraint(equalTo: boundary.top, constant: insets.constant(for: .top))
+                .constraint(to: boundary.top, constant: insets.constant(for: .top))
                 .withPriority(priority)
         case .left:
             return layoutItemView
                 .left
-                .constraint(equalTo: boundary.left, constant: insets.constant(for: .left))
+                .constraint(to: boundary.left, constant: insets.constant(for: .left))
                 .withPriority(priority)
         case .bottom:
             return layoutItemView
                 .bottom
-                .constraint(equalTo: boundary.bottom, constant: insets.constant(for: .bottom))
+                .constraint(to: boundary.bottom, constant: insets.constant(for: .bottom))
                 .withPriority(priority)
         case .right:
             return layoutItemView
                 .right
-                .constraint(equalTo: boundary.right, constant: insets.constant(for: .right))
+                .constraint(to: boundary.right, constant: insets.constant(for: .right))
                 .withPriority(priority)
         }
     }
