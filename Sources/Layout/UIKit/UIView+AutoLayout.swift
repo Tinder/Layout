@@ -328,10 +328,10 @@ extension UIView {
         guard let superview: UIView
         else { return [] }
         return [
-            leading.constraint(equalTo: superview.leading, constant: insets.leading),
-            trailing.constraint(equalTo: superview.trailing, constant: -insets.trailing),
-            top.constraint(equalTo: superview.top, constant: insets.top),
-            bottom.constraint(equalTo: superview.bottom, constant: -insets.bottom)
+            leading.constraint(to: superview.leading, constant: insets.leading),
+            trailing.constraint(to: superview.trailing, constant: -insets.trailing),
+            top.constraint(to: superview.top, constant: insets.top),
+            bottom.constraint(to: superview.bottom, constant: -insets.bottom)
         ]
     }
 
@@ -348,10 +348,10 @@ extension UIView {
         guard let superview: UIView
         else { return [] }
         return [
-            left.constraint(equalTo: superview.left, constant: insets.left),
-            right.constraint(equalTo: superview.right, constant: -insets.right),
-            top.constraint(equalTo: superview.top, constant: insets.top),
-            bottom.constraint(equalTo: superview.bottom, constant: -insets.bottom)
+            left.constraint(to: superview.left, constant: insets.left),
+            right.constraint(to: superview.right, constant: -insets.right),
+            top.constraint(to: superview.top, constant: insets.top),
+            bottom.constraint(to: superview.bottom, constant: -insets.bottom)
         ]
     }
 
@@ -368,8 +368,8 @@ extension UIView {
         guard let superview: UIView
         else { return [] }
         return [
-            left.constraint(equalTo: superview.left, constant: inset),
-            right.constraint(equalTo: superview.right, constant: -inset)
+            left.constraint(to: superview.left, constant: inset),
+            right.constraint(to: superview.right, constant: -inset)
         ]
     }
 }
