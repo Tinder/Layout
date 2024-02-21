@@ -24,17 +24,18 @@ extension NSLayoutDimension {
     public func constraint(
         is relation: NSLayoutConstraint.Relation = .equal,
         to anchor: NSLayoutDimension,
+        multiplier: CGFloat = 1,
         constant: CGFloat = 0
     ) -> NSLayoutConstraint {
         switch relation {
         case .equal:
-            return constraint(equalTo: anchor, constant: constant)
+            return constraint(equalTo: anchor, multiplier: multiplier, constant: constant)
         case .greaterThanOrEqual:
-            return constraint(greaterThanOrEqualTo: anchor, constant: constant)
+            return constraint(greaterThanOrEqualTo: anchor, multiplier: multiplier, constant: constant)
         case .lessThanOrEqual:
-            return constraint(lessThanOrEqualTo: anchor, constant: constant)
+            return constraint(lessThanOrEqualTo: anchor, multiplier: multiplier, constant: constant)
         @unknown default:
-            return constraint(equalTo: anchor, constant: constant)
+            return constraint(equalTo: anchor, multiplier: multiplier, constant: constant)
         }
     }
 
