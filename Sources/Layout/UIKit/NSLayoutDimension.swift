@@ -18,6 +18,7 @@ extension NSLayoutDimension {
     /// - Parameters:
     ///   - relation: The relationship between the receiver and the dimension anchor.
     ///   - anchor: The anchor to which to constrain.
+    ///   - multiplier: The multiplier for the constraint.
     ///   - constant: The offset for the constraint.
     ///
     /// - Returns: The created constraint.
