@@ -266,12 +266,7 @@ extension UIView {
         multiplier: CGFloat = 1,
         constant: CGFloat = 0
     ) -> [NSLayoutConstraint] {
-        attributes.map { attribute in
-            constraint(is: relation,
-                       toSuperview: attribute,
-                       multiplier: multiplier,
-                       constant: constant)
-        }
+        attributes.map { constraint(is: relation, toSuperview: $0, multiplier: multiplier, constant: constant) }
     }
 
     /// Creates constraints defining the relationship between the given attributes of the receiver and target view.
@@ -291,13 +286,7 @@ extension UIView {
         multiplier: CGFloat = 1,
         constant: CGFloat = 0
     ) -> [NSLayoutConstraint] {
-        attributes.map { attribute in
-            constraint(is: relation,
-                       to: attribute,
-                       of: targetView,
-                       multiplier: multiplier,
-                       constant: constant)
-        }
+        attributes.map { constraint(is: relation, to: $0, of: targetView, multiplier: multiplier, constant: constant) }
     }
 
     // swiftlint:enable function_default_parameter_at_end
