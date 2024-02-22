@@ -343,7 +343,7 @@ extension LayoutItem {
         and trailing: NSLayoutXAxisAnchor
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let superview = layoutItem.layoutItemView.superview {
+            if let superview: UIView = layoutItem.layoutItemView.superview {
                 let guide: UILayoutGuide = {
                     let guide: UILayoutGuide = .init()
                     superview.addLayoutGuide(guide)
@@ -399,7 +399,7 @@ extension LayoutItem {
         and bottom: NSLayoutYAxisAnchor
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let superview = layoutItem.layoutItemView.superview {
+            if let superview: UIView = layoutItem.layoutItemView.superview {
                 let guide: UILayoutGuide = {
                     let guide: UILayoutGuide = .init()
                     superview.addLayoutGuide(guide)

@@ -422,7 +422,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
         _ views: [UIView]
     ) -> Layout {
         guard views.count >= 2,
-              let first = views.first
+              let first: UIView = views.first
         else { return self }
         for view in views.dropFirst() {
             adding(view.constraints(to: attributes, of: first))
@@ -587,7 +587,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
         alignment: YAxisAttribute...
     ) -> Layout {
         guard views.count >= 2,
-              let first = views.first
+              let first: UIView = views.first
         else { return self }
         switch direction {
         case .leadingToTrailing:
@@ -633,7 +633,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
         alignment: XAxisAttribute...
     ) -> Layout {
         guard views.count >= 2,
-              let first = views.first
+              let first: UIView = views.first
         else { return self }
         var anchor: NSLayoutYAxisAnchor = first.bottom
         for view in views.dropFirst() {
