@@ -8,7 +8,7 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
-import Layout
+@testable import Layout
 import Nimble
 import UIKit
 import XCTest
@@ -854,5 +854,137 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints.count) == 2
         expect(constraints[0]).to(match(view.left.constraint(to: superview.left, constant: inset)))
         expect(constraints[1]).to(match(view.right.constraint(to: superview.right, constant: -inset)))
+    }
+
+    // MARK: - Margins
+
+    func testMarginConstraintsInset() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+        superview.addSubview(view)
+
+        // WHEN
+
+        let constraints: [NSLayoutConstraint] = view.marginConstraints()
+
+        // THEN
+
+        expect(constraints.count) == 4
+        expect(constraints[0]).to(match(view.left.constraint(to: superview.margins.left)))
+        expect(constraints[1]).to(match(view.right.constraint(to: superview.margins.right)))
+        expect(constraints[2]).to(match(view.top.constraint(to: superview.margins.top)))
+        expect(constraints[3]).to(match(view.bottom.constraint(to: superview.margins.bottom)))
+    }
+
+    func testMarginConstraintsInset_givenInset() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+        superview.addSubview(view)
+        let inset: CGFloat = 10
+
+        // WHEN
+
+        let constraints: [NSLayoutConstraint] = view.marginConstraints(inset: inset)
+
+        // THEN
+
+        expect(constraints.count) == 4
+        expect(constraints[0]).to(match(view.left.constraint(to: superview.margins.left, constant: inset)))
+        expect(constraints[1]).to(match(view.right.constraint(to: superview.margins.right, constant: -inset)))
+        expect(constraints[2]).to(match(view.top.constraint(to: superview.margins.top, constant: inset)))
+        expect(constraints[3]).to(match(view.bottom.constraint(to: superview.margins.bottom, constant: -inset)))
+    }
+
+    func testMarginConstraintsInsetsDirectional() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+        superview.addSubview(view)
+        let insets: NSDirectionalEdgeInsets = .init(top: 1, leading: 2, bottom: 3, trailing: 4)
+
+        // WHEN
+
+        let constraints: [NSLayoutConstraint] = view.marginConstraints(insets: insets)
+
+        // THEN
+
+        expect(constraints.count) == 4
+        expect(constraints[0])
+            .to(match(view.leading.constraint(to: superview.margins.leading, constant: insets.leading)))
+        expect(constraints[1])
+            .to(match(view.trailing.constraint(to: superview.margins.trailing, constant: -insets.trailing)))
+        expect(constraints[2])
+            .to(match(view.top.constraint(to: superview.margins.top, constant: insets.top)))
+        expect(constraints[3])
+            .to(match(view.bottom.constraint(to: superview.margins.bottom, constant: -insets.bottom)))
+    }
+
+    func testMarginConstraintsInsetsCanonical() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+        superview.addSubview(view)
+        let insets: UIEdgeInsets = .init(top: 1, left: 2, bottom: 3, right: 4)
+
+        // WHEN
+
+        let constraints: [NSLayoutConstraint] = view.marginConstraints(insets: insets)
+
+        // THEN
+
+        expect(constraints.count) == 4
+        expect(constraints[0]).to(match(view.left.constraint(to: superview.margins.left, constant: insets.left)))
+        expect(constraints[1]).to(match(view.right.constraint(to: superview.margins.right, constant: -insets.right)))
+        expect(constraints[2]).to(match(view.top.constraint(to: superview.margins.top, constant: insets.top)))
+        expect(constraints[3]).to(match(view.bottom.constraint(to: superview.margins.bottom, constant: -insets.bottom)))
+    }
+
+    func testSideMarginConstraintsInset() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+        superview.addSubview(view)
+
+        // WHEN
+
+        let constraints: [NSLayoutConstraint] = view.sideMarginConstraints()
+
+        // THEN
+
+        expect(constraints.count) == 2
+        expect(constraints[0]).to(match(view.left.constraint(to: superview.margins.left)))
+        expect(constraints[1]).to(match(view.right.constraint(to: superview.margins.right)))
+    }
+
+    func testSideMarginConstraintsInset_givenInset() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+        superview.addSubview(view)
+        let inset: CGFloat = 10
+
+        // WHEN
+
+        let constraints: [NSLayoutConstraint] = view.sideMarginConstraints(inset: inset)
+
+        // THEN
+
+        expect(constraints.count) == 2
+        expect(constraints[0]).to(match(view.left.constraint(to: superview.margins.left, constant: inset)))
+        expect(constraints[1]).to(match(view.right.constraint(to: superview.margins.right, constant: -inset)))
     }
 }

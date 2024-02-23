@@ -7,6 +7,8 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
+// swiftlint:disable file_length
+
 import UIKit
 
 extension UIView {
@@ -370,6 +372,77 @@ extension UIView {
         return [
             left.constraint(to: superview.left, constant: inset),
             right.constraint(to: superview.right, constant: -inset)
+        ]
+    }
+
+    // MARK: - Margins
+
+    /// Creates constraints aligning the edges of the receiver to the margins of the superview with an inset.
+    ///
+    /// - Parameter inset: The inset value.
+    ///
+    /// - Returns: The created constraints.
+    public func marginConstraints(
+        inset: CGFloat = 0
+    ) -> [NSLayoutConstraint] {
+        marginConstraints(insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset))
+    }
+
+    /// Creates constraints aligning the edges of the receiver to the margins of the superview with directional insets
+    /// ([`NSDirectionalEdgeInsets`](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets)).
+    ///
+    /// - Parameter insets: The directional insets.
+    ///
+    /// - Returns: The created constraints.
+    public func marginConstraints(
+        insets: DirectionalInsets
+    ) -> [NSLayoutConstraint] {
+        assert(superview != nil, "marginConstraints(insets:) requires superview")
+        guard let superview: UIView
+        else { return [] }
+        return [
+            leading.constraint(to: superview.margins.leading, constant: insets.leading),
+            trailing.constraint(to: superview.margins.trailing, constant: -insets.trailing),
+            top.constraint(to: superview.margins.top, constant: insets.top),
+            bottom.constraint(to: superview.margins.bottom, constant: -insets.bottom)
+        ]
+    }
+
+    /// Creates constraints aligning the edges of the receiver to the margins of the superview with canonical insets
+    /// ([`UIEdgeInsets`](https://developer.apple.com/documentation/uikit/uiedgeinsets)).
+    ///
+    /// - Parameter insets: The canonical insets.
+    ///
+    /// - Returns: The created constraints.
+    public func marginConstraints(
+        insets: CanonicalInsets
+    ) -> [NSLayoutConstraint] {
+        assert(superview != nil, "marginConstraints(insets:) requires superview")
+        guard let superview: UIView
+        else { return [] }
+        return [
+            left.constraint(to: superview.margins.left, constant: insets.left),
+            right.constraint(to: superview.margins.right, constant: -insets.right),
+            top.constraint(to: superview.margins.top, constant: insets.top),
+            bottom.constraint(to: superview.margins.bottom, constant: -insets.bottom)
+        ]
+    }
+
+    /// Creates constraints aligning the left and right edges of the receiver to the corresponding margins of the
+    /// superview with an inset.
+    ///
+    /// - Parameter inset: The inset value.
+    ///
+    /// - Returns: The created constraints.
+    public func sideMarginConstraints(
+        inset: CGFloat = 0
+    ) -> [NSLayoutConstraint] {
+        assert(superview != nil, "sideMarginConstraints(inset:) requires superview")
+        guard let superview: UIView
+        else { return [] }
+        return [
+            left.constraint(to: superview.margins.left, constant: inset),
+            right.constraint(to: superview.margins.right, constant: -inset)
         ]
     }
 }
