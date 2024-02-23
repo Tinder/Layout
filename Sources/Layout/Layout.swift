@@ -497,9 +497,9 @@ public final class Layout { // swiftlint:disable:this type_body_length
         let guide: UILayoutGuide = .init()
         layoutView.addLayoutGuide(guide)
         return adding([
-            guide.leading.constraint(equalTo: leading),
-            guide.trailing.constraint(equalTo: trailing),
-            view.centerX.constraint(equalTo: guide.centerX).withPriority(priority)
+            guide.leading.constraint(to: leading),
+            guide.trailing.constraint(to: trailing),
+            view.centerX.constraint(to: guide.centerX).withPriority(priority)
         ])
     }
 
@@ -555,9 +555,9 @@ public final class Layout { // swiftlint:disable:this type_body_length
         let guide: UILayoutGuide = .init()
         layoutView.addLayoutGuide(guide)
         return adding([
-            guide.top.constraint(equalTo: top),
-            guide.bottom.constraint(equalTo: bottom),
-            view.centerY.constraint(equalTo: guide.centerY).withPriority(priority)
+            guide.top.constraint(to: top),
+            guide.bottom.constraint(to: bottom),
+            view.centerY.constraint(to: guide.centerY).withPriority(priority)
         ])
     }
 
@@ -593,13 +593,13 @@ public final class Layout { // swiftlint:disable:this type_body_length
         case .leadingToTrailing:
             var anchor: NSLayoutXAxisAnchor = first.trailing
             for view in views.dropFirst() {
-                adding(view.leading.constraint(equalTo: anchor, constant: spacing).withPriority(priority))
+                adding(view.leading.constraint(to: anchor, constant: spacing).withPriority(priority))
                 anchor = view.trailing
             }
         case .leftToRight:
             var anchor: NSLayoutXAxisAnchor = first.right
             for view in views.dropFirst() {
-                adding(view.left.constraint(equalTo: anchor, constant: spacing).withPriority(priority))
+                adding(view.left.constraint(to: anchor, constant: spacing).withPriority(priority))
                 anchor = view.right
             }
         }
@@ -607,7 +607,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
             let firstAnchor: NSLayoutYAxisAnchor = first.anchor(for: attribute)
             let constraints: [NSLayoutConstraint] = views
                 .dropFirst()
-                .map { $0.anchor(for: attribute).constraint(equalTo: firstAnchor) }
+                .map { $0.anchor(for: attribute).constraint(to: firstAnchor) }
             adding(constraints.withPriority(priority))
         }
         return self
@@ -637,14 +637,14 @@ public final class Layout { // swiftlint:disable:this type_body_length
         else { return self }
         var anchor: NSLayoutYAxisAnchor = first.bottom
         for view in views.dropFirst() {
-            adding(view.top.constraint(equalTo: anchor, constant: spacing).withPriority(priority))
+            adding(view.top.constraint(to: anchor, constant: spacing).withPriority(priority))
             anchor = view.bottom
         }
         for attribute: XAxisAttribute in alignment {
             let firstAnchor: NSLayoutXAxisAnchor = first.anchor(for: attribute)
             let constraints: [NSLayoutConstraint] = views
                 .dropFirst()
-                .map { $0.anchor(for: attribute).constraint(equalTo: firstAnchor) }
+                .map { $0.anchor(for: attribute).constraint(to: firstAnchor) }
             adding(constraints.withPriority(priority))
         }
         return self
