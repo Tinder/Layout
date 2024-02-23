@@ -14,7 +14,7 @@ import XCTest
 @MainActor
 final class NSLayoutDimensionTests: XCTestCase {
 
-    func testConstraintIsRelationToAnchorConstant_givenDefaults() {
+    func testConstraintIsRelationToAnchorMultiplierConstant_givenDefaults() {
 
         // GIVEN
 
@@ -35,7 +35,28 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
-    func testConstraintIsRelationToAnchorConstant_givenConstant() {
+    func testConstraintIsRelationToAnchorMultiplierConstant_givenMultiplier() {
+
+        // GIVEN
+
+        let viewA: UIView = .init()
+        let viewB: UIView = .init()
+        let expected: NSLayoutConstraint = viewA
+            .width
+            .constraint(equalTo: viewB.width, multiplier: 23)
+
+        // WHEN
+
+        let constraint: NSLayoutConstraint = viewA
+            .width
+            .constraint(to: viewB.width, multiplier: 23)
+
+        // THEN
+
+        expect(constraint).to(match(expected))
+    }
+
+    func testConstraintIsRelationToAnchorMultiplierConstant_givenConstant() {
 
         // GIVEN
 
@@ -56,7 +77,7 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
-    func testConstraintIsRelationToAnchorConstant_givenGreaterThanOrEqualRelation() {
+    func testConstraintIsRelationToAnchorMultiplierConstant_givenGreaterThanOrEqualRelation() {
 
         // GIVEN
 
@@ -77,7 +98,7 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
-    func testConstraintIsRelationToAnchorConstant_givenLessThanOrEqualRelation() {
+    func testConstraintIsRelationToAnchorMultiplierConstant_givenLessThanOrEqualRelation() {
 
         // GIVEN
 
