@@ -230,8 +230,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            layoutItem.layoutItemView.widthConstraint(length).withPriority(priority)
-            layoutItem.layoutItemView.heightConstraint(length).withPriority(priority)
+            layoutItem.layoutItemView.squareConstraints(length).withPriority(priority)
         }
     }
 
@@ -239,7 +238,9 @@ extension LayoutItem {
     ///
     /// - Returns: The layout item instance with the added constraint.
     public func square() -> LayoutItem {
-        aspectRatio(1)
+        addingSuperviewConstraints { layoutItem in
+            layoutItem.layoutItemView.squareConstraint()
+        }
     }
 
     // MARK: - Aspect Ratio
@@ -256,9 +257,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            layoutItem.layoutItemView
-                .constraint(for: .width, to: .height, of: layoutItem.layoutItemView, multiplier: ratio)
-                .withPriority(priority)
+            layoutItem.layoutItemView.aspectRatioConstraint(ratio).withPriority(priority)
         }
     }
 
