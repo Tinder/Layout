@@ -125,8 +125,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            layoutItem.layoutItemView.widthConstraint(width).withPriority(priority)
-            layoutItem.layoutItemView.heightConstraint(height).withPriority(priority)
+            layoutItem.layoutItemView.sizeConstraints(width: width, height: height).withPriority(priority)
         }
     }
 
@@ -141,7 +140,9 @@ extension LayoutItem {
         _ size: CGSize,
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
-        self.size(width: size.width, height: size.height, priority: priority)
+        addingSuperviewConstraints { layoutItem in
+            layoutItem.layoutItemView.sizeConstraints(size).withPriority(priority)
+        }
     }
 
     // MARK: - Width

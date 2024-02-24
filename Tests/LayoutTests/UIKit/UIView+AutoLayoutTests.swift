@@ -259,6 +259,57 @@ final class UIViewAutoLayoutTests: XCTestCase {
                                                                 constant: 40)))
     }
 
+    func testSizeConstraintsWithWidthAndHeight() {
+
+        // GIVEN
+
+        let view: UIView = .init()
+
+        // WHEN
+
+        let sizeConstraints1: [NSLayoutConstraint] = view.sizeConstraints(width: 10, height: 20)
+
+        // THEN
+
+        expect(sizeConstraints1.count) == 2
+        expect(sizeConstraints1[0]).to(match(NSLayoutConstraint(item: view,
+                                                                attribute: .width,
+                                                                relatedBy: .equal,
+                                                                toItem: nil,
+                                                                attribute: .notAnAttribute,
+                                                                multiplier: 1,
+                                                                constant: 10)))
+        expect(sizeConstraints1[1]).to(match(NSLayoutConstraint(item: view,
+                                                                attribute: .height,
+                                                                relatedBy: .equal,
+                                                                toItem: nil,
+                                                                attribute: .notAnAttribute,
+                                                                multiplier: 1,
+                                                                constant: 20)))
+
+        // WHEN
+
+        let sizeConstraints2: [NSLayoutConstraint] = view.sizeConstraints(CGSize(width: 20, height: 40))
+
+        // THEN
+
+        expect(sizeConstraints2.count) == 2
+        expect(sizeConstraints2[0]).to(match(NSLayoutConstraint(item: view,
+                                                                attribute: .width,
+                                                                relatedBy: .equal,
+                                                                toItem: nil,
+                                                                attribute: .notAnAttribute,
+                                                                multiplier: 1,
+                                                                constant: 20)))
+        expect(sizeConstraints2[1]).to(match(NSLayoutConstraint(item: view,
+                                                                attribute: .height,
+                                                                relatedBy: .equal,
+                                                                toItem: nil,
+                                                                attribute: .notAnAttribute,
+                                                                multiplier: 1,
+                                                                constant: 40)))
+    }
+
     // MARK: - Width
 
     func testWidthConstraintIsRelationToConstant() {

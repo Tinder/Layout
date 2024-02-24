@@ -72,6 +72,20 @@ extension UIView {
         ]
     }
 
+    /// Creates constraints defining the size of the receiver.
+    ///
+    /// - Parameters:
+    ///   - width: The constant width value.
+    ///   - height: The constant height value.
+    ///
+    /// - Returns: The created constraints.
+    public func sizeConstraints(
+        width: CGFloat,
+        height: CGFloat
+    ) -> [NSLayoutConstraint] {
+        sizeConstraints(CGSize(width: width, height: height))
+    }
+
     // MARK: - Width
 
     /// Creates a constraint defining the width of the receiver.
