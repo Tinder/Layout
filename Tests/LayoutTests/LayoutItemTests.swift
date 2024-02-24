@@ -61,28 +61,6 @@ final class LayoutItemTests: XCTestCase {
 
     // MARK: - Size
 
-    func testSizeWidthHeightPriority() {
-        assertLayout { view in
-            view.layout {
-
-                // Size Width and Height with Default Priority
-
-                pinkView
-                    .to([.top, .leading])
-                    .size(width: 150, height: 250, priority: .high)
-                    .size(width: 100, height: 200)
-
-                // Size Width and Height with Priority
-
-                yellowView
-                    .to([.top, .trailing])
-                    .size(width: 50, height: 50, priority: .low)
-                    .size(width: 100, height: 200, priority: .high)
-            }
-            .activate()
-        }
-    }
-
     func testSizeWithSizePriority() {
         assertLayout { view in
             view.layout {
@@ -100,6 +78,28 @@ final class LayoutItemTests: XCTestCase {
                     .to([.top, .trailing])
                     .size(CGSize(width: 50, height: 50), priority: .low)
                     .size(CGSize(width: 100, height: 200), priority: .high)
+            }
+            .activate()
+        }
+    }
+
+    func testSizeWidthHeightPriority() {
+        assertLayout { view in
+            view.layout {
+
+                // Size Width and Height with Default Priority
+
+                pinkView
+                    .to([.top, .leading])
+                    .size(width: 150, height: 250, priority: .high)
+                    .size(width: 100, height: 200)
+
+                // Size Width and Height with Priority
+
+                yellowView
+                    .to([.top, .trailing])
+                    .size(width: 50, height: 50, priority: .low)
+                    .size(width: 100, height: 200, priority: .high)
             }
             .activate()
         }
