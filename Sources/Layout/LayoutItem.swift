@@ -75,22 +75,9 @@ extension LayoutItem {
         set { layoutItemView.accessibilityIdentifier = newValue }
     }
 
-    private var marginsGuide: UILayoutGuide? {
-        guard let superview: UIView = layoutItemView.superview
-        else {
-            assertionFailure("Missing required superview reference")
-            return nil
-        }
-        return superview.layoutMarginsGuide
-    }
-
-    private var safeAreaGuide: UILayoutGuide? {
-        guard let superview: UIView = layoutItemView.superview
-        else {
-            assertionFailure("Missing required superview reference")
-            return nil
-        }
-        return superview.safeAreaLayoutGuide
+    private var superview: UIView? {
+        assert(layoutItemView.superview != nil, "`layoutItemView` must have a `superview`")
+        return layoutItemView.superview
     }
 
     // MARK: - Identifier
@@ -343,7 +330,7 @@ extension LayoutItem {
         and trailing: NSLayoutXAxisAnchor
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let superview: UIView = layoutItem.layoutItemView.superview {
+            if let superview: UIView = layoutItem.superview {
                 let guide: UILayoutGuide = {
                     let guide: UILayoutGuide = .init()
                     superview.addLayoutGuide(guide)
@@ -399,7 +386,7 @@ extension LayoutItem {
         and bottom: NSLayoutYAxisAnchor
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let superview: UIView = layoutItem.layoutItemView.superview {
+            if let superview: UIView = layoutItem.superview {
                 let guide: UILayoutGuide = {
                     let guide: UILayoutGuide = .init()
                     superview.addLayoutGuide(guide)
@@ -486,7 +473,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let superview: UIView = layoutItem.layoutItemView.superview {
+            if let superview: UIView = layoutItem.superview {
                 for edge: DirectionalEdge in insets.edgeType.allCases {
                     layoutItem.constraint(to: edge, of: superview, insets: insets, priority: priority)
                 }
@@ -507,7 +494,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let superview: UIView = layoutItem.layoutItemView.superview {
+            if let superview: UIView = layoutItem.superview {
                 for edge: CanonicalEdge in insets.edgeType.allCases {
                     layoutItem.constraint(to: edge, of: superview, insets: insets, priority: priority)
                 }
@@ -530,7 +517,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let superview: UIView = layoutItem.layoutItemView.superview {
+            if let superview: UIView = layoutItem.superview {
                 for edge: DirectionalEdge in edges {
                     layoutItem.constraint(to: edge, of: superview, inset: inset, priority: priority)
                 }
@@ -553,7 +540,7 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let superview: UIView = layoutItem.layoutItemView.superview {
+            if let superview: UIView = layoutItem.superview {
                 for edge: CanonicalEdge in edges {
                     layoutItem.constraint(to: edge, of: superview, inset: inset, priority: priority)
                 }
@@ -593,9 +580,9 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let layoutGuide: UILayoutGuide = layoutItem.marginsGuide {
+            if let margins: UILayoutGuide = layoutItem.superview?.margins {
                 for edge: DirectionalEdge in insets.edgeType.allCases {
-                    layoutItem.constraint(to: edge, of: layoutGuide, insets: insets, priority: priority)
+                    layoutItem.constraint(to: edge, of: margins, insets: insets, priority: priority)
                 }
             }
         }
@@ -614,9 +601,9 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let layoutGuide: UILayoutGuide = layoutItem.marginsGuide {
+            if let margins: UILayoutGuide = layoutItem.superview?.margins {
                 for edge: CanonicalEdge in insets.edgeType.allCases {
-                    layoutItem.constraint(to: edge, of: layoutGuide, insets: insets, priority: priority)
+                    layoutItem.constraint(to: edge, of: margins, insets: insets, priority: priority)
                 }
             }
         }
@@ -637,9 +624,9 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let layoutGuide: UILayoutGuide = layoutItem.marginsGuide {
+            if let margins: UILayoutGuide = layoutItem.superview?.margins {
                 for edge: DirectionalEdge in edges {
-                    layoutItem.constraint(to: edge, of: layoutGuide, inset: inset, priority: priority)
+                    layoutItem.constraint(to: edge, of: margins, inset: inset, priority: priority)
                 }
             }
         }
@@ -660,9 +647,9 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let layoutGuide: UILayoutGuide = layoutItem.marginsGuide {
+            if let margins: UILayoutGuide = layoutItem.superview?.margins {
                 for edge: CanonicalEdge in edges {
-                    layoutItem.constraint(to: edge, of: layoutGuide, inset: inset, priority: priority)
+                    layoutItem.constraint(to: edge, of: margins, inset: inset, priority: priority)
                 }
             }
         }
@@ -700,9 +687,9 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let layoutGuide: UILayoutGuide = layoutItem.safeAreaGuide {
+            if let safeArea: UILayoutGuide = layoutItem.superview?.safeArea {
                 for edge: DirectionalEdge in insets.edgeType.allCases {
-                    layoutItem.constraint(to: edge, of: layoutGuide, insets: insets, priority: priority)
+                    layoutItem.constraint(to: edge, of: safeArea, insets: insets, priority: priority)
                 }
             }
         }
@@ -721,9 +708,9 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let layoutGuide: UILayoutGuide = layoutItem.safeAreaGuide {
+            if let safeArea: UILayoutGuide = layoutItem.superview?.safeArea {
                 for edge: CanonicalEdge in insets.edgeType.allCases {
-                    layoutItem.constraint(to: edge, of: layoutGuide, insets: insets, priority: priority)
+                    layoutItem.constraint(to: edge, of: safeArea, insets: insets, priority: priority)
                 }
             }
         }
@@ -744,9 +731,9 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let layoutGuide: UILayoutGuide = layoutItem.safeAreaGuide {
+            if let safeArea: UILayoutGuide = layoutItem.superview?.safeArea {
                 for edge: DirectionalEdge in edges {
-                    layoutItem.constraint(to: edge, of: layoutGuide, inset: inset, priority: priority)
+                    layoutItem.constraint(to: edge, of: safeArea, inset: inset, priority: priority)
                 }
             }
         }
@@ -767,9 +754,9 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            if let layoutGuide: UILayoutGuide = layoutItem.safeAreaGuide {
+            if let safeArea: UILayoutGuide = layoutItem.superview?.safeArea {
                 for edge: CanonicalEdge in edges {
-                    layoutItem.constraint(to: edge, of: layoutGuide, inset: inset, priority: priority)
+                    layoutItem.constraint(to: edge, of: safeArea, inset: inset, priority: priority)
                 }
             }
         }
