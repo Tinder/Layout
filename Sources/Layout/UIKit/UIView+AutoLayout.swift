@@ -434,4 +434,57 @@ extension UIView {
             right.constraint(to: superview.margins.right, constant: -inset)
         ]
     }
+
+    // MARK: - Safe Area
+
+    /// Creates constraints aligning the edges of the receiver to the safe area of the superview with an inset.
+    ///
+    /// - Parameter inset: The inset value.
+    ///
+    /// - Returns: The created constraints.
+    public func safeAreaConstraints(
+        inset: CGFloat = 0
+    ) -> [NSLayoutConstraint] {
+        safeAreaConstraints(insets: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset))
+    }
+
+    /// Creates constraints aligning the edges of the receiver to the safe area of the superview with directional insets
+    /// ([`NSDirectionalEdgeInsets`](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets)).
+    ///
+    /// - Parameter insets: The directional insets.
+    ///
+    /// - Returns: The created constraints.
+    public func safeAreaConstraints(
+        insets: DirectionalInsets
+    ) -> [NSLayoutConstraint] {
+        assert(superview != nil, "safeAreaConstraints(insets:) requires superview")
+        guard let superview: UIView
+        else { return [] }
+        return [
+            leading.constraint(to: superview.safeArea.leading, constant: insets.leading),
+            trailing.constraint(to: superview.safeArea.trailing, constant: -insets.trailing),
+            top.constraint(to: superview.safeArea.top, constant: insets.top),
+            bottom.constraint(to: superview.safeArea.bottom, constant: -insets.bottom)
+        ]
+    }
+
+    /// Creates constraints aligning the edges of the receiver to the safe area of the superview with canonical insets
+    /// ([`UIEdgeInsets`](https://developer.apple.com/documentation/uikit/uiedgeinsets)).
+    ///
+    /// - Parameter insets: The canonical insets.
+    ///
+    /// - Returns: The created constraints.
+    public func safeAreaConstraints(
+        insets: CanonicalInsets
+    ) -> [NSLayoutConstraint] {
+        assert(superview != nil, "safeAreaConstraints(insets:) requires superview")
+        guard let superview: UIView
+        else { return [] }
+        return [
+            left.constraint(to: superview.safeArea.left, constant: insets.left),
+            right.constraint(to: superview.safeArea.right, constant: -insets.right),
+            top.constraint(to: superview.safeArea.top, constant: insets.top),
+            bottom.constraint(to: superview.safeArea.bottom, constant: -insets.bottom)
+        ]
+    }
 }
