@@ -155,7 +155,7 @@ extension UIView {
     public func aspectRatioConstraint(
         _ ratio: CGFloat
     ) -> NSLayoutConstraint {
-        constraint(for: .width, to: .height, of: self, multiplier: ratio)
+        width.constraint(to: height, multiplier: ratio)
     }
 
     // MARK: - Equal
@@ -184,9 +184,12 @@ extension UIView {
     public func centerConstraints(
         offset: UIOffset = .zero
     ) -> [NSLayoutConstraint] {
-        [
-            constraint(toSuperview: .centerX, constant: offset.horizontal),
-            constraint(toSuperview: .centerY, constant: offset.vertical)
+        assert(superview != nil, "centerConstraints(offset:) requires superview")
+        guard let superview: UIView
+        else { return [] }
+        return [
+            centerX.constraint(to: superview.centerX, constant: offset.horizontal),
+            centerY.constraint(to: superview.centerY, constant: offset.vertical)
         ]
     }
 
