@@ -114,6 +114,22 @@ extension LayoutItem {
     /// Adds constraints defining the size of the ``layoutItemView``.
     ///
     /// - Parameters:
+    ///   - size: The size value.
+    ///   - priority: The priority of the constraints.
+    ///
+    /// - Returns: The layout item instance with the added constraints.
+    public func size(
+        _ size: CGSize,
+        priority: UILayoutPriority = .required
+    ) -> LayoutItem {
+        addingSuperviewConstraints { layoutItem in
+            layoutItem.layoutItemView.sizeConstraints(size).withPriority(priority)
+        }
+    }
+
+    /// Adds constraints defining the size of the ``layoutItemView``.
+    ///
+    /// - Parameters:
     ///   - width: The width value.
     ///   - height: The height value.
     ///   - priority: The priority of the constraints.
@@ -125,23 +141,8 @@ extension LayoutItem {
         priority: UILayoutPriority = .required
     ) -> LayoutItem {
         addingSuperviewConstraints { layoutItem in
-            layoutItem.layoutItemView.widthConstraint(width).withPriority(priority)
-            layoutItem.layoutItemView.heightConstraint(height).withPriority(priority)
+            layoutItem.layoutItemView.sizeConstraints(width: width, height: height).withPriority(priority)
         }
-    }
-
-    /// Adds constraints defining the size of the ``layoutItemView``.
-    ///
-    /// - Parameters:
-    ///   - size: The size value.
-    ///   - priority: The priority of the constraints.
-    ///
-    /// - Returns: The layout item instance with the added constraints.
-    public func size(
-        _ size: CGSize,
-        priority: UILayoutPriority = .required
-    ) -> LayoutItem {
-        self.size(width: size.width, height: size.height, priority: priority)
     }
 
     // MARK: - Width
