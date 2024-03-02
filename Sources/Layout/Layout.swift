@@ -135,10 +135,10 @@ public final class Layout { // swiftlint:disable:this type_body_length
             if subview.superview != view {
                 view?.addSubview(subview)
             }
-            adding(item.superviewConstraints(item))
             if let key: String = subview.identifier, !key.isEmpty {
                 self.items[key] = subview
             }
+            adding(item.superviewConstraints(item))
         }
         return self
     }
