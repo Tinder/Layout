@@ -399,7 +399,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
         guard views.count >= 2,
               let first: UIView = views.first
         else { return self }
-        for view in views.dropFirst() {
+        for view: UIView in views.dropFirst() {
             adding(view.constraints(to: attributes, of: first))
         }
         return self
@@ -567,13 +567,13 @@ public final class Layout { // swiftlint:disable:this type_body_length
         switch direction {
         case .leadingToTrailing:
             var anchor: NSLayoutXAxisAnchor = first.trailing
-            for view in views.dropFirst() {
+            for view: UIView in views.dropFirst() {
                 adding(view.leading.constraint(to: anchor, constant: spacing).withPriority(priority))
                 anchor = view.trailing
             }
         case .leftToRight:
             var anchor: NSLayoutXAxisAnchor = first.right
-            for view in views.dropFirst() {
+            for view: UIView in views.dropFirst() {
                 adding(view.left.constraint(to: anchor, constant: spacing).withPriority(priority))
                 anchor = view.right
             }
@@ -611,7 +611,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
               let first: UIView = views.first
         else { return self }
         var anchor: NSLayoutYAxisAnchor = first.bottom
-        for view in views.dropFirst() {
+        for view: UIView in views.dropFirst() {
             adding(view.top.constraint(to: anchor, constant: spacing).withPriority(priority))
             anchor = view.bottom
         }
