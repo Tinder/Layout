@@ -987,4 +987,101 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[0]).to(match(view.left.constraint(to: superview.margins.left, constant: inset)))
         expect(constraints[1]).to(match(view.right.constraint(to: superview.margins.right, constant: -inset)))
     }
+
+    // MARK: - Safe Area
+
+    func testSafeAreaConstraintsInset() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+        superview.addSubview(view)
+
+        // WHEN
+
+        let constraints: [NSLayoutConstraint] = view.safeAreaConstraints()
+
+        // THEN
+
+        expect(constraints.count) == 4
+        expect(constraints[0]).to(match(view.left.constraint(to: superview.safeArea.left)))
+        expect(constraints[1]).to(match(view.right.constraint(to: superview.safeArea.right)))
+        expect(constraints[2]).to(match(view.top.constraint(to: superview.safeArea.top)))
+        expect(constraints[3]).to(match(view.bottom.constraint(to: superview.safeArea.bottom)))
+    }
+
+    func testSafeAreaConstraintsInset_givenInset() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+        superview.addSubview(view)
+        let inset: CGFloat = 10
+
+        // WHEN
+
+        let constraints: [NSLayoutConstraint] = view.safeAreaConstraints(inset: inset)
+
+        // THEN
+
+        expect(constraints.count) == 4
+        expect(constraints[0]).to(match(view.left.constraint(to: superview.safeArea.left, constant: inset)))
+        expect(constraints[1]).to(match(view.right.constraint(to: superview.safeArea.right, constant: -inset)))
+        expect(constraints[2]).to(match(view.top.constraint(to: superview.safeArea.top, constant: inset)))
+        expect(constraints[3]).to(match(view.bottom.constraint(to: superview.safeArea.bottom, constant: -inset)))
+    }
+
+    func testSafeAreaConstraintsInsetsDirectional() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+        superview.addSubview(view)
+        let insets: NSDirectionalEdgeInsets = .init(top: 1, leading: 2, bottom: 3, trailing: 4)
+
+        // WHEN
+
+        let constraints: [NSLayoutConstraint] = view.safeAreaConstraints(insets: insets)
+
+        // THEN
+
+        expect(constraints.count) == 4
+        expect(constraints[0])
+            .to(match(view.leading.constraint(to: superview.safeArea.leading, constant: insets.leading)))
+        expect(constraints[1])
+            .to(match(view.trailing.constraint(to: superview.safeArea.trailing, constant: -insets.trailing)))
+        expect(constraints[2])
+            .to(match(view.top.constraint(to: superview.safeArea.top, constant: insets.top)))
+        expect(constraints[3])
+            .to(match(view.bottom.constraint(to: superview.safeArea.bottom, constant: -insets.bottom)))
+    }
+
+    func testSafeAreaConstraintsInsetsCanonical() {
+
+        // GIVEN
+
+        let superview: UIView = .init()
+        let view: UIView = .init()
+        superview.addSubview(view)
+        let insets: UIEdgeInsets = .init(top: 1, left: 2, bottom: 3, right: 4)
+
+        // WHEN
+
+        let constraints: [NSLayoutConstraint] = view.safeAreaConstraints(insets: insets)
+
+        // THEN
+
+        expect(constraints.count) == 4
+        expect(constraints[0])
+            .to(match(view.left.constraint(to: superview.safeArea.left, constant: insets.left)))
+        expect(constraints[1])
+            .to(match(view.right.constraint(to: superview.safeArea.right, constant: -insets.right)))
+        expect(constraints[2])
+            .to(match(view.top.constraint(to: superview.safeArea.top, constant: insets.top)))
+        expect(constraints[3])
+            .to(match(view.bottom.constraint(to: superview.safeArea.bottom, constant: -insets.bottom)))
+    }
 }
