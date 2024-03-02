@@ -76,7 +76,7 @@ extension LayoutItem {
     }
 
     private var superview: UIView? {
-        assert(layoutItemView.superview != nil, "`layoutItemView` must have a `superview`")
+        assert(layoutItemView.superview != nil, "`layoutItemView` requires a `superview`")
         return layoutItemView.superview
     }
 
