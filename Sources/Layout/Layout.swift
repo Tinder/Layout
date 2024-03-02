@@ -270,25 +270,10 @@ public final class Layout { // swiftlint:disable:this type_body_length
         constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> Layout {
-        let constraint: NSLayoutConstraint
-        switch relation {
-        case .equal:
-            constraint = anchor.constraint(equalTo: targetAnchor,
-                                           multiplier: multiplier,
-                                           constant: constant)
-        case .greaterThanOrEqual:
-            constraint = anchor.constraint(greaterThanOrEqualTo: targetAnchor,
-                                           multiplier: multiplier,
-                                           constant: constant)
-        case .lessThanOrEqual:
-            constraint = anchor.constraint(lessThanOrEqualTo: targetAnchor,
-                                           multiplier: multiplier,
-                                           constant: constant)
-        @unknown default:
-            constraint = anchor.constraint(equalTo: targetAnchor,
-                                           multiplier: multiplier,
-                                           constant: constant)
-        }
+        let constraint: NSLayoutConstraint = anchor.constraint(is: relation,
+                                                               to: targetAnchor,
+                                                               multiplier: multiplier,
+                                                               constant: constant)
         return adding(constraint.withPriority(priority))
     }
 
@@ -308,17 +293,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
         to constant: CGFloat,
         priority: UILayoutPriority = .required
     ) -> Layout {
-        let constraint: NSLayoutConstraint
-        switch relation {
-        case .equal:
-            constraint = anchor.constraint(equalToConstant: constant)
-        case .greaterThanOrEqual:
-            constraint = anchor.constraint(greaterThanOrEqualToConstant: constant)
-        case .lessThanOrEqual:
-            constraint = anchor.constraint(lessThanOrEqualToConstant: constant)
-        @unknown default:
-            constraint = anchor.constraint(equalToConstant: constant)
-        }
+        let constraint: NSLayoutConstraint = anchor.constraint(is: relation, to: constant)
         return adding(constraint.withPriority(priority))
     }
 
