@@ -26,7 +26,7 @@ jobs:
         UNEXCLUDED=$(comm -23 <(echo "$SNAPSHOTS") <(echo "$EXCLUDED"))
         if test -n "$UNEXCLUDED"
         then
-            echo "ERROR: Snapshot directories must be excluded from Swift package:" >&2
+            echo "::error::Snapshot directories must be excluded from Swift package:" >&2
             echo "$UNEXCLUDED" >&2
             exit 1
         fi
