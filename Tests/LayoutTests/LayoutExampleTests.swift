@@ -197,7 +197,7 @@ final class LayoutExampleTests: XCTestCase {
         assertLayout { view in
             let item1: LayoutItem = subview1.toEdges()
             let item2: LayoutItem = subview2.square().center()
-            view.layout().addItems(item1, item2).activate()
+            view.layout(item1).addItem(item2).activate()
         }
     }
 

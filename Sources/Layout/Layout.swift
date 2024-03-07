@@ -108,39 +108,28 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     // MARK: - Adding Items
 
-    /// Adds items to the layout.
+    /// Adds an item to the layout.
     ///
-    /// - Parameter items: The items to be added as subviews.
+    /// - Parameter item: The item to be added as a subview.
     ///
-    /// - Returns: The receiver with the added subviews.
+    /// - Returns: The receiver with the added subview.
     @discardableResult
-    public func addItems(
-        _ items: LayoutItem...
+    public func addItem(
+        _ item: LayoutItem
     ) -> Layout {
-        addItems(items)
+        addItems([item])
     }
 
     /// Adds items to the layout.
     ///
-    /// - Parameter items: The items to be added as subviews.
+    /// - Parameter items: The builder that creates the items to be added as subviews.
     ///
     /// - Returns: The receiver with the added subviews.
     @discardableResult
     public func addItems(
-        _ items: [LayoutItem]
+        @LayoutBuilder items: () -> [LayoutItem]
     ) -> Layout {
-        items.forEach { item in
-            let subview: UIView = item.layoutItemView
-            subview.translatesAutoresizingMaskIntoConstraints = false
-            if subview.superview != view {
-                view?.addSubview(subview)
-            }
-            if let key: String = subview.identifier, !key.isEmpty {
-                self.items[key] = subview
-            }
-            adding(item.superviewConstraints(item))
-        }
-        return self
+        addItems(items())
     }
 
     // MARK: - Adding Constraints
@@ -743,5 +732,25 @@ public final class Layout { // swiftlint:disable:this type_body_length
         else { return }
         view.setNeedsUpdateConstraints()
         view.updateConstraintsIfNeeded()
+    }
+
+    // MARK: - Private
+
+    @discardableResult
+    private func addItems(
+        _ items: [LayoutItem]
+    ) -> Layout {
+        items.forEach { item in
+            let subview: UIView = item.layoutItemView
+            subview.translatesAutoresizingMaskIntoConstraints = false
+            if subview.superview != view {
+                view?.addSubview(subview)
+            }
+            if let key: String = subview.identifier, !key.isEmpty {
+                self.items[key] = subview
+            }
+            adding(item.superviewConstraints(item))
+        }
+        return self
     }
 }
