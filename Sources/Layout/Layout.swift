@@ -736,11 +736,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     // MARK: - Private
 
-    /// Adds items to the layout.
-    ///
-    /// - Parameter items: The items to be added as subviews.
-    ///
-    /// - Returns: The receiver with the added subviews.
     @discardableResult
     private func addItems(
         _ items: [LayoutItem]
