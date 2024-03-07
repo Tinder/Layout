@@ -19,9 +19,8 @@ final class CollectionTests: XCTestCase {
         // GIVEN
 
         let view1: UIView = .init()
-        let subview1: UIView = .init()
         let widthConstraint1: NSLayoutConstraint = .init(
-            item: subview1,
+            item: view1,
             attribute: .width,
             relatedBy: .equal,
             toItem: nil,
@@ -30,7 +29,7 @@ final class CollectionTests: XCTestCase {
             constant: 100
         )
         let heightConstraint1: NSLayoutConstraint = .init(
-            item: subview1,
+            item: view1,
             attribute: .height,
             relatedBy: .equal,
             toItem: nil,
@@ -38,12 +37,11 @@ final class CollectionTests: XCTestCase {
             multiplier: 1,
             constant: 100
         )
-        let layout1: Layout = .init(view1, subview1)
+        let layout1: Layout = .init(view1)
 
         let view2: UIView = .init()
-        let subview2: UIView = .init()
         let widthConstraint2: NSLayoutConstraint = .init(
-            item: subview1,
+            item: view1,
             attribute: .width,
             relatedBy: .equal,
             toItem: nil,
@@ -52,7 +50,7 @@ final class CollectionTests: XCTestCase {
             constant: 100
         )
         let heightConstraint2: NSLayoutConstraint = .init(
-            item: subview2,
+            item: view2,
             attribute: .height,
             relatedBy: .equal,
             toItem: nil,
@@ -60,7 +58,7 @@ final class CollectionTests: XCTestCase {
             multiplier: 1,
             constant: 100
         )
-        let layout2: Layout = .init(view2, subview2)
+        let layout2: Layout = .init(view2)
 
         let layouts: [Layout] = [layout1, layout2]
 

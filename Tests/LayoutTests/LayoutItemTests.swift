@@ -730,7 +730,7 @@ final class LayoutItemTests: XCTestCase {
 
         // THEN
 
-        expect(item.superviewConstraints(view)).to(throwAssertion())
+        expect(item.superviewConstraints(item)).to(throwAssertion())
 
         // WHEN
 
@@ -738,7 +738,7 @@ final class LayoutItemTests: XCTestCase {
 
         // THEN
 
-        expect(item.superviewConstraints(view).count) == 4
+        expect(item.superviewConstraints(item).count) == 4
     }
 
     func testToMarginsInsetsPriorityDirectional() {
@@ -882,7 +882,7 @@ final class LayoutItemTests: XCTestCase {
 
         // THEN
 
-        expect(item.superviewConstraints(view)).to(throwAssertion())
+        expect(item.superviewConstraints(item)).to(throwAssertion())
 
         // WHEN
 
@@ -890,7 +890,7 @@ final class LayoutItemTests: XCTestCase {
 
         // THEN
 
-        expect(item.superviewConstraints(view).count) == 4
+        expect(item.superviewConstraints(item).count) == 4
     }
 
     func testToSafeAreaInsetsPriorityDirectional() {

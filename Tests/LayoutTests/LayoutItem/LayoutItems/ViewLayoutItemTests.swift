@@ -18,7 +18,6 @@ final class ViewLayoutItemTests: XCTestCase {
 
         // GIVEN
 
-        let superview: UIView = .init()
         let view: UIView = .init()
         let constraint: NSLayoutConstraint = .init()
         var layoutItems: [LayoutItem] = []
@@ -36,12 +35,12 @@ final class ViewLayoutItemTests: XCTestCase {
 
         // WHEN
 
-        let superviewConstraints: [NSLayoutConstraint] = viewLayoutItem.superviewConstraints(superview)
+        let superviewConstraints: [NSLayoutConstraint] = viewLayoutItem.superviewConstraints(viewLayoutItem)
 
         // THEN
 
         expect(superviewConstraints === [constraint]) == true
-        expect(layoutItems === [superview]) == true
+        expect(layoutItems === [viewLayoutItem]) == true
     }
 
     func testLayoutBoundary() {
