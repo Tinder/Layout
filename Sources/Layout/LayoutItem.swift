@@ -30,7 +30,7 @@ public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
  * // Creating a layout with multiple items
  * let item1: LayoutItem = subview1.toEdges()
  * let item2: LayoutItem = subview2.square().center()
- * view.layout().addItems(item1, item2).activate()
+ * view.layout(item1).addItem(item2).activate()
  * ```
  *
  * The following code demonstrates the preferred way of constructing and activating a layout with multiple items

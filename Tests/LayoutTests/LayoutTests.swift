@@ -147,14 +147,13 @@ final class LayoutTests: XCTestCase {
 
     // MARK: - Adding Items
 
-    func testAddItemsVariadic() {
+    func testAddItem() {
 
         // GIVEN
 
         let view: UIView = .init()
         let layout: Layout = .init(view)
-        let view1: UIView = .init()
-        let view2: UIView = .init()
+        let subview: UIView = .init()
 
         // THEN
 
@@ -162,13 +161,12 @@ final class LayoutTests: XCTestCase {
 
         // WHEN
 
-        layout.addItems(view1.id("view1"), view2.id("view2"))
+        layout.addItem(subview.id("subview"))
 
         // THEN
 
-        expect(layout.items.count) == 2
-        expect(layout.items["view1"]) === view1
-        expect(layout.items["view2"]) === view2
+        expect(layout.items.count) == 1
+        expect(layout.items["subview"]) === subview
     }
 
     func testAddItems() {
@@ -177,8 +175,8 @@ final class LayoutTests: XCTestCase {
 
         let view: UIView = .init()
         let layout: Layout = .init(view)
-        let view1: UIView = .init()
-        let view2: UIView = .init()
+        let subview1: UIView = .init()
+        let subview2: UIView = .init()
 
         // THEN
 
@@ -186,13 +184,16 @@ final class LayoutTests: XCTestCase {
 
         // WHEN
 
-        layout.addItems([view1.id("view1"), view2.id("view2")])
+        layout.addItems {
+            subview1.id("subview1")
+            subview2.id("subview2")
+        }
 
         // THEN
 
         expect(layout.items.count) == 2
-        expect(layout.items["view1"]) === view1
-        expect(layout.items["view2"]) === view2
+        expect(layout.items["subview1"]) === subview1
+        expect(layout.items["subview2"]) === subview2
     }
 
     // MARK: - Adding Constraints
@@ -670,7 +671,7 @@ final class LayoutTests: XCTestCase {
         let superview: UIView = .init()
         let view1: UIView = .init()
         let view2: UIView = .init()
-        let layout: Layout = superview.layout().addItems(view1, view2)
+        let layout: Layout = superview.layout(view1).addItem(view2)
 
         // WHEN
 
@@ -762,7 +763,7 @@ final class LayoutTests: XCTestCase {
         var superview: UIView? = .init()
         let view: UIView = .init()
         let siblingView: UIView = .init()
-        let layout: Layout = superview!.layout().addItems(view, siblingView)
+        let layout: Layout = superview!.layout(view).addItem(siblingView)
         let leadingAnchor: NSLayoutXAxisAnchor = siblingView.trailing
         let trailingAnchor: NSLayoutXAxisAnchor = superview!.trailing
 
@@ -822,7 +823,7 @@ final class LayoutTests: XCTestCase {
         var superview: UIView? = .init()
         let view: UIView = .init()
         let siblingView: UIView = .init()
-        let layout: Layout = superview!.layout().addItems(view, siblingView)
+        let layout: Layout = superview!.layout(view).addItem(siblingView)
         let topAnchor: NSLayoutYAxisAnchor = siblingView.bottom
         let bottomAnchor: NSLayoutYAxisAnchor = superview!.bottom
 
@@ -941,7 +942,7 @@ final class LayoutTests: XCTestCase {
         let superview: UIView = .init()
         let view1: UIView = .init()
         let view2: UIView = .init()
-        let layout: Layout = superview.layout().addItems(view1, view2)
+        let layout: Layout = superview.layout(view1).addItem(view2)
 
         // WHEN
 
@@ -1043,7 +1044,7 @@ final class LayoutTests: XCTestCase {
         let superview: UIView = .init()
         let view1: UIView = .init()
         let view2: UIView = .init()
-        let layout: Layout = superview.layout().addItems(view1, view2)
+        let layout: Layout = superview.layout(view1).addItem(view2)
 
         // WHEN
 
@@ -1084,7 +1085,7 @@ final class LayoutTests: XCTestCase {
         // WHEN
 
         layout
-            .addItems(subview.id("subview"))
+            .addItem(subview.id("subview"))
             .horizontal(format)
 
         // THEN
@@ -1118,9 +1119,11 @@ final class LayoutTests: XCTestCase {
 
         // WHEN
 
-        layout
-            .addItems(subview1.id("subview1"), subview2.id("subview2"))
-            .horizontal(format, metrics: metrics, options: .alignAllCenterY)
+        layout.addItems {
+            subview1.id("subview1")
+            subview2.id("subview2")
+        }
+        .horizontal(format, metrics: metrics, options: .alignAllCenterY)
 
         // THEN
 
@@ -1148,7 +1151,7 @@ final class LayoutTests: XCTestCase {
         // WHEN
 
         layout
-            .addItems(subview.id("subview"))
+            .addItem(subview.id("subview"))
             .vertical(format)
 
         // THEN
@@ -1182,9 +1185,11 @@ final class LayoutTests: XCTestCase {
 
         // WHEN
 
-        layout
-            .addItems(subview1.id("subview1"), subview2.id("subview2"))
-            .vertical(format, metrics: metrics, options: .alignAllCenterX)
+        layout.addItems {
+            subview1.id("subview1")
+            subview2.id("subview2")
+        }
+        .vertical(format, metrics: metrics, options: .alignAllCenterX)
 
         // THEN
 
