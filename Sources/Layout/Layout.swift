@@ -108,7 +108,7 @@ public final class Layout { // swiftlint:disable:this type_body_length
 
     // MARK: - Adding Items
 
-    /// Adds items to the layout.
+    /// Adds an item to the layout.
     ///
     /// - Parameter item: The item to be added as a subview.
     ///
