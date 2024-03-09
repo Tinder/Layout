@@ -11,7 +11,6 @@ import Layout
 import Nimble
 import XCTest
 
-@MainActor
 final class NSLayoutDimensionTests: XCTestCase {
 
     func testConstraintIsRelationToAnchorMultiplierConstant_givenDefaults() {

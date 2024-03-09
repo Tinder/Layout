@@ -12,7 +12,6 @@ import Layout
 import Nimble
 import XCTest
 
-@MainActor
 final class UIViewFramesTests: XCTestCase {
 
     func testUsingFramesWithAutoresizingMask() {

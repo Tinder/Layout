@@ -12,7 +12,6 @@ import Layout
 import Nimble
 import XCTest
 
-@MainActor
 final class UIViewLayoutItemTests: XCTestCase {
 
     func testLayoutItemView() {

@@ -11,7 +11,6 @@ import Layout
 import Nimble
 import XCTest
 
-@MainActor
 final class UIViewControllerTests: XCTestCase {
 
     func testSafeTopAndSafeBottom() {

@@ -11,7 +11,6 @@
 import Nimble
 import XCTest
 
-@MainActor
 final class CollectionTests: XCTestCase {
 
     func testActivateAndDeactivate() {

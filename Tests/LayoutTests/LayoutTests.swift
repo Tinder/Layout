@@ -11,7 +11,6 @@
 import Nimble
 import XCTest
 
-@MainActor
 final class LayoutTests: XCTestCase {
 
     // MARK: - Initialization

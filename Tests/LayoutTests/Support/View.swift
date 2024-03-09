@@ -35,82 +35,66 @@ internal final class View: UIView {
     }
 }
 
-@MainActor
 internal var pinkView: UIView {
     View(named: "Pink", with: UIColor(red: 1, green: 0.176471, blue: 0.333333, alpha: 1))
 }
 
-@MainActor
 internal var blackView: UIView {
     View(named: "Black", with: .black)
 }
 
-@MainActor
 internal var darkGrayView: UIView {
     View(named: "DarkGray", with: .darkGray)
 }
 
-@MainActor
 internal var lightGrayView: UIView {
     View(named: "LightGray", with: .lightGray)
 }
 
-@MainActor
 internal var whiteView: UIView {
     View(named: "White", with: .white)
 }
 
-@MainActor
 internal var grayView: UIView {
     View(named: "Gray", with: .gray)
 }
 
-@MainActor
 internal var redView: UIView {
     View(named: "Red", with: .red)
 }
 
-@MainActor
 internal var greenView: UIView {
     View(named: "Green", with: .green)
 }
 
-@MainActor
 internal var blueView: UIView {
     View(named: "Blue", with: .blue)
 }
 
-@MainActor
 internal var cyanView: UIView {
     View(named: "Cyan", with: .cyan)
 }
 
-@MainActor
 internal var yellowView: UIView {
     View(named: "Yellow", with: .yellow)
 }
 
-@MainActor
 internal var magentaView: UIView {
     View(named: "Magenta", with: .magenta)
 }
 
-@MainActor
 internal var orangeView: UIView {
     View(named: "Orange", with: .orange)
 }
 
-@MainActor
 internal var purpleView: UIView {
     View(named: "Purple", with: .purple)
 }
 
-@MainActor
 internal var brownView: UIView {
     View(named: "Brown", with: .brown)
 }
 
-@MainActor
 internal var clearView: UIView {
     View(named: "Clear", with: .clear)
 }

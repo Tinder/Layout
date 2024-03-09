@@ -11,7 +11,6 @@
 import Nimble
 import XCTest
 
-@MainActor
 final class LayoutExampleTests: XCTestCase {
 
     // MARK: - Readme
