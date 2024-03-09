@@ -13,6 +13,7 @@ import XCTest
 
 final class CollectionTests: XCTestCase {
 
+    @MainActor
     func testActivateAndDeactivate() {
 
         // GIVEN

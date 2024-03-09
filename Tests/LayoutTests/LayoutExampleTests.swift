@@ -15,6 +15,7 @@ final class LayoutExampleTests: XCTestCase {
 
     // MARK: - Readme
 
+    @MainActor
     func testReadmeExample() {
 
         // GIVEN
@@ -80,6 +81,7 @@ final class LayoutExampleTests: XCTestCase {
 
     // MARK: - Layout
 
+    @MainActor
     func testLayoutDocumentationExample() {
 
         // GIVEN
@@ -93,6 +95,7 @@ final class LayoutExampleTests: XCTestCase {
         }
     }
 
+    @MainActor
     func testLayoutBuilderDocumentationExample() {
 
         // GIVEN
@@ -114,6 +117,7 @@ final class LayoutExampleTests: XCTestCase {
         }
     }
 
+    @MainActor
     func testHorizontallyCenteringDocumentationExample() {
 
         // GIVEN
@@ -141,6 +145,7 @@ final class LayoutExampleTests: XCTestCase {
         }
     }
 
+    @MainActor
     func testVerticallyCenteringDocumentationExample() {
 
         // GIVEN
@@ -170,6 +175,7 @@ final class LayoutExampleTests: XCTestCase {
 
     // MARK: - LayoutItem
 
+    @MainActor
     func testSingleLayoutItemDocumentationExample() {
 
         // GIVEN
@@ -184,6 +190,7 @@ final class LayoutExampleTests: XCTestCase {
         }
     }
 
+    @MainActor
     func testMultipleLayoutItemsDocumentationExample() {
 
         // GIVEN
@@ -200,6 +207,7 @@ final class LayoutExampleTests: XCTestCase {
         }
     }
 
+    @MainActor
     func testHorizontallyCenteringLayoutItemDocumentationExample() {
 
         // GIVEN
@@ -227,6 +235,7 @@ final class LayoutExampleTests: XCTestCase {
         }
     }
 
+    @MainActor
     func testVerticallyCenteringLayoutItemDocumentationExample() {
 
         // GIVEN

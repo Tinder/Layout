@@ -13,6 +13,7 @@ import XCTest
 
 final class ViewLayoutItemTests: XCTestCase {
 
+    @MainActor
     func testInitLayoutItemViewSuperviewConstraints() {
 
         // GIVEN
@@ -42,6 +43,7 @@ final class ViewLayoutItemTests: XCTestCase {
         expect(layoutItems === [viewLayoutItem]) == true
     }
 
+    @MainActor
     func testLayoutBoundary() {
 
         // GIVEN
@@ -62,6 +64,7 @@ final class ViewLayoutItemTests: XCTestCase {
         expect(boundary.bottom) == view.bottom
     }
 
+    @MainActor
     func testLayoutCenter() {
 
         // GIVEN
@@ -78,6 +81,7 @@ final class ViewLayoutItemTests: XCTestCase {
         expect(center.centerY) == view.centerY
     }
 
+    @MainActor
     func testLayoutSize() {
 
         // GIVEN
@@ -94,6 +98,7 @@ final class ViewLayoutItemTests: XCTestCase {
         expect(size.height) == view.height
     }
 
+    @MainActor
     func testLayoutBaseline() {
 
         // GIVEN

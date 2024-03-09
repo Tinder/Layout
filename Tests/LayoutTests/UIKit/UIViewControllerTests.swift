@@ -13,6 +13,7 @@ import XCTest
 
 final class UIViewControllerTests: XCTestCase {
 
+    @MainActor
     func testSafeTopAndSafeBottom() {
 
         // GIVEN

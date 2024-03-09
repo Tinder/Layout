@@ -13,6 +13,7 @@ import XCTest
 
 final class NSLayoutYAxisAnchorTests: XCTestCase {
 
+    @MainActor
     func testConstraintIsRelationToAnchorConstant_givenDefaults() {
 
         // GIVEN
@@ -34,6 +35,7 @@ final class NSLayoutYAxisAnchorTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
+    @MainActor
     func testConstraintIsRelationToAnchorConstant_givenConstant() {
 
         // GIVEN
@@ -55,6 +57,7 @@ final class NSLayoutYAxisAnchorTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
+    @MainActor
     func testConstraintIsRelationToAnchorConstant_givenGreaterThanOrEqualRelation() {
 
         // GIVEN
@@ -76,6 +79,7 @@ final class NSLayoutYAxisAnchorTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
+    @MainActor
     func testConstraintIsRelationToAnchorConstant_givenLessThanOrEqualRelation() {
 
         // GIVEN

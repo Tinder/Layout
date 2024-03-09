@@ -14,6 +14,7 @@ import XCTest
 
 final class UIViewFramesTests: XCTestCase {
 
+    @MainActor
     func testUsingFramesWithAutoresizingMask() {
 
         // GIVEN
@@ -31,6 +32,7 @@ final class UIViewFramesTests: XCTestCase {
         expect(framedView) === view
     }
 
+    @MainActor
     func testDisablingIntrinsicSize() {
 
         // GIVEN

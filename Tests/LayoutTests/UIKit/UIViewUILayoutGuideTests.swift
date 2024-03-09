@@ -13,11 +13,13 @@ import XCTest
 
 final class UIViewUILayoutGuideTests: XCTestCase {
 
+    @MainActor
     func testMargins() {
         let view: UIView = .init()
         expect(view.margins) === view.layoutMarginsGuide
     }
 
+    @MainActor
     func testSafeArea() {
         let view: UIView = .init()
         expect(view.safeArea) === view.safeAreaLayoutGuide

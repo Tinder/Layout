@@ -15,6 +15,7 @@ final class NSLayoutConstraintTests: XCTestCase {
 
     // MARK: - Visual Format Language
 
+    @MainActor
     func testConstraintsFormatsViewsMetricsOptions() {
 
         // GIVEN
@@ -44,6 +45,7 @@ final class NSLayoutConstraintTests: XCTestCase {
         }
     }
 
+    @MainActor
     func testConstraintsFormatsViewsMetricsOptions_givenRightToLeftFormatOption() {
 
         // GIVEN
@@ -77,6 +79,7 @@ final class NSLayoutConstraintTests: XCTestCase {
 
     // MARK: - Activation
 
+    @MainActor
     func testActivateAndDeactivate() {
 
         // GIVEN
@@ -115,6 +118,7 @@ final class NSLayoutConstraintTests: XCTestCase {
 
     // MARK: - Priority
 
+    @MainActor
     func testRequire() {
 
         // GIVEN
@@ -132,6 +136,7 @@ final class NSLayoutConstraintTests: XCTestCase {
         expect(requiredConstraint) === constraint
     }
 
+    @MainActor
     func testWithPriority() {
 
         // GIVEN
@@ -152,6 +157,7 @@ final class NSLayoutConstraintTests: XCTestCase {
         expect(highPriorityConstraint) === constraint
     }
 
+    @MainActor
     func testPrioritizeWithPriority() {
 
         // GIVEN

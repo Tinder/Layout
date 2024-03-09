@@ -17,6 +17,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Builder
 
+    @MainActor
     func testUsingConstraints() {
 
         // GIVEN
@@ -28,6 +29,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(view.translatesAutoresizingMaskIntoConstraints) == false
     }
 
+    @MainActor
     func testConstrainingSize_givenDefaults() {
 
         // GIVEN
@@ -63,6 +65,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
                                                                 constant: 20), isActive: true))
     }
 
+    @MainActor
     func testConstrainingSize() {
 
         // GIVEN
@@ -97,6 +100,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
                                                                 constant: 20), isActive: true))
     }
 
+    @MainActor
     func testConstrainingWidth_givenDefaults() {
 
         // GIVEN
@@ -124,6 +128,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
                                                                 constant: 10), isActive: true))
     }
 
+    @MainActor
     func testConstrainingWidth() {
 
         // GIVEN
@@ -151,6 +156,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
                                                                 constant: 10), isActive: true))
     }
 
+    @MainActor
     func testConstrainingHeight_givenDefaults() {
 
         // GIVEN
@@ -178,6 +184,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
                                                                 constant: 20), isActive: true))
     }
 
+    @MainActor
     func testConstrainingHeight() {
 
         // GIVEN
@@ -207,6 +214,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Size
 
+    @MainActor
     func testSizeConstraintsWithSize() {
 
         // GIVEN
@@ -258,6 +266,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
                                                                 constant: 40)))
     }
 
+    @MainActor
     func testSizeConstraintsWithWidthAndHeight() {
 
         // GIVEN
@@ -311,6 +320,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Width
 
+    @MainActor
     func testWidthConstraintIsRelationToConstant() {
 
         // GIVEN
@@ -360,6 +370,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
                                                              constant: 30)))
     }
 
+    @MainActor
     func testWidthConstraintWithConstant() {
 
         // GIVEN
@@ -397,6 +408,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Height
 
+    @MainActor
     func testHeightConstraintIsRelationToConstant() {
 
         // GIVEN
@@ -446,6 +458,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
                                                               constant: 60)))
     }
 
+    @MainActor
     func testHeightConstraintWithConstant() {
 
         // GIVEN
@@ -483,6 +496,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Square
 
+    @MainActor
     func testSquareConstraintsWithLength() {
 
         // GIVEN
@@ -512,6 +526,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
                                                                  constant: 100)))
     }
 
+    @MainActor
     func testSquareConstraint() {
 
         // GIVEN
@@ -535,6 +550,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Aspect Ratio
 
+    @MainActor
     func testAspectRatioConstraintWithRatio() {
 
         // GIVEN
@@ -558,6 +574,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Equal
 
+    @MainActor
     func testEqualConstraintsForAttributeToViews() {
 
         // GIVEN
@@ -591,6 +608,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Center
 
+    @MainActor
     func testCenterConstraintsOffset() {
 
         // GIVEN
@@ -646,6 +664,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Attributes
 
+    @MainActor
     func testConstraintForAttributeIsRelationToSuperviewMultiplierConstant() {
 
         // GIVEN
@@ -702,6 +721,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
                                                             constant: 5)))
     }
 
+    @MainActor
     func testConstraintForAttributeIsRelationToSuperviewMultiplierConstant_givenNilSuperview() {
 
         // GIVEN
@@ -722,6 +742,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(view.constraints(toSuperview: [.top, .left])).notTo(beEmpty())
     }
 
+    @MainActor
     func testConstraintForAttributeIsRelationToTargetAttributeOfTargetViewMultiplierConstant() {
 
         // GIVEN
@@ -780,6 +801,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Edges
 
+    @MainActor
     func testEdgeConstraintsInset() {
 
         // GIVEN
@@ -801,6 +823,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[3]).to(match(view.bottom.constraint(to: superview.bottom)))
     }
 
+    @MainActor
     func testEdgeConstraintsInset_givenInset() {
 
         // GIVEN
@@ -823,6 +846,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[3]).to(match(view.bottom.constraint(to: superview.bottom, constant: -inset)))
     }
 
+    @MainActor
     func testEdgeConstraintsInsetsDirectional() {
 
         // GIVEN
@@ -845,6 +869,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[3]).to(match(view.bottom.constraint(to: superview.bottom, constant: -insets.bottom)))
     }
 
+    @MainActor
     func testEdgeConstraintsInsetsCanonical() {
 
         // GIVEN
@@ -867,6 +892,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[3]).to(match(view.bottom.constraint(to: superview.bottom, constant: -insets.bottom)))
     }
 
+    @MainActor
     func testSideEdgeConstraintsInset() {
 
         // GIVEN
@@ -886,6 +912,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[1]).to(match(view.right.constraint(to: superview.right)))
     }
 
+    @MainActor
     func testSideEdgeConstraintsInset_givenInset() {
 
         // GIVEN
@@ -908,6 +935,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Margins
 
+    @MainActor
     func testMarginConstraintsInset() {
 
         // GIVEN
@@ -929,6 +957,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[3]).to(match(view.bottom.constraint(to: superview.margins.bottom)))
     }
 
+    @MainActor
     func testMarginConstraintsInset_givenInset() {
 
         // GIVEN
@@ -951,6 +980,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[3]).to(match(view.bottom.constraint(to: superview.margins.bottom, constant: -inset)))
     }
 
+    @MainActor
     func testMarginConstraintsInsetsDirectional() {
 
         // GIVEN
@@ -977,6 +1007,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
             .to(match(view.bottom.constraint(to: superview.margins.bottom, constant: -insets.bottom)))
     }
 
+    @MainActor
     func testMarginConstraintsInsetsCanonical() {
 
         // GIVEN
@@ -999,6 +1030,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[3]).to(match(view.bottom.constraint(to: superview.margins.bottom, constant: -insets.bottom)))
     }
 
+    @MainActor
     func testSideMarginConstraintsInset() {
 
         // GIVEN
@@ -1018,6 +1050,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[1]).to(match(view.right.constraint(to: superview.margins.right)))
     }
 
+    @MainActor
     func testSideMarginConstraintsInset_givenInset() {
 
         // GIVEN
@@ -1040,6 +1073,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
 
     // MARK: - Safe Area
 
+    @MainActor
     func testSafeAreaConstraintsInset() {
 
         // GIVEN
@@ -1061,6 +1095,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[3]).to(match(view.bottom.constraint(to: superview.safeArea.bottom)))
     }
 
+    @MainActor
     func testSafeAreaConstraintsInset_givenInset() {
 
         // GIVEN
@@ -1083,6 +1118,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
         expect(constraints[3]).to(match(view.bottom.constraint(to: superview.safeArea.bottom, constant: -inset)))
     }
 
+    @MainActor
     func testSafeAreaConstraintsInsetsDirectional() {
 
         // GIVEN
@@ -1109,6 +1145,7 @@ final class UIViewAutoLayoutTests: XCTestCase {
             .to(match(view.bottom.constraint(to: superview.safeArea.bottom, constant: -insets.bottom)))
     }
 
+    @MainActor
     func testSafeAreaConstraintsInsetsCanonical() {
 
         // GIVEN

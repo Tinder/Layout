@@ -13,6 +13,7 @@ import XCTest
 
 final class ConstraintsBuilderTests: XCTestCase {
 
+    @MainActor
     func testConstraintsBuilder() {
 
         // GIVEN

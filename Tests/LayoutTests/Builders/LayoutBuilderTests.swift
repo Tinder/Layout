@@ -13,6 +13,7 @@ import XCTest
 
 final class LayoutBuilderTests: XCTestCase {
 
+    @MainActor
     func testLayoutBuilder() {
 
         // GIVEN
