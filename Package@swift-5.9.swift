@@ -72,11 +72,8 @@ let package = Package(
 extension Array where Element == SwiftSetting {
 
     static var swiftSettings: [SwiftSetting] {
-        if let value: String = Context.environment["SWIFT_STRICT_CONCURRENCY"] {
-            return [.unsafeFlags(["-strict-concurrency=\(value)"])]
-        } else if Context.environment["SWIFT_EMIT_EXTENSION_BLOCK_SYMBOLS"] != nil {
-            return [.unsafeFlags(["-emit-extension-block-symbols"])]
-        }
-        return []
+        [
+            .enableExperimentalFeature("StrictConcurrency"),
+        ]
     }
 }
