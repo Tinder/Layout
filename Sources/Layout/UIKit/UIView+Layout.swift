@@ -20,7 +20,8 @@ extension UIView {
     /// distinct states.
     ///
     /// - Note: Use ``layout(metrics:_:)`` to create a layout with one item and use ``layout(metrics:items:)`` for
-    ///   multiple items. Call ``Layout/addItems(_:)-59mxv`` to add more items to the layout.
+    ///   multiple items. Use ``Layout/addItem(_:)`` or ``Layout/addItems(items:)`` to add additional items to
+    ///   the layout.
     ///
     /// - Important: The ``Layout/activate()`` method must be called to activate the constraints of the layout.
     ///   Calling ``Layout/deactivate()`` does not hide or remove subviews.
@@ -51,7 +52,7 @@ extension UIView {
     /// ```
     ///
     /// - Note: Use this method to create a layout with one item and use ``layout(metrics:items:)`` for multiple items.
-    ///   Call ``Layout/addItems(_:)-59mxv`` to add more items to the layout.
+    ///   Use ``Layout/addItem(_:)`` or ``Layout/addItems(items:)`` to add additional items to the layout.
     ///
     /// - Important: The ``Layout/activate()`` method must be called to activate the constraints of the layout.
     ///   Calling ``Layout/deactivate()`` does not hide or remove subviews.
@@ -93,7 +94,7 @@ extension UIView {
     /// ```
     ///
     /// - Note: Use this method to create a layout with multiple items and use ``layout(metrics:_:)`` for a single item.
-    ///   Call ``Layout/addItems(_:)-59mxv`` to add more items to the layout.
+    ///   Use ``Layout/addItem(_:)`` or ``Layout/addItems(items:)`` to add additional items to the layout.
     ///
     /// - Important: The ``Layout/activate()`` method must be called to activate the constraints of the layout.
     ///   Calling ``Layout/deactivate()`` does not hide or remove subviews.
