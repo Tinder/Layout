@@ -74,7 +74,8 @@ docs:
 	xcodebuild docbuild \
 		-scheme "$(target)" \
 		-destination "$(destination)" \
-		-derivedDataPath "$(DERIVED_DATA_PATH)"
+		-derivedDataPath "$(DERIVED_DATA_PATH)" \
+		OTHER_DOCC_FLAGS="--warnings-as-errors"
 	@find "$(DERIVED_DATA_PATH)" \
 		-type d \
 		-name "$(target).doccarchive" \
