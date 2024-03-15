@@ -9,6 +9,8 @@
 
 import UIKit
 
+@preconcurrency
+@MainActor
 internal final class ViewLayoutItem: LayoutItem {
 
     // MARK: - LayoutBoundary

@@ -11,9 +11,9 @@
 import Nimble
 import XCTest
 
-@MainActor
 final class CollectionTests: XCTestCase {
 
+    @MainActor
     func testActivateAndDeactivate() {
 
         // GIVEN

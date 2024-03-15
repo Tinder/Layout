@@ -12,9 +12,9 @@ import Layout
 import Nimble
 import XCTest
 
-@MainActor
 final class UIViewFramesTests: XCTestCase {
 
+    @MainActor
     func testUsingFramesWithAutoresizingMask() {
 
         // GIVEN
@@ -32,6 +32,7 @@ final class UIViewFramesTests: XCTestCase {
         expect(framedView) === view
     }
 
+    @MainActor
     func testDisablingIntrinsicSize() {
 
         // GIVEN

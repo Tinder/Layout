@@ -13,9 +13,9 @@ import Nimble
 import UIKit
 import XCTest
 
-@MainActor
 final class UIViewLayoutTests: XCTestCase {
 
+    @MainActor
     func testLayoutMetrics() {
 
         // GIVEN
@@ -35,6 +35,7 @@ final class UIViewLayoutTests: XCTestCase {
         expect(layout.items.isEmpty) == true
     }
 
+    @MainActor
     func testLayoutMetricsWithItem() {
 
         // GIVEN
@@ -57,6 +58,7 @@ final class UIViewLayoutTests: XCTestCase {
         expect(layout.items[identifier] as? UIView) == subview
     }
 
+    @MainActor
     func testLayoutMetricsWithItems() {
 
         // GIVEN

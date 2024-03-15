@@ -11,11 +11,11 @@ import Layout
 import Nimble
 import XCTest
 
-@MainActor
 final class ArrayTests: XCTestCase {
 
     // MARK: - Activation
 
+    @MainActor
     func testActivateAndDeactivate() {
 
         // GIVEN
@@ -69,6 +69,7 @@ final class ArrayTests: XCTestCase {
 
     // MARK: - Priority
 
+    @MainActor
     func testRequire() {
 
         // GIVEN
@@ -107,6 +108,7 @@ final class ArrayTests: XCTestCase {
         expect(requiredConstraints) == constraints
     }
 
+    @MainActor
     func testWithPriority() {
 
         // GIVEN
@@ -148,6 +150,7 @@ final class ArrayTests: XCTestCase {
         expect(highPriorityConstraints) == constraints
     }
 
+    @MainActor
     func testPrioritizeWithPriority() {
 
         // GIVEN

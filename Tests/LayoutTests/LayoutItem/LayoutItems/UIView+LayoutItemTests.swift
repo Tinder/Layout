@@ -12,9 +12,9 @@ import Layout
 import Nimble
 import XCTest
 
-@MainActor
 final class UIViewLayoutItemTests: XCTestCase {
 
+    @MainActor
     func testLayoutItemView() {
 
         // GIVEN
@@ -26,6 +26,7 @@ final class UIViewLayoutItemTests: XCTestCase {
         expect(view.layoutItemView) === view
     }
 
+    @MainActor
     func testSuperviewConstraints() {
 
         // GIVEN
@@ -37,6 +38,7 @@ final class UIViewLayoutItemTests: XCTestCase {
         expect(view.superviewConstraints(view)).to(beEmpty())
     }
 
+    @MainActor
     func testLayoutBoundary() {
 
         // GIVEN
@@ -57,6 +59,7 @@ final class UIViewLayoutItemTests: XCTestCase {
         expect(boundary.bottom) == view.bottomAnchor
     }
 
+    @MainActor
     func testLayoutCenter() {
 
         // GIVEN
@@ -73,6 +76,7 @@ final class UIViewLayoutItemTests: XCTestCase {
         expect(center.centerY) == view.centerYAnchor
     }
 
+    @MainActor
     func testLayoutSize() {
 
         // GIVEN
@@ -89,6 +93,7 @@ final class UIViewLayoutItemTests: XCTestCase {
         expect(size.height) == view.heightAnchor
     }
 
+    @MainActor
     func testLayoutBaseline() {
 
         // GIVEN

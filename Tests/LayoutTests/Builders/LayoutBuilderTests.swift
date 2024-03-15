@@ -11,9 +11,9 @@ import Layout
 import Nimble
 import XCTest
 
-@MainActor
 final class LayoutBuilderTests: XCTestCase {
 
+    @MainActor
     func testLayoutBuilder() {
 
         // GIVEN

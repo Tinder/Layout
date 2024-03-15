@@ -11,9 +11,9 @@ import Layout
 import Nimble
 import XCTest
 
-@MainActor
 final class NSLayoutDimensionTests: XCTestCase {
 
+    @MainActor
     func testConstraintIsRelationToAnchorMultiplierConstant_givenDefaults() {
 
         // GIVEN
@@ -35,6 +35,7 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
+    @MainActor
     func testConstraintIsRelationToAnchorMultiplierConstant_givenMultiplier() {
 
         // GIVEN
@@ -56,6 +57,7 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
+    @MainActor
     func testConstraintIsRelationToAnchorMultiplierConstant_givenConstant() {
 
         // GIVEN
@@ -77,6 +79,7 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
+    @MainActor
     func testConstraintIsRelationToAnchorMultiplierConstant_givenGreaterThanOrEqualRelation() {
 
         // GIVEN
@@ -98,6 +101,7 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
+    @MainActor
     func testConstraintIsRelationToAnchorMultiplierConstant_givenLessThanOrEqualRelation() {
 
         // GIVEN
@@ -119,6 +123,7 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
+    @MainActor
     func testConstraintIsRelationToConstant_givenEqualRelation() {
 
         // GIVEN
@@ -139,6 +144,7 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
+    @MainActor
     func testConstraintIsRelationConstant_givenGreaterThanRelation() {
 
         // GIVEN
@@ -159,6 +165,7 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
+    @MainActor
     func testConstraintIsRelationConstant_givenLessThanRelation() {
 
         // GIVEN
@@ -179,6 +186,7 @@ final class NSLayoutDimensionTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
+    @MainActor
     func testConstraintWithConstant() {
 
         // GIVEN

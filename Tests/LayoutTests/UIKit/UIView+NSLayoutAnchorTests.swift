@@ -13,9 +13,9 @@ import Nimble
 import UIKit
 import XCTest
 
-@MainActor
 final class UIViewNSLayoutAnchorTests: XCTestCase {
 
+    @MainActor
     func testAnchorForAxisAttributeXAxis() {
 
         // GIVEN
@@ -31,6 +31,7 @@ final class UIViewNSLayoutAnchorTests: XCTestCase {
         expect(view.anchor(for: .centerX)) == view.centerX
     }
 
+    @MainActor
     func testAnchorForAttributeYAxis() {
 
         // GIVEN

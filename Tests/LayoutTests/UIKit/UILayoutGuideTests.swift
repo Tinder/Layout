@@ -11,9 +11,9 @@ import Layout
 import Nimble
 import XCTest
 
-@MainActor
 final class UILayoutGuideTests: XCTestCase {
 
+    @MainActor
     func testLayoutBoundary() {
 
         // GIVEN
@@ -34,6 +34,7 @@ final class UILayoutGuideTests: XCTestCase {
         expect(boundary.bottom) == guide.bottomAnchor
     }
 
+    @MainActor
     func testLayoutCenter() {
 
         // GIVEN
@@ -50,6 +51,7 @@ final class UILayoutGuideTests: XCTestCase {
         expect(center.centerY) == guide.centerYAnchor
     }
 
+    @MainActor
     func testLayoutSize() {
 
         // GIVEN

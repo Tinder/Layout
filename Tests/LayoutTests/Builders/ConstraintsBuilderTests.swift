@@ -11,9 +11,9 @@ import Layout
 import Nimble
 import XCTest
 
-@MainActor
 final class ConstraintsBuilderTests: XCTestCase {
 
+    @MainActor
     func testConstraintsBuilder() {
 
         // GIVEN

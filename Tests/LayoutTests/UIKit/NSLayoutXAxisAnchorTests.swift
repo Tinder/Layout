@@ -11,9 +11,9 @@ import Layout
 import Nimble
 import XCTest
 
-@MainActor
 final class NSLayoutXAxisAnchorTests: XCTestCase {
 
+    @MainActor
     func testConstraintIsRelationToAnchorConstant_givenDefaults() {
 
         // GIVEN
@@ -35,6 +35,7 @@ final class NSLayoutXAxisAnchorTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
+    @MainActor
     func testConstraintIsRelationToAnchorConstant_givenConstant() {
 
         // GIVEN
@@ -56,6 +57,7 @@ final class NSLayoutXAxisAnchorTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
+    @MainActor
     func testConstraintIsRelationToAnchorConstant_givenGreaterThanOrEqualRelation() {
 
         // GIVEN
@@ -77,6 +79,7 @@ final class NSLayoutXAxisAnchorTests: XCTestCase {
         expect(constraint).to(match(expected))
     }
 
+    @MainActor
     func testConstraintIsRelationToAnchorConstant_givenLessThanOrEqualRelation() {
 
         // GIVEN
