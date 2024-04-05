@@ -588,16 +588,15 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-            view
-                .layout {
-                    pinkView
-                        .toEdges(inset: 20)
-                    yellowView
-                }
-                .constrain(yellowView,
-                           to: pinkView,
-                           insets: NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 40))
-                .activate()
+            view.layout {
+                pinkView
+                    .toEdges(inset: 20)
+                yellowView
+            }
+            .constrain(yellowView,
+                       to: pinkView,
+                       insets: NSDirectionalEdgeInsets(top: 40, leading: 40, bottom: 40, trailing: 40))
+            .activate()
         }
     }
 
@@ -612,16 +611,15 @@ final class LayoutTests: XCTestCase {
         // THEN
 
         assertLayout { view in
-            view
-                .layout {
-                    pinkView
-                        .toEdges(inset: 20)
-                    yellowView
-                }
-                .constrain(yellowView,
-                           to: pinkView,
-                           insets: UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40))
-                .activate()
+            view.layout {
+                pinkView
+                    .toEdges(inset: 20)
+                yellowView
+            }
+            .constrain(yellowView,
+                       to: pinkView,
+                       insets: UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40))
+            .activate()
         }
     }
 
