@@ -69,14 +69,14 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size CGSize with Default Priority
 
-                pinkView
+                UIView.pink()
                     .to([.top, .leading])
                     .size(CGSize(width: 150, height: 250), priority: .high)
                     .size(CGSize(width: 100, height: 200))
 
                 // Size CGSize with Priority
 
-                yellowView
+                UIView.yellow()
                     .to([.top, .trailing])
                     .size(CGSize(width: 50, height: 50), priority: .low)
                     .size(CGSize(width: 100, height: 200), priority: .high)
@@ -92,14 +92,14 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Width and Height with Default Priority
 
-                pinkView
+                UIView.pink()
                     .to([.top, .leading])
                     .size(width: 150, height: 250, priority: .high)
                     .size(width: 100, height: 200)
 
                 // Size Width and Height with Priority
 
-                yellowView
+                UIView.yellow()
                     .to([.top, .trailing])
                     .size(width: 50, height: 50, priority: .low)
                     .size(width: 100, height: 200, priority: .high)
@@ -121,7 +121,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Width with Relation and Default Priority
 
-                pinkView
+                UIView.pink()
                     .to([.top, .leading])
                     .height(100)
                     .width(is: .greaterThanOrEqual, to: 100, priority: .high)
@@ -129,7 +129,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Width with Priority
 
-                yellowView
+                UIView.yellow()
                     .to([.top, .trailing])
                     .height(100)
                     .width(1, priority: .low)
@@ -137,7 +137,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Width with GreaterThanOrEqual Relation and Priority
 
-                blueView
+                UIView.blue()
                     .to([.bottom, .leading])
                     .height(100)
                     .width(is: .equal, to: 40, priority: .high)
@@ -145,7 +145,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Width with LessThanOrEqual Relation and Priority
 
-                greenView
+                UIView.green()
                     .to([.bottom, .trailing])
                     .height(100)
                     .width(is: .equal, to: 60, priority: .high)
@@ -153,7 +153,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Width with GreaterThanOrEqual Relation
 
-                redView
+                UIView.red()
                     .to(.centerY, constant: -50)
                     .to(.centerX)
                     .height(100)
@@ -162,7 +162,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Width with LessThanOrEqual Relation
 
-                orangeView
+                UIView.orange()
                     .to(.centerY, constant: 50)
                     .to(.centerX)
                     .height(100)
@@ -182,7 +182,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Width with Default Priority
 
-                pinkView
+                UIView.pink()
                     .to([.top, .leading])
                     .height(100)
                     .width(100, priority: .high)
@@ -190,7 +190,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Width with Priority
 
-                yellowView
+                UIView.yellow()
                     .to([.top, .trailing])
                     .height(100)
                     .width(1, priority: .low)
@@ -213,7 +213,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Height with Relation and Default Priority
 
-                pinkView
+                UIView.pink()
                     .to([.top, .leading])
                     .width(50)
                     .height(is: .greaterThanOrEqual, to: 150, priority: .high)
@@ -221,7 +221,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Height with Relation and Priority
 
-                yellowView
+                UIView.yellow()
                     .to([.top, .trailing])
                     .width(50)
                     .height(is: .equal, to: 1, priority: .low)
@@ -229,7 +229,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Height with GreaterThanOrEqual Relation
 
-                blueView
+                UIView.blue()
                     .to([.bottom, .leading])
                     .width(50)
                     .height(is: .equal, to: 75, priority: .high)
@@ -237,7 +237,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Height with LessThanOrEqual Relation
 
-                greenView
+                UIView.green()
                     .to([.bottom, .trailing])
                     .width(50)
                     .height(is: .equal, to: 125, priority: .high)
@@ -245,7 +245,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Height with GreaterThanOrEqual Relation and Priority
 
-                redView
+                UIView.red()
                     .to([.centerY], constant: -50)
                     .to([.centerX])
                     .width(50)
@@ -254,7 +254,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Height with LessThanOrEqual Relation and Priority
 
-                orangeView
+                UIView.orange()
                     .to([.centerY], constant: 50)
                     .to([.centerX])
                     .width(50)
@@ -274,7 +274,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Height with Default Priority
 
-                pinkView
+                UIView.pink()
                     .to([.top, .leading])
                     .width(100)
                     .height(100, priority: .high)
@@ -282,7 +282,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Size Height with Priority
 
-                yellowView
+                UIView.yellow()
                     .to([.top, .trailing])
                     .width(100)
                     .height(1, priority: .low)
@@ -301,14 +301,14 @@ final class LayoutItemTests: XCTestCase {
 
                 // Square Length with Default Priority
 
-                pinkView
+                UIView.pink()
                     .to([.top, .leading])
                     .square(200, priority: .high)
                     .square(100)
 
                 // Square Length with Priority
 
-                yellowView
+                UIView.yellow()
                     .to([.top, .trailing])
                     .square(25, priority: .low)
                     .square(100, priority: .high)
@@ -324,14 +324,14 @@ final class LayoutItemTests: XCTestCase {
 
                 // Square with Width
 
-                pinkView
+                UIView.pink()
                     .to([.top, .leading])
                     .width(100)
                     .square()
 
                 // Square with Height
 
-                yellowView
+                UIView.yellow()
                     .to([.top, .trailing])
                     .height(100)
                     .square()
@@ -349,7 +349,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Aspect Ratio with Default Priority
 
-                pinkView
+                UIView.pink()
                     .to([.top, .leading])
                     .height(100)
                     .aspectRatio(0.5, priority: .high)
@@ -357,7 +357,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Aspect Ratio with Priority
 
-                yellowView
+                UIView.yellow()
                     .to([.top, .trailing])
                     .height(100)
                     .aspectRatio(0.25, priority: .low)
@@ -376,20 +376,20 @@ final class LayoutItemTests: XCTestCase {
 
                 // Center with Default Offset
 
-                pinkView
+                UIView.pink()
                     .size(width: 50, height: 50)
                     .center(offset: UIOffset(horizontal: 50, vertical: 50), priority: .high)
                     .center()
 
                 // Center with Offset
 
-                yellowView
+                UIView.yellow()
                     .size(width: 50, height: 50)
                     .center(offset: UIOffset(horizontal: 50, vertical: 50))
 
                 // Center with Priority
 
-                blueView
+                UIView.blue()
                     .size(width: 50, height: 50)
                     .center(offset: UIOffset(horizontal: -25, vertical: -25), priority: .low)
                     .center(offset: UIOffset(horizontal: -50, vertical: -50), priority: .high)
@@ -405,7 +405,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Center with Vertical Axis and Default Multiplier and Priority
 
-                pinkView
+                UIView.pink()
                     .size(width: 100, height: 100)
                     .to(.leading)
                     .center(.vertical, offset: 50, multiplier: 0.5, priority: .high)
@@ -413,7 +413,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // Center with Horizontal Axis and Default Multiplier and Priority
 
-                yellowView
+                UIView.yellow()
                     .size(width: 100, height: 100)
                     .to(.top)
                     .center(.horizontal, offset: 50, multiplier: 0.5, priority: .high)
@@ -421,21 +421,21 @@ final class LayoutItemTests: XCTestCase {
 
                 // Center with Vertical Axis and Offset
 
-                blueView
+                UIView.blue()
                     .size(width: 100, height: 100)
                     .to(.leading)
                     .center(.vertical, offset: 100)
 
                 // Center with Horizontal Axis and Multiplier
 
-                greenView
+                UIView.green()
                     .size(width: 100, height: 100)
                     .to(.top)
                     .center(.horizontal, multiplier: 1.5)
 
                 // Center with Vertical Axis and Priority
 
-                orangeView
+                UIView.orange()
                     .size(width: 100, height: 100)
                     .to(.leading)
                     .center(.vertical, offset: -350, priority: .low)
@@ -449,7 +449,7 @@ final class LayoutItemTests: XCTestCase {
     func testCenterBetweenLeadingAndTrailing() {
         assertLayout(devices: Device.allTestDevices) { view in
             view.layout {
-                pinkView
+                UIView.pink()
                     .size(width: 200, height: 100)
                     .to(.top)
                     .center(between: view.safeAreaLayoutGuide.leading, and: view.safeAreaLayoutGuide.trailing)
@@ -462,7 +462,7 @@ final class LayoutItemTests: XCTestCase {
     func testCenterBetweenTopAndBottom() {
         assertLayout(devices: Device.allTestDevices) { view in
             view.layout {
-                pinkView
+                UIView.pink()
                     .size(width: 200, height: 100)
                     .to(.leading)
                     .center(between: view.safeAreaLayoutGuide.top, and: view.safeAreaLayoutGuide.bottom)
@@ -480,7 +480,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Top Leading with Default Relation, Multiplier and Priority
 
-                pinkView
+                UIView.pink()
                     .size(width: 100, height: 100)
                     .to(.top, is: .greaterThanOrEqual, multiplier: 0.5, constant: 50, priority: .high)
                     .to(.leading, is: .greaterThanOrEqual, multiplier: 0.5, constant: 50, priority: .high)
@@ -489,28 +489,28 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Top Trailing with Constant
 
-                yellowView
+                UIView.yellow()
                     .size(width: 100, height: 100)
                     .to(.top, constant: 25)
                     .to(.trailing, constant: -25)
 
                 // To Leading Bottom with Bottom Multiplier
 
-                blueView
+                UIView.blue()
                     .size(width: 100, height: 100)
                     .to(.bottom, multiplier: 0.5)
                     .to(.leading)
 
                 // To Leading Bottom with Bottom Multiplier and Constant
 
-                greenView
+                UIView.green()
                     .size(width: 100, height: 100)
                     .to(.bottom, multiplier: 0.75, constant: 50)
                     .to(.leading)
 
                 // To Bottom Trailing with Constant and Priority
 
-                orangeView
+                UIView.orange()
                     .size(width: 100, height: 100)
                     .to(.bottom, constant: -100, priority: .low)
                     .to(.bottom, constant: -50, priority: .high)
@@ -528,7 +528,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Top Leading with Less Than Or Equal Relation and Constant
 
-                pinkView
+                UIView.pink()
                     .size(width: 100, height: 100)
                     .to(.top, is: .lessThanOrEqual, constant: 100)
                     .to(.top, constant: 150, priority: .high)
@@ -536,7 +536,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Top Trailing with Less Than Or Equal Relation and Constant
 
-                yellowView
+                UIView.yellow()
                     .size(width: 100, height: 100)
                     .to(.top, is: .lessThanOrEqual, constant: 100)
                     .to(.top, constant: 50, priority: .high)
@@ -544,7 +544,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Top Trailing with Greater Than Or Equal Relation and Constant
 
-                blueView
+                UIView.blue()
                     .size(width: 100, height: 100)
                     .to(.bottom, is: .greaterThanOrEqual, constant: -100)
                     .to(.bottom, constant: -150, priority: .high)
@@ -552,7 +552,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Top Trailing with Greater Than Or Equal Relation and Constant
 
-                greenView
+                UIView.green()
                     .size(width: 100, height: 100)
                     .to(.bottom, is: .greaterThanOrEqual, constant: -100)
                     .to(.bottom, constant: -50, priority: .high)
@@ -569,20 +569,20 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Bottom Leading with Default Constant and Priority
 
-                pinkView
+                UIView.pink()
                     .size(width: 100, height: 100)
                     .to([.bottom, .leading], constant: 50, priority: .high)
                     .to([.bottom, .leading])
 
                 // To Bottom Trailing with Constant
 
-                yellowView
+                UIView.yellow()
                     .size(width: 100, height: 100)
                     .to([.bottom, .trailing], constant: -100)
 
                 // To Top Leading with Priority
 
-                blueView
+                UIView.blue()
                     .size(width: 100, height: 100)
                     .to([.top, .leading], constant: 25, priority: .low)
                     .to([.top, .leading], constant: 100, priority: .high)
@@ -600,14 +600,14 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Edges with Insets and Default Priority
 
-                pinkView
+                UIView.pink()
                     .toEdges(insets: NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0),
                              priority: .high)
                     .toEdges(insets: NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 10, trailing: 15))
 
                 // To Edges with Insets and Priority
 
-                yellowView
+                UIView.yellow()
                     .toEdges(
                         insets: NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5),
                         priority: .low
@@ -628,13 +628,13 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Edges with Insets and Default Priority
 
-                pinkView
+                UIView.pink()
                     .toEdges(insets: UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 15), priority: .high)
                     .toEdges(insets: UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 15))
 
                 // To Edges with Insets and Priority
 
-                yellowView
+                UIView.yellow()
                     .toEdges(insets: UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 15), priority: .low)
                     .toEdges(insets: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50), priority: .high)
             }
@@ -649,20 +649,20 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Edges Top, Leading and Trailing with Default Priority
 
-                pinkView
+                UIView.pink()
                     .height(100)
                     .toEdges([.top, .leading, .trailing], inset: 50, priority: .high)
                     .toEdges([.top, .leading, .trailing])
 
                 // To Edges Bottom, Leading and Trailing with Inset
 
-                yellowView
+                UIView.yellow()
                     .height(100)
                     .toEdges([.bottom, .leading, .trailing], inset: 25)
 
                 // To Edges Leading and Trailing with Vertical Center, Inset and Priority
 
-                blueView
+                UIView.blue()
                     .height(100)
                     .to(.centerY)
                     .toEdges([.leading, .trailing], inset: 25, priority: .low)
@@ -679,25 +679,25 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Edges with Default Edges, Inset and Priority
 
-                pinkView
+                UIView.pink()
                     .toEdges([.top, .leading], inset: 50, priority: .high)
                     .toEdges()
 
                 // To Edges Top, Left and Right
 
-                yellowView
+                UIView.yellow()
                     .height(100)
                     .toEdges(canonical: [.top, .left, .right])
 
                 // To Edges Bottom, Left and Right with Inset
 
-                blueView
+                UIView.blue()
                     .height(100)
                     .toEdges(canonical: [.bottom, .left, .right], inset: 25)
 
                 // To Edges Left and Right with Vertical Center, Inset and Priority
 
-                orangeView
+                UIView.orange()
                     .height(100)
                     .to(.centerY)
                     .toEdges(canonical: [.left, .right], inset: 25, priority: .low)
@@ -714,7 +714,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Side Edges with Default Inset and Priority
 
-                pinkView
+                UIView.pink()
                     .height(100)
                     .to(.top)
                     .toSideEdges(inset: 50, priority: .high)
@@ -722,14 +722,14 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Side Edges with Inset
 
-                yellowView
+                UIView.yellow()
                     .height(100)
                     .to(.centerY)
                     .toSideEdges(inset: 50)
 
                 // To Side Edges with Inset and Priority
 
-                blueView
+                UIView.blue()
                     .height(100)
                     .to(.bottom)
                     .toSideEdges(inset: 0, priority: .low)
@@ -770,14 +770,14 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Margins with Default Priority
 
-                pinkView
+                UIView.pink()
                     .toMargins(insets: NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10),
                                priority: .high)
                     .toMargins(insets: NSDirectionalEdgeInsets.zero)
 
                 // To Margins with Insets and Priority
 
-                blueView
+                UIView.blue()
                     .toMargins(insets: NSDirectionalEdgeInsets.zero, priority: .low)
                     .toMargins(insets: NSDirectionalEdgeInsets(top: 20, leading: 30, bottom: 50, trailing: 90),
                                priority: .high)
@@ -793,13 +793,13 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Margins with Default Priority
 
-                pinkView
+                UIView.pink()
                     .toMargins(insets: UIEdgeInsets.zero, priority: .high)
                     .toMargins(insets: UIEdgeInsets(top: 10, left: 20, bottom: 40, right: 80))
 
                 // To Margins with Priority
 
-                blueView
+                UIView.blue()
                     .toMargins(insets: UIEdgeInsets.zero, priority: .low)
                     .toMargins(insets: UIEdgeInsets(top: 20, left: 30, bottom: 50, right: 90), priority: .high)
             }
@@ -814,18 +814,18 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Margins with Default Inset and Priority
 
-                pinkView
+                UIView.pink()
                     .toMargins([.top, .leading, .trailing, .bottom], inset: 50, priority: .high)
                     .toMargins([.top, .leading, .trailing, .bottom])
 
                 // To Margins with Inset
 
-                blueView
+                UIView.blue()
                     .toMargins([.top, .leading, .trailing, .bottom], inset: 25)
 
                 // To Margins with Inset and Priority
 
-                orangeView
+                UIView.orange()
                     .toMargins([.top, .leading, .trailing, .bottom], inset: 0, priority: .low)
                     .toMargins([.top, .leading, .trailing, .bottom], inset: 50, priority: .high)
             }
@@ -840,24 +840,24 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Margins with Default Inset and Priority
 
-                pinkView
+                UIView.pink()
                     .toMargins(canonical: CanonicalEdge.allCases, inset: 50, priority: .high)
                     .toMargins()
 
                 // To Margins with Inset
 
-                blueView
+                UIView.blue()
                     .toMargins(inset: 25)
 
                 // To Margins with Inset and Priority
 
-                orangeView
+                UIView.orange()
                     .toMargins(inset: 0, priority: .low)
                     .toMargins(inset: 50, priority: .high)
 
                 // To Margins Top Left with Inset
 
-                yellowView
+                UIView.yellow()
                     .size(width: 50, height: 50)
                     .toMargins(canonical: [.top, .left], inset: 75)
             }
@@ -872,7 +872,7 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Side Margins with Default Inset and Priority
 
-                pinkView
+                UIView.pink()
                     .to(.top)
                     .height(100)
                     .toSideMargins()
@@ -880,14 +880,14 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Side Margins with Inset
 
-                blueView
+                UIView.blue()
                     .center(.vertical)
                     .height(100)
                     .toSideMargins(inset: 20)
 
                 // To Side Margins with Inset and Priority
 
-                orangeView
+                UIView.orange()
                     .to(.bottom)
                     .height(100)
                     .toSideMargins(inset: 20, priority: .low)
@@ -928,14 +928,14 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Safe Area with Insets and Default Priority
 
-                pinkView
+                UIView.pink()
                     .toSafeArea(insets: NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5),
                                 priority: .high)
                     .toSafeArea(insets: NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 10, trailing: 15))
 
                 // To Safe Area with Insets and Priority
 
-                yellowView
+                UIView.yellow()
                     .toSafeArea(
                         insets: NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5),
                         priority: .low
@@ -956,13 +956,13 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Safe Area with Insets and Default Priority
 
-                pinkView
+                UIView.pink()
                     .toSafeArea(insets: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5), priority: .high)
                     .toSafeArea(insets: UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 15))
 
                 // To Safe Area with Insets and Priority
 
-                yellowView
+                UIView.yellow()
                     .toSafeArea(insets: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5), priority: .low)
                     .toSafeArea(insets: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50), priority: .high)
             }
@@ -977,13 +977,13 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Safe Area with Default Priority
 
-                pinkView
+                UIView.pink()
                     .toSafeArea(DirectionalEdge.allCases, inset: 50, priority: .high)
                     .toSafeArea(DirectionalEdge.allCases)
 
                 // To Safe Area with Inset and Priority
 
-                blueView
+                UIView.blue()
                     .toSafeArea(DirectionalEdge.allCases, inset: 0, priority: .low)
                     .toSafeArea(DirectionalEdge.allCases, inset: 25, priority: .high)
             }
@@ -998,19 +998,19 @@ final class LayoutItemTests: XCTestCase {
 
                 // To Safe Area with Default Edges, Inset and Priority
 
-                pinkView
+                UIView.pink()
                     .toSafeArea(canonical: [.top, .left], inset: 50, priority: .high)
                     .toSafeArea()
 
                 // To Safe Area with Inset and Priority
 
-                blueView
+                UIView.blue()
                     .toSafeArea(inset: 0, priority: .low)
                     .toSafeArea(inset: 50, priority: .high)
 
                 // To Safe Area Top Left Right Bottom with Inset
 
-                orangeView
+                UIView.orange()
                     .toSafeArea(canonical: CanonicalEdge.allCases, inset: 75)
             }
             .activate()

@@ -277,8 +277,8 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
+        let pinkView: UIView = .pink()
+        let yellowView: UIView = .yellow()
 
         // THEN
 
@@ -332,8 +332,8 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
+        let pinkView: UIView = .pink()
+        let yellowView: UIView = .yellow()
 
         // THEN
 
@@ -434,10 +434,10 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
-        let blueView: UIView = blueView
-        let greenView: UIView = greenView
+        let pinkView: UIView = .pink()
+        let yellowView: UIView = .yellow()
+        let blueView: UIView = .blue()
+        let greenView: UIView = .green()
 
         // THEN
 
@@ -504,8 +504,8 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
+        let pinkView: UIView = .pink()
+        let yellowView: UIView = .yellow()
 
         // THEN
 
@@ -550,9 +550,9 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let blueView: UIView = blueView
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
+        let blueView: UIView = .blue()
+        let pinkView: UIView = .pink()
+        let yellowView: UIView = .yellow()
 
         // THEN
 
@@ -582,8 +582,8 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
+        let pinkView: UIView = .pink()
+        let yellowView: UIView = .yellow()
 
         // THEN
 
@@ -605,8 +605,8 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
+        let pinkView: UIView = .pink()
+        let yellowView: UIView = .yellow()
 
         // THEN
 
@@ -630,8 +630,8 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
+        let pinkView: UIView = .pink()
+        let yellowView: UIView = .yellow()
 
         // THEN
 
@@ -660,8 +660,8 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
+        let pinkView: UIView = .pink()
+        let yellowView: UIView = .yellow()
 
         // THEN
 
@@ -718,8 +718,8 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
+        let pinkView: UIView = .pink()
+        let yellowView: UIView = .yellow()
 
         // THEN
 
@@ -743,8 +743,8 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
+        let pinkView: UIView = .pink()
+        let yellowView: UIView = .yellow()
 
         // THEN
 
@@ -805,8 +805,8 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
+        let pinkView: UIView = .pink()
+        let yellowView: UIView = .yellow()
 
         // THEN
 
@@ -869,10 +869,10 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
-        let blueView: UIView = blueView
-        let greenView: UIView = greenView
+        let pinkView: UIView = .pink()
+        let yellowView: UIView = .yellow()
+        let blueView: UIView = .blue()
+        let greenView: UIView = .green()
 
         // THEN
 
@@ -928,8 +928,8 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
+        let pinkView: UIView = .pink()
+        let yellowView: UIView = .yellow()
 
         // THEN
 
@@ -997,10 +997,10 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
-        let blueView: UIView = blueView
-        let greenView: UIView = greenView
+        let pinkView: UIView = .pink()
+        let yellowView: UIView = .yellow()
+        let blueView: UIView = .blue()
+        let greenView: UIView = .green()
 
         // THEN
 
@@ -1038,8 +1038,8 @@ final class LayoutTests: XCTestCase {
 
         // GIVEN
 
-        let pinkView: UIView = pinkView
-        let yellowView: UIView = yellowView
+        let pinkView: UIView = .pink()
+        let yellowView: UIView = .yellow()
 
         // THEN
 

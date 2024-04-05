@@ -86,7 +86,7 @@ final class LayoutExampleTests: XCTestCase {
 
         // GIVEN
 
-        let subview: UIView = pinkView
+        let subview: UIView = .pink()
 
         // THEN
 
@@ -100,8 +100,8 @@ final class LayoutExampleTests: XCTestCase {
 
         // GIVEN
 
-        let subview1: UIView = pinkView
-        let subview2: UIView = blueView
+        let subview1: UIView = .pink()
+        let subview2: UIView = .blue()
 
         // THEN
 
@@ -122,7 +122,7 @@ final class LayoutExampleTests: XCTestCase {
 
         // GIVEN
 
-        let siblingView: UIView = pinkView
+        let siblingView: UIView = .pink()
 
         let label: UILabel = {
             let label: UILabel = .init()
@@ -150,7 +150,7 @@ final class LayoutExampleTests: XCTestCase {
 
         // GIVEN
 
-        let siblingView: UIView = pinkView
+        let siblingView: UIView = .pink()
 
         let label: UILabel = {
             let label: UILabel = .init()
@@ -180,7 +180,7 @@ final class LayoutExampleTests: XCTestCase {
 
         // GIVEN
 
-        let subview: UIView = blueView
+        let subview: UIView = .blue()
 
         // THEN
 
@@ -195,7 +195,7 @@ final class LayoutExampleTests: XCTestCase {
 
         // GIVEN
 
-        let subview1: UIView = orangeView
+        let subview1: UIView = .orange()
         let subview2: UIImageView = .init(image: .checkmark)
 
         // THEN
@@ -212,7 +212,7 @@ final class LayoutExampleTests: XCTestCase {
 
         // GIVEN
 
-        let siblingView: UIView = pinkView
+        let siblingView: UIView = .pink()
 
         let label: UILabel = {
             let label: UILabel = .init()
@@ -240,7 +240,7 @@ final class LayoutExampleTests: XCTestCase {
 
         // GIVEN
 
-        let siblingView: UIView = pinkView
+        let siblingView: UIView = .pink()
 
         let label: UILabel = {
             let label: UILabel = .init()
