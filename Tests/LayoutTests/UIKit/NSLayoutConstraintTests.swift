@@ -20,7 +20,7 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // GIVEN
 
-        let subview: UIView = pinkView
+        let subview: UIView = .pink()
         let formats: [String] = ["H:|-leftMargin-[subview(width)]", "V:|-topMargin-[subview(height)]"]
         let views: [String: Any] = ["subview": subview]
         let metrics: [String: Any] = [
@@ -50,7 +50,7 @@ final class NSLayoutConstraintTests: XCTestCase {
 
         // GIVEN
 
-        let subview: UIView = pinkView
+        let subview: UIView = .pink()
         let formats: [String] = ["H:|-leftMargin-[subview(width)]", "V:|-topMargin-[subview(height)]"]
         let views: [String: Any] = ["subview": subview]
         let metrics: [String: Any] = [

@@ -18,7 +18,11 @@ extension XCTestCase {
     private final class ViewController: UIViewController {
 
         override func loadView() {
-            view = View(named: "", with: .white)
+            view = {
+                let view: View = .init()
+                view.backgroundColor = .white
+                return view
+            }()
         }
     }
 
