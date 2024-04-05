@@ -27,90 +27,56 @@ internal final class View: UIView {
         }
         fatalError("iOS 15+ required for unit tests.")
     }
+}
 
-    internal convenience init(named name: String, with color: UIColor) {
-        self.init()
-        accessibilityIdentifier = name
-        backgroundColor = color
+extension UIView {
+
+    internal static func pink() -> UIView {
+        let view: View = .init()
+        view.accessibilityIdentifier = "Pink"
+        view.backgroundColor = UIColor(red: 1, green: 0.176471, blue: 0.333333, alpha: 1)
+        return view
     }
-}
 
-@MainActor
-internal var pinkView: UIView {
-    View(named: "Pink", with: UIColor(red: 1, green: 0.176471, blue: 0.333333, alpha: 1))
-}
+    internal static func white() -> UIView {
+        let view: View = .init()
+        view.accessibilityIdentifier = "White"
+        view.backgroundColor = .white
+        return view
+    }
 
-@MainActor
-internal var blackView: UIView {
-    View(named: "Black", with: .black)
-}
+    internal static func red() -> UIView {
+        let view: View = .init()
+        view.accessibilityIdentifier = "Red"
+        view.backgroundColor = .red
+        return view
+    }
 
-@MainActor
-internal var darkGrayView: UIView {
-    View(named: "DarkGray", with: .darkGray)
-}
+    internal static func green() -> UIView {
+        let view: View = .init()
+        view.accessibilityIdentifier = "Green"
+        view.backgroundColor = .green
+        return view
+    }
 
-@MainActor
-internal var lightGrayView: UIView {
-    View(named: "LightGray", with: .lightGray)
-}
+    internal static func blue() -> UIView {
+        let view: View = .init()
+        view.accessibilityIdentifier = "Blue"
+        view.backgroundColor = .blue
+        return view
+    }
 
-@MainActor
-internal var whiteView: UIView {
-    View(named: "White", with: .white)
-}
+    internal static func yellow() -> UIView {
+        let view: View = .init()
+        view.accessibilityIdentifier = "Yellow"
+        view.backgroundColor = .yellow
+        return view
+    }
 
-@MainActor
-internal var grayView: UIView {
-    View(named: "Gray", with: .gray)
-}
-
-@MainActor
-internal var redView: UIView {
-    View(named: "Red", with: .red)
-}
-
-@MainActor
-internal var greenView: UIView {
-    View(named: "Green", with: .green)
-}
-
-@MainActor
-internal var blueView: UIView {
-    View(named: "Blue", with: .blue)
-}
-
-@MainActor
-internal var cyanView: UIView {
-    View(named: "Cyan", with: .cyan)
-}
-
-@MainActor
-internal var yellowView: UIView {
-    View(named: "Yellow", with: .yellow)
-}
-
-@MainActor
-internal var magentaView: UIView {
-    View(named: "Magenta", with: .magenta)
-}
-
-@MainActor
-internal var orangeView: UIView {
-    View(named: "Orange", with: .orange)
-}
-
-@MainActor
-internal var purpleView: UIView {
-    View(named: "Purple", with: .purple)
-}
-
-@MainActor
-internal var brownView: UIView {
-    View(named: "Brown", with: .brown)
-}
-
-@MainActor
-internal var clearView: UIView {
-    View(named: "Clear", with: .clear)
+    internal static func orange() -> UIView {
+        let view: View = .init()
+        view.accessibilityIdentifier = "Orange"
+        view.backgroundColor = .orange
+        return view
+    }
 }
