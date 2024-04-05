@@ -448,12 +448,12 @@ final class LayoutItemTests: XCTestCase {
     @MainActor
     func testCenterBetweenLeadingAndTrailing() {
         assertLayout(devices: Device.allTestDevices) { view in
-            view.layout(
+            view.layout {
                 pinkView
                     .size(width: 200, height: 100)
                     .to(.top)
                     .center(between: view.safeAreaLayoutGuide.leading, and: view.safeAreaLayoutGuide.trailing)
-            )
+            }
             .activate()
         }
     }
@@ -461,14 +461,13 @@ final class LayoutItemTests: XCTestCase {
     @MainActor
     func testCenterBetweenTopAndBottom() {
         assertLayout(devices: Device.allTestDevices) { view in
-            view
-                .layout {
-                    pinkView
-                        .size(width: 200, height: 100)
-                        .to(.leading)
-                        .center(between: view.safeAreaLayoutGuide.top, and: view.safeAreaLayoutGuide.bottom)
-                }
-                .activate()
+            view.layout {
+                pinkView
+                    .size(width: 200, height: 100)
+                    .to(.leading)
+                    .center(between: view.safeAreaLayoutGuide.top, and: view.safeAreaLayoutGuide.bottom)
+            }
+            .activate()
         }
     }
 
