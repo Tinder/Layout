@@ -176,38 +176,6 @@ final class LayoutExampleTests: XCTestCase {
     // MARK: - LayoutItem
 
     @MainActor
-    func testSingleLayoutItemDocumentationExample() {
-
-        // GIVEN
-
-        let subview: UIView = .blue()
-
-        // THEN
-
-        assertLayout { view in
-            let item: LayoutItem = subview.toEdges()
-            view.layout(item).activate()
-        }
-    }
-
-    @MainActor
-    func testMultipleLayoutItemsDocumentationExample() {
-
-        // GIVEN
-
-        let subview1: UIView = .orange()
-        let subview2: UIImageView = .init(image: .checkmark)
-
-        // THEN
-
-        assertLayout { view in
-            let item1: LayoutItem = subview1.toEdges()
-            let item2: LayoutItem = subview2.square().center()
-            view.layout(item1).addItem(item2).activate()
-        }
-    }
-
-    @MainActor
     func testHorizontallyCenteringLayoutItemDocumentationExample() {
 
         // GIVEN

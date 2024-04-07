@@ -20,17 +20,10 @@ public typealias SuperviewConstraints = (LayoutItem) -> [NSLayoutConstraint]
  * Each subview and its constraints are stored as a `LayoutItem` instance within a ``Layout``. A `LayoutItem` extension
  * is provided that defines the declarative methods used to create constraints for the subviews within a layout.
  *
- * A layout item must be added to a `Layout` in order to activate its constraints, as the following code demonstrates:
+ * A layout item must be added to a `Layout` in order to activate its constraints, as shown in the following code:
  *
  * ```swift
- * // Creating a layout with a single item
- * let item: LayoutItem = subview.toEdges()
- * view.layout(item).activate()
- *
- * // Creating a layout with multiple items
- * let item1: LayoutItem = subview1.toEdges()
- * let item2: LayoutItem = subview2.square().center()
- * view.layout(item1).addItem(item2).activate()
+ * view.layout(subview.toEdges()).activate()
  * ```
  *
  * The following code demonstrates the preferred way of constructing and activating a layout with multiple items
