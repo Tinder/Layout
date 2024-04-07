@@ -43,7 +43,7 @@ let package = Package(
             ],
             exclude: [
                 "__Snapshots__",
-                "UIKit/__Snapshots__",
+                "UIKitTests/__Snapshots__",
             ],
             swiftSettings: .swiftSettings,
             plugins: [
