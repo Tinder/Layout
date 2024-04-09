@@ -1,3 +1,0 @@
-<View; frame = (x: 0, y: 0, width: 375, height: 812)>
-   | <View; name = Orange; frame = (x: 0, y: 0, width: 375, height: 812)>
-   | <UIImageView; frame = (177.333 397; 20.3333 19); opaque = NO; userInteractionEnabled = NO; image = <UIImage symbol "checkmark.circle.fill"; (20 19)@3{2}>; layer = <CALayer>>
