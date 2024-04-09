@@ -1,7 +1,7 @@
 //
 //  All Contributions by Match Group
 //
-//  Copyright © 2023 Tinder (Match Group, LLC)
+//  Copyright © 2024 Tinder (Match Group, LLC)
 //
 //  Licensed under the Match Group Modified 3-Clause BSD License.
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
@@ -12,12 +12,7 @@ import UIKit
 
 extension ViewImageConfig {
 
-    internal static let iPhone14: ViewImageConfig = .iPhone14(.portrait)
-    internal static let iPhone14Plus: ViewImageConfig = .iPhone14Plus(.portrait)
-    internal static let iPhone14Pro: ViewImageConfig = .iPhone14Pro(.portrait)
-    internal static let iPhone14ProMax: ViewImageConfig = .iPhone14ProMax(.portrait)
-
-    internal static func iPhone14(_ orientation: Orientation) -> ViewImageConfig {
+    public static func iPhone14(_ orientation: Orientation) -> ViewImageConfig {
         let safeArea: UIEdgeInsets
         let size: CGSize
         switch orientation {
@@ -31,7 +26,7 @@ extension ViewImageConfig {
         return ViewImageConfig(safeArea: safeArea, size: size, traits: .iPhone14(orientation))
     }
 
-    internal static func iPhone14Plus(_ orientation: Orientation) -> ViewImageConfig {
+    public static func iPhone14Plus(_ orientation: Orientation) -> ViewImageConfig {
         let safeArea: UIEdgeInsets
         let size: CGSize
         switch orientation {
@@ -45,7 +40,7 @@ extension ViewImageConfig {
         return ViewImageConfig(safeArea: safeArea, size: size, traits: .iPhone14Plus(orientation))
     }
 
-    internal static func iPhone14Pro(_ orientation: Orientation) -> ViewImageConfig {
+    public static func iPhone14Pro(_ orientation: Orientation) -> ViewImageConfig {
         let safeArea: UIEdgeInsets
         let size: CGSize
         switch orientation {
@@ -59,7 +54,7 @@ extension ViewImageConfig {
         return ViewImageConfig(safeArea: safeArea, size: size, traits: .iPhone14Pro(orientation))
     }
 
-    internal static func iPhone14ProMax(_ orientation: Orientation) -> ViewImageConfig {
+    public static func iPhone14ProMax(_ orientation: Orientation) -> ViewImageConfig {
         let safeArea: UIEdgeInsets
         let size: CGSize
         switch orientation {

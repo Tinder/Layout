@@ -10,6 +10,7 @@
 
 import Nimble
 import SnapshotTesting
+import SnapshotTestingExtensions
 import UIKit
 import XCTest
 

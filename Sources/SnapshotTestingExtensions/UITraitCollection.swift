@@ -1,7 +1,7 @@
 //
 //  All Contributions by Match Group
 //
-//  Copyright © 2023 Tinder (Match Group, LLC)
+//  Copyright © 2024 Tinder (Match Group, LLC)
 //
 //  Licensed under the Match Group Modified 3-Clause BSD License.
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
@@ -19,16 +19,16 @@ extension UITraitCollection {
             UITraitCollection(preferredContentSizeCategory: .medium),
             UITraitCollection(userInterfaceIdiom: .phone)
         ]
-        switch orientation {
+        return switch orientation {
         case .landscape:
-            return UITraitCollection(
+            UITraitCollection(
                 traitsFrom: base + [
                     UITraitCollection(horizontalSizeClass: .regular),
                     UITraitCollection(verticalSizeClass: .compact)
                 ]
             )
         case .portrait:
-            return UITraitCollection(
+            UITraitCollection(
                 traitsFrom: base + [
                     UITraitCollection(horizontalSizeClass: .compact),
                     UITraitCollection(verticalSizeClass: .regular)
@@ -44,16 +44,16 @@ extension UITraitCollection {
             UITraitCollection(preferredContentSizeCategory: .medium),
             UITraitCollection(userInterfaceIdiom: .phone)
         ]
-        switch orientation {
+        return switch orientation {
         case .landscape:
-            return UITraitCollection(
+            UITraitCollection(
                 traitsFrom: base + [
                     UITraitCollection(horizontalSizeClass: .regular),
                     UITraitCollection(verticalSizeClass: .compact)
                 ]
             )
         case .portrait:
-            return UITraitCollection(
+            UITraitCollection(
                 traitsFrom: base + [
                     UITraitCollection(horizontalSizeClass: .compact),
                     UITraitCollection(verticalSizeClass: .regular)
@@ -69,16 +69,16 @@ extension UITraitCollection {
             UITraitCollection(preferredContentSizeCategory: .medium),
             UITraitCollection(userInterfaceIdiom: .phone)
         ]
-        switch orientation {
+        return switch orientation {
         case .landscape:
-            return UITraitCollection(
+            UITraitCollection(
                 traitsFrom: base + [
                     UITraitCollection(horizontalSizeClass: .regular),
                     UITraitCollection(verticalSizeClass: .compact)
                 ]
             )
         case .portrait:
-            return UITraitCollection(
+            UITraitCollection(
                 traitsFrom: base + [
                     UITraitCollection(horizontalSizeClass: .compact),
                     UITraitCollection(verticalSizeClass: .regular)
@@ -94,16 +94,16 @@ extension UITraitCollection {
             UITraitCollection(preferredContentSizeCategory: .medium),
             UITraitCollection(userInterfaceIdiom: .phone)
         ]
-        switch orientation {
+        return switch orientation {
         case .landscape:
-            return UITraitCollection(
+            UITraitCollection(
                 traitsFrom: base + [
                     UITraitCollection(horizontalSizeClass: .regular),
                     UITraitCollection(verticalSizeClass: .compact)
                 ]
             )
         case .portrait:
-            return UITraitCollection(
+            UITraitCollection(
                 traitsFrom: base + [
                     UITraitCollection(horizontalSizeClass: .compact),
                     UITraitCollection(verticalSizeClass: .regular)
