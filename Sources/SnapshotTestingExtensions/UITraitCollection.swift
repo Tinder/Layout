@@ -21,19 +21,15 @@ extension UITraitCollection {
         ]
         return switch orientation {
         case .landscape:
-            UITraitCollection(
-                traitsFrom: base + [
-                    UITraitCollection(horizontalSizeClass: .regular),
-                    UITraitCollection(verticalSizeClass: .compact)
-                ]
-            )
+            UITraitCollection(traitsFrom: base + [
+                UITraitCollection(horizontalSizeClass: .regular),
+                UITraitCollection(verticalSizeClass: .compact)
+            ])
         case .portrait:
-            UITraitCollection(
-                traitsFrom: base + [
-                    UITraitCollection(horizontalSizeClass: .compact),
-                    UITraitCollection(verticalSizeClass: .regular)
-                ]
-            )
+            UITraitCollection(traitsFrom: base + [
+                UITraitCollection(horizontalSizeClass: .compact),
+                UITraitCollection(verticalSizeClass: .regular)
+            ])
         }
     }
 
@@ -46,19 +42,15 @@ extension UITraitCollection {
         ]
         return switch orientation {
         case .landscape:
-            UITraitCollection(
-                traitsFrom: base + [
-                    UITraitCollection(horizontalSizeClass: .regular),
-                    UITraitCollection(verticalSizeClass: .compact)
-                ]
-            )
+            UITraitCollection(traitsFrom: base + [
+                UITraitCollection(horizontalSizeClass: .regular),
+                UITraitCollection(verticalSizeClass: .compact)
+            ])
         case .portrait:
-            UITraitCollection(
-                traitsFrom: base + [
-                    UITraitCollection(horizontalSizeClass: .compact),
-                    UITraitCollection(verticalSizeClass: .regular)
-                ]
-            )
+            UITraitCollection(traitsFrom: base + [
+                UITraitCollection(horizontalSizeClass: .compact),
+                UITraitCollection(verticalSizeClass: .regular)
+            ])
         }
     }
 
@@ -71,19 +63,15 @@ extension UITraitCollection {
         ]
         return switch orientation {
         case .landscape:
-            UITraitCollection(
-                traitsFrom: base + [
-                    UITraitCollection(horizontalSizeClass: .regular),
-                    UITraitCollection(verticalSizeClass: .compact)
-                ]
-            )
+            UITraitCollection(traitsFrom: base + [
+                UITraitCollection(horizontalSizeClass: .regular),
+                UITraitCollection(verticalSizeClass: .compact)
+            ])
         case .portrait:
-            UITraitCollection(
-                traitsFrom: base + [
-                    UITraitCollection(horizontalSizeClass: .compact),
-                    UITraitCollection(verticalSizeClass: .regular)
-                ]
-            )
+            UITraitCollection(traitsFrom: base + [
+                UITraitCollection(horizontalSizeClass: .compact),
+                UITraitCollection(verticalSizeClass: .regular)
+            ])
         }
     }
 
@@ -96,19 +84,15 @@ extension UITraitCollection {
         ]
         return switch orientation {
         case .landscape:
-            UITraitCollection(
-                traitsFrom: base + [
-                    UITraitCollection(horizontalSizeClass: .regular),
-                    UITraitCollection(verticalSizeClass: .compact)
-                ]
-            )
+            UITraitCollection(traitsFrom: base + [
+                UITraitCollection(horizontalSizeClass: .regular),
+                UITraitCollection(verticalSizeClass: .compact)
+            ])
         case .portrait:
-            UITraitCollection(
-                traitsFrom: base + [
-                    UITraitCollection(horizontalSizeClass: .compact),
-                    UITraitCollection(verticalSizeClass: .regular)
-                ]
-            )
+            UITraitCollection(traitsFrom: base + [
+                UITraitCollection(horizontalSizeClass: .compact),
+                UITraitCollection(verticalSizeClass: .regular)
+            ])
         }
     }
 }
