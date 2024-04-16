@@ -29,7 +29,7 @@ analyze:
 	@DERIVED_DATA="$$(mktemp -d)"; \
 	XCODEBUILD_LOG="$$DERIVED_DATA/xcodebuild.log"; \
 	xcodebuild \
-		-scheme "$(target)" \
+		-scheme "$(target)-Package" \
 		-destination "$(destination)" \
 		-derivedDataPath "$$DERIVED_DATA" \
 		-configuration "Debug" \
