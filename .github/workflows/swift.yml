@@ -43,14 +43,14 @@ jobs:
       run: >
         xcodebuild
         build-for-testing
-        -scheme "Layout"
+        -scheme "Layout-Package"
         -destination "name=$SIMULATOR,OS=latest"
         SWIFT_TREAT_WARNINGS_AS_ERRORS=YES
     - name: Test
       run: >
         xcodebuild
         test-without-building
-        -scheme "Layout"
+        -scheme "Layout-Package"
         -destination "name=$SIMULATOR,OS=latest"
     - name: Delete snapshots
       run: make delete-snapshots
@@ -58,7 +58,7 @@ jobs:
       run: >
         xcodebuild
         test-without-building
-        -scheme "Layout"
+        -scheme "Layout-Package"
         -destination "name=$SIMULATOR,OS=latest"
       continue-on-error: true
     - name: Validate recorded snapshots
