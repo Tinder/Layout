@@ -35,7 +35,7 @@ let package = Package(
             name: "LayoutTests",
             dependencies: [
                 "Layout",
-                "SnapshotTestingExtensions",                
+                "SnapshotTestingExtensions",
                 "Nimble",
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
             ],
