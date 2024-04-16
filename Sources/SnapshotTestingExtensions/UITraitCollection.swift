@@ -14,7 +14,7 @@ extension UITraitCollection {
 
     internal static func iPhone14(_ orientation: ViewImageConfig.Orientation) -> UITraitCollection {
         let base: [UITraitCollection] = [
-            UITraitCollection(forceTouchCapability: .available),
+            UITraitCollection(forceTouchCapability: .unavailable),
             UITraitCollection(layoutDirection: .leftToRight),
             UITraitCollection(preferredContentSizeCategory: .medium),
             UITraitCollection(userInterfaceIdiom: .phone)
@@ -35,7 +35,7 @@ extension UITraitCollection {
 
     internal static func iPhone14Plus(_ orientation: ViewImageConfig.Orientation) -> UITraitCollection {
         let base: [UITraitCollection] = [
-            UITraitCollection(forceTouchCapability: .available),
+            UITraitCollection(forceTouchCapability: .unavailable),
             UITraitCollection(layoutDirection: .leftToRight),
             UITraitCollection(preferredContentSizeCategory: .medium),
             UITraitCollection(userInterfaceIdiom: .phone)
@@ -56,7 +56,7 @@ extension UITraitCollection {
 
     internal static func iPhone14Pro(_ orientation: ViewImageConfig.Orientation) -> UITraitCollection {
         let base: [UITraitCollection] = [
-            UITraitCollection(forceTouchCapability: .available),
+            UITraitCollection(forceTouchCapability: .unavailable),
             UITraitCollection(layoutDirection: .leftToRight),
             UITraitCollection(preferredContentSizeCategory: .medium),
             UITraitCollection(userInterfaceIdiom: .phone)
@@ -77,7 +77,7 @@ extension UITraitCollection {
 
     internal static func iPhone14ProMax(_ orientation: ViewImageConfig.Orientation) -> UITraitCollection {
         let base: [UITraitCollection] = [
-            UITraitCollection(forceTouchCapability: .available),
+            UITraitCollection(forceTouchCapability: .unavailable),
             UITraitCollection(layoutDirection: .leftToRight),
             UITraitCollection(preferredContentSizeCategory: .medium),
             UITraitCollection(userInterfaceIdiom: .phone)
