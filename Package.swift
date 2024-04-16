@@ -11,6 +11,9 @@ let package = Package(
         .library(
             name: "Layout",
             targets: ["Layout"]),
+        .library(
+            name: "SnapshotTestingExtensions",
+            targets: ["SnapshotTestingExtensions"]),
     ],
     dependencies: [
         .package(
@@ -23,10 +26,16 @@ let package = Package(
     targets: [
         .target(
             name: "Layout"),
+        .target(
+            name: "SnapshotTestingExtensions",
+            dependencies: [
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
+            ]),
         .testTarget(
             name: "LayoutTests",
             dependencies: [
                 "Layout",
+                "SnapshotTestingExtensions",
                 "Nimble",
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
             ],

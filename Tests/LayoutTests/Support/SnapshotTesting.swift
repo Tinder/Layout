@@ -10,6 +10,7 @@
 
 import Nimble
 import SnapshotTesting
+import SnapshotTestingExtensions
 import UIKit
 import XCTest
 
@@ -72,6 +73,14 @@ extension Device {
             return .iPhone13(orientation.configOrientation)
         case let .iPhone13mini(orientation):
             return .iPhone13Mini(orientation.configOrientation)
+        case let .iPhone14(orientation):
+            return .iPhone14(orientation.configOrientation)
+        case let .iPhone14Plus(orientation):
+            return .iPhone14Plus(orientation.configOrientation)
+        case let .iPhone14Pro(orientation):
+            return .iPhone14Pro(orientation.configOrientation)
+        case let .iPhone14ProMax(orientation):
+            return .iPhone14ProMax(orientation.configOrientation)
         }
     }
 }
