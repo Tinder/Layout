@@ -30,10 +30,6 @@ let package = Package(
             name: "SnapshotTestingExtensions",
             dependencies: [
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
-            ],
-            swiftSettings: .swiftSettings,
-            plugins: [
-                .plugin(name: SwiftLint.plugin),
             ]),
         .testTarget(
             name: "LayoutTests",
