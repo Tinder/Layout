@@ -62,7 +62,7 @@ extension XCTestCase {
 extension Device {
 
     internal var config: ViewImageConfig {
-        return switch self {
+        switch self {
         case let .iPhone8(orientation):
             .iPhone8(orientation.configOrientation)
         case let .iPhoneSE(orientation):

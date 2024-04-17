@@ -137,7 +137,7 @@ internal enum Device: CustomStringConvertible {
     }
 
     internal var name: String {
-        return switch self {
+        switch self {
         case let .iPhone8(orientation):
             "iPhone 8 - \(orientation)"
         case let .iPhoneSE(orientation):
