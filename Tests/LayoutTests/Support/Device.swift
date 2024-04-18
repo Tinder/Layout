@@ -18,6 +18,10 @@ internal enum Device: CustomStringConvertible {
     case iPhone14Plus(Orientation)
     case iPhone14Pro(Orientation)
     case iPhone14ProMax(Orientation)
+    case iPhone15(Orientation)
+    case iPhone15Plus(Orientation)
+    case iPhone15Pro(Orientation)
+    case iPhone15ProMax(Orientation)
 
     internal enum Orientation {
 
@@ -61,6 +65,19 @@ internal enum Device: CustomStringConvertible {
         [.iPhone14ProMax(.portrait), .iPhone14ProMax(.landscape)]
     }
 
+    internal static var iPhone15: [Self] {
+        [.iPhone15(.portrait), .iPhone15(.landscape)]
+    }
+    internal static var iPhone15Plus: [Self] {
+        [.iPhone15Plus(.portrait), .iPhone15Plus(.landscape)]
+    }
+    internal static var iPhone15Pro: [Self] {
+        [.iPhone15Pro(.portrait), .iPhone15Pro(.landscape)]
+    }
+    internal static var iPhone15ProMax: [Self] {
+        [.iPhone15ProMax(.portrait), .iPhone15ProMax(.landscape)]
+    }
+
     internal static var allTestDevices: [Self] {
         portraitTestDevices + landscapeTestDevices
     }
@@ -75,7 +92,11 @@ internal enum Device: CustomStringConvertible {
             .iPhone14(.portrait),
             .iPhone14Plus(.portrait),
             .iPhone14Pro(.portrait),
-            .iPhone14ProMax(.portrait)
+            .iPhone14ProMax(.portrait),
+            .iPhone15(.portrait),
+            .iPhone15Plus(.portrait),
+            .iPhone15Pro(.portrait),
+            .iPhone15ProMax(.portrait)
         ]
     }
 
@@ -89,7 +110,11 @@ internal enum Device: CustomStringConvertible {
             .iPhone14(.landscape),
             .iPhone14Plus(.landscape),
             .iPhone14Pro(.landscape),
-            .iPhone14ProMax(.landscape)
+            .iPhone14ProMax(.landscape),
+            .iPhone15(.landscape),
+            .iPhone15Plus(.landscape),
+            .iPhone15Pro(.landscape),
+            .iPhone15ProMax(.landscape)
         ]
     }
 
@@ -114,23 +139,31 @@ internal enum Device: CustomStringConvertible {
     internal var name: String {
         switch self {
         case let .iPhone8(orientation):
-            return "iPhone 8 - \(orientation)"
+            "iPhone 8 - \(orientation)"
         case let .iPhoneSE(orientation):
-            return "iPhone SE - \(orientation)"
+            "iPhone SE - \(orientation)"
         case let .iPhoneX(orientation):
-            return "iPhone X - \(orientation)"
+            "iPhone X - \(orientation)"
         case let .iPhone13(orientation):
-            return "iPhone 13 - \(orientation)"
+            "iPhone 13 - \(orientation)"
         case let .iPhone13mini(orientation):
-            return "iPhone 13 mini - \(orientation)"
+            "iPhone 13 mini - \(orientation)"
         case let .iPhone14(orientation):
-            return "iPhone 14 - \(orientation)"
+            "iPhone 14 - \(orientation)"
         case let .iPhone14Plus(orientation):
-            return "iPhone 14 Plus - \(orientation)"
+            "iPhone 14 Plus - \(orientation)"
         case let .iPhone14Pro(orientation):
-            return "iPhone 14 Pro - \(orientation)"
+            "iPhone 14 Pro - \(orientation)"
         case let .iPhone14ProMax(orientation):
-            return "iPhone 14 Pro Max - \(orientation)"
+            "iPhone 14 Pro Max - \(orientation)"
+        case let .iPhone15(orientation):
+            "iPhone 15  - \(orientation)"
+        case let .iPhone15Plus(orientation):
+            "iPhone 15 Plus - \(orientation)"
+        case let .iPhone15Pro(orientation):
+            "iPhone 15 Pro - \(orientation)"
+        case let .iPhone15ProMax(orientation):
+            "iPhone 15 Pro Max - \(orientation)"
         }
     }
 }

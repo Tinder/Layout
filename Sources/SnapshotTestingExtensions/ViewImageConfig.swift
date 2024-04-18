@@ -67,4 +67,60 @@ extension ViewImageConfig {
         }
         return ViewImageConfig(safeArea: safeArea, size: size, traits: .iPhone14ProMax(orientation))
     }
+
+    public static func iPhone15(_ orientation: Orientation) -> ViewImageConfig {
+        let safeArea: UIEdgeInsets
+        let size: CGSize
+        switch orientation {
+        case .landscape:
+            safeArea = UIEdgeInsets(top: 0, left: 59, bottom: 21, right: 59)
+            size = CGSize(width: 852, height: 393)
+        case .portrait:
+            safeArea = UIEdgeInsets(top: 59, left: 0, bottom: 34, right: 0)
+            size = CGSize(width: 393, height: 852)
+        }
+        return ViewImageConfig(safeArea: safeArea, size: size, traits: .iPhone15(orientation))
+    }
+
+    public static func iPhone15Plus(_ orientation: Orientation) -> ViewImageConfig {
+        let safeArea: UIEdgeInsets
+        let size: CGSize
+        switch orientation {
+        case .landscape:
+            safeArea = UIEdgeInsets(top: 0, left: 59, bottom: 21, right: 59)
+            size = CGSize(width: 932, height: 430)
+        case .portrait:
+            safeArea = UIEdgeInsets(top: 59, left: 0, bottom: 34, right: 0)
+            size = CGSize(width: 430, height: 932)
+        }
+        return ViewImageConfig(safeArea: safeArea, size: size, traits: .iPhone15Plus(orientation))
+    }
+
+    public static func iPhone15Pro(_ orientation: Orientation) -> ViewImageConfig {
+        let safeArea: UIEdgeInsets
+        let size: CGSize
+        switch orientation {
+        case .landscape:
+            safeArea = UIEdgeInsets(top: 0, left: 59, bottom: 21, right: 59)
+            size = CGSize(width: 852, height: 393)
+        case .portrait:
+            safeArea = UIEdgeInsets(top: 59, left: 0, bottom: 34, right: 0)
+            size = CGSize(width: 393, height: 852)
+        }
+        return ViewImageConfig(safeArea: safeArea, size: size, traits: .iPhone15Pro(orientation))
+    }
+
+    public static func iPhone15ProMax(_ orientation: Orientation) -> ViewImageConfig {
+        let safeArea: UIEdgeInsets
+        let size: CGSize
+        switch orientation {
+        case .landscape:
+            safeArea = UIEdgeInsets(top: 0, left: 59, bottom: 21, right: 59)
+            size = CGSize(width: 932, height: 430)
+        case .portrait:
+            safeArea = UIEdgeInsets(top: 59, left: 0, bottom: 34, right: 0)
+            size = CGSize(width: 430, height: 932)
+        }
+        return ViewImageConfig(safeArea: safeArea, size: size, traits: .iPhone15ProMax(orientation))
+    }
 }

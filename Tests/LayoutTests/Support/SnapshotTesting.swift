@@ -64,23 +64,31 @@ extension Device {
     internal var config: ViewImageConfig {
         switch self {
         case let .iPhone8(orientation):
-            return .iPhone8(orientation.configOrientation)
+            .iPhone8(orientation.configOrientation)
         case let .iPhoneSE(orientation):
-            return .iPhoneSe(orientation.configOrientation)
+            .iPhoneSe(orientation.configOrientation)
         case let .iPhoneX(orientation):
-            return .iPhoneX(orientation.configOrientation)
+            .iPhoneX(orientation.configOrientation)
         case let .iPhone13(orientation):
-            return .iPhone13(orientation.configOrientation)
+            .iPhone13(orientation.configOrientation)
         case let .iPhone13mini(orientation):
-            return .iPhone13Mini(orientation.configOrientation)
+            .iPhone13Mini(orientation.configOrientation)
         case let .iPhone14(orientation):
-            return .iPhone14(orientation.configOrientation)
+            .iPhone14(orientation.configOrientation)
         case let .iPhone14Plus(orientation):
-            return .iPhone14Plus(orientation.configOrientation)
+            .iPhone14Plus(orientation.configOrientation)
         case let .iPhone14Pro(orientation):
-            return .iPhone14Pro(orientation.configOrientation)
+            .iPhone14Pro(orientation.configOrientation)
         case let .iPhone14ProMax(orientation):
-            return .iPhone14ProMax(orientation.configOrientation)
+            .iPhone14ProMax(orientation.configOrientation)
+        case let .iPhone15(orientation):
+            .iPhone15(orientation.configOrientation)
+        case let .iPhone15Plus(orientation):
+            .iPhone15Plus(orientation.configOrientation)
+        case let .iPhone15Pro(orientation):
+            .iPhone15Pro(orientation.configOrientation)
+        case let .iPhone15ProMax(orientation):
+            .iPhone15ProMax(orientation.configOrientation)
         }
     }
 }
