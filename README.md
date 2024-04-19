@@ -25,12 +25,34 @@ Code written with Layout leverages a high fidelity syntax, meaning it is easy to
 
 ## Installation
 
-**Swift Package Manager Dependency**
+### Swift Package Manager
+
+**Package Dependency**
 
 > Replace `<version>` with the desired minimum version.
 
 ```swift
 .package(url: "https://github.com/Tinder/Layout.git", from: "<version>")
+```
+
+**Target Dependencies**
+
+Layout
+
+```
+"Layout"
+```
+
+Snapshot Testing Extensions _(for test targets)_
+
+```
+.product(name: "SnapshotTestingExtensions", package: "Layout")
+```
+
+### Swift Package Collection
+
+```swift
+https://swiftpackageindex.com/Tinder/collection.json
 ```
 
 ## Usage
