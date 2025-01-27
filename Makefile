@@ -10,7 +10,7 @@ fix:
 	@/usr/libexec/PlistBuddy -c \
 		"Delete :FILEHEADER" \
 		"$(XCSHAREDDATA)/IDETemplateMacros.plist" >/dev/null 2>&1 || true
-	@header=$$'\n//  All Contributions by Match Group\n//\n//  Copyright © ___YEAR___ Tinder (Match Group, LLC)\n//\n//  Licensed under the Match Group Modified 3-Clause BSD License.\n//  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.\n//'; \
+	@header=$$'\n//  All Contributions by Match Group\n//\n//  Copyright © ___YEAR___ Tinder \(Match Group, LLC\)\n//\n//  Licensed under the Match Group Modified 3-Clause BSD License.\n//  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.\n//'; \
 	/usr/libexec/PlistBuddy -c \
 		"Add :FILEHEADER string $$header" \
 		"$(XCSHAREDDATA)/IDETemplateMacros.plist" >/dev/null 2>&1
@@ -33,6 +33,7 @@ analyze:
 		-destination "$(destination)" \
 		-derivedDataPath "$$DERIVED_DATA" \
 		-configuration "Debug" \
+		-skipPackagePluginValidation \
 		CODE_SIGNING_ALLOWED="NO" \
 		> "$$XCODEBUILD_LOG"; \
 	swift package plugin \
@@ -75,6 +76,7 @@ docs:
 		-scheme "$(target)" \
 		-destination "$(destination)" \
 		-derivedDataPath "$(DERIVED_DATA_PATH)" \
+		-skipPackagePluginValidation \
 		OTHER_DOCC_FLAGS="--warnings-as-errors"
 	@find "$(DERIVED_DATA_PATH)" \
 		-type d \
