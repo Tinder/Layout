@@ -1,6 +1,6 @@
 [![Swift](https://github.com/Tinder/Layout/actions/workflows/swift.yml/badge.svg?event=push)](https://github.com/Tinder/Layout/actions/workflows/swift.yml)
 &nbsp;
-[![Bazel](https://github.com/Tinder/Layout/actions/workflows/bazel.yml/badge.svg?event=push)](https://github.com/Tinder/Layout/actions/workflows/bazel.yml)
+[![DocC](https://github.com/Tinder/Layout/actions/workflows/docc.yml/badge.svg?event=push)](https://github.com/Tinder/Layout/actions/workflows/docc.yml)
 &nbsp;
 [![Pages](https://github.com/Tinder/Layout/actions/workflows/pages.yml/badge.svg?event=push)](https://github.com/Tinder/Layout/actions/workflows/pages.yml)
 &nbsp;
@@ -21,7 +21,7 @@ Code written with Layout leverages a high fidelity syntax, meaning it is easy to
 ## Minimum Requirements
 
 - iOS `13.0`
-- Swift `5.7`
+- Swift `5.8`
 
 ## Installation
 
@@ -39,13 +39,13 @@ Code written with Layout leverages a high fidelity syntax, meaning it is easy to
 
 Layout
 
-```
+```swift
 "Layout"
 ```
 
 Snapshot Testing Extensions _(for test targets)_
 
-```
+```swift
 .product(name: "SnapshotTestingExtensions", package: "Layout")
 ```
 

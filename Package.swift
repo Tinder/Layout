@@ -1,4 +1,4 @@
-// swift-tools-version:5.7
+// swift-tools-version:5.8
 
 import PackageDescription
 
@@ -6,6 +6,7 @@ let package = Package(
     name: "Layout",
     platforms: [
         .iOS(.v13),
+        .macOS(.v12),
     ],
     products: [
         .library(
@@ -17,11 +18,14 @@ let package = Package(
     ],
     dependencies: [
         .package(
+            url: "https://github.com/realm/SwiftLint.git",
+            exact: "0.56.2"),
+        .package(
             url: "https://github.com/Quick/Nimble.git",
-            from: "13.0.0"),
+            exact: "13.4.0"),
         .package(
             url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
-            from: "1.15.0"),
+            exact: "1.17.4"),
     ],
     targets: [
         .target(
@@ -45,3 +49,14 @@ let package = Package(
             ]),
     ]
 )
+
+package.targets.forEach { target in
+
+    target.swiftSettings = [
+        .enableExperimentalFeature("StrictConcurrency"),
+    ]
+
+    target.plugins = [
+        .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLint"),
+    ]
+}
