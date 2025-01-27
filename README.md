@@ -117,8 +117,14 @@ Layout is an alternative solution to other open source Auto Layout libraries, su
 
 ## Contributing
 
-While interest in contributing to this project is appreciated, it has been open sourced solely for the purpose of sharing with the community. This means we are unable to accept outside contributions at this time and pull requests will not be reviewed or merged. To report a security concern or vulnerability, please submit a GitHub issue.
+While interest in contributing to this project is appreciated, it has been open 
+sourced solely for the purpose of sharing with the community. This means we are 
+unable to accept outside contributions at this time and pull requests will not 
+be reviewed or merged. To report a security concern or vulnerability, please 
+submit a GitHub issue.
 
 ## License
 
-Licensed under the [Match Group Modified 3-Clause BSD License](https://github.com/Tinder/Layout/blob/main/LICENSE).
+Licensed under the [Match Group Modified 3-Clause BSD License](
+https://github.com/Tinder/Layout/blob/main/LICENSE
+).
