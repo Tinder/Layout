@@ -5,32 +5,33 @@ on:
     tags: ['[0-9]+.[0-9]+.[0-9]+']
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_15.0.app/Contents/Developer
-  SWIFT_EMIT_EXTENSION_BLOCK_SYMBOLS: true
+  DEVELOPER_DIR: /Applications/Xcode_15.4.app/Contents/Developer
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   pages:
     name: Pages
-    runs-on: macos-13
-    concurrency:
-      group: "pages"
-      cancel-in-progress: true
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: macos-latest
     steps:
     - name: Checkout source
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Configure pages
-      uses: actions/configure-pages@v2
+      uses: actions/configure-pages@v5
     - name: Build documentation
       run: make site
     - name: Upload pages artifact
-      uses: actions/upload-pages-artifact@v1
+      uses: actions/upload-pages-artifact@v3
     - name: Deploy pages artifact
       id: deployment
-      uses: actions/deploy-pages@v1
+      uses: actions/deploy-pages@v4
