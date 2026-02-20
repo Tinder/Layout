@@ -53,7 +53,7 @@ let package = Package(
                 "__Snapshots__",
                 "UIKitTests/__Snapshots__",
             ]),
-    ],
+    ]
 )
 
 package.targets.forEach { target in
