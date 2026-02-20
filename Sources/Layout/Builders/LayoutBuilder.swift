@@ -54,7 +54,7 @@ public enum LayoutBuilder {
     /// https://docs.swift.org/swift-book/documentation/the-swift-programming-language/attributes/#resultBuilder
     /// ) for more information.
     public static func buildBlock(_ components: Component...) -> Component {
-        components.flatMap { $0 }
+        components.flatMap(\.self)
     }
 
     /// See result builder [documentation](
@@ -82,7 +82,7 @@ public enum LayoutBuilder {
     /// https://docs.swift.org/swift-book/documentation/the-swift-programming-language/attributes/#resultBuilder
     /// ) for more information.
     public static func buildArray(_ components: [Component]) -> Component {
-        components.flatMap { $0 }
+        components.flatMap(\.self)
     }
 
     /// See result builder [documentation](
