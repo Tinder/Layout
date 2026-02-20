@@ -16,14 +16,21 @@ Layout is a wrapper around the Apple platform Auto Layout SDK and provides a les
 
 Code written with Layout leverages a high fidelity syntax, meaning it is easy to visualize the UI layout that the code represents. However, Layout does not limit the native Auto Layout capabilities in any way, which can readily be used along with the Layout API. In recent years, mobile platforms have seen the introduction of declarative UI frameworks such as SwiftUI and Jetpack Compose which realize significantly reduced learning curves. While not a declarative framework, Layout utilizes a similar declarative style, in this case for the UIKit framework.
 
-## Minimum Requirements
-
-- iOS `13.0`
-- Swift `5.8`
-
 ## Installation
 
+### Swift Package Collection
+
+<details><summary>Expand / Collapse</summary><br>
+
+```
+https://swiftpackageindex.com/Tinder/collection.json
+```
+
+</details>
+
 ### Swift Package Manager
+
+<details><summary>Expand / Collapse</summary><br>
 
 **Package Dependency**
 
@@ -47,11 +54,33 @@ Snapshot Testing Extensions _(for test targets)_
 .product(name: "SnapshotTestingExtensions", package: "Layout")
 ```
 
-### Swift Package Collection
+</details>
 
-```swift
-https://swiftpackageindex.com/Tinder/collection.json
+### Xcode
+
+<details><summary>Expand / Collapse</summary><br>
+
+**Package Dependency**
+
 ```
+https://github.com/Tinder/Layout.git
+```
+
+**Target Dependencies**
+
+Layout
+
+```
+Layout
+```
+
+Snapshot Testing Extensions _(for test targets)_
+
+```
+SnapshotTestingExtensions
+```
+
+</details>
 
 ## Usage
 
