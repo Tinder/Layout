@@ -47,23 +47,6 @@ delete-snapshots:
 		echo "Deleted $$snapshots"; \
 	done
 
-.PHONY: site
-site: target ?= Layout
-site: prefix ?= $(shell pwd)
-site: DOCC_PATH = $(shell xcrun --find docc)
-site: ARCHIVE_PATH = .build/documentation/archive
-site:
-	@make docs open="no"
-	"$(DOCC_PATH)" process-archive \
-		transform-for-static-hosting \
-		"$(ARCHIVE_PATH)/$(target).doccarchive" \
-		--hosting-base-path "/$(target)" \
-		--output-path "$(prefix)/_site"
-	cp docs.html "$(prefix)/_site/index.html"
-	cp docs.html "$(prefix)/_site/documentation/index.html"
-	mkdir -p "$(prefix)/_site/cheatsheet"
-	cp cheatsheet.html "$(prefix)/_site/cheatsheet/index.html"
-
 .PHONY: docs
 docs: target ?= Layout
 docs: destination ?= generic/platform=iOS
@@ -83,3 +66,20 @@ docs:
 		-name "$(target).doccarchive" \
 		-exec cp -R {} "$(ARCHIVE_PATH)/" \;
 	$(if $(filter $(open),OPEN),@open "$(ARCHIVE_PATH)/$(target).doccarchive",)
+
+.PHONY: site
+site: target ?= Layout
+site: prefix ?= $(shell pwd)
+site: DOCC_PATH = $(shell xcrun --find docc)
+site: ARCHIVE_PATH = .build/documentation/archive
+site:
+	@make docs open="no"
+	"$(DOCC_PATH)" process-archive \
+		transform-for-static-hosting \
+		"$(ARCHIVE_PATH)/$(target).doccarchive" \
+		--hosting-base-path "$(target)" \
+		--output-path "$(prefix)/_site"
+	cp docs.html "$(prefix)/_site/index.html"
+	cp docs.html "$(prefix)/_site/documentation/index.html"
+	mkdir -p "$(prefix)/_site/cheatsheet"
+	cp cheatsheet.html "$(prefix)/_site/cheatsheet/index.html"

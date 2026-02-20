@@ -12,19 +12,25 @@ import UIKit
 internal final class View: UIView {
 
     override internal var description: String {
-        let identifier: String
-        if let accessibilityIdentifier, !accessibilityIdentifier.isEmpty {
-            identifier = "View; name = \(accessibilityIdentifier)"
+        if Thread.isMainThread {
+            MainActor.assumeIsolated {
+                let identifier: String
+                if let accessibilityIdentifier, !accessibilityIdentifier.isEmpty {
+                    identifier = "View; name = \(accessibilityIdentifier)"
+                } else {
+                    identifier = "View"
+                }
+                guard #available(iOS 15.0, *)
+                else { fatalError("iOS 15+ required for unit tests.") }
+                let minX: String = frame.minX.formatted()
+                let minY: String = frame.minY.formatted()
+                let width: String = frame.width.formatted()
+                let height: String = frame.height.formatted()
+                return "<\(identifier); frame = (x: \(minX), y: \(minY), width: \(width), height: \(height))>"
+            }
         } else {
-            identifier = "View"
+            super.description
         }
-        guard #available(iOS 15.0, *)
-        else { fatalError("iOS 15+ required for unit tests.") }
-        let minX: String = frame.minX.formatted()
-        let minY: String = frame.minY.formatted()
-        let width: String = frame.width.formatted()
-        let height: String = frame.height.formatted()
-        return "<\(identifier); frame = (x: \(minX), y: \(minY), width: \(width), height: \(height))>"
     }
 }
 
