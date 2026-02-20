@@ -7,11 +7,6 @@ on:
 env:
   DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -25,6 +20,8 @@ jobs:
     runs-on: macos-latest
     permissions:
       contents: read
+      pages: write
+      id-token: write
     steps:
     - name: Checkout source
       uses: actions/checkout@v6
