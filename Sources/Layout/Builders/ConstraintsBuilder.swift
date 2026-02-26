@@ -56,7 +56,12 @@ public enum ConstraintsBuilder {
     /// https://docs.swift.org/swift-book/documentation/the-swift-programming-language/attributes/#resultBuilder
     /// ) for more information.
     public static func buildBlock(_ components: Component...) -> Component {
+        #if swift(>=6.0)
         components.flatMap(\.self)
+        #else
+        // swiftlint:disable:next prefer_key_path
+        components.flatMap { $0 }
+        #endif
     }
 
     /// See result builder [documentation](
@@ -84,7 +89,12 @@ public enum ConstraintsBuilder {
     /// https://docs.swift.org/swift-book/documentation/the-swift-programming-language/attributes/#resultBuilder
     /// ) for more information.
     public static func buildArray(_ components: [Component]) -> Component {
+        #if swift(>=6.0)
         components.flatMap(\.self)
+        #else
+        // swiftlint:disable:next prefer_key_path
+        components.flatMap { $0 }
+        #endif
     }
 
     /// See result builder [documentation](
