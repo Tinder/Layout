@@ -58,17 +58,28 @@ let package = Package(
 
 package.targets.forEach { target in
 
-    // TODO: Remove upon enabling Swift 6 language mode:
+    let types: [Target.TargetType] = [
+        .regular,
+        .test,
+        .executable,
+        .plugin,
+        .macro,
+    ]
+
+    guard types.contains(target.type)
+    else { return }
+
     target.swiftSettings = (target.swiftSettings ?? []) + [.enableExperimentalFeature("StrictConcurrency")]
 
-    if treatWarningsAsErrors {
-        target.swiftSettings = (target.swiftSettings ?? []) + [
-            // TODO: Remove unsafe flag upon upgrading to Swift tools v6.2 and uncomment subsequent settings:
-            .unsafeFlags(["-warnings-as-errors"]),
+//    if treatWarningsAsErrors {
+//        target.swiftSettings = (target.swiftSettings ?? []) + [
 //            .treatAllWarnings(as: .error),
 //            .treatWarning("DeprecatedDeclaration", as: .warning),
-        ]
-    }
+//        ]
+//    }
+
+    guard target.type != .macro
+    else { return }
 
     if enableSwiftLintBuildToolPlugin {
         target.plugins = (target.plugins ?? []) + [
