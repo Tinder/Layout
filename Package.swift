@@ -62,8 +62,6 @@ package.targets.forEach { target in
         .regular,
         .test,
         .executable,
-        .plugin,
-        .macro,
     ]
 
     guard types.contains(target.type)
@@ -77,9 +75,6 @@ package.targets.forEach { target in
 //            .treatWarning("DeprecatedDeclaration", as: .warning),
 //        ]
 //    }
-
-    guard target.type != .macro
-    else { return }
 
     if enableSwiftLintBuildToolPlugin {
         target.plugins = (target.plugins ?? []) + [
