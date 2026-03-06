@@ -24,7 +24,7 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/realm/SwiftLint.git",
+            url: "https://github.com/SimplyDanny/SwiftLintPlugins.git",
             exact: "0.59.1"),
         .package(
             url: "https://github.com/Quick/Nimble.git",
@@ -62,6 +62,7 @@ package.targets.forEach { target in
         .regular,
         .test,
         .executable,
+        .macro,
     ]
 
     guard types.contains(target.type)
@@ -78,7 +79,7 @@ package.targets.forEach { target in
 
     if enableSwiftLintBuildToolPlugin {
         target.plugins = (target.plugins ?? []) + [
-            .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLint"),
+            .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins"),
         ]
     }
 }

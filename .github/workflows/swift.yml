@@ -20,11 +20,11 @@ jobs:
     steps:
     - name: Checkout source
       uses: actions/checkout@v6
-    - name: Download swiftlint binary
+    - name: Resolve package dependencies
       run: swift package resolve
     - name: Lint
       run: >
-        "$(find ".build/artifacts/swiftlint" -path "*macos*" -type f -name swiftlint -perm +111 -print -quit)"
+        swift package plugin --allow-writing-to-package-directory swiftlint --
         lint --strict --reporter github-actions-logging
     - name: Resolve package dependencies
       run: xcodebuild -resolvePackageDependencies
