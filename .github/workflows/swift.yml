@@ -41,4 +41,3 @@ jobs:
         test-without-building
         -scheme "Layout-Package"
         -destination "name=$SIMULATOR,OS=latest"
-      run: swift test -v
