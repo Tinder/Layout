@@ -1,4 +1,3 @@
-// swiftlint:disable:this file_name
 //
 //  All Contributions by Match Group
 //
@@ -107,7 +106,6 @@ extension Device.Orientation {
 
 extension UIView {
 
-    // swiftlint:disable:next strict_fileprivate
     fileprivate var recursiveSubviews: [UIView] {
         subviews + subviews.flatMap(\.recursiveSubviews)
     }

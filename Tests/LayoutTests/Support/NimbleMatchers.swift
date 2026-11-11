@@ -1,4 +1,3 @@
-// swiftlint:disable:this file_name
 //
 //  All Contributions by Match Group
 //
@@ -25,14 +24,11 @@ extension XCTestCase {
         }
     }
 
-    // swiftlint:disable cyclomatic_complexity
-
     @MainActor
     internal func match(
         _ expectedConstraint: NSLayoutConstraint,
-        isActive: Bool? = nil // swiftlint:disable:this discouraged_optional_boolean
+        isActive: Bool? = nil
     ) -> Matcher<NSLayoutConstraint> {
-        // swiftlint:disable:next closure_body_length
         Matcher { expression in
             guard let constraint: NSLayoutConstraint = try expression.evaluate()
             else { return MatcherResult(status: .fail, message: .expectedTo("not be nil, got <nil>")) }
@@ -145,13 +141,10 @@ extension XCTestCase {
             return MatcherResult(bool: true, message: .fail(""))
         }
     }
-
-    // swiftlint:enable cyclomatic_complexity
 }
 
 extension Optional {
 
-    // swiftlint:disable:next strict_fileprivate
     fileprivate var stringValue: String {
         guard let self
         else { return "nil" }

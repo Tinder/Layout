@@ -7,8 +7,6 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
-// swiftlint:disable file_length
-
 import UIKit
 
 /**
@@ -45,7 +43,7 @@ import UIKit
  */
 @preconcurrency
 @MainActor
-public final class Layout { // swiftlint:disable:this type_body_length
+public final class Layout {
 
     // MARK: - Properties
 
@@ -74,8 +72,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         self.init(view, metrics: metrics, items: [])
     }
 
-    // swiftlint:disable function_default_parameter_at_end
-
     /// To create a `Layout` with a ``LayoutItem`` instance, use ``UIKit/UIView/layout(metrics:_:)`` instead.
     public convenience init(
         _ view: UIView,
@@ -84,8 +80,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
     ) {
         self.init(view, metrics: metrics, items: [item])
     }
-
-    // swiftlint:enable function_default_parameter_at_end
 
     /// To create a `Layout` with a ``LayoutBuilder``, use ``UIKit/UIView/layout(metrics:items:)`` instead.
     public convenience init(
@@ -166,8 +160,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         self.constraints += constraints
         return self
     }
-
-    // swiftlint:disable function_default_parameter_at_end
 
     // MARK: - Constrain
 
@@ -354,8 +346,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
             .constrain(view.bottom, to: targetView.bottom, constant: -insets.bottom)
     }
 
-    // swiftlint:enable function_default_parameter_at_end
-
     // MARK: - Equal
 
     /// Adds constraints equating the attribute of the given views.
@@ -525,8 +515,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         ])
     }
 
-    // swiftlint:disable function_default_parameter_at_end
-
     // MARK: - Stack
 
     /// Adds constraints defining the relationship between each of the given views as a horizontal stack with desired
@@ -614,10 +602,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
         return self
     }
 
-    // swiftlint:enable function_default_parameter_at_end
-
-    // swiftlint:disable discouraged_optional_collection
-
     // MARK: - Visual Format Language
 
     /// Adds constraints to the layout described by a horizontal visual format string.
@@ -667,8 +651,6 @@ public final class Layout { // swiftlint:disable:this type_body_length
                                               metrics: metrics ?? self.metrics,
                                               options: options))
     }
-
-    // swiftlint:enable discouraged_optional_collection
 
     // MARK: - Activation
 

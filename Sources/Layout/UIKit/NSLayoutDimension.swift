@@ -11,8 +11,6 @@ import UIKit
 
 extension NSLayoutDimension {
 
-    // swiftlint:disable function_default_parameter_at_end
-
     /// Creates a constraint from the receiver in relation to the given dimension anchor.
     ///
     /// - Parameters:
@@ -73,6 +71,4 @@ extension NSLayoutDimension {
     ) -> NSLayoutConstraint {
         constraint(equalToConstant: constant)
     }
-
-    // swiftlint:enable function_default_parameter_at_end
 }

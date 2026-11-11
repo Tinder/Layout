@@ -7,8 +7,6 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
-// swiftlint:disable file_length
-
 import UIKit
 
 extension UIView {
@@ -207,8 +205,6 @@ extension UIView {
         ]
     }
 
-    // swiftlint:disable function_default_parameter_at_end
-
     // MARK: - Attributes
 
     /// Creates a constraint defining the relationship between the given attribute of the receiver and superview.
@@ -307,8 +303,6 @@ extension UIView {
     ) -> [NSLayoutConstraint] {
         attributes.map { constraint(is: relation, to: $0, of: targetView, multiplier: multiplier, constant: constant) }
     }
-
-    // swiftlint:enable function_default_parameter_at_end
 
     // MARK: - Edges
 

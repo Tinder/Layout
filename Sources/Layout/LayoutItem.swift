@@ -7,8 +7,6 @@
 //  See https://github.com/Tinder/Layout/blob/main/LICENSE for license information.
 //
 
-// swiftlint:disable file_length
-
 import UIKit
 
 /**

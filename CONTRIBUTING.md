@@ -1,7 +1,6 @@
 # Contributing to Layout
 
 - [Open Package](#open-package)
-- [Lint Package](#lint-package)
 - [Testing](#testing)
 - [Creating Releases](#creating-releases)
 
@@ -11,22 +10,6 @@
 
 ```
 make open
-```
-
-## Lint Package
-
-> SwiftLint violations are visible in Xcode as well.
-
-To run SwiftLint from the command line:
-
-```
-make lint
-```
-
-To run analysis rules:
-
-```
-make analyze
 ```
 
 ## Testing

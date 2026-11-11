@@ -337,7 +337,6 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
-        // swiftlint:disable:next closure_body_length
         assertLayout { view in
 
             let layout: Layout = view.layout {
@@ -441,7 +440,6 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
-        // swiftlint:disable:next closure_body_length
         assertLayout { view in
 
             let layout: Layout = view.layout {
@@ -876,7 +874,6 @@ final class LayoutTests: XCTestCase {
 
         // THEN
 
-        // swiftlint:disable:next closure_body_length
         assertLayout { view in
 
             let layout: Layout = view.layout {
