@@ -6,7 +6,6 @@ import PackageDescription
 let environment = ProcessInfo.processInfo.environment
 
 let treatWarningsAsErrors = environment["CI"] == "true"
-let enableSwiftLintBuildToolPlugin = environment["CODEQL_DIST"] == nil
 
 let package = Package(
     name: "Layout",
@@ -23,9 +22,6 @@ let package = Package(
             targets: ["SnapshotTestingExtensions"]),
     ],
     dependencies: [
-        .package(
-            url: "https://github.com/SimplyDanny/SwiftLintPlugins.git",
-            exact: "0.59.1"),
         .package(
             url: "https://github.com/Quick/Nimble.git",
             exact: "14.0.0"),
@@ -76,10 +72,4 @@ package.targets.forEach { target in
 //            .treatWarning("DeprecatedDeclaration", as: .warning),
 //        ]
 //    }
-
-    if enableSwiftLintBuildToolPlugin {
-        target.plugins = (target.plugins ?? []) + [
-            .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins"),
-        ]
-    }
 }

@@ -59,7 +59,6 @@ public enum ConstraintsBuilder {
         #if swift(>=6.0)
         components.flatMap(\.self)
         #else
-        // swiftlint:disable:next prefer_key_path
         components.flatMap { $0 }
         #endif
     }
@@ -92,7 +91,6 @@ public enum ConstraintsBuilder {
         #if swift(>=6.0)
         components.flatMap(\.self)
         #else
-        // swiftlint:disable:next prefer_key_path
         components.flatMap { $0 }
         #endif
     }

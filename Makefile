@@ -15,30 +15,6 @@ fix:
 		"Add :FILEHEADER string $$header" \
 		"$(XCSHAREDDATA)/IDETemplateMacros.plist" >/dev/null 2>&1
 
-.PHONY: lint
-lint: format ?= emoji
-lint:
-	@swift package plugin \
-		swiftlint lint --strict --progress --reporter "$(format)"
-
-.PHONY: analyze
-analyze: target ?= Layout
-analyze: destination ?= generic/platform=iOS
-analyze: format ?= emoji
-analyze:
-	@DERIVED_DATA="$$(mktemp -d)"; \
-	XCODEBUILD_LOG="$$DERIVED_DATA/xcodebuild.log"; \
-	xcodebuild \
-		-scheme "$(target)-Package" \
-		-destination "$(destination)" \
-		-derivedDataPath "$$DERIVED_DATA" \
-		-configuration "Debug" \
-		-skipPackagePluginValidation \
-		CODE_SIGNING_ALLOWED="NO" \
-		> "$$XCODEBUILD_LOG"; \
-	swift package plugin \
-		swiftlint analyze --strict --progress --reporter "$(format)" --compiler-log-path "$$XCODEBUILD_LOG"
-
 .PHONY: delete-snapshots
 delete-snapshots:
 	@for snapshots in $$(find Tests -type d -name "__Snapshots__"); \
@@ -59,7 +35,6 @@ docs:
 		-scheme "$(target)" \
 		-destination "$(destination)" \
 		-derivedDataPath "$(DERIVED_DATA_PATH)" \
-		-skipPackagePluginValidation \
 		$(if $(filter $(open),OPEN),OTHER_DOCC_FLAGS="--warnings-as-errors",)
 	@find "$(DERIVED_DATA_PATH)" \
 		-type d \

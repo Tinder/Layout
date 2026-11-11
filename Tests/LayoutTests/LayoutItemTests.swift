@@ -113,10 +113,8 @@ final class LayoutItemTests: XCTestCase {
     @MainActor
     func testWidthIsRelationToConstantPriority() {
 
-        // swiftlint:disable:next closure_body_length
         assertLayout { view in
 
-            // swiftlint:disable:next closure_body_length
             view.layout {
 
                 // Size Width with Relation and Default Priority
@@ -205,10 +203,8 @@ final class LayoutItemTests: XCTestCase {
     @MainActor
     func testHeightIsRelationToConstantPriority() {
 
-        // swiftlint:disable:next closure_body_length
         assertLayout { view in
 
-            // swiftlint:disable:next closure_body_length
             view.layout {
 
                 // Size Height with Relation and Default Priority

@@ -11,8 +11,6 @@ import UIKit
 
 extension NSLayoutXAxisAnchor {
 
-    // swiftlint:disable function_default_parameter_at_end
-
     /// Creates a constraint from the receiver in relation to the given x-axis anchor.
     ///
     /// - Parameters:
@@ -37,6 +35,4 @@ extension NSLayoutXAxisAnchor {
             return constraint(equalTo: anchor, constant: constant)
         }
     }
-
-    // swiftlint:enable function_default_parameter_at_end
 }

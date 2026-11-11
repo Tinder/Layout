@@ -35,8 +35,6 @@ extension UIView {
         Layout(self, metrics: metrics, items: [])
     }
 
-    // swiftlint:disable function_default_parameter_at_end
-
     /// Creates a ``Layout`` with the given ``LayoutItem`` instance.
     ///
     /// A ``Layout`` is used to add subviews and constraints to a view. The `Layout` stores each subview with its
@@ -68,8 +66,6 @@ extension UIView {
     ) -> Layout {
         Layout(self, metrics: metrics, items: [item])
     }
-
-    // swiftlint:enable function_default_parameter_at_end
 
     /// Creates a ``Layout`` with the ``LayoutItem`` instances provided by the given ``LayoutBuilder``.
     ///

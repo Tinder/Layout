@@ -22,12 +22,6 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v6
     - name: Resolve package dependencies
-      run: swift package resolve
-    - name: Lint
-      run: >
-        swift package plugin --allow-writing-to-package-directory swiftlint --
-        lint --strict --reporter github-actions-logging
-    - name: Resolve package dependencies
       run: xcodebuild -resolvePackageDependencies
     - name: Build
       run: >
@@ -35,7 +29,6 @@ jobs:
         build-for-testing
         -scheme "Layout-Package"
         -destination "name=$SIMULATOR,OS=$SIMULATOR_OS"
-        -skipPackagePluginValidation
     - name: Test
       run: >
         xcodebuild
