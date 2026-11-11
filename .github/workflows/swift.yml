@@ -17,6 +17,7 @@ jobs:
       contents: read
     env:
       SIMULATOR: iPhone 17
+      SIMULATOR_OS: "26.2"
     steps:
     - name: Checkout source
       uses: actions/checkout@v6
@@ -33,11 +34,11 @@ jobs:
         xcodebuild
         build-for-testing
         -scheme "Layout-Package"
-        -destination "name=$SIMULATOR,OS=latest"
+        -destination "name=$SIMULATOR,OS=$SIMULATOR_OS"
         -skipPackagePluginValidation
     - name: Test
       run: >
         xcodebuild
         test-without-building
         -scheme "Layout-Package"
-        -destination "name=$SIMULATOR,OS=latest"
+        -destination "name=$SIMULATOR,OS=$SIMULATOR_OS"
